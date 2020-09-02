@@ -85,7 +85,7 @@ $ git show HEAD^^ # HEAD 的第二个父提交
 
 用 `..` 可以查看在一个分支中而不在另一个分支中的提交.
 
-![区间提交的例子](../images/pro-git/double-dot.png "double-dot")
+![区间提交的例子](/img/in-post/post-pro-git/double-dot.png "double-dot")
 
 ``` shell
 $ git log master..experiment

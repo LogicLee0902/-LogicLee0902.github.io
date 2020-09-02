@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Pro Git」 02 Git Branching"
+title: "「Pro Git」 03 Git Branching"
 subtitle: "Git 分支"
 author: "roife"
 date: 2020-01-22
@@ -60,7 +60,7 @@ f30ab (HEAD -> master, testing) add feature #32 - ability to add new formats to 
 98ca9 The initial commit of my project
 ```
 
-![HEAD 指向 master 分支](../images/pro-git/head-to-master.png
+![HEAD 指向 master 分支](/img/in-post/post-pro-git/head-to-master.png
 "head-to-master")
 
 ## 切换分支
@@ -76,7 +76,7 @@ $ vim test.rb
 $ git commit -a -m 'made a change'
 ```
 
-![HEAD 随着提交向前移动](../images/pro-git/advance-testing.png
+![HEAD 随着提交向前移动](/img/in-post/post-pro-git/advance-testing.png
 "advance-testing")
 
 ``` shell
@@ -85,7 +85,7 @@ $ vim test.rb
 $ git commit -a -m 'made other changes'
 ```
 
-![项目历史形成分支](../images/pro-git/advance-master.png "advance-master")
+![项目历史形成分支](/img/in-post/post-pro-git/advance-master.png "advance-master")
 
 ## 删除分支
 
@@ -124,10 +124,10 @@ both modified:      index.html
     no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-![一次合并的三个 snapshot](../images/pro-git/basic-merging-1.png
+![一次合并的三个 snapshot](/img/in-post/post-pro-git/basic-merging-1.png
 "basic-merge-1")
 
-![合并结果](../images/pro-git/basic-merging-2.png "basic-merge-2")
+![合并结果](/img/in-post/post-pro-git/basic-merging-2.png "basic-merge-2")
 
 此时冲突文件中 `<`, `=`, `>` 三个标记组成的区域表示冲突部分, 需要自行修改后 `add`, `commit`. 或用 `git mergetool` 启动图形化工具.
 
@@ -153,7 +153,7 @@ both modified:      index.html
 
 可以用 `git fetch <remote>` 拉取远程仓库.
 
-![更新远程仓库](../images/pro-git/remote-branches.png "remote-branches")
+![更新远程仓库](/img/in-post/post-pro-git/remote-branches.png "remote-branches")
 
 注意远程仓库并不是一个真正的分支, 而只是一个指针, 需要用 `git checkout` 在其创建新分支才能使用.
 
@@ -198,11 +198,11 @@ First, rewinding head to replay your work on top of it...
 Applying: added staged command
 ```
 
-![原始状态](../images/pro-git/basic-rebase-1.png "basic-rebase-1")
+![原始状态](/img/in-post/post-pro-git/basic-rebase-1.png "basic-rebase-1")
 
-![进行 rebase](../images/pro-git/basic-rebase-3.png "basic-rebase-3")
+![进行 rebase](/img/in-post/post-pro-git/basic-rebase-3.png "basic-rebase-3")
 
-![合并 rebase 的结果](../images/pro-git/basic-rebase-4.png "basic-rebase-4")
+![合并 rebase 的结果](/img/in-post/post-pro-git/basic-rebase-4.png "basic-rebase-4")
 
 ``` shell
 $ git checkout master
@@ -214,23 +214,23 @@ $ git merge experiment
 - `git rebase --onto <master> <b1> <b2>` b2 是 b1 的分支, 将 b2 这一条分支提取出来
     rebase 到 master 上
 
-![原始状态](../images/pro-git/interesting-rebase-1.png
+![原始状态](/img/in-post/post-pro-git/interesting-rebase-1.png
 "interesting-rebase-1")
 
-![进行 rebase](../images/pro-git/interesting-rebase-2.png
+![进行 rebase](/img/in-post/post-pro-git/interesting-rebase-2.png
 "interesting-rebase-2")
 
 ### rebase 的风险
 
 rebase 的本质是丢弃一些 commit 的记录, 如果多个人对一个分支进行 rebase, 会扰乱 commit 记录.
 
-![原始状态](../images/pro-git/perils-of-rebasing-2.png
+![原始状态](/img/in-post/post-pro-git/perils-of-rebasing-2.png
 "perils-of-rebasing-2")
 
-![有人对远程仓库进行 rebase](../images/pro-git/perils-of-rebasing-3.png
+![有人对远程仓库进行 rebase](/img/in-post/post-pro-git/perils-of-rebasing-3.png
 "perils-of-rebasing-3")
 
-![再次 merge, 远程仓库与本地仓库不同步](../images/pro-git/perils-of-rebasing-4.png
+![再次 merge, 远程仓库与本地仓库不同步](/img/in-post/post-pro-git/perils-of-rebasing-4.png
 "perils-of-rebasing-4")
 
 所以使用 rebase 的时候要 branch 只有本地分支, 或者其他人的机器上没有这个分支.
@@ -239,7 +239,7 @@ rebase 的本质是丢弃一些 commit 的记录, 如果多个人对一个分支
 
 一个方案是发生问题时不要 merge, 用 rebase 处理 rebase, 即 `git rebase teamone/master`.
 
-![用 rebase 而不是 merge](../images/pro-git/perils-of-rebasing-5.png
+![用 rebase 而不是 merge](/img/in-post/post-pro-git/perils-of-rebasing-5.png
 "perils-of-rebasing-5")
 
 也可以手动进行 rebase, 用 `git pull --rebase` (即 `git fetch` + `git rebase teamone/master`) 代替 `git pull`.

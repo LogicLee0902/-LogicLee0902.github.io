@@ -20,7 +20,7 @@ header-style: text
 
 最普通的中心式工作流
 
-![Centrailized Workflow](../images/pro-git/centralized_workflow.png
+![Centrailized Workflow](/img/in-post/post-pro-git/centralized_workflow.png
 " centralized workflow")
 
 ## Integration-Manager Workflow
@@ -33,7 +33,7 @@ header-style: text
 这是 GitHub 采用的模式
 
 ![Integration-Manager
-Workflow](../images/pro-git/integration-manager.png
+Workflow](/img/in-post/post-pro-git/integration-manager.png
 "integration-manager workflow")
 
 ## Dictator and Lieutenants Workflow
@@ -46,7 +46,7 @@ Workflow](../images/pro-git/integration-manager.png
 这是非常大的项目 (如 Linux) 采用的模式.
 
 ![Dictator and Lieutenants
-Workflow](../images/pro-git/benevolent-dictator.png
+Workflow](/img/in-post/post-pro-git/benevolent-dictator.png
 "dictator and lieutenants workflow")
 
 # Commit Guidelines
@@ -63,7 +63,7 @@ Workflow](../images/pro-git/benevolent-dictator.png
 
 push 之前 fetch, 如果有未合并的分支则先 merge 再 push.
 
-![私有小团队工作流](../images/pro-git/small-team-flow.png "small-team-flow")
+![私有小团队工作流](/img/in-post/post-pro-git/small-team-flow.png "small-team-flow")
 
 ## 私有管理团队
 
@@ -71,7 +71,7 @@ push 之前 fetch, 如果有未合并的分支则先 merge 再 push.
 
 开发者在多个不同的 feature branch 上工作, 只有管理员能将 feature branch 的内容推送到 master 分支.
 
-![私有管理团队工作流](../images/pro-git/managed-team-flow.png
+![私有管理团队工作流](/img/in-post/post-pro-git/managed-team-flow.png
 "managed-team-flow")
 
 ## 公有项目
@@ -100,7 +100,7 @@ $ git fetch origin
 
 产生冲突时可以尝试用 rebase 来帮助维护者解决冲突.
 
-![原始状态](../images/pro-git/public-small-1.png "public-small-1")
+![原始状态](/img/in-post/post-pro-git/public-small-1.png "public-small-1")
 
 ``` shell
 # 比如尝试把 featureA rebase到 master 并更新pr
@@ -109,7 +109,7 @@ $ git rebase origin/master
 $ git push -f myfork featureA
 ```
 
-![本地 rebase 后推送](../images/pro-git/public-small-2.png "public-small-2")
+![本地 rebase 后推送](/img/in-post/post-pro-git/public-small-2.png "public-small-2")
 
 - `git merge --squash <branchA>`
     将分支 A 的多个 commit 合并成一个放到当前分支.
@@ -124,7 +124,7 @@ $ git commit
 $ git push myfork featureBv2
 ```
 
-![使用 –squash 选项合并提交](../images/pro-git/public-small-3.png
+![使用 –squash 选项合并提交](/img/in-post/post-pro-git/public-small-3.png
 "public-small-3")
 
 ## 基于邮件的公开项目
@@ -344,9 +344,9 @@ $ git diff master...contrib
 - `git cherry-pick <SHA-1>`
     将某次 commit rebase 到当前分支 (会得到一个新的 SHA-1), 然后可以丢弃原分支.
 
-![原始状态](../images/pro-git/rebasing-1.png "rebasing-1")
+![原始状态](/img/in-post/post-pro-git/rebasing-1.png "rebasing-1")
 
-![进行 cherry-pick](../images/pro-git/rebasing-2.png "rebasing-2")
+![进行 cherry-pick](/img/in-post/post-pro-git/rebasing-2.png "rebasing-2")
 
 ## 打 tag
 

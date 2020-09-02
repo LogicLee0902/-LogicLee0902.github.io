@@ -44,7 +44,7 @@ repo 中的文件可以分为以下几种:
   - Modified
   - Staged
 
-![文件的状态变化](../images/pro-git/lifecycle.png "lifecycle")
+![文件的状态变化](/img/in-post/post-pro-git/lifecycle.png "lifecycle")
 
 ## add
 
