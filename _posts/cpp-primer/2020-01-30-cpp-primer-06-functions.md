@@ -5,7 +5,7 @@ subtitle: "函数"
 author: "roife"
 date: 2020-01-30
 
-tags: ["C++", "Reading"]
+tags: ["「C++ Primer」", "C++", "Reading"]
 status: Completed
 
 language: zh-CN

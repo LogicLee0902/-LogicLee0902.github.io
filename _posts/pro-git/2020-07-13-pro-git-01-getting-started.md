@@ -5,7 +5,7 @@ subtitle: "认识 Git"
 author: "roife"
 date: 2020-07-13
 
-tags: ["Git", "Reading"]
+tags: ["「Pro Git」", "Git", "Reading"]
 status: Completed
 
 language: zh-CN

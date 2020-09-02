@@ -5,7 +5,7 @@ subtitle: "表达式"
 author: "roife"
 date: 2020-01-04
 
-tags: ["Scheme", "Dan Friedman", "Reading"]
+tags: ["「The Little Schemer」", "Scheme", "Dan Friedman", "Reading"]
 status: Completed
 
 language: zh-CN

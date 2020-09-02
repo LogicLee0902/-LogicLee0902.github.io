@@ -5,7 +5,7 @@ subtitle: "分布式 Git 的工作流"
 author: "roife"
 date: 2020-07-14
 
-tags: ["Git", "Reading"]
+tags: ["「Pro Git」", "Git", "Reading"]
 status: Completed
 
 language: zh-CN

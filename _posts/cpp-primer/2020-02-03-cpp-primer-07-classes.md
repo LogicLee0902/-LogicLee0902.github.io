@@ -5,7 +5,7 @@ subtitle: "类"
 author: "roife"
 date: 2020-02-03
 
-tags: ["C++", "Reading"]
+tags: ["「C++ Primer」", "C++", "Reading"]
 status: Completed
 
 language: zh-CN

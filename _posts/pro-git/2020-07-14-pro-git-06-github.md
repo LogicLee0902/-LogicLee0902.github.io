@@ -5,7 +5,7 @@ subtitle: "GitHub 的使用"
 author: "roife"
 date: 2020-07-14
 
-tags: ["Git", "Reading"]
+tags: ["「Pro Git」", "Git", "Reading"]
 status: Completed
 
 language: zh-CN

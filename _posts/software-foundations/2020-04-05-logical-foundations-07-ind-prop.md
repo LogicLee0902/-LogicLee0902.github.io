@@ -5,7 +5,7 @@ subtitle: "Inductively Defined Propositions"
 author: "roife"
 date: 2020-04-05
 
-tags: ["Coq", "PL", "Reading"]
+tags: ["「Software Foundations」", "「Logical Foundations」", "Coq", "PL", "Reading"]
 status: Completed
 
 language: zh-CN

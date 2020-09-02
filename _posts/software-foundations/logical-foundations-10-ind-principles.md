@@ -5,7 +5,7 @@ subtitle: "Induction Principles"
 author: "roife"
 date: 2020-04-20
 
-tags: ["Coq", "PL", "Reading"]
+tags: ["「Software Foundations」", "「Logical Foundations」", "Coq", "PL", "Reading"]
 status: Completed
 
 language: zh-CN

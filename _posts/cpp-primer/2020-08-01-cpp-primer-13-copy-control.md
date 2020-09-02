@@ -5,7 +5,7 @@ subtitle: "拷贝控制"
 author: "roife"
 date: 2020-08-01
 
-tags: ["C++", "Reading"]
+tags: ["「C++ Primer」", "C++", "Reading"]
 status: Completed
 
 language: zh-CN

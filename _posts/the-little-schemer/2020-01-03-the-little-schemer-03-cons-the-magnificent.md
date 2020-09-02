@@ -5,7 +5,7 @@ subtitle: "Cons 与 列表"
 author: "roife"
 date: 2020-01-03
 
-tags: ["Scheme", "Dan Friedman", "Reading"]
+tags: ["「The Little Schemer」", "Scheme", "Dan Friedman", "Reading"]
 status: Completed
 
 language: zh-CN

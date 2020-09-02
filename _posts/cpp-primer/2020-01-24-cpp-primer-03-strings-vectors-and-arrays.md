@@ -5,7 +5,7 @@ subtitle: "字符串, 向量和数组"
 author: "roife"
 date: 2020-01-24
 
-tags: ["C++", "Reading"]
+tags: ["「C++ Primer」", "C++", "Reading"]
 status: Completed
 
 language: zh-CN

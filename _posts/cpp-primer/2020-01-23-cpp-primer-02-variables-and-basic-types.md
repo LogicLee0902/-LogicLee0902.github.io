@@ -5,7 +5,7 @@ subtitle: "变量和基本类型"
 author: "roife"
 date: 2020-01-23
 
-tags: ["C++", "Reading"]
+tags: ["「C++ Primer」", "C++", "Reading"]
 status: Completed
 
 language: zh-CN

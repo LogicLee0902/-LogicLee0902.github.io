@@ -5,7 +5,7 @@ subtitle: "More Basic Tactics"
 author: "roife"
 date: 2020-03-15
 
-tags: ["Coq", "PL", "Reading"]
+tags: ["「Software Foundations」", "「Logical Foundations」", "Coq", "PL", "Reading"]
 status: Completed
 
 language: zh-CN

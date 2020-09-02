@@ -5,7 +5,7 @@ subtitle: "Git 高级命令"
 author: "roife"
 date: 2020-01-22
 
-tags: ["Git", "Reading"]
+tags: ["「Pro Git」", "Git", "Reading"]
 status: Completed
 
 language: zh-CN

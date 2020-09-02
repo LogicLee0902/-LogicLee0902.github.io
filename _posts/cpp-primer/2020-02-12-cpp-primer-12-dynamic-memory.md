@@ -5,7 +5,7 @@ subtitle: "动态内存"
 author: "roife"
 date: 2020-02-12
 
-tags: ["C++", "Reading"]
+tags: ["「C++ Primer」", "C++", "Reading"]
 status: Completed
 
 language: zh-CN
