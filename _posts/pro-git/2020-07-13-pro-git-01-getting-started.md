@@ -3,7 +3,7 @@ layout: "post"
 title: "「Pro Git」 01 Getting Started"
 subtitle: "认识 Git"
 author: "roife"
-date: 2020-01-22
+date: 2020-07-13
 
 tags: ["Git", "Reading"]
 status: Completed

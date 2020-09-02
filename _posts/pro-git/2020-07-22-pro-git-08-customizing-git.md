@@ -3,7 +3,7 @@ layout: "post"
 title: "「Pro Git」 08 Customizing Git"
 subtitle: "配置 Git"
 author: "roife"
-date: 2020-01-22
+date: 2020-07-22
 
 tags: ["Git", "Reading"]
 status: Completed

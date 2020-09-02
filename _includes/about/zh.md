@@ -1,6 +1,6 @@
 > Remember OI For Ever
 
-我是 roife，北航计算机科学与技术专业在读。
+我是 roife，北航 CS 专业在读本科生。
 
 - 曾经是 OIer
 
