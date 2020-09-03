@@ -5,7 +5,7 @@ subtitle: "Functional Programming in Coq"
 author: "roife"
 date: 2020-03-05
 
-tags: ["「Software Foundations」", "「Logical Foundations」", "Coq", "PL", "Reading"]
+tags: ["「Software Foundations」", "Benjamin C. Pierce", "「Logical Foundations」", "Coq", "PL", "Reading"]
 status: Completed
 
 language: zh-CN

@@ -5,7 +5,7 @@ subtitle: "写一个 Scheme 解释器"
 author: "roife"
 date: 2020-01-06
 
-tags: ["「The Little Schemer」", "Scheme", "Dan Friedman", "Reading"]
+tags: ["「The Little Schemer」", "Scheme", "Daniel P. Friedman", "Reading"]
 status: Completed
 
 language: zh-CN

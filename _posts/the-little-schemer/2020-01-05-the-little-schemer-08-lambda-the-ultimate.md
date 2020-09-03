@@ -5,7 +5,7 @@ subtitle: "高阶函数"
 author: "roife"
 date: 2020-01-05
 
-tags: ["「The Little Schemer」", "Scheme", "Dan Friedman", "Reading"]
+tags: ["「The Little Schemer」", "Scheme", "Daniel P. Friedman", "Reading"]
 status: Completed
 
 language: zh-CN
