@@ -132,7 +132,7 @@ std::bitset<32> bitvec4("1100");
 | `b.all()`                | 是否都是 `1`                                                 |
 | `b.none()`               | 是否都是 `0`                                                 |
 | `b.count`                | 多少 `1`                                                     |
-| b.size()=                | 有几位, `constexpr` 函数                                     |
+| `b.size()`                | 有几位, `constexpr` 函数                                     |
 | `b.test(pos)`            | 第 `pos` 位是否为 `1`                                        |
 | `b.set(pos, v)`          | 将第 `pos` 位设置为 `bool` 的 `v`, `v` 默认为 `1`            |
 | `b.set()`                | 把 `b` 全部变成 `1`                                          |
