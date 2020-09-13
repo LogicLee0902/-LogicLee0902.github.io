@@ -29,7 +29,7 @@ print(greet(person: "Alice"))
 
 # Function Parameters and Return Values
 
-参数数量不同的函数被视为不同的函数.
+函数的参数默认为常量.
 
 函数可以省略返回值 (本质上返回了 `void`, 即 `()`).
 
@@ -48,13 +48,7 @@ greet(person: "Dave")
 func minMax(array: [Int]) -> (min: Int, max: Int) {
     var currentMin = array[0]
     var currentMax = array[0]
-    for value in array[1..<array.count] {
-        if value < currentMin {
-            currentMin = value
-        } else if value > currentMax {
-            currentMax = value
-        }
-    }
+    // ...
     return (currentMin, currentMax)
 }
 
@@ -72,15 +66,7 @@ func minMax(array: [Int]) -> (min: Int, max: Int)? {
 
     var currentMin = array[0]
     var currentMax = array[0]
-
-    for value in array[1..<array.count] {
-        if value < currentMin {
-            currentMin = value
-        } else if value > currentMax {
-            currentMax = value
-        }
-    }
-
+    // ...
     return (currentMin, currentMax)
 }
 
@@ -197,13 +183,13 @@ func printHelloWorld() {
 var mathFunction: (Int, Int) -> Int = addTwoInts
 let anotherMathFunction = addTwoInts
 
-
 func printMathResult(_ mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
     print("Result: \(mathFunction(a, b))")
 }
 printMathResult(addTwoInts, 3, 5)
+```
 
-
+```swift
 func stepForward(_ input: Int) -> Int {
     return input + 1
 }
@@ -223,6 +209,7 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
 func chooseStepFunction(backward: Bool) -> (Int) -> Int {
     func stepForward(input: Int) -> Int { return input + 1 }
     func stepBackward(input: Int) -> Int { return input - 1 }
+    
     return backward ? stepBackward : stepForward
 }
 ```

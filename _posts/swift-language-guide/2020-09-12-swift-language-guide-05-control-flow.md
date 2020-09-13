@@ -99,17 +99,13 @@ let countedThings = "moons orbiting Saturn"
 let naturalCount: String
 switch approximateCount {
 case 0:
-    naturalCount = "no"
+    // ...
 case 1..<5:
-    naturalCount = "a few"
+    // ...
 case 5..<12:
-    naturalCount = "several"
-case 12..<100:
-    naturalCount = "dozens of"
-case 100..<1000:
-    naturalCount = "hundreds of"
+    // ...
 default:
-    naturalCount = "many"
+    // ...
 }
 ```
 
@@ -121,15 +117,13 @@ default:
 let somePoint = (1, 1)
 switch somePoint {
 case (0, 0):
-    print("\(somePoint) is at the origin")
+    // ...
 case (_, 0):
-    print("\(somePoint) is on the x-axis")
+    // ...
 case (0, _):
-    print("\(somePoint) is on the y-axis")
-case (-2...2, -2...2):
-    print("\(somePoint) is inside the box")
+    // ...
 default:
-    print("\(somePoint) is outside of the box")
+    // ...
 }
 ```
 
@@ -141,13 +135,12 @@ default:
 let anotherPoint = (2, 0)
 switch anotherPoint {
 case (let x, 0):
-    print("on the x-axis with an x value of \(x)")
+    // ...
 case (0, let y):
-    print("on the y-axis with a y value of \(y)")
+    // ...
 case let (x, y):
-    print("somewhere else at (\(x), \(y))")
+    // ...
 }
-// Prints "on the x-axis with an x value of 2"
 ```
 
 注意这里没有 `default` 语句, 因为最后一个 `case let (x, y)` 相当于 `default`.
@@ -160,13 +153,12 @@ case let (x, y):
 let yetAnotherPoint = (1, -1)
 switch yetAnotherPoint {
 case let (x, y) where x == y:
-    print("(\(x), \(y)) is on the line x == y")
+    // ...
 case let (x, y) where x == -y:
-    print("(\(x), \(y)) is on the line x == -y")
+    // ...
 case let (x, y):
-    print("(\(x), \(y)) is just some arbitrary point")
+    // ...
 }
-// Prints "(1, -1) is on the line x == -y"
 ```
 
 ### Compound Cases
@@ -206,16 +198,14 @@ label name: while condition {
 
 ```swift
 gameLoop: while square != finalSquare {
-    diceRoll += 1
-    if diceRoll == 7 { diceRoll = 1 }
+    // ...
     switch square + diceRoll {
     case finalSquare:
         break gameLoop
     case let newSquare where newSquare > finalSquare:
         continue gameLoop
     default:
-        square += diceRoll
-        square += board[square]
+        // ...
     }
 }
 ```
@@ -230,14 +220,12 @@ func greet(person: [String: String]) {
         return
     }
 
-    print("Hello \(name)!")
-
     guard let location = person["location"] else {
         print("I hope the weather is nice near you.")
         return
     }
-
-    print("I hope the weather is nice in \(location).")
+    
+    // ...
 }
 ```
 

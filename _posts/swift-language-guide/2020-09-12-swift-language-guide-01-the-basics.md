@@ -168,15 +168,14 @@ if convertedNumber != nil {
 
 ```swift
 if let actualNumber = Int(possibleNumber) {
-    print("The string \"\(possibleNumber)\" has an integer value of \(actualNumber)")
+    // ...
 } else {
-    print("The string \"\(possibleNumber)\" could not be converted to an integer")
+    // ...
 }
 
 if let firstNumber = Int("4"), let secondNumber = Int("42"), firstNumber < secondNumber && secondNumber < 100 {
-    print("\(firstNumber) < \(secondNumber) < 100")
+    // ...
 }
-// Prints "4 < 42 < 100"
 ```
 
 ## Implicitly Unwrapping Optionals
@@ -185,7 +184,7 @@ if let firstNumber = Int("4"), let secondNumber = Int("42"), firstNumber < secon
 
 主要用在 class initialization.
 
-```Swift
+```swift
 var optionalString: String? = "optional"
 var string: String = optionalString!
 
@@ -225,9 +224,9 @@ assert(age >= 0, "A person's age can't be less than zero.")
 
 ```swift
 if age > 10 {
-    print("You can ride the roller-coaster or the ferris wheel.")
+    // ...
 } else if age >= 0 {
-    print("You can ride the ferris wheel.")
+    // ...
 } else {
     assertionFailure("A person's age can't be less than zero.")
 }

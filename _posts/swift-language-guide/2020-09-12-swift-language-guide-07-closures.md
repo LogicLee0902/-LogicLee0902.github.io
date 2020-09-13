@@ -133,8 +133,6 @@ incrementByTen()
 // returns a value of 10
 incrementByTen()
 // returns a value of 20
-incrementByTen()
-// returns a value of 30
 ```
 
 捕获引用保证捕获后变量不会消失, 每次运行时依旧存在, Swift 会自动进行内存管理.
@@ -202,6 +200,18 @@ class SomeOtherClass {
 }
 ```
 
+虽然 `struct` 和 `enum` 不需要显式使用 `self`, 但是它们不允许捕获 mutable 的变量.
+
+```swift
+struct SomeStruct {
+    var x = 10
+    mutating func doSomething() {
+        someFunctionWithNonescapingClosure { x = 200 }  // Ok
+        someFunctionWithEscapingClosure { x = 100 }     // Error
+    }
+}
+```
+
 # Autoclosures
 
 Autoclosures 是自动创建的 Closures, 不接受任何参数, 用 `@autoclosure` 标记. 用 Autoclosures 可以省略花括号, 直接用表达式. 如 `assert(condition:message:file:line:)` 中的 `condition`.
@@ -228,8 +238,8 @@ func collectCustomerProviders(_ customerProvider: @autoclosure @escaping () -> S
 collectCustomerProviders(customersInLine.remove(at: 0))
 collectCustomerProviders(customersInLine.remove(at: 0))
 
-print("Collected \(customerProviders.count) closures.")
-// 打印“Collected 2 closures.”
+print("Collected \(customerProviders.count) closures.") // 打印“Collected 2 closures.”
+
 for customerProvider in customerProviders {
     print("Now serving \(customerProvider())!")
 }
