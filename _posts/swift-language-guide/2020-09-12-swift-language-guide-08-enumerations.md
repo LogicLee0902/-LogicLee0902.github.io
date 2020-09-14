@@ -5,7 +5,7 @@ subtitle: "枚举类型"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

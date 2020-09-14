@@ -5,7 +5,7 @@ subtitle: "闭包"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -246,4 +246,4 @@ for customerProvider in customerProviders {
 // 打印“Now serving Barry!”
 // 打印“Now serving Daniella!”
 ```
-    
+

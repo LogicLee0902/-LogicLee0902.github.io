@@ -5,7 +5,7 @@ subtitle: "基础语法"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -150,8 +150,7 @@ Optional 类型默认为 `nil`.
 var surveyAnswer: String?
 ```
 
-## if 语句和强制 Unwrapping
-
+## If Statements and Forced Unwrapping
 用 `!` 可以进行强制 Unwrapping.
 
 ```swift
@@ -160,7 +159,7 @@ if convertedNumber != nil {
 }
 ```
 
-## Optional 绑定
+## Optional Binding
 
 `if` 和 `while` 中可以用 `let` 或 `var` 进行检查和 Optional 绑定.
 
@@ -241,4 +240,4 @@ Preconditions 也有 `preconditions()` 和 `preconditionFailure`.
 如果编译时打开 `-Ounchecked` 则不会检查 Preconditions, 但是仍然可以用 `fatalError` 强制抛错.
 
 在不检查 Assertions 和 Preconditions 的情况下, 编译器会默认他们正确, 并且将其当作条件优化程序.
-    
+

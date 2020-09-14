@@ -5,7 +5,7 @@ subtitle: "字符串和字符"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -52,7 +52,7 @@ till you come to the end; then stop."
 var multiString = """
     This is a Multiline String Literals
     """
-    
+
 // 输出 “This is a Multiline String Literals”
 ```
 
@@ -159,7 +159,7 @@ print(goodStart + end)
 ```
 
 # String Interpolation
- 
+
 ```swift
 let multiplier = 3
 let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"

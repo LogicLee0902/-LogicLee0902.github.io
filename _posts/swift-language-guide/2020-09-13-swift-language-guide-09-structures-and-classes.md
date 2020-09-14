@@ -5,7 +5,7 @@ subtitle: "类和结构体"
 author: "roife"
 date: 2020-09-13
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

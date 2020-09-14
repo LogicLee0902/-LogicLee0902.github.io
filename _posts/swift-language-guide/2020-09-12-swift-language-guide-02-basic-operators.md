@@ -5,7 +5,7 @@ subtitle: "运算符"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -110,7 +110,7 @@ for i in 0..<count {
 
 One-Sided Ranges 删掉了一边的数字, 表示 “到头为止”.
 
-Closed Range Operator 和 Half-Open Range Operator 都有 One-Sided 的形式. 
+Closed Range Operator 和 Half-Open Range Operator 都有 One-Sided 的形式.
 
 ```swift
 let names = ["Anna", "Alex", "Brian", "Jack"]

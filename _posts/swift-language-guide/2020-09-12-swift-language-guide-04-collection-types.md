@@ -5,7 +5,7 @@ subtitle: "集合类型"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -109,7 +109,7 @@ for genre in favoriteGenres {
     print("\(genre)")
 }
 
-for genre in favoriteGenres.sorted() { // 有序遍历 
+for genre in favoriteGenres.sorted() { // 有序遍历
     print("\(genre)")
 }
 ```

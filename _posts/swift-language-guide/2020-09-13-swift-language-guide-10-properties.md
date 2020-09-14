@@ -5,7 +5,7 @@ subtitle: "属性"
 author: "roife"
 date: 2020-09-13
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -92,7 +92,7 @@ struct Rect {
 }
 var square = Rect(origin: Point(x: 0.0, y: 0.0),
     size: Size(width: 10.0, height: 10.0))
-    
+
 let initialSquareCenter = square.center
 
 square.center = Point(x: 15.0, y: 15.0)

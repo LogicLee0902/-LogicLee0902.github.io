@@ -5,7 +5,7 @@ subtitle: "控制流"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading", "Apple"]
+tags: ["「Swift Language Guide」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -224,7 +224,7 @@ func greet(person: [String: String]) {
         print("I hope the weather is nice near you.")
         return
     }
-    
+
     // ...
 }
 ```
