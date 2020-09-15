@@ -16,7 +16,7 @@ header-style: text
 
 # Defining a Base Class
 
-所有的类都可以当父类.
+所有的类 (Classes) 都可以当父类.
 
 ```swift
 class Vehicle {

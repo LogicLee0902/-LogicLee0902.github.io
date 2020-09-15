@@ -97,7 +97,7 @@ class SurveyQuestion {
 
 可以在 initializers 中给常量 properties 赋值.
 
-常量 properties 只能在当前类的 initializers 中修改, 不能在子类的 initializers 中修改.
+常量 properties 只能在当前的 initializers 中修改, 不能在子类的 initializers 中修改.
 
 ```swift
 class SurveyQuestion {

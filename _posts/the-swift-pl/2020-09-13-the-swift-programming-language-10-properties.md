@@ -341,7 +341,7 @@ a.$x.foo() // Prints 'Foo'
 - `_x`: `wrapper` itself
 - `$x`: `projectionValue`
 
-在类定义中访问 Projected Value 可以不用加 `self`.
+在定义中访问 Projected Value 可以不用加 `self`.
 
 ```swift
 struct HasWrapper {
