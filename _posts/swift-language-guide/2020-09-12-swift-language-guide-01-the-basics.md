@@ -165,6 +165,8 @@ if convertedNumber != nil {
 
 绑定可以重复.
 
+- `Int(string)` 将 String 转换成 Int, 返回 `Int?` 表示是否转换成功
+
 ```swift
 if let actualNumber = Int(possibleNumber) {
     // ...
