@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 02 Basic Operators"
+title: "「The Swift PL」 02 Basic Operators"
 subtitle: "运算符"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

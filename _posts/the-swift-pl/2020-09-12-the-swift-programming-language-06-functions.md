@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 06 Functions"
+title: "「The Swift PL」 06 Functions"
 subtitle: "函数"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 12 Subscripts"
+title: "「The Swift PL」 12 Subscripts"
 subtitle: "下标"
 author: "roife"
 date: 2020-09-14
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

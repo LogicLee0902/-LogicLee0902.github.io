@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 07 Closures"
+title: "「The Swift PL」 07 Closures"
 subtitle: "闭包"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

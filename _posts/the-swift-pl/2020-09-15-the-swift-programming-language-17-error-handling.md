@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 17 Error Handling"
+title: "「The Swift PL」 17 Error Handling"
 subtitle: "错误处理"
 author: "roife"
 date: 2020-09-15
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -63,7 +63,7 @@ func vend(itemNamed name: String) throws {
         guard item.price <= coinsDeposited else {
             throw VendingMachineError.insufficientFunds(coinsNeeded: item.price - coinsDeposited)
         }
-        
+
         // ...
     }
 ```

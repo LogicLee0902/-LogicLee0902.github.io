@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 05 Control Flow"
+title: "「The Swift PL」 05 Control Flow"
 subtitle: "控制流"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 03 Strings and Characters"
+title: "「The Swift PL」 03 Strings and Characters"
 subtitle: "字符串和字符"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

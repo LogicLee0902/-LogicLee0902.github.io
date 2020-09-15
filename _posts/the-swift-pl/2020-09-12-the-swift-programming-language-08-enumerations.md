@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 08 Enumerations"
+title: "「The Swift PL」 08 Enumerations"
 subtitle: "枚举类型"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

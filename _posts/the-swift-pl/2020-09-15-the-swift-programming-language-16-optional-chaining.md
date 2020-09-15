@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 16 Optional Chaining"
+title: "「The Swift PL」 16 Optional Chaining"
 subtitle: "可选链"
 author: "roife"
 date: 2020-09-15
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

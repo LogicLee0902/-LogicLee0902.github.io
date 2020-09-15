@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 09 Structures and Classes"
+title: "「The Swift PL」 09 Structures and Classes"
 subtitle: "类和结构体"
 author: "roife"
 date: 2020-09-13
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN

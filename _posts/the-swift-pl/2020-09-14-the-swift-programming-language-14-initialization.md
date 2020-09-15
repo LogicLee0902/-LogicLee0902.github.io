@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 14 Initialization"
+title: "「The Swift PL」 14 Initialization"
 subtitle: "构造方法"
 author: "roife"
 date: 2020-09-14
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
@@ -223,7 +223,7 @@ Swift 编译器还会进行四种安全检查:
 
 Swift 中的子类默认不会继承父类的构造器.
 
-在编写和父类中的相同的 Designated Initializer 时, 实际上在重载, 所以要加上 `override` (即使是合成的 initializer). 即使是在编写父类的 Convenience Initializer, 只要和父类的 Designated Initializer 相同就要用 `override` 修饰, 
+在编写和父类中的相同的 Designated Initializer 时, 实际上在重载, 所以要加上 `override` (即使是合成的 initializer). 即使是在编写父类的 Convenience Initializer, 只要和父类的 Designated Initializer 相同就要用 `override` 修饰,
 
 编写 Convenience Initializer 时, 由于子类不能调用父类的 Convenience Initializer, 所以不需要 `override`.
 
@@ -354,7 +354,7 @@ class CartItem: Product {
 ```swift
 class Document {
     var name: String?
-    
+
     init() {}
     init?(name: String) {
         if name.isEmpty { return nil }

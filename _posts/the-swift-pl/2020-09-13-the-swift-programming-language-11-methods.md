@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Swift Language Guide」 11 Methods"
+title: "「The Swift PL」 11 Methods"
 subtitle: "方法"
 author: "roife"
 date: 2020-09-13
 
-tags: ["「Swift Language Guide」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "Reading"]
 status: Completed
 
 language: zh-CN
