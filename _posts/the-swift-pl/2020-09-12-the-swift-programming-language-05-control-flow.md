@@ -43,8 +43,6 @@ for tickMark in stride(from: 3, through: hours, by: hourInterval) {
 }
 ```
 
-
-
 # While and Repeat-While
 
 ```swift
@@ -212,7 +210,7 @@ gameLoop: while square != finalSquare {
 
 # Early Exit
 
-`guard` 语句用于确保某个表达式必须为真, 为真时继续执行, 否则执行 `else`. `guard` 一定要加上一个 `else` 语句 (`else` 里面一般为 `break`, `return`, `continue` 等结束执行).
+`guard` 语句用于确保某个表达式必须为真, 为真时继续执行, 否则执行 `else`. `guard` 一定要加上一个 `else` 语句 (`else` 里面一般为返回值为 `Never` 的函数, `break`, `return`, `continue` 等结束执行).
 
 ```swift
 func greet(person: [String: String]) {
@@ -236,5 +234,19 @@ if #available(iOS 10, macOS 10.12, *) {
     // 在 iOS 使用 iOS 10 的 API, 在 macOS 使用 macOS 10.12 的 API
 } else {
     // 使用先前版本的 iOS 和 macOS 的 API
+}
+```
+
+# Case Statements
+
+在 `if`, `for`, `while`, `guard`, `for-in` 语句中均可以用 `case` 进行 pattern matching.
+
+```swift
+if case let Media.Movie(_, _, year) = m where year < 1888 {
+  print("Something seems wrong: the movie's year is before the first movie ever made.")
+}
+
+for case let Media.Movie(title, director, year) in mediaList where director == "Chris Columbus" {
+  print(" - \(title) (\(year))")
 }
 ```

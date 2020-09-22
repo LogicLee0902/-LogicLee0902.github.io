@@ -151,3 +151,13 @@ func processFile(filename: String) throws {
     }
 }
 ```
+
+# Rethrowing Functions and Methods
+
+用 `rethrows` 声明的函数或者 methods 可以仅当在自身函数参数抛出错误时, 才抛出错误 (也就是说自身不能抛出错误).
+
+```swift
+func someFunction(callback: () throws -> Void) rethrows {
+    try callback()
+}
+```

@@ -146,3 +146,31 @@ extension Vector2D {
     }
 }
 ```
+
+也可以自定义 precedence group declaration.
+
+```swift
+precedencegroup 优先级组名称{
+    higherThan: 较低优先级组的名称
+    lowerThan: 较高优先级组的名称
+    associativity: 结合性 (left, right, none)
+    assignment: 赋值性 (bool)
+}
+```
+
+# Expression Pattern
+
+Pattern Matching 的过程实际上是调用了 `~=` 运算符进行匹配. 因此 override `~=` 运算符也可以自定义匹配行为.
+
+```swift
+func ~=(pattern: String, value: Int) -> Bool {
+    return pattern == "\(value)"
+}
+
+switch point {
+case ("0", "0"):
+    print("(0, 0) is at the origin.")
+default:
+    print("The point is at (\(point.0), \(point.1)).")
+}
+```

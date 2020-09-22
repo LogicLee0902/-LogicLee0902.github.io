@@ -242,4 +242,3 @@ Preconditions 也有 `preconditions()` 和 `preconditionFailure`.
 如果编译时打开 `-Ounchecked` 则不会检查 Preconditions, 但是仍然可以用 `fatalError` 强制抛错.
 
 在不检查 Assertions 和 Preconditions 的情况下, 编译器会默认他们正确, 并且将其当作条件优化程序.
-

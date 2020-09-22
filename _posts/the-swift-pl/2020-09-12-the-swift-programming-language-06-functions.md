@@ -213,3 +213,8 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
     return backward ? stepBackward : stepForward
 }
 ```
+
+# Functions that Never Return
+
+Swift 定义了 `Never` 类型, 即永远不会返回 (但是可以抛出错误).
+一般在 `guard` 的 `else` 分句中使用.

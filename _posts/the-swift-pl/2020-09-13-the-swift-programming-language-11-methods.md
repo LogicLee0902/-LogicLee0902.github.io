@@ -117,3 +117,18 @@ SomeClass.someTypeMethod()
 ```
 
 Type Methods 中的 `self` 指类型本身 (而非实例).
+
+# callAsFunction
+
+实现了 `callAsFunction` 方法的 classes, structures, enumerations 可以将其当作函数使用.
+
+```swift
+struct CallableStruct {
+    var value: Int
+    func callAsFunction(_ number: Int, scale: Int) {
+        print(scale * (number + value))
+    }
+}
+let callable = CallableStruct(value: 100)
+callable(4, scale: 2)
+```

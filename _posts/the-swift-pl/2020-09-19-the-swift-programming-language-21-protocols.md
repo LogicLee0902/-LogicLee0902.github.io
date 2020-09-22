@@ -365,3 +365,33 @@ extension Collection where Element: Equatable {
     }
 }
 ```
+
+# Metatype
+
+类型本身可以看作一个对象, 有 “获取占用空间大小” 等操作, 类型的类型被称为 metaType.
+
+用 `Type` property 可以获取 metaType, 用 `self` 可以获取类型 (对于表达式来说, `expr.self` 返回值. 对于类型而言, `SomeClasses.self` 会返回本身).
+
+`Int.max == Int.self.max`, `AnyClasses == AnyObject.Type`.
+
+```swift
+let intMetatype: Int.Type = Int.self
+```
+
+## self
+
+可以用 `.self` 或者 `type(of:)` 获取类型, 区别在于 `.self` 返回静态类型, `type(of:)` 返回动态类型.
+
+```swift
+let myNum: Any = 1 
+type(of: myNum) // Int.type
+myNum.self // Any
+```
+
+## Protocol
+
+Protocols 并不是一个类型, 因此不能用 `.Type`. 应该用 `.Protocol`.
+
+```swift
+let protMetatype: MyProtocol.Protocol = MyProtocol.self
+```
