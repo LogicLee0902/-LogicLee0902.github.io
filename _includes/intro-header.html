@@ -37,7 +37,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         {% for tag in page.tags %}
+          				{%- assign _second_char = tag | slice: 1 -%}
+          				{%- assign _last_char = tag | slice: -1 -%}
+         				{%- assign length = tag | size | minus: 3 -%}
+				        {%- if _second_char == '「' and _last_char == '」' -%}
+                        <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | slice: 2, length | url_encode }}" title="{{ tag | slice: 2, length }}">{{ tag | slice: 2, length }}</a>
+                        {%- else -%}
                         <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag }}">{{ tag }}</a>
+				        {%- endif -%}
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
@@ -58,7 +65,7 @@
         overflow: hidden;
     }
     header.intro-header .container{
-        visibility: hidden; 
+        visibility: hidden;
     }
     header iframe{
         width: 100%;

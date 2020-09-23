@@ -5,7 +5,7 @@ subtitle: "晶体管, 门电路, 卡诺图, 组合逻辑"
 author: "roife"
 date: 2020-09-23
 
-tags: ["「BUAA-CO」", "「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "数字电路"]
+tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "数字电路"]
 status: Completed
 
 language: zh-CN
@@ -28,7 +28,23 @@ mathjax: true
 
 ## CMOS
 
+MOS 可以作为电子开关使用, 一个 MOS 元件由三部分组成: gate, source, drain.
 
+MOS 可以分为两种, nMOS 和 pMOS.
+
+![mos](/img/in-post/post-buaa-co/mos.png "mos")
+
+其中 nMOS 类似于 NPN 三极管, pMOS 类似于 PNP 三极管. 对于 nMOS, 当在 gate 施加导通电压时, source 和 drain 就可以导通, 电流可以流过. pMOS 恰好相反, 当在 gate 施加高电压时开关关闭.
+
+由于 nMOS 需要 p 型 substrate, pMOS 需要 n 型 substrate, 所以可以将其做到一起, 称为 CMOS.
+
+### 用 CMOS 搭建门电路
+
+例如搭建一个 NAND 门:
+
+![cmos-nand](/img/in-post/post-buaa-co/cmos-nand.png "cmos-nand")
+
+一般来说, pMOS 和 nMOS 网络必然一个串联, 一个并联, 以防止产生短路和浮空状态.
 
 # 逻辑运算
 
@@ -97,9 +113,13 @@ mathjax: true
 
 ## 多路复用器 (multiplexer, mux)
 
+
+
 ## 译码器 (Decoder)
 
 # 组合逻辑的时序与延迟
+
+## 关键路径与最短路径
 
 ## 毛刺
 

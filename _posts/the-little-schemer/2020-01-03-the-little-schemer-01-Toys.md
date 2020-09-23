@@ -5,7 +5,7 @@ subtitle: "atom 和 list"
 author: "roife"
 date: 2020-01-03
 
-tags: ["「The Little Schemer」", "Scheme", "Daniel P. Friedman", "笔记"]
+tags: ["B「The Little Schemer」", "Scheme", "Daniel P. Friedman", "笔记"]
 status: Completed
 
 language: zh-CN

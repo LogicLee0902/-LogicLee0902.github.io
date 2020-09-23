@@ -5,7 +5,7 @@ subtitle: "Proof by Induction"
 author: "roife"
 date: 2020-03-05
 
-tags: ["「Software Foundations」", "Benjamin C. Pierce", "「Logical Foundations」", "Coq", "PL", "笔记"]
+tags: ["B「Software Foundations」", "Benjamin C. Pierce", "B「Logical Foundations」", "Coq", "PL", "笔记"]
 status: Completed
 
 language: zh-CN

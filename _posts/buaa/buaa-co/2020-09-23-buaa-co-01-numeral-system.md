@@ -5,7 +5,7 @@ subtitle: "数制, 数字存储, 四则运算"
 author: "roife"
 date: 2020-09-23
 
-tags: ["「BUAA-CO」", "「Digital Design and Computer Architecture」", "BUAA", "计算机组成"]
+tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成"]
 status: Completed
 
 language: zh-CN
@@ -88,7 +88,7 @@ $$
 2. 存储负指数浮点数时, 指数部分 `1` 开头不好比较, 所以 `编码指数 = 实际指数 + 127 (b0111111)`. 即偏阶记数法.
   - `0 | 01111110 | 00000000000000000000000`
   - `0 | 10000000 | 00000000000000000000000` (`2.0`)
-  
+
 浮点数计算前需要恢复这两个优化.
 
 ## 特殊情况
