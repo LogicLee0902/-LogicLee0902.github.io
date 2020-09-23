@@ -5,7 +5,7 @@ subtitle: "泛型"
 author: "roife"
 date: 2020-09-19
 
-tags: ["「The Swift PL」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "笔记"]
 status: Completed
 
 language: zh-CN
@@ -161,7 +161,7 @@ protocol SuffixableContainer: Container {
 }
 
 // 这里并不意味着 Suffix 和 Suffix Container 的类型相同, 只要符合 where 的条件即可
- 
+
 extension IntStack: SuffixableContainer {
     func suffix(_ size: Int) -> Stack<Int> {
         // ...

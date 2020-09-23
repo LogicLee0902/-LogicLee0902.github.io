@@ -5,7 +5,7 @@ subtitle: "集合运算"
 author: "roife"
 date: 2020-01-05
 
-tags: ["「The Little Schemer」", "Scheme", "Daniel P. Friedman", "Reading"]
+tags: ["「The Little Schemer」", "Scheme", "Daniel P. Friedman", "笔记"]
 status: Completed
 
 language: zh-CN

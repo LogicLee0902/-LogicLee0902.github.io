@@ -5,7 +5,7 @@ subtitle: "The Curry-Howard Correspondence"
 author: "roife"
 date: 2020-04-20
 
-tags: ["「Software Foundations」", "Benjamin C. Pierce", "「Logical Foundations」", "Coq", "PL", "Reading"]
+tags: ["「Software Foundations」", "Benjamin C. Pierce", "「Logical Foundations」", "Coq", "PL", "笔记"]
 status: Completed
 
 language: zh-CN

@@ -5,7 +5,7 @@ subtitle: "高级运算符"
 author: "roife"
 date: 2020-09-22
 
-tags: ["「The Swift PL」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "笔记"]
 status: Completed
 
 language: zh-CN
@@ -36,7 +36,7 @@ let combinedbits = someBits | moreBits
 ## Bitwise XOR Operator
 
 ```swift
-let outputBits = firstBits ^ otherBits 
+let outputBits = firstBits ^ otherBits
 ```
 
 ## Bitwise Left and Right Shift Operators

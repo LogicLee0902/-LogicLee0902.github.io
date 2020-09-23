@@ -5,7 +5,7 @@ subtitle: "内存安全"
 author: "roife"
 date: 2020-09-20
 
-tags: ["「The Swift PL」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "笔记"]
 status: Completed
 
 language: zh-CN
@@ -68,7 +68,7 @@ balance(&playerOneScore, &playerOneScore)
 ```swift
 struct Player {
     var health: Int
-    
+
     mutating func shareHealth(with teammate: inout Player) {
         balance(&teammate.health, &health)
     }

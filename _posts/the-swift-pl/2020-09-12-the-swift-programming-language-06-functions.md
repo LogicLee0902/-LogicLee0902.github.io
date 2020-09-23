@@ -5,7 +5,7 @@ subtitle: "函数"
 author: "roife"
 date: 2020-09-12
 
-tags: ["「The Swift PL」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "笔记"]
 status: Completed
 
 language: zh-CN

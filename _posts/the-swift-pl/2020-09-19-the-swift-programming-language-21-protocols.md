@@ -5,7 +5,7 @@ subtitle: "协议"
 author: "roife"
 date: 2020-09-19
 
-tags: ["「The Swift PL」", "Swift", "Reading"]
+tags: ["「The Swift PL」", "Swift", "笔记"]
 status: Completed
 
 language: zh-CN
@@ -383,7 +383,7 @@ let intMetatype: Int.Type = Int.self
 可以用 `.self` 或者 `type(of:)` 获取类型, 区别在于 `.self` 返回静态类型, `type(of:)` 返回动态类型.
 
 ```swift
-let myNum: Any = 1 
+let myNum: Any = 1
 type(of: myNum) // Int.type
 myNum.self // Any
 ```
