@@ -111,17 +111,68 @@ MOS 可以分为两种, nMOS 和 pMOS.
 
 # 组合逻辑
 
-## 多路复用器 (multiplexer, mux)
+## 多路复用器 (multiplexer, MUX)
 
+MUX 有多个输入接口, 一个选择输入接口和一个输出接口. 输出会根据选择信号在输入数据中选择一个输出.
 
+一个 2:1 MUX 的逻辑表达式可以表示为 $Y = D_{0} \overline{S} + D_{1} S$
+
+![2-1-mux](/img/in-post/post-buaa-co/2-1-mux.png "2-1-mux")
+
+更多位的 MUX 可以通过基础的 MUX 实现.
+
+![4-1-mux](/img/in-post/post-buaa-co/4-1-mux.png "4-1-mux")
+
+利用多位 mux 也可以实现任意逻辑表达式, 因为 mux 起到了一个单值函数的作用, 只要将对应的结果作为输入数据, 就可以通过改变选择信号来输出特定的输入数据.
 
 ## 译码器 (Decoder)
 
+Decoder 有 n 个输入和 $2^n$ 个输出, 将输入译为独热编码 (One-Hot Code).
+
+### 独热编码
+
+$n$ 位二进制的 One-Hot Code 为 $2^n$ 位, 其中每个 One-Hot Code 都仅有一位为 $1$, 从低到高对二进制重新编码.
+如 $101$ 的 One-Hot Code 为 $00100000$ (从低到高第五位为 $1$).
+
+### 实现与作用
+
+对于 n:m 的 decoder, 只要将输出接口的独热编码解码后, 将 `1` 直接连接, 将 `0` 取非, 再全部连接到一个与门即可.
+
+![decoder](/img/in-post/post-buaa-co/decoder.png "decoder")
+
+类似于 MUX, Decoder 可以和或门组合实现任意逻辑函数, 因为 decoder 可以把任意输入编码到唯一输出, 所以只要将为 `1` 的几个输出用或门连接即可.
+
+### Multiplexer 和 Decoder 的区别
+
+- Decoder 的输出均为一位, Multiplexer 可以一个脚输出多位
+- Decoder 为一个输入, $n$ 个输出; Multiplexer 为 $n+1$ 输入, 一个输出; Demultiplexer 为 $1+1$ 个输入, $n$ 个输出.
+
 # 组合逻辑的时序与延迟
 
-## 关键路径与最短路径
+在门电路中, 输出对输入的响应需要一定时间, 因而会造成一定延迟.
+
+## 传播延迟和最小延迟
+
+- 传播延迟 (propagation delay) $t_{pd}$ 指输出随输入变化后稳定的下来所需的时间
+- 最小延迟 (contamination delay) $t_{cd}$ 指输出随输入开始变化的时间
+
+![propagationand-contamination-delay](/img/in-post/post-buaa-co/propagationand-contamination-delay.png "propagationand-contamination-delay")
+
+$t_{pd}$ 由电路的关键路径 (critical path) 决定, 即由最慢最长的路径决定, 其值为 $\sum (t_{pd})_{i}$.
+
+$t_{cd}$ 由电路的最短路径 (short path) 决定, 即最短最快的路径决定, 其值为 $\sum (t_{cd})_{i}$.
+
+![critical-path-and-short-path](/img/in-post/post-buaa-co/critical-path-and-short-path.png "critical-path-and-short-path")
 
 ## 毛刺
+
+由于延迟的存在, 信号到达元器件的时间可能有时间差. 在这一段时间差之间, 元器件的输入信号会发生变化, 因而可能会导致其输出改变, 产生意外的结果, 即产生毛刺 (glitch).
+
+![glitch](/img/in-post/post-buaa-co/glitch.png "glitch")
+
+为了去除毛刺, 可以尝试改变门电路, 通过添加冗余项来避免毛刺, 但是可能会增加成本.
+
+![glitch-2](/img/in-post/post-buaa-co/glitch-2.png "glitch-2")
 
 # 参考资料
 
