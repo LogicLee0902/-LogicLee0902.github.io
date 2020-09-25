@@ -32,7 +32,7 @@ MOS 可以作为电子开关使用, 一个 MOS 元件由三部分组成: gate, s
 
 MOS 可以分为两种, nMOS 和 pMOS.
 
-![mos](/img/in-post/post-buaa-co/mos.png "mos")
+![mos](/img/in-post/post-buaa-co/mos.png "mos"){:height="600px" width="600px"}
 
 其中 nMOS 类似于 NPN 三极管, pMOS 类似于 PNP 三极管. 对于 nMOS, 当在 gate 施加导通电压时, source 和 drain 就可以导通, 电流可以流过. pMOS 恰好相反, 当在 gate 施加高电压时开关关闭.
 
@@ -42,7 +42,7 @@ MOS 可以分为两种, nMOS 和 pMOS.
 
 例如搭建一个 NAND 门:
 
-![cmos-nand](/img/in-post/post-buaa-co/cmos-nand.png "cmos-nand")
+![cmos-nand](/img/in-post/post-buaa-co/cmos-nand.png "cmos-nand"){:height="200px" width="200px"}
 
 一般来说, pMOS 和 nMOS 网络必然一个串联, 一个并联, 以防止产生短路和浮空状态.
 
@@ -80,7 +80,7 @@ MOS 可以分为两种, nMOS 和 pMOS.
 
 等式化简既可以使用等值演算, 也可以使用卡诺图 (Karnaugh Maps).
 
-![卡诺图画圈](/img/in-post/post-buaa-co/karnaugh-maps.png "karnaugh-maps")
+![卡诺图画圈](/img/in-post/post-buaa-co/karnaugh-maps.png "karnaugh-maps"){:height="300px" width="300px"}
 
 步骤:
 1. 作出卡诺图
@@ -117,11 +117,11 @@ MUX 有多个输入接口, 一个选择输入接口和一个输出接口. 输出
 
 一个 2:1 MUX 的逻辑表达式可以表示为 $Y = D_{0} \overline{S} + D_{1} S$
 
-![2-1-mux](/img/in-post/post-buaa-co/2-1-mux.png "2-1-mux")
+![2-1-mux](/img/in-post/post-buaa-co/2-1-mux.png "2-1-mux"){:height="200px" width="200px"}
 
 更多位的 MUX 可以通过基础的 MUX 实现.
 
-![4-1-mux](/img/in-post/post-buaa-co/4-1-mux.png "4-1-mux")
+![4-1-mux](/img/in-post/post-buaa-co/4-1-mux.png "4-1-mux"){:height="200px" width="200px"}
 
 利用多位 mux 也可以实现任意逻辑表达式, 因为 mux 起到了一个单值函数的作用, 只要将对应的结果作为输入数据, 就可以通过改变选择信号来输出特定的输入数据.
 
@@ -138,7 +138,7 @@ $n$ 位二进制的 One-Hot Code 为 $2^n$ 位, 其中每个 One-Hot Code 都仅
 
 对于 n:m 的 decoder, 只要将输出接口的独热编码解码后, 将 `1` 直接连接, 将 `0` 取非, 再全部连接到一个与门即可.
 
-![decoder](/img/in-post/post-buaa-co/decoder.png "decoder")
+![decoder](/img/in-post/post-buaa-co/decoder.png "decoder"){:height="300px" width="300px"}
 
 类似于 MUX, Decoder 可以和或门组合实现任意逻辑函数, 因为 decoder 可以把任意输入编码到唯一输出, 所以只要将为 `1` 的几个输出用或门连接即可.
 
@@ -156,24 +156,25 @@ $n$ 位二进制的 One-Hot Code 为 $2^n$ 位, 其中每个 One-Hot Code 都仅
 - 传播延迟 (propagation delay) $t_{pd}$ 指输出随输入变化后稳定的下来所需的时间
 - 最小延迟 (contamination delay) $t_{cd}$ 指输出随输入开始变化的时间
 
-![propagationand-contamination-delay](/img/in-post/post-buaa-co/propagationand-contamination-delay.png "propagationand-contamination-delay")
+![propagationand-contamination-delay](/img/in-post/post-buaa-co/propagationand-contamination-delay.png "propagationand-contamination-delay"){:height="320px" width="320px"}
 
 $t_{pd}$ 由电路的关键路径 (critical path) 决定, 即由最慢最长的路径决定, 其值为 $\sum (t_{pd})_{i}$.
 
 $t_{cd}$ 由电路的最短路径 (short path) 决定, 即最短最快的路径决定, 其值为 $\sum (t_{cd})_{i}$.
 
-![critical-path-and-short-path](/img/in-post/post-buaa-co/critical-path-and-short-path.png "critical-path-and-short-path")
+![critical-path-and-short-path](/img/in-post/post-buaa-co/critical-path-and-short-path.png "critical-path-and-short-path"){:height="600px" width="600px"}
 
 ## 毛刺
 
 由于延迟的存在, 信号到达元器件的时间可能有时间差. 在这一段时间差之间, 元器件的输入信号会发生变化, 因而可能会导致其输出改变, 产生意外的结果, 即产生毛刺 (glitch).
 
-![glitch](/img/in-post/post-buaa-co/glitch.png "glitch")
+![glitch](/img/in-post/post-buaa-co/glitch.png "glitch"){:height="450px" width="450px"}
 
 为了去除毛刺, 可以尝试改变门电路, 通过添加冗余项来避免毛刺, 但是可能会增加成本.
 
-![glitch-2](/img/in-post/post-buaa-co/glitch-2.png "glitch-2")
+![glitch-2](/img/in-post/post-buaa-co/glitch-2.png "glitch-2"){:height="300px" width="300px"}
 
 # 参考资料
 
-1. Digital Design and Computer Architecture 2nd, Chapter 1, Chapter 2
+1. Digital Design and Computer Architecture 2nd, Chapter 1
+2. Digital Design and Computer Architecture 2nd, Chapter 2
