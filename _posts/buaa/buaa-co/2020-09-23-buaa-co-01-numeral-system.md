@@ -130,5 +130,5 @@ $$
 
 # 参考资料
 
-1. Digital Design and Computer Architecture 2nd, Chapter 1.4
-2. Digital Design and Computer Architecture 2nd, Chapter 5.3
+1. *Digital Design and Computer Architecture 2nd*, Chapter 1.4
+2. *Digital Design and Computer Architecture 2nd*, Chapter 5.3

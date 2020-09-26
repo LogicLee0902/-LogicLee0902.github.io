@@ -176,5 +176,5 @@ $t_{cd}$ 由电路的最短路径 (short path) 决定, 即最短最快的路径�
 
 # 参考资料
 
-1. Digital Design and Computer Architecture 2nd, Chapter 1
-2. Digital Design and Computer Architecture 2nd, Chapter 2
+1. *Digital Design and Computer Architecture 2nd*, Chapter 1
+2. *Digital Design and Computer Architecture 2nd*, Chapter 2
