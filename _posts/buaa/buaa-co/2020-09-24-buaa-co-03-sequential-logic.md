@@ -161,11 +161,11 @@ Moore 和 Mealy 的区别在于, Moore 需要等待状态转移完成后才输�
 
 线路长度, 噪声, 门控电路都有可能造成时钟偏移.
 
-!(带时钟偏移的保持时间约束)[/img/in-post/setup-time-constraint-with-clock-skew.png "setup-time-constraint-with-clock-skew"]{:height="500px" width="500px"}
+![带时钟偏移的保持时间约束](/img/in-post/post-buaa-co/setup-time-constraint-with-clock-skew.png "setup-time-constraint-with-clock-skew"){:height="500px" width="500px"}
 
 其中黑粗线表示时钟到达的最晚时间.
 
-类似地, 可以得到 $t_{pd} \leq T_{e} - (t_{pcq} + t_{setup} + t_{skew})$ 和 $t_cd \geq t_{hold} + t_{skew} - t_{ccq}$.
+类似地, 可以得到 $t_{pd} \leq T_{e} - (t_{pcq} + t_{setup} + t_{skew})$ 和 $t_{cd} \geq t_{hold} + t_{skew} - t_{ccq}$.
 
 可以看到时钟偏移显著增加了建立时间和保持时间, 所以一般不能允许时钟偏移太大. 有时甚至可以增大 $t_{ccq}$ 来防止出现问题.
 
