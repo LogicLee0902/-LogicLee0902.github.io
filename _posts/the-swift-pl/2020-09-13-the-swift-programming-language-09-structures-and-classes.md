@@ -5,7 +5,7 @@ subtitle: "类和结构体"
 author: "roife"
 date: 2020-09-13
 
-tags: ["B「The Swift PL」", "Swift", "笔记"]
+tags: ["B「The Swift PL」", "L「Swift」", "笔记"]
 status: Completed
 
 language: zh-CN

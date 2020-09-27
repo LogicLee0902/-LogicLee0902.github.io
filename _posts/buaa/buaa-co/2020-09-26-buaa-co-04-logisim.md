@@ -170,4 +170,4 @@ MUX 上部为初始值, 下部为 `0`.
 
 或门上部为之后的步骤中给寄存器赋的值.
 
-![初始值电路](/img/in-post/post-buaa-co/logisim-register-initial-value.png "logisim-register-initial-value")
+![初始值电路](/img/in-post/post-buaa-co/logisim-register-initial-value.png "logisim-register-initial-value"){:height="200px" width="200px"}

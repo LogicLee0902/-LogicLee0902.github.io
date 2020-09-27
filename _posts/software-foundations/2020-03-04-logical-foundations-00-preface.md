@@ -5,7 +5,7 @@ subtitle: "Introduction"
 author: "roife"
 date: 2020-03-04
 
-tags: ["B「Software Foundations」", "Benjamin C. Pierce", "B「Logical Foundations」", "Coq", "PL", "笔记"]
+tags: ["B「Software Foundations」", "Benjamin C. Pierce", "B「Logical Foundations」", "L「Coq」", "PL", "笔记"]
 status: Completed
 
 language: zh-CN
