@@ -17,6 +17,7 @@ mathjax: true
 
 # 文档
 
+- [下载](http://www.cburch.com/logisim/)
 - [Beginner's tutorial](http://www.cburch.com/logisim/docs/2.7/en/html/guide/tutorial/index.html)
 - [Reference](http://www.cburch.com/logisim/docs/2.7/en/html/libs/index.html)
 
