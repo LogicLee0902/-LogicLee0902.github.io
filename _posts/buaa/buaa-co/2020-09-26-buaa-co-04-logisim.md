@@ -15,12 +15,6 @@ header-style: text
 mathjax: true
 ---
 
-# 文档
-
-- [下载](http://www.cburch.com/logisim/)
-- [Beginner's tutorial](http://www.cburch.com/logisim/docs/2.7/en/html/guide/tutorial/index.html)
-- [Reference](http://www.cburch.com/logisim/docs/2.7/en/html/libs/index.html)
-
 # 特殊部件与属性
 
 ## Splitter
@@ -79,7 +73,7 @@ mathjax: true
 
 ## Comparator
 
-- `Numeric Type`: 表示数据的数据种类, 二进制的补码形式或无符号类型. 
+- `Numeric Type`: 表示数据的数据种类, 二进制的补码形式或无符号类型.
 
 ## Shifter
 
@@ -112,7 +106,7 @@ mathjax: true
   + `One Synchronous Load/Store port`: 同一个端口读写. 当 `ld` 端口为 `1` 时读取, 否则存储.
   + `One asynchronous Load/Store port`: 同上, 不用时钟.
   + `Separate load and store ports`: 读写用两个端口 (通常情况)
-        
+
 ### ROM
 
 不详述.
@@ -125,12 +119,12 @@ mathjax: true
   + `Stay At Value`: 保持在最大值 (或最小值) (常用)
   + `Load Next Value`: 从 D 端读入下一个数据
 
-        
+
 # 进阶功能
 
 ## 子电路
 
-1. 添加子电路: `Project` → `Add Circuit` 
+1. 添加子电路: `Project` → `Add Circuit`
 2. 为电路添加元件和连线
 3. 编辑电路外观: `Project` → `Edit Circuit Appearance`
 
@@ -155,7 +149,7 @@ Logisim 中的逻辑分析的功能可以实现组合电路, 真值表, 布尔�
 
 - 时钟前进一步: `Simulation` → `Tick Once`
 - 时钟启动: `Simulation` → `Ticks Enabled`
-- 改变时钟频率: `Simulation` → `Tick Frequency` 
+- 改变时钟频率: `Simulation` → `Tick Frequency`
 
 ## Logging
 
@@ -172,3 +166,9 @@ MUX 上部为初始值, 下部为 `0`.
 或门上部为之后的步骤中给寄存器赋的值.
 
 ![初始值电路](/img/in-post/post-buaa-co/logisim-register-initial-value.png "logisim-register-initial-value"){:height="200px" width="200px"}
+
+# 参考资料
+
+1. [下载](http://www.cburch.com/logisim/)
+2. [Beginner's tutorial](http://www.cburch.com/logisim/docs/2.7/en/html/guide/tutorial/index.html)
+3. [Reference](http://www.cburch.com/logisim/docs/2.7/en/html/libs/index.html)

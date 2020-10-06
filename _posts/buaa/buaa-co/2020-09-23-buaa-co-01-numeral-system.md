@@ -37,7 +37,7 @@ $$
 
 - Byte: 8 bit (Hex 中 2 位, `0x00 ~ 0xFF`)
 - Nibble: 4 bit
-- Word: 取决于处理器架构, 一般为 32 bit (Hex 中 8 位) 或者 64 bit
+- Word: 取决于处理器架构, 一般为 32 bit (Hex 中 8 位, `0x12345678`) 或者 64 bit
 
 最低位称为 least significant bit (lsb), 最高位称为 most significant bit (msb).
 类似有 Least Significant Byte (LSB) 和 Most Significant Byte (MSB).

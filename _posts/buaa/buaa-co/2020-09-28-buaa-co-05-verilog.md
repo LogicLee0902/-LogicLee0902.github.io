@@ -735,3 +735,8 @@ endmodule
 点击 `Synthesize - XST` 可以进行综合工程.
 
 点击其所属的的 `View RTL Schematic` 可以查看综合出的电路.
+
+# 参考资料
+
+1. *Digital Design and Computer Architecture 2nd*, Chapter 4
+2. *Verilog 数字系统设计教程 (第四版)*
