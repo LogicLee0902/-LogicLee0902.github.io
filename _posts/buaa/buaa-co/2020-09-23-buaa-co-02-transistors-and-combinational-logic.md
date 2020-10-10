@@ -34,9 +34,11 @@ MOS 可以分为两种, nMOS 和 pMOS.
 
 ![mos](/img/in-post/post-buaa-co/mos.png "mos"){:height="600px" width="600px"}
 
-其中 nMOS 类似于 NPN 三极管, pMOS 类似于 PNP 三极管. 对于 nMOS, 当在 gate 施加导通电压时, source 和 drain 就可以导通, 电流可以流过. pMOS 恰好相反, 当在 gate 施加高电压时开关关闭.
+其中 nMOS 类似于 NPN 三极管, pMOS 类似于 PNP 三极管. 对于 nMOS, 当在 gate 施加高电压时, source 和 drain 就可以导通, 电流可以流过. pMOS 恰好相反, 当在 gate 施加高电压时开关关闭.
 
-由于 nMOS 需要 p 型 substrate, pMOS 需要 n 型 substrate, 所以可以将其做到一起, 称为 CMOS.
+nMOS 对于低电平的导通效果较好, pMOS 对于高电平的导通效果较好.
+
+由于 nMOS 需要 p 型 substrate, pMOS 需要 n 型 substrate, 所以可以将其做到一起, 称为 CMOS (complementary MOS).
 
 ### 用 CMOS 搭建门电路
 
@@ -44,7 +46,36 @@ MOS 可以分为两种, nMOS 和 pMOS.
 
 ![cmos-nand](/img/in-post/post-buaa-co/cmos-nand.png "cmos-nand"){:height="200px" width="200px"}
 
+| $A$ | $B$ | 下拉网络 | 上拉网络 | $Y$ |
+|-----|-----|----------|----------|-----|
+| 0   | 0   | OFF      | ON       | 1   |
+| 0   | 1   | OFF      | ON       |     |
+| 1   | 0   | OFF      | ON       | 1   |
+| 1   | 1   | ON       | OFF      | 0   |
+
+所以含反向逻辑的电路都可以用 pMOS 上拉网络 (对 1 导通性好) 和 nMOS 下拉网络 (对 0 导通性好) 组成.
+
+![反向逻辑门的通用结构](/img/in-post/post-buaa-co/inverting-logic-gate-form.png "inverting-logic-gate-form"){:height="200px" width="200px"}
+
 一般来说, pMOS 和 nMOS 网络必然一个串联, 一个并联, 以防止产生短路和浮空状态.
+
+### 传输门
+
+nMOS 可以导通 0, pMOS 可以导通 1. 二者结合可以实现传输门. 当 $EN = 1$ 或 $\overline{EN} = 0$ 时传输门可以导通.
+
+![传输门](/img/in-post/post-buaa-co/transmission-gate.png "transmission-gate"){:height="200px" width="200px"}
+
+### 类 nMOS 逻辑
+
+pMOS 速度较慢, 并且并联速度大于串联速度, 所以一般用类 nMOS 逻辑实现 pMOS 上拉网络.
+
+其中上拉网络的 pMOS 被替换为一个始终导通的弱 pMOS (被称为弱上拉, weak pull-up). 当所有 nMOS 晶体管都不导通时, 弱上拉 pMOS 可以维持高电平, 否则弱上拉 pMOS 将输出下拉到逻辑 0.
+
+类 nMOS 可以构造存储器或者 PLA. 但是当输出低电平时, 电源和地面产生短路, 此时会持续消耗能量.
+
+![类 nMOS 门](/img/in-post/post-buaa-co/pseudo-nmos-gate.png "pseudo-nmos-gate"){:height="250px" width="250px"}
+
+
 
 # 逻辑运算
 
