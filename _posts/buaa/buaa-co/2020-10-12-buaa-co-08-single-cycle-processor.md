@@ -74,7 +74,63 @@ R 类型指令相对比较复杂, 需要多个控制信号.
 
 # 单周期控制
 
-所有控制信号都要使用 CU 根据指令 opcode 来发出不同的信号.
+所有控制信号都要使用 CU 根据指令 opcode 和 funct (R 型指令) 来发出不同的信号.
 
 ![完整 MIPS 处理器](/img/in-post/post-buaa-co/single-complete-processor.png "single-complete-processor"){:height="700px" width="700px"}
 
+因为 R 型指令比较特殊, 所以将 CU 分为两部分进行设计, ALU 译码器根据 funct 字段控制 ALU (R 型指令), 主译码器根据不同的指令需要控制 ALU (其他指令).
+
+![CU 内部结构](/img/in-post/post-buaa-co/single-cu-internal.png "single-cu-internal"){:height="250px" width="250px"}
+
+主译码器通过不同的 `ALUop` 控制 ALU 译码器:
+- 输出 `00` 时总是执行加法
+- 输出 `01` 时总是执行减法
+- 输出 `10` 时检测 funct 字段 (R 型指令)
+- `11` 无定义
+
+| `ALUop` | `Funct`      | `ALUControl` |
+|---------|--------------|--------------|
+| 00      | X            | 010 (add)    |
+| X1      | X            | 110 (sub)    |
+| 1X      | 100000 (add) | 010 (add)    |
+| 1x      | 100010 (sub) | 110 (sub)    |
+| 1x      | 100100 (and) | 110 (and)    |
+| 1x      | 100101 (or)  | 110 (or)     |
+| 1x      | 101010 (slt) | 110 (slt)    |
+
+由于 funct 指令最高两位总是 `10`, 所以可以将其忽略.
+
+| Instruction | Opcode | `RegWrite` | `RegDst` | `ALUSrc` | `Branch` | `MemWrite` | `MemtoReg` | `ALUOp` |
+|-------------|--------|------------|----------|----------|----------|------------|------------|---------|
+| R-type      | 000000 | 1          | 1        | 0        | 0        | 0          | 0          | 10      |
+| lw          | 100011 | 1          | 0        | 1        | 0        | 0          | 1          | 00      |
+| sw          | 101011 | 0          | X        | 1        | 0        | 1          | X          | 00      |
+| beq         | 000100 | 0          | X        | 0        | 1        | 0          | X          | 01      |
+
+# 更多指令
+
+## addi
+
+不需要增加数据通路, 只要在 CU 中加一条控制信号即可.
+
+| Instruction | Opcode | `RegWrite` | `RegDst` | `ALUSrc` | `Branch` | `MemWrite` | `MemtoReg` | `ALUOp` |
+|-------------|--------|------------|----------|----------|----------|------------|------------|---------|
+| addi        | 001000 | 1          | 0        | 1        | 0        | 0          | 0          | 00      |
+
+## j
+
+对于 j 指令, 相当于直接设置 $PC = Instr * 4$
+
+![j指令](/img/in-post/post-buaa-co/single-j.png "single-j"){:height="800px" width="800px"}
+
+# 单周期性能分析
+
+单周期 CPU 的时钟周期必须考虑最慢的指令.
+
+考虑关键路径最长的 `lw` 指令.
+
+$$T_c = t_{pcq\\\_PC} + t_{mem} + max[t_{RFread}, t_{sext}, t_{mux}] + t_{ALU} + t_{mem} + t_{mux} + t_{RFsetup}$$
+
+由于 ALU, DM 和 RF 操作一般是最慢的, 所以可以简化为
+
+$$T_c = t_{pcq\\\_PC} + 2t_{mem} + t_{RFread} + t_{ALU} + t_{mux} + t_{RFsetup}$$
