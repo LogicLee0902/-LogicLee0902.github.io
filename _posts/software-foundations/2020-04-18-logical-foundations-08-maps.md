@@ -24,9 +24,9 @@ map (即 dictionary) 包括两类:
 # Standard Lib in Coq
 
 - `Require`
-    使用成员时要加限定名
+  : 使用成员时要加限定名
 - `Import`
-    可以直接使用成员
+  : 可以直接使用成员
 
 # Identifiers
 

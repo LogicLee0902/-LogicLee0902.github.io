@@ -65,9 +65,9 @@ std::ofstream print(std::ofstream); // 函数定义非法
 ### `clear(flags)` 和 `setstate(flags)`
 
 - `clear(flags)`
-    覆盖原始状态
+  : 覆盖原始状态
 - `setstate(flags)`
-    在原始状态上叠加新状态.
+  : 在原始状态上叠加新状态.
 
 <!-- end list -->
 
@@ -127,10 +127,9 @@ std::cout << std::unitbuf
 关联到另一个 `std::ostream`.
 
 - `tie()` 无参数
-    返回关联的 `std::ostream` 的指针或 `nullptr`
+  : 返回关联的 `std::ostream` 的指针或 `nullptr`
 - `tie(&os)` 有参数
-    参数为 `std::ostream` 的指针, 将对象关联到这个 `std::ostream`, 并返回用来关联的
-    `std::ostream` 的指针
+  : 参数为 `std::ostream` 的指针, 将对象关联到这个 `std::ostream`, 并返回用来关联的 `std::ostream` 的指针
 
 <!-- end list -->
 
@@ -204,8 +203,7 @@ in.open(ifile2);
 
 - 用了 `std::fstrm::app` 不加 `std::fstrm::out` 也能写文件
 
-- 默认情况, 即使不加 `std::fstrm::trunc`, `std::fstrm::out` 也会截断文件, 可以附加
-    `std::fstrm::app` 或 `std::fstrm::in` 来避免
+- 默认情况, 即使不加 `std::fstrm::trunc`, `std::fstrm::out` 也会截断文件, 可以附加 `std::fstrm::app` 或 `std::fstrm::in` 来避免
 
 - `std::fstrm::ate` 和 `std::fstrm::binary` 可以任意使用
 

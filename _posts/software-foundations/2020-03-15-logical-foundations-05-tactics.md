@@ -17,7 +17,7 @@ header-style: text
 # apply
 
 - apply
-    应用 hypotheses/lemmas, 用于倒推
+  : 应用 hypotheses/lemmas, 用于倒推
 
 如果已知命题没有条件, 且已知命题与目标命题一致, 此时可以用 apply. 类似于 `rewrite <- eq. reflexivity.`.
 
@@ -38,7 +38,7 @@ Qed.
 ```
 
 - symmetry
-    交换等号两边
+  : 交换等号两边
 
 `apply` 要求已知命题必须和目标命题一模一样, 如等号两边不能交换方向, 否则要用 `symmetry`.
 
@@ -53,7 +53,7 @@ Proof.
 ```
 
 - apply with
-    apply 无法自动匹配变量时, 进行手动变量匹配.
+  : apply 无法自动匹配变量时, 进行手动变量匹配.
 
 <!-- end list -->
 
@@ -97,7 +97,7 @@ Qed.
 ```
 
 - injective
-    利用单射性得出新条件
+  : 利用单射性得出新条件
 
 <!-- end list -->
 
@@ -122,7 +122,7 @@ Qed.
 ```
 
 - injective as
-    得出新等式的同时命名.
+  : 得出新等式的同时命名.
 
 <!-- end list -->
 
@@ -152,7 +152,7 @@ Qed.
 利用 `Inductive` 的互斥性可以得到, 当命题的两个不同的 constructor 被等号连接时, 命题错误, 此时可以退出证明.
 
 - discriminate
-    利用互斥性, 当条件命题不成立时退出证明.
+  : 利用互斥性, 当条件命题不成立时退出证明.
 
 <!-- end list -->
 
@@ -191,7 +191,7 @@ Qed.
 但是 apply in 有些特别.
 
 - apply in
-    在 hypotheses 上用另一个 hypotheses/lemma, 常用于正推. (和 apply 恰好相反)
+  : 在 hypotheses 上用另一个 hypotheses/lemma, 常用于正推. (和 apply 恰好相反)
 
 如 `P : A->B` 应用了命题 A (`apply P in A`), 那么 `P` 就会转变为命题 `B`.
 
@@ -220,7 +220,7 @@ Qed.
 ```
 
 - generalize dependent
-    generalize 变量
+  : generalize 变量
 
 由于 Coq `intros` 变量时是按照变量出现顺序进行的, 因此可能会出现一个 generalize 的变量不得不被 `intros`,
 此时可以用 `generalize dependent` 进行 generalize.
@@ -245,7 +245,7 @@ Qed.
 # unfold
 
 - unfold
-    展开定义
+  : 展开定义
 
 `simpl`, `reflexivity`, `apply` 有时候也会自动 `unfold`, 但是 `unfold` 更明确.
 

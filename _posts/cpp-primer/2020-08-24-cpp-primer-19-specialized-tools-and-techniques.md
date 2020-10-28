@@ -52,8 +52,7 @@ void operator delete[](void*, std::nothrow_t&) noexcept;
 
 - `std::nothrow_t` 类型 :: 定义在头文件 `new` 中的一个 `struct`.
 
-- `std::nothrow` :: `const std::nothrow_t` 对象, 定义在头文件 `new` 中, 可以用作
-    `new` 和 `delete` 的参数从而调用不抛出异常的版本.
+- `std::nothrow` :: `const std::nothrow_t` 对象, 定义在头文件 `new` 中, 可以用作 `new` 和 `delete` 的参数从而调用不抛出异常的版本.
 
 声明在类中时, `operator new` 和 `operator delete` 默认是 `static` 的, 而且不能操控类的成员
 (因为它们的调用发生在类构造之前和析构之后).
@@ -73,9 +72,9 @@ void *operator new(size_t, void*); // 被标准库用了
 `malloc` 和 `free` 定义在头文件 `cstdlib` 中.
 
 - `malloc(size_t)`
-    接受一个 `size_t` 的参数表示分配的空间大小, 返回分配空间的指针 (返回 `0` 时表示分配失败)
+  : 接受一个 `size_t` 的参数表示分配的空间大小, 返回分配空间的指针 (返回 `0` 时表示分配失败)
 - `free(void*)`
-    接受一个指向对象的指针释放内存 (`free(0)` 无效果)
+  : 接受一个指向对象的指针释放内存 (`free(0)` 无效果)
 
 可以用 `malloc` 和 `free` 编写 `operator new` 和 `operator delete`.
 
@@ -117,9 +116,9 @@ sp->~string(); // 析构对象
 # RTTI
 
 - `typeid`
-    返回表达式类型
+  : 返回表达式类型
 - `dynamic_cast`
-    将 `Base` 的指针和引用转换为 `Derived` 的指针和引用
+  : 将 `Base` 的指针和引用转换为 `Derived` 的指针和引用
 
 RTTI 一般用于用 `Base` 的指针或引用访问 `Derived` 的某个非虚函数 (注意这个指针的动态类型必须是 `Devied`).
 
@@ -128,8 +127,7 @@ RTTI 一般用于用 `Base` 的指针或引用访问 `Derived` 的某个非虚�
 `dynamic_cast` 有三种使用形式:
 
 - `dynamic_cast<type*>(e)` : `e` 必须是指针, 转换失败时返回 `0`
-- `dynamic_cast<type&>(e)` : `e` 必须是左值, 转换失败时抛出 `std::bad_cast` 异常
-    (定义在头文件 `typeinfo` 中)
+- `dynamic_cast<type&>(e)` : `e` 必须是左值, 转换失败时抛出 `std::bad_cast` 异常 (定义在头文件 `typeinfo` 中)
 - `dynamic_cast<type&&>(e)` : `e` 不能是左值, 转换失败时抛出 `std::bad_cast` 异常
 
 其中 `type` 必须是类类型, 且含有一个虚函数.
@@ -171,9 +169,7 @@ try {
 - 作用于 `const` 对象时, 顶层 `const` 会被忽略
 - 作用于引用时, 返回所引用对象的类型
 - 作用于 **数组** 或 **函数** 时, 返回数组或函数的类型 (而非指针)
-- 作用于 **非类类型** 或 **没有定义虚函数的类类型** 时, 返回静态类型 (此时 `e` 可以为空指针); 作用于
-    **定义了虚函数的类的左值** 时, 返回动态类型 (运行时计算, 此时 `e` 不得为空, 否则会抛出异常
-    `std::bad_typeid`)
+- 作用于 **非类类型** 或 **没有定义虚函数的类类型** 时, 返回静态类型 (此时 `e` 可以为空指针); 作用于 **定义了虚函数的类的左值** 时, 返回动态类型 (运行时计算, 此时 `e` 不得为空, 否则会抛出异常 `std::bad_typeid`)
 
 `typeid` 运算符常用于比较表达式类型是否相同:
 
@@ -245,10 +241,9 @@ bool Derived::equal(const Base &rhs) {
 枚举类型属于字面值常量, 分为限定作用域的枚举类型和不限定作用域的枚举类型.
 
 - 限定作用域的枚举类型
-    `enum class <name> { members };` 或 `enum struct <name> { members };`, 枚举类型成员的作用域遵循作用域规则
+  : `enum class <name> { members };` 或 `enum struct <name> { members };`, 枚举类型成员的作用域遵循作用域规则
 - 不限定作用域的枚举类型
-    `enum <name> { members };` 或 `enum { members };` (未命名的枚举类型,
-    只能在定义时使用对象), 枚举类型的作用域与枚举类型本身相同
+  : `enum <name> { members };` 或 `enum { members };` (未命名的枚举类型, 只能在定义时使用对象), 枚举类型的作用域与枚举类型本身相同
 
 ## 枚举成员
 

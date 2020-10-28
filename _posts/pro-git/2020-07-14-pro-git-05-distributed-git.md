@@ -81,7 +81,7 @@ fork 项目后工作, 然后发起 pr 请求合并.
 一般先 clone 原项目, 然后 fork 并在本地添加 remote 仓库.
 
 - `git request-pull <remote1/branch> <remote2>`
-    产生一个 remote2 向 remote1/branch 的 pr (需要先把本地 commit 推送到自己的远程仓库)
+  : 产生一个 remote2 向 remote1/branch 的 pr (需要先把本地 commit 推送到自己的远程仓库)
 
 <!-- end list -->
 
@@ -112,7 +112,7 @@ $ git push -f myfork featureA
 ![本地 rebase 后推送](/img/in-post/post-pro-git/public-small-2.png "public-small-2")
 
 - `git merge --squash <branchA>`
-    将分支 A 的多个 commit 合并成一个放到当前分支.
+  : 将分支 A 的多个 commit 合并成一个放到当前分支.
 
 <!-- end list -->
 
@@ -132,10 +132,10 @@ $ git push myfork featureBv2
 一些历史悠久的大型项目只通过开发者邮件列表接受补丁.
 
 - `git format-patch <commit>` 或 `git format-patch <branch>`
-    将每一个 commit 转换为邮件, 邮件标题为 commit message 的第一行
+  : 将每一个 commit 转换为邮件, 邮件标题为 commit message 的第一行
 
   - `-M`
-        检测 commit 是否重命名
+    : 检测 commit 是否重命名
 
 <!-- end list -->
 
@@ -242,9 +242,9 @@ Message-ID to be used as In-Reply-To for the first email? y
 ### 应用 `diff` 的补丁: `apply`
 
 - `git apply <patch_dir>`
-    应用某个补丁
+  : 应用某个补丁
 - `git apply --check <patch_dir>`
-    检查某个补丁
+  : 检查某个补丁
 
 `git apply` 采用的是 `apply all or abort all` 的模型, 如果补丁有异常则整个补丁都不会被应用.
 
@@ -259,10 +259,10 @@ error: ticgit.gemspec: patch does not apply
 `git format-patch` 形成的文件类似于 mbox 文件, 需要先下载然后使用.
 
 - `git am <patch_dir>`
-    应用补丁
+  : 应用补丁
 
   - `-i`
-        进入交互模式, 一个 mbox 有多个补丁时使用
+    : 进入交互模式, 一个 mbox 有多个补丁时使用
 
 此时会自动创建一个 commit, 作者信息是电子邮件的 From 和 Date，提交消息是 Subject 和邮件正文中补丁之前的内容.
 
@@ -313,14 +313,14 @@ Merge made by the 'recursive' strategy.
 ### 对比一个分支与另一分支
 
 - `git diff <branchA> <branchB>` 或 `git diff <branchA>..<branchB>`
-    对比 A 与 B 上的最新提交
+  : 对比 A 与 B 上的最新提交
 
 ### 对比分支到祖先的提交
 
 一种方法是用 `git merge-base` 先找到祖先然后进行 `diff`; 也可以直接用 `git diff` 的三点语法.
 
 - `git diff <branchA>...<branchB>`
-    查看 B 到 A 和 B 的公共祖先的修改
+  : 查看 B 到 A 和 B 的公共祖先的修改
 
 <!-- end list -->
 
@@ -333,16 +333,14 @@ $ git diff master...contrib
 ## 整合贡献
 
 - 最简单的是只维护一个 master 分支, 每次直接将代码整合到 master 中
-- 对于稍微大一点的项目, 一般会维护 master 和 develop 两个分支, 其中 master 是非常稳定的版本. 打 tag
-    后才将 develop 合并到 master.
-- 对于更大的项目, 会维护更多分支. 如 master 是稳定版本, next 是安全问题, pu 是功能更新, maint
-    是向后移植工作.
+- 对于稍微大一点的项目, 一般会维护 master 和 develop 两个分支, 其中 master 是非常稳定的版本. 打 tag 后才将 develop 合并到 master.
+- 对于更大的项目, 会维护更多分支. 如 master 是稳定版本, next 是安全问题, pu 是功能更新, maint 是向后移植工作.
 - 一些维护者喜欢一直用 rebase 来形成线形的历史或者用 `git cherry-pick`.
 
 ## `cherry-pick`
 
 - `git cherry-pick <SHA-1>`
-    将某次 commit rebase 到当前分支 (会得到一个新的 SHA-1), 然后可以丢弃原分支.
+  : 将某次 commit rebase 到当前分支 (会得到一个新的 SHA-1), 然后可以丢弃原分支.
 
 ![原始状态](/img/in-post/post-pro-git/rebasing-1.png "rebasing-1")
 
@@ -386,10 +384,10 @@ $ git show maintainer-pgp-pub | gpg --import
 ### 生成版本号
 
 - `git describe`
-    让 git 自动生成一个版本号, 包含 tag 及上次至今的提交数和 SHA-1
+  : 让 git 自动生成一个版本号, 包含 tag 及上次至今的提交数和 SHA-1
 
   - `--tags`
-        使用 lightweight tag
+    : 使用 lightweight tag
 
 <!-- end list -->
 
@@ -401,7 +399,7 @@ v1.6.2-rc1-20-g8c5b85c
 ### 准备发布
 
 - `git archive`
-    创建压缩包
+  : 创建压缩包
 
 <!-- end list -->
 
@@ -415,7 +413,7 @@ $ git archive master --prefix='project/' --format=zip > `git describe master`.zi
 ### 发布简报
 
 - `git shortlog`
-    快速生成发布简报和 changelog
+  : 快速生成发布简报和 changelog
 
 <!-- end list -->
 

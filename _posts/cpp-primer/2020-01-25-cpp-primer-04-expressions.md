@@ -163,10 +163,8 @@ finalGrade = (grade > 90) ? "high pass"
 
 整数提升在大部分运算中都会发生.
 
-- 小整型 (`bool` / `char` / `signed char` / `unsigned char` / `short` /
-    `unsigned short`) → `int` / `unsigned`
-- 大整型 (`wchar_t` / `char16_t` / `char32_t`) → `int` / `unsigned` /
-    `unsigned long` / `long long` / `unsigned long long`
+- 小整型 (`bool` / `char` / `signed char` / `unsigned char` / `short` / `unsigned short`) → `int` / `unsigned`
+- 大整型 (`wchar_t` / `char16_t` / `char32_t`) → `int` / `unsigned` / `unsigned long` / `long long` / `unsigned long long`
 
 规则都是提升到能容纳原值的最小类型上.
 
@@ -225,7 +223,7 @@ int *pp = p, &r = j; // 非法
 强制类型转换的格式为 `cast-name<type>(expr)`.
 
 - `static_cast`
-    任何不涉及 `const` 转换的情况都可以用, 如将大范围类型转换成小范围类型, 或者还原 `void*` 类型.
+  : 任何不涉及 `const` 转换的情况都可以用, 如将大范围类型转换成小范围类型, 或者还原 `void*` 类型.
 
 <!-- end list -->
 
@@ -237,7 +235,7 @@ double *dp = static_cast<double*>(p);
 ```
 
 - `const_cast`
-    能且只能改变对象的底层 `const` 属性, 常用于函数重载. 去掉 `const` 属性后若修改会产生 UB.
+  : 能且只能改变对象的底层 `const` 属性, 常用于函数重载. 去掉 `const` 属性后若修改会产生 UB.
 
 <!-- end list -->
 
@@ -249,7 +247,7 @@ const_cast<char*>(cp);
 ```
 
 - `reinterpret_cast`
-    对底层数据重新解释 (暴力修改), 十分危险.
+  : 对底层数据重新解释 (暴力修改), 十分危险.
 
 <!-- end list -->
 
@@ -259,10 +257,10 @@ char *pc = reinterpret_cast<char*>(ip); // 暴力修改类型
 ```
 
 - `dynamic_cast`
-    运行时类型识别
+  : 运行时类型识别
 
 - `type (expr)` 或 `(type) expr`
-    早期的 C++ 类型转换
+  : 早期的 C++ 类型转换
 
 # 优先级
 

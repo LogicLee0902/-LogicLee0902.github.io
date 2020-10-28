@@ -162,9 +162,7 @@ if(set_it != iset.end()) {
 
 - 对于 `map` 或 `set` 只有元素的关键字不在 `c` 内的时候才能插入成功 (即以第一次插入为准)
 - 对于 `multimap` 或 `multiset` 总是可以插入成功, 因此只返回新元素的迭代器
-- 向 `map` 中插入的元素 `v` 必须是一个 `std::pair`, 如
-    `word_count.insert({word, 1})` 或
-    `word_count.insert(std::make_pair(word, 1))`
+- 向 `map` 中插入的元素 `v` 必须是一个 `std::pair`, 如 `word_count.insert({word, 1})` 或 `word_count.insert(std::make_pair(word, 1))`
 
 <!-- end list -->
 

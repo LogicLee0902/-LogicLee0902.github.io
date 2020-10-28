@@ -55,8 +55,7 @@ header-style: text
      (else (cons (car (car l)) (firsts (cdr l)))))))
 ```
 
-- `(insertR a b lat)` 表示把 atom a 插入到 lat 里 atom b 第一次出现的位置后, 如
-    `(insertR 'a 'b '(c d b)) => '(c d b a)`
+- `(insertR a b lat)` 表示把 atom a 插入到 lat 里 atom b 第一次出现的位置后, 如 `(insertR 'a 'b '(c d b)) => '(c d b a)`
 
 <!-- end list -->
 

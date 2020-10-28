@@ -16,8 +16,7 @@ header-style: text
 
 # partial functions & total functions
 
-- `(looking a lat)` 表示在 lat 中找 a, 寻找方式是, 先看第一个元素, 如果是数字 (比如 i) 就跳到第 i
-    个位置, 重复操作, 直到找到非数字. 判断这个非数字元素是否是 a.
+- `(looking a lat)` 表示在 lat 中找 a, 寻找方式是, 先看第一个元素, 如果是数字 (比如 i) 就跳到第 i 个位置, 重复操作, 直到找到非数字. 判断这个非数字元素是否是 a.
 
 <!-- end list -->
 
@@ -38,9 +37,7 @@ header-style: text
 但是, keep-looking 有可能不会停机, 即它只能接受部分合法的参数, 所以被称为 **partial functions**,
 前面提到的可以接受所有参数函数被称为 total functions.
 
-- `(shift pair)` 表示让 pair (这个 pair 的第一个元素也是一个 pair)
-    的第一部分的第二个元素和其第二部分形成一个 pair, 如
-    `(shift '((a b) (c d))) => '(a (b (c d)))`
+- `(shift pair)` 表示让 pair (这个 pair 的第一个元素也是一个 pair) 的第一部分的第二个元素和其第二部分形成一个 pair, 如 `(shift '((a b) (c d))) => '(a (b (c d)))`
 
 <!-- end list -->
 

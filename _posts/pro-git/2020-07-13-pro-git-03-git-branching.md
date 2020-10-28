@@ -29,26 +29,26 @@ Git 的默认分支名字是 master, master 分支会在每次提交时自动向
 ## 查看分支
 
 - `git branch`
-    列出分支 (用 `*` 标注分支代表当前分支, 即 HEAD)
+  : 列出分支 (用 `*` 标注分支代表当前分支, 即 HEAD)
 
   - `-v`
-        查看每个分支最后一次提交
+    : 查看每个分支最后一次提交
   - `merged {branch}` 与 `--no-unmerged {branch}`
-        查看已经合并或未合并到当前分支 (在后面补充 branch 会显示相对于该分支的情况)
+    : 查看已经合并或未合并到当前分支 (在后面补充 branch 会显示相对于该分支的情况)
 
 - `git log --decorate`
-    查看各个分支指向的对象
+  : 查看各个分支指向的对象
 
 ## 创建分支
 
 - `git branch <branch>`
-    创建新分支
+  : 创建新分支
 
 - `git checkout -b <branch>`
-    创建新分支同时切换过去
+  : 创建新分支同时切换过去
 
   - `git checkout -b <new_branch> <old_branch>`
-        在老分支的基础上建立新分支
+    : 在老分支的基础上建立新分支
 
 git 中用 `HEAD` 指针指向当前分支.
 
@@ -66,7 +66,7 @@ f30ab (HEAD -> master, testing) add feature #32 - ability to add new formats to 
 ## 切换分支
 
 - `git checkout <branch>`
-    切换分支
+  : 切换分支
 
 分支切换前最好提交或 stash 当前暂存区.
 
@@ -90,14 +90,14 @@ $ git commit -a -m 'made other changes'
 ## 删除分支
 
 - `git branch -d <branch>`
-    删除分支, 对于未合并的分支会警告
+  : 删除分支, 对于未合并的分支会警告
 - `git branch -D <branch>`
-    强行删除分支 (相当于加了 `--force`)
+  : 强行删除分支 (相当于加了 `--force`)
 
 ## 合并分支
 
 - `git merge <branch>`
-    合并分支与当前分支
+  : 合并分支与当前分支
 
 合并两个分支时, 如果一个分支是另一个的后继，指针就会直接右移, 此时不需要解决什么冲突, 即 fast-forward. (用
 `--no-ff` 禁用)
@@ -144,9 +144,9 @@ both modified:      index.html
 ## 管理远程分支
 
 - `git ls-remote <remote>`
-    获取远程引用的完整列表
+  : 获取远程引用的完整列表
 - `git branch -a`
-    查看远程分支
+  : 查看远程分支
 
 远程分支是服务器上同步的分支版本, 会用 `<remote>/<branch>` 的形式命名. (如 `origin/master`
 修改后指向位置不变, 而会多出新指针 `master`)
@@ -160,16 +160,16 @@ both modified:      index.html
 ### 跟踪远程分支
 
 - `git checkout -b <branch> <remote>/<branch>`
-    创建一个跟踪分支.
+  : 创建一个跟踪分支.
 
 - `git checkout --track <remote>/<branch>`
-    创建新分支跟踪远程分支.
+  : 创建新分支跟踪远程分支.
 
 - `git branch -u <remote>` 或 `git branch --set-upstream-to <remote>`
-    设置本地分支追踪远程分支.
+  : 设置本地分支追踪远程分支.
 
 - `git branch -vv`
-    查看所有跟踪分支 (最好先用 `git fetch -all` 拉取数据).
+  : 查看所有跟踪分支 (最好先用 `git fetch -all` 拉取数据).
 
 根据远程分支创建的本地分支会成为 "跟踪分支", 其对应的远程分支称为 "上游分支". (如 clone)
 
@@ -180,12 +180,12 @@ both modified:      index.html
 ### 删除远程分支
 
 - `git push <remote> -d <branch>`
-    删除远程分支
+  : 删除远程分支
 
 ## `rebase`
 
 - `git rebase <target-branch>`
-    将当前分支 rebase 到目标分支
+  : 将当前分支 rebase 到目标分支
 
 普通的 `merge` 是合并两个分支, 而 `rebase` 是将某一个分支的变化提取出来, 应用到另一个分支. (让提交历史更简洁)
 
@@ -212,7 +212,7 @@ $ git merge experiment
 ### 对分支的分支上 rebase
 
 - `git rebase --onto <master> <b1> <b2>` b2 是 b1 的分支, 将 b2 这一条分支提取出来
-    rebase 到 master 上
+  : rebase 到 master 上
 
 ![原始状态](/img/in-post/post-pro-git/interesting-rebase-1.png
 "interesting-rebase-1")
@@ -245,6 +245,6 @@ rebase 的本质是丢弃一些 commit 的记录, 如果多个人对一个分支
 也可以手动进行 rebase, 用 `git pull --rebase` (即 `git fetch` + `git rebase teamone/master`) 代替 `git pull`.
 
 - `git config --global pull.rebase true`
-    默认使用 `git pull rebase`.
+  : 默认使用 `git pull rebase`.
 
 所以如果不得已需要对公有分支进行 rebase, 最好通知所有人用 `git pull --rebase`.

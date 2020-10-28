@@ -224,8 +224,7 @@ header-style: text
 分析代码会发现每次递归变化的是函数 col, 每次递归改变的信息也是存储在 col 里面, 每递归一次 col 就多了一层,
 最后会用所有信息进行计算. 即将数据和状态用闭包存储.
 
-- `(multirember&co a lat col)` 将等于 a 的元素放到列表 l1, 把不等于 a 的元素放到列表 l2,
-    最后计算 `(col l1 l2)`
+- `(multirember&co a lat col)` 将等于 a 的元素放到列表 l1, 把不等于 a 的元素放到列表 l2, 最后计算 `(col l1 l2)`
 
 <!-- end list -->
 

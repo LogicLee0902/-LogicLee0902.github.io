@@ -17,10 +17,10 @@ header-style: text
 # 创建 repo
 
 - `git init`
-    在当前目录下建立一个 repo.
+  : 在当前目录下建立一个 repo.
 
   - `-o <remote>`
-        指定远程仓库名字
+    : 指定远程仓库名字
 
 <!-- end list -->
 
@@ -32,7 +32,7 @@ $ git commit -m 'Initial project version'
 ```
 
 - `git clone <url> {dir}`
-    克隆一个 repo. (`dir` 表示存放位置, 默认存放在 repo 名字的文件夹中)
+  : 克隆一个 repo. (`dir` 表示存放位置, 默认存放在 repo 名字的文件夹中)
 
 # 基本命令
 
@@ -49,15 +49,15 @@ repo 中的文件可以分为以下几种:
 ## add
 
 - `git add <files>`
-    追踪一个文件
+  : 追踪一个文件
 
 ## status
 
 - `git status`
-    查看仓库中文件的状态
+  : 查看仓库中文件的状态
 
   - `-s` 和 `--short`
-        用紧凑的方式查看 status.
+    : 用紧凑的方式查看 status.
 
 修改了一个处于 staged 状态的文件, 该文件会同时出现在 staged 和 modified 的区域中.
 
@@ -75,20 +75,20 @@ A  lib/git.rb         # 新暂存的文件
 ## diff
 
 - `git diff`
-    比较工作区和暂存区文件的差异.
+  : 比较工作区和暂存区文件的差异.
 
   - `--staged` 或 `--cached`
-        比较暂存区与上一次提交文件的差异
+    : 比较暂存区与上一次提交文件的差异
 
 可以用 `git difftool` 调用外部 diff 工具来显示文件差异
 
 ## commit
 
 - `git commit {-m "messages"}`
-    提交暂存区的修改, 如果没有 `-m` 参数会自动启动编辑器来添加修改信息.
+  : 提交暂存区的修改, 如果没有 `-m` 参数会自动启动编辑器来添加修改信息.
 
   - `-a`
-        自动将追踪的文件暂存并提交, 即自动 `add`.
+    : 自动将追踪的文件暂存并提交, 即自动 `add`.
 
 <!-- end list -->
 
@@ -102,10 +102,10 @@ $ git commit -m "Story 182: Fix benchmarks for speed"
 ## 删除文件
 
 - `git rm <files/patterns>`
-    删除文件, 并且不再追踪它. 对于已修改或已暂存的文件要加 `-f` 选项.
+  : 删除文件, 并且不再追踪它. 对于已修改或已暂存的文件要加 `-f` 选项.
 
   - `--cached`
-        不再追踪文件, 但是并不删除.
+    : 不再追踪文件, 但是并不删除.
 
 手动删除和用 `git rm` 的区别在于, 手动删除要先 `add` 再 `commmit`, 用 `git rm` 则可以直接
 `commit`.
@@ -113,7 +113,7 @@ $ git commit -m "Story 182: Fix benchmarks for speed"
 ## 重命名文件
 
 - `git mv <file1> <file2>`
-    将文件 1 改名为文件 2.
+  : 将文件 1 改名为文件 2.
 
 <!-- end list -->
 
@@ -169,41 +169,41 @@ GitHub 上针对各门语言的[ `.gitignore` 文件](https://github.com/github/
 # 历史 (log)
 
 - `git log`
-    查看提交历史, 最近的提交在最上面.
+  : 查看提交历史, 最近的提交在最上面.
 
   - `-p` 或 `--patch`
-        显示每次提交的差异.
+    : 显示每次提交的差异.
 
   - `--stat`
-        显示 diff 的统计信息.
+    : 显示 diff 的统计信息.
 
   - `--shortstat`
-        只显示 `--stat` 中最后的行数修改添加移除统计
+    : 只显示 `--stat` 中最后的行数修改添加移除统计
 
   - `--name-only`
-        仅显示修改文件的文件名
+    : 仅显示修改文件的文件名
 
   - `--name-status`
-        显示新增、修改、删除的文件清单
+    : 显示新增、修改、删除的文件清单
 
   - `--abbrev-commit`
-        仅显示 SHA-1 校验和所有 40 个字符中的前几个字符
+    : 仅显示 SHA-1 校验和所有 40 个字符中的前几个字符
 
   - `--relative-date`
-        使用相对日期
+    : 使用相对日期
 
   - `--graph`
-        用图形的方式显示分支信息
+    : 用图形的方式显示分支信息
 
   - `--oneline`
-        即 `--pretty=oneline --abbrev-commit`.
+    : 即 `--pretty=oneline --abbrev-commit`.
 
   - `--pretty=<options>`
-        用一些选项格式化输出, 如 `oneline`, `short`, `full`, `fuller`, `format` 等,
+    : 用一些选项格式化输出, 如 `oneline`, `short`, `full`, `fuller`, `format` 等,
         其中 `format` 可以自定义输出的格式.
 
   - `-<num>`
-        来限制显示的 log 数目.
+    : 来限制显示的 log 数目.
 
   - `--since`, `--until`
 
@@ -244,58 +244,58 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
 ## 修改上一次提交
 
 - `git commit --amend`
-    将当前暂存区文件合并到上一次提交, 并且重新编辑提交信息
+  : 将当前暂存区文件合并到上一次提交, 并且重新编辑提交信息
 
 ## 恢复工作区的文件 (撤销修改)
 
 - `git checkout -- <file>`
-    将文件恢复到暂存时或者上一次提交的样子
+  : 将文件恢复到暂存时或者上一次提交的样子
 
 ## 取消一个文件的暂存
 
 - `git reset HEAD <file>`
-    取消一个文件的暂存
+  : 取消一个文件的暂存
 
 ## 丢弃提交
 
 - `git reset --hard <SHA-1>`
-    回到某一个版本, 丢弃之后的提交
+  : 回到某一个版本, 丢弃之后的提交
 
 可以用 `git reflog` 找回丢弃的提交, 但是有时间限制.
 
 # 远程仓库
 
 - `git remote`
-    查看远程仓库服务器
+  : 查看远程仓库服务器
 
   - `-v`
-        查看远程仓库 URL
+    : 查看远程仓库 URL
   - `add <shortname> <url>`
-        添加一个远程仓库
+    : 添加一个远程仓库
   - `show <remote>`
-        查看某个远程仓库的信息
+    : 查看某个远程仓库的信息
   - `rename <nameA> <nameB>`
-        修改远程仓库的缩写名
+    : 修改远程仓库的缩写名
   - `remove <remote>` 或 `rm <remote>`
-        移除一个远程仓库
+    : 移除一个远程仓库
 
 ## Fetch
 
 - `git fetch <remote>`
-    拉取一个仓库的数据, 但是并不执行合并操作
+  : 拉取一个仓库的数据, 但是并不执行合并操作
 
 ## Pull
 
 - `git pull`
-    追踪远程分支, 拉取数据并尝试合并 (fetch + merge)
+  : 追踪远程分支, 拉取数据并尝试合并 (fetch + merge)
 
 ## Push
 
 - `git push <remote> <branch>`
-    将本地的分支推送到远程仓库, 如果有他人推送了则应该先拉取再推送
+  : 将本地的分支推送到远程仓库, 如果有他人推送了则应该先拉取再推送
 
   - `git push <remote> <local_branch>:<remote_branch>`
-        推送本地分支到远程分支
+    : 推送本地分支到远程分支
 
 git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支, 并将拉取的仓库名字设置为 origin.
 
@@ -304,15 +304,15 @@ git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库�
 可以为重要的 commit 打上标签.
 
 - `git tag`
-    列出所有标签
+  : 列出所有标签
 
   - `-l <pattern>` 或 `--list <pattern>`
-        列出匹配的标签
+    : 列出匹配的标签
   - `-r`
-        查看远程标签
+    : 查看远程标签
 
 - `git show`
-    查看标签及对应的信息
+  : 查看标签及对应的信息
 
 <!-- end list -->
 
@@ -325,23 +325,23 @@ v1.8.5-rc0
 标签分为两类.
 
 - `lightweight`
-    不会改变分支, 只是标记某个提交, 一般是临时的
+  : 不会改变分支, 只是标记某个提交, 一般是临时的
 - `annotated`
-    是数据库中一个完整的对象, 可以被校验并且包含其它信息
+  : 是数据库中一个完整的对象, 可以被校验并且包含其它信息
 
 ## 创建 tag
 
 - `git tag <tagname>`
-    在当前提交打上 lightweight tag, 不需要 messages 等信息
+  : 在当前提交打上 lightweight tag, 不需要 messages 等信息
 
 - `git tag -a <tagname>`
-    在当前提交创建 annotated tag
+  : 在当前提交创建 annotated tag
 
   - `-m <"messages">`
-        存储在标签的信息, 若不加则会启动编辑器输入
+    : 存储在标签的信息, 若不加则会启动编辑器输入
 
 - `git tag -a <tagname> <checksum>`
-    为对应 checksum 的版本打 tag
+  : 为对应 checksum 的版本打 tag
 
 ## 远程标签
 
@@ -350,35 +350,35 @@ v1.8.5-rc0
 打完标签要手动 push 标签
 
 - `git push <remote> <tagname>`
-    推送标签
+  : 推送标签
 - `git push <remote> --tags`
-    推送所有标签
+  : 推送所有标签
 
 ### Pull tag
 
 - `git pull <remote> --tags`
-    拉取所有标签
+  : 拉取所有标签
 
 ## 删除 tag
 
 - `git tag -d <tagname>`
-    删除标签
+  : 删除标签
 - `git push <remote> :refs/tags/<tagname>`
-    删除远程仓库的标签
+  : 删除远程仓库的标签
 - `git push origin --delete <tagname>`
-    删除远程仓库的标签
+  : 删除远程仓库的标签
 
 ## Checkout tag
 
 - `git checkout <tagname>`
-    查看某个标签的文件版本
+  : 查看某个标签的文件版本
 
 此时仓库处于 `detacthed HEAD` 状态, 所提交的内容将无法访问 (除非记下 hash 值), 因此通常会先创立新的分支 `git checkout -b <branch> <tagname>`.
 
 # 命令别名 (alias)
 
 - `git alias --global alias.<abbr> <op>`
-    设置操作别名
+  : 设置操作别名
 
 <!-- end list -->
 

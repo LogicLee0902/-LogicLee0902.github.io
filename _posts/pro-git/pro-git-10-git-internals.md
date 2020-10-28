@@ -39,12 +39,12 @@ refs/ # 存储指针
 ### blob 对象
 
 - `git hash-object`
-    将数据保存在 `.git/objects` 返回 SHA-1
+  : 将数据保存在 `.git/objects` 返回 SHA-1
 
   - `-w`
-        写入数据库
+    : 写入数据库
   - `--stdin`
-        从标准输入读取, 不加就要加上路径
+    : 从标准输入读取, 不加就要加上路径
 
 <!-- end list -->
 
@@ -61,12 +61,12 @@ $ git hash-object -w test.txt
 此时数据用 blob 对象存储
 
 - `git cat-file <SHA-1>`
-    用 SHA-1 取回数据
+  : 用 SHA-1 取回数据
 
   - `-p`
-        自动识别类型
+    : 自动识别类型
   - `-t`
-        输出类型
+    : 输出类型
 
 <!-- end list -->
 

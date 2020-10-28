@@ -291,12 +291,11 @@ public:
 # 访问控制与继承
 
 - `public`
-    都可以访问
+  : 都可以访问
 - `protected`
-    `Derived` 和 `Derived` 的友元可以访问 `Derived` 的 `protected` 成员 (不能访问
-    `Base` 的), 用户无法访问
+  : `Derived` 和 `Derived` 的友元可以访问 `Derived` 的 `protected` 成员 (不能访问 `Base` 的), 用户无法访问
 - `private`
-    仅成员和友元可以访问
+  : 仅成员和友元可以访问
 
 > 类派生列表控制访问时, 用户只能访问 `public`, `Derived` 只能访问 `public` 和 `protected`,
 >
@@ -353,8 +352,7 @@ struct Derived_from_Public : public Priv_Derv {
 
 - 用户 : 只有当继承方式为 `public` 时, 用户才能把 `D` 类型转换成 `B` 类型, 否则不行
 - `D` : `D` 的成员函数和友元总是能将 `D` 转换为 `B`
-- `D` 的 `Derived` : 只有当继承方式为 `public` 或 `protected` 时, `D` 的 `Derived`
-    才能将 `D` 转换为 `B`
+- `D` 的 `Derived` : 只有当继承方式为 `public` 或 `protected` 时, `D` 的 `Derived` 才能将 `D` 转换为 `B`
 
 ## 友元与继承
 
@@ -496,8 +494,7 @@ public:
 
 要使用成员的拷贝控制，就要求成员可访问，并且不是一个被删除的函数.
 
-- 如果 `Base` 的 **默认构造函数** / **拷贝函数** / **析构函数** 被定义为删除或不可访问, 则
-    `Derived` 的对应函数也会被定义成删除的 (基类部分的操作需要这些函数)
+- 如果 `Base` 的 **默认构造函数** / **拷贝函数** / **析构函数** 被定义为删除或不可访问, 则 `Derived` 的对应函数也会被定义成删除的 (基类部分的操作需要这些函数)
 - `Base` 的 **析构函数** 是删除或不可访问的, 则 `Derived` 的 **合成的默认和拷贝构造函数** 也被定义为删除的
 - 如果 `Base` 的 **移动操作** 或 **析构函数** 被删除或无法访问, 则 `Derived` 的 **移动操作** 被删除
 

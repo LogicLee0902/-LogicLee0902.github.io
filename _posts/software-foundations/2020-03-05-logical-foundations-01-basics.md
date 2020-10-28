@@ -19,7 +19,7 @@ header-style: text
 所有的语句都必须用 `.` 来结尾.
 
 - Inductive
-    定义递归类型
+  : 定义递归类型
 
 <!-- end list -->
 
@@ -52,7 +52,7 @@ Inductive nybble : Type :=
 ```
 
 - Definition
-    定义函数
+  : 定义函数
 
 <!-- end list -->
 
@@ -79,7 +79,7 @@ Definition pred(n : nat) : nat :=
 ```
 
 - Compute
-    计算函数
+  : 计算函数
 
 <!-- end list -->
 
@@ -88,7 +88,7 @@ Compute (andb true false).
 ```
 
 - Example
-    定理 (测试)
+  : 定理 (测试)
 
 类似的还有 `Theorem`, `Lemma`, `Fact`, `Remark`.
 
@@ -98,7 +98,7 @@ Proof. simpl. reflexivity. Qed.
 ```
 
 - Notation
-    定义运算符
+  : 定义运算符
 
 <!-- end list -->
 
@@ -113,7 +113,7 @@ Notation "x + y" := (plus x y)
 ```
 
 - Admitted
-    表示定理可以直接使用. (用作占位符)
+  : 表示定理可以直接使用. (用作占位符)
 
 <!-- end list -->
 
@@ -122,7 +122,7 @@ Admitted.
 ```
 
 - Check
-    输出语句的类型.
+  : 输出语句的类型.
 
 <!-- end list -->
 
@@ -132,8 +132,7 @@ Check andb. (*[bool -> bool]*)
 ```
 
 - Module
-
-modole 中的元素要通过 `module.foo` 来访问.
+  : modole 中的元素要通过 `module.foo` 来访问.
 
 ``` coq
 Module NatPlayground.
@@ -142,7 +141,7 @@ end.
 ```
 
 - Fixpoint
-    递归函数
+  : 递归函数
 
 <!-- end list -->
 
@@ -160,13 +159,13 @@ Fixpoint evenb(n : nat) : bool :=
 Proof 和 Qed 之间的证明部分被称为 Tactics
 
 - simpl.
-    化简等号两边, 便于改进证明
+  : 化简等号两边, 便于改进证明
 - reflexivity.
-    化简并验证是否成立
+  : 化简并验证是否成立
 - intros
-    引入变量/函数/条件等
+  : 引入变量/函数/条件等
 - rewrite
-    使用条件重写命题
+  : 使用条件重写命题
 
 <!-- end list -->
 
@@ -183,7 +182,7 @@ Qed.
 ```
 
 - destructive
-    按照归纳定义分类讨论
+  : 按照归纳定义分类讨论
 
 <!-- end list -->
 

@@ -27,8 +27,7 @@ header-style: text
 
 - 一般选择 `std::vector`
 - `std::forward_list` 没有 `size()` 操作(为了性能). 对于其它容器, `size()` 是个常数时间.
-- `std::list` 与 `std::forward_list` 额外的空间开销较大 (因为要保存指针),
-    一般用于在中间插入删除数据频繁的地方.
+- `std::list` 与 `std::forward_list` 额外的空间开销较大 (因为要保存指针), 一般用于在中间插入删除数据频繁的地方.
 
 # 容器库概览 (对于所有容器库)
 
@@ -132,8 +131,7 @@ header-style: text
 
 ## 容器初始化
 
-- 使用容器拷贝初始化另一个容器时 `T v1(v2)`, 容器类型和元素类型必须完全匹配 (如 `int` 和 `long long`
-    不匹配)
+- 使用容器拷贝初始化另一个容器时 `T v1(v2)`, 容器类型和元素类型必须完全匹配 (如 `int` 和 `long long` 不匹配)
 - 使用迭代器初始化则没关系
 
 使用列表初始化可以不指定大小.
@@ -165,15 +163,12 @@ std::array<int, 10>::size_type i;
 ## `swap()`
 
 - `std::array`
-
   - 对于 `std::array` 使用 `swap()` 会真正交换元素, 效率可能很低
   - 交换之后指针/引用/迭代器仍指向原来的容器
 
-- `std::string`
-    `swap()` 为常数时间, 交换后指针/引用/迭代器都会失效
+- `std::string`: `swap()` 为常数时间, 交换后指针/引用/迭代器都会失效
 
-- 其它容器
-    `swap()` 为常数时间, 交换后指针/引用/迭代器也会一起交换
+- 其它容器: `swap()` 为常数时间, 交换后指针/引用/迭代器也会一起交换
 
 最好统一使用泛型版本的 `std::swap()`.
 
@@ -203,8 +198,7 @@ std::array<int, 10>::size_type i;
 
 以上操作都不支持 `std::array`.
 
-- `std::forward_list` 有专属的 `insert()` 和 `emplace()`, 没有 `push_back()`
-    和 `emplace_back()`
+- `std::forward_list` 有专属的 `insert()` 和 `emplace()`, 没有 `push_back()` 和 `emplace_back()`
 - `std::vector` 和 `std::string` 不支持 `push_front()` 和 `emplace_front()`
 
 向 `std::vector`, `std::string`, `std::deque` 中插入元素会使原有迭代器失效.
@@ -234,8 +228,7 @@ c.push_back(Sales_data("978-0590353403", 25, 15.99))
 访问之前一定要保证容器非空!
 
 - 所有顺序容器都有 `front()` 成员函数, 返回头元素的引用, 等价于 `*c.begin()`
-- 除了 `std::forward_list` 之外都有 `back()` 成员函数, 返回尾元素的引用, 等价于
-    `*--c.end()`
+- 除了 `std::forward_list` 之外都有 `back()` 成员函数, 返回尾元素的引用, 等价于 `*--c.end()`
 
 `c.front()` 等价于 `*c.begin()`, `c.end()` 等价于 `*--c.end()`
 
@@ -330,20 +323,20 @@ for (auto i : flst) cout << i << " ";
 ### 插入元素
 
 - `std::vector` / `std::string`
-    若存储空间重新分配则都失效; 否则在插入元素之前的有效, 插入元素之后的无效
+  : 若存储空间重新分配则都失效; 否则在插入元素之前的有效, 插入元素之后的无效
 - `std::deque`
-    中间位置插入则都失效; 插入首尾则迭代器失效, 引用/指针不失效
+  : 中间位置插入则都失效; 插入首尾则迭代器失效, 引用/指针不失效
 - `std::list` / `std::forward_list`
-    始终有效
+  : 始终有效
 
 ### 删除元素
 
 - `std::vector` / `std::string`
-    删除的元素之前的有效, 之后的无效
+  : 删除的元素之前的有效, 之后的无效
 - `std::deque`
-    中间位置删除则都失效; 删除尾元素则尾后迭代器失效
+  : 中间位置删除则都失效; 删除尾元素则尾后迭代器失效
 - `std::list` / `std::forward_list`
-    始终有效
+  : 始终有效
 
 ### 在循环中修改容器
 
@@ -365,7 +358,7 @@ while (beg != v.end()) { // 注意这里
 将序列中的奇数复制一份, 偶数删除:
 
 - `std::vector`
-    注意操作之后一定要利用返回的迭代器
+  : 注意操作之后一定要利用返回的迭代器
 
 <!-- end list -->
 
@@ -379,7 +372,7 @@ while (beg != v.end()) {
 ```
 
 - `std::list`
-    限制最少
+  : 限制最少
 
 <!-- end list -->
 
@@ -393,7 +386,7 @@ while (beg != lst.end()) {
 ```
 
 - `std::forward_list`
-    要保存 `prev`
+  : 要保存 `prev`
 
 <!-- end list -->
 
@@ -440,9 +433,9 @@ while (beg != flst.end()) {
 ## `substr()`
 
 - `s.substr(pos2)`
-    `s` 从 `pos2` 到尾部的拷贝
+  : `s` 从 `pos2` 到尾部的拷贝
 - `s.substr(pos2, len2)`
-    `s` 从 `pos2` 开始拷贝 `len2` 个元素, 最多拷贝到尾部为止
+  : `s` 从 `pos2` 开始拷贝 `len2` 个元素, 最多拷贝到尾部为止
 
 同样, 如果 `pos2 > s.size()` 会抛出 `std::out_of_range` 异常.
 
@@ -459,27 +452,25 @@ while (beg != flst.end()) {
 | `s.append(args)`         | 将 `args` 追加到 `s`, 返回 `s` 的引用                                          |
 | `s.replace(range, args)` | 将 `range` 替换为 `args` 指定的字符, 返回 `s` 的引用                           |
 
-- `s.insert(pos, args)` 的 `pos` 如果是下标, 那么返回 `s` 的引用; 如果是迭代器,
-    返回指向插入的第一个字符的迭代器.
-- `s.replace(range, args)` 的 `range` 可以是下标和长度 (`pos, len`) 或者一对迭代器区间
-    `[b, e)`.
+- `s.insert(pos, args)` 的 `pos` 如果是下标, 那么返回 `s` 的引用; 如果是迭代器, 返回指向插入的第一个字符的迭代器.
+- `s.replace(range, args)` 的 `range` 可以是下标和长度 (`pos, len`) 或者一对迭代器区间 `[b, e)`.
 
 `args` 可以是以下几种:
 
 - `(str)`
-    `std::string`
+  : `std::string`
 - `(str, pos, len)`
-    \=std::string=, 位置, 长度
+  : \=std::string=, 位置, 长度
 - `(cp, len)`
-    字符数组和长度
+  : 字符数组和长度
 - `(cp)`
-    字符数组
+  : 字符数组
 - `(n, c)`
-    `n` 为数字, `c` 为字符
+  : `n` 为数字, `c` 为字符
 - `(b2, e2)`
-    迭代器区间
+  : 迭代器区间
 - `{}`
-    初始化列表
+  : 初始化列表
 
 `assign()` 和 `append()` 支持所有形式的 `args`, 其它函数的支持度如下:
 
@@ -498,8 +489,7 @@ while (beg != flst.end()) {
 - `assign()` 和 `append` 不用指定原串的位置
 - `replace()` 可以选择 "位置 + 长度" 或者两个迭代器
 - `insert()` 可以选择一个下标或者一个迭代器, 新元素都会插入到指定位置之前
-- 添加的字符可以来自 `std::string`, 字符数组, 花括号组成的字符列表, 字符+计数值.
-    对于前两个可以指定拷贝部分还是全部.
+- 添加的字符可以来自 `std::string`, 字符数组, 花括号组成的字符列表, 字符+计数值. 对于前两个可以指定拷贝部分还是全部.
 
 ## 搜索
 
@@ -521,13 +511,13 @@ while (beg != flst.end()) {
 参数有四种形式
 
 - `(c, pos)`
-    从 `pos` 开始找字符 `c`, `pos` 默认为 `0`
+  : 从 `pos` 开始找字符 `c`, `pos` 默认为 `0`
 - `(s2, pos)`
-    同上, `s2` 为 `std::string`
+  : 同上, `s2` 为 `std::string`
 - `(cp, pos)`
-    同上, `cp` 为字符数组
+  : 同上, `cp` 为字符数组
 - `(cp, pos, n)`
-    从 `s` 中 `pos` 位置开始找数组 `cp` 的前 `n` 个字符, `pos` 和 `n` 无默认值
+  : 从 `s` 中 `pos` 位置开始找数组 `cp` 的前 `n` 个字符, `pos` 和 `n` 无默认值
 
 搜索都是大小写敏感的.
 
@@ -547,17 +537,17 @@ while((pos = name.find_first_of(number, pos))
 字符串的比较函数 `s1.compare()` 可以接受 `6` 种参数:
 
 - `(s2)`
-    比较 `std::string` 的 `s2`
+  : 比较 `std::string` 的 `s2`
 - `(pos1, n1, s2)`
-    将 `s1` 从 `pos1` 开始的前 `n1` 个字符和 `s2` 比较
+  : 将 `s1` 从 `pos1` 开始的前 `n1` 个字符和 `s2` 比较
 - `(pos1, n1, s2, pos2, n2)`
-    同上, 和 `s2` 从 `pos2` 开始的前 `n2` 个字符比较
+  : 同上, 和 `s2` 从 `pos2` 开始的前 `n2` 个字符比较
 - `cp`
-    和字符数组比较
+  : 和字符数组比较
 - `(pos1, n1, cp)`
-    将 `s1` 从 `pos1` 开始的前 `n1` 个字符和 `cp` 比较 `s`
+  : 将 `s1` 从 `pos1` 开始的前 `n1` 个字符和 `cp` 比较 `s`
 - `(pos1, n1, cp, n2)`
-    同上, 和 `cp` 从 `pos2` 开始的前 `n2` 个字符比较
+  : 同上, 和 `cp` 从 `pos2` 开始的前 `n2` 个字符比较
 
 等于返回 `0`, 小于返回负数, 大于返回正数.
 
@@ -596,12 +586,9 @@ while((pos = name.find_first_of(number, pos))
 
 适配器对底层实现容器有要求:
 
-- `std::stack` 要去容器有 `push_back()`, `pop_back()`, `back`, 即除
-    `std::array` 和 `std::forward_list` 之外的所有容器
-- `std::queue` 要求容器有 `push_back()`, `pop_front()`, `back()`,
-    `front()`, 即 `std::list` 和 `std::deque`
-- `std::priority_queue` 要求容器有 `front()`, `push_back()`, `pop_back()`,
-    可随机访问, 即 `std::vector` 和 `std::deque`
+- `std::stack` 要去容器有 `push_back()`, `pop_back()`, `back`, 即除 `std::array` 和 `std::forward_list` 之外的所有容器
+- `std::queue` 要求容器有 `push_back()`, `pop_front()`, `back()`, `front()`, 即 `std::list` 和 `std::deque`
+- `std::priority_queue` 要求容器有 `front()`, `push_back()`, `pop_back()`, 可随机访问, 即 `std::vector` 和 `std::deque`
 
 ## 定义适配器
 

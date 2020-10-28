@@ -25,16 +25,16 @@ header-style: text
 不会改变元素, 推荐用 `cbegin`, `cend`.
 
 - `std::find(cbeg, cend, val)`
-    寻找 `val`, 返回找到的迭代器, 找不到则返回 `cend`
+  : 寻找 `val`, 返回找到的迭代器, 找不到则返回 `cend`
 - `std::count(cbeg, cend, val)`
-    统计 `val` 出现次数
+  : 统计 `val` 出现次数
 - `std::accumulate(cbeg, cend, val)`
-    累加, 初始值为 `val` (注意字符数组或字符串字面值要先转换成 `std::string`).
+  : 累加, 初始值为 `val` (注意字符数组或字符串字面值要先转换成 `std::string`).
 
 返回值类型与 `val` 相同, 因此要注意类型转换! 如 `std::accumulate(v.cbegin(), v.cend(), static_cast<double>(0))`
 
 - `std::equal(cbeg1, cend1, beg2)`
-    比较序列. (序列 `2` 必须至少和序列 `1` 一样长)
+  : 比较序列. (序列 `2` 必须至少和序列 `1` 一样长)
 
 一般接受两个序列且第二个序列用单一迭代器表示, 要求第二个序列长度至少和第一个一样长.
 
@@ -43,9 +43,9 @@ header-style: text
 算法写数据时不会检查, 因此要小心原来容器能不能放得下.
 
 - `std::fill(beg, end, val)`
-    充填为 `val`
+  : 充填为 `val`
 - `std::fill_n(beg, n, val)`
-    写入 `n` 个 `val`
+  : 写入 `n` 个 `val`
 
 <!-- end list -->
 
@@ -55,11 +55,11 @@ std::fill_n(v.begin(), 10, 0); // 错误! v 可能放不下
 ```
 
 - `std::copy(cbeg1, cend1, beg2)`
-    将元素拷贝到 `beg2` 处 (要保证能放下), 返回 `beg2` 中尾后元素的迭代器
+  : 将元素拷贝到 `beg2` 处 (要保证能放下), 返回 `beg2` 中尾后元素的迭代器
 - `std::replace(beg1, beg2, val1, val2)`
-    将 `val1` 替换成 `val2`
+  : 将 `val1` 替换成 `val2`
 - `std::replace_copy(cbeg1, cend1, beg2, val1, val2)`
-    将结果保存在 `beg2` 处
+  : 将结果保存在 `beg2` 处
 
 ### `std::back_inserter`
 
@@ -80,9 +80,9 @@ auto it = back_inserter(v); // 类型为 std::back_insert_iterator<std::vector<i
 ## 重排容器的算法
 
 - `std::sort(beg, end)`
-    排序(从小到大)
+  : 排序(从小到大)
 - `std::unique(beg, end)`
-    去除重复(要求先排序), 把元素挪到尾部, 返回新序列的尾后迭代器
+  : 去除重复(要求先排序), 把元素挪到尾部, 返回新序列的尾后迭代器
 
 <!-- end list -->
 
@@ -101,7 +101,7 @@ void elimDups(std::vector<std::string> &words) {
 谓词是一个可调用的表达式, 并返回一个用于 `if` 表达式的值, 分为一元谓词与二元谓词. 谓词必须能接受容器输入的元素, 要求类型可转换.
 
 - `std::sort(beg, end, pred)`
-    用 `pred` 来代替 `<` 比较元素
+  : 用 `pred` 来代替 `<` 比较元素
 
 <!-- end list -->
 
@@ -112,17 +112,17 @@ bool isShorter(const std::string &s1, const std::string &s2) {
 ```
 
 - `std::stable_sort(beg, end, pred)`
-    在排序的同时, 相同大小的元素按照原顺序.
+  : 在排序的同时, 相同大小的元素按照原顺序.
 - `std::partition(beg, end, pred)`
-    重新排序, 满足谓词的排在前半部分, 不满足的排在后半部分, 返回前半部分的尾后迭代器
+  : 重新排序, 满足谓词的排在前半部分, 不满足的排在后半部分, 返回前半部分的尾后迭代器
 - `std::find_if(beg, end, pred)`
-    返回第一个使谓词为真的迭代器 (找不到返回尾后迭代器)
+  : 返回第一个使谓词为真的迭代器 (找不到返回尾后迭代器)
 - `for_each(beg, end, pred)`
-    对所有元素都执行 `pred` 操作
+  : 对所有元素都执行 `pred` 操作
 - `transform(beg1, end1, beg2, pred)`
-    将序列用 `pred` 转换后存在 `beg2` 处 (`beg1`, `beg2` 可相同)
+  : 将序列用 `pred` 转换后存在 `beg2` 处 (`beg1`, `beg2` 可相同)
 - `count_if(beg, end, pred)`
-    返回范围内使 `pred` 为真的元素数
+  : 返回范围内使 `pred` 为真的元素数
 
 ## lambda 表达式
 
@@ -172,7 +172,7 @@ void fcn1() {
 值捕获与值形参类似, 区别在于 lambda 表达式会在创建时拷贝变量, 而非调用时拷贝.
 
 - 引用捕获
-    `[&names]`
+  : `[&names]`
 
 <!-- end list -->
 
@@ -191,7 +191,7 @@ std::find_if(v.begin(), v.end(),
 引用捕获类似于引用传参, 必须保证 lambda 表达式调用时局部变量存在.
 
 - 隐式捕获
-    `[&]`, `[=]`, `[&, identifier_list]`, `[=, &identifier_list]`
+  : `[&]`, `[=]`, `[&, identifier_list]`, `[=, &identifier_list]`
 
 编译器自动推断捕获的变量. 其中 `=` 表示值捕获, `&` 表示引用捕获.
 
@@ -212,8 +212,7 @@ std::for_each(v.begin(), v.end(),
 
 ### 改变值传递参数值
 
-- 值捕获的变量默认是 `const` 的, 若要在 lambda 中修改, 需用 `mutable` 修饰. (此时仍不会改变外面的变量,
-    与引用捕获区分)
+- 值捕获的变量默认是 `const` 的, 若要在 lambda 中修改, 需用 `mutable` 修饰. (此时仍不会改变外面的变量, 与引用捕获区分)
 
 <!-- end list -->
 
@@ -286,11 +285,11 @@ std::for_each(v.begin(), v.end(), std::bind(print, std::ref(os), _1, ' '));
 | `*it`, `++it`, `--t` | 无意义, 返回 `it`  |
 
 - `std::back_inserter(c)`
-    使用 `push_back()` (要求支持 `push_back()`)
+  : 使用 `push_back()` (要求支持 `push_back()`)
 - `std::front_inserter(c)`
-    使用 `push_front()` (要求支持 `push_front()`)
+  : 使用 `push_front()` (要求支持 `push_front()`)
 - `std::inserter(c, iter)`
-    使用 `insert()`, 接受第二个参数 (迭代器) 表示位置, 每次元素被插入到迭代器之前
+  : 使用 `insert()`, 接受第二个参数 (迭代器) 表示位置, 每次元素被插入到迭代器之前
 
 <!-- end list -->
 
@@ -410,8 +409,7 @@ std::cout << std::string(rcomma.base(), line.cend()) << std::endl; // LAST
 
 高级的迭代器可以用在低级迭代器需求的算法上, 但是不能反过来.
 
-- 输入迭代器: `std::istream_iterator`, 算法 `std::find()` 和
-    `std::accumulate()`
+- 输入迭代器: `std::istream_iterator`, 算法 `std::find()` 和 `std::accumulate()`
   - 比较 (`==`, `!=`)
   - 前置和后置的递增 (`++`)
   - 解引用 (`*`), 且只出现在赋值运算符的右侧
@@ -424,8 +422,7 @@ std::cout << std::string(rcomma.base(), line.cend()) << std::endl; // LAST
 - 双向迭代器: 除 `std::forward_list` 以外的容器, 算法 `std::reverse()`
   - 前置迭代器
   - 前置和后置的递减 (`--`)
-- 随机访问迭代器 : 如 `std::array`, `std::vector`, `std::deque`,
-    `std::string`, 算法 `std::sort`
+- 随机访问迭代器 : 如 `std::array`, `std::vector`, `std::deque`, `std::string`, 算法 `std::sort`
   - 支持所有操作
   - 可以在常量时间内访问任意元素
 
@@ -441,13 +438,13 @@ std::cout << std::string(rcomma.base(), line.cend()) << std::endl; // LAST
 ## 命名规范
 
 - 接受谓词
-    `unique(beg, end)` & `unique(beg, end, pred)`
+  : `unique(beg, end)` & `unique(beg, end, pred)`
 - `_if`
-    (将变量换成谓词) `find(beg, end, val)` & `find(beg, end, pred)`
+  : (将变量换成谓词) `find(beg, end, val)` & `find(beg, end, pred)`
 - `_copy`
-    (将结果拷贝到新序列上) `reverse(beg, end)` & `reverse(beg, end, beg2)`
+  : (将结果拷贝到新序列上) `reverse(beg, end)` & `reverse(beg, end, beg2)`
 - `_copy_if`
-    同上组合
+  : 同上组合
 
 # 特定容器算法
 

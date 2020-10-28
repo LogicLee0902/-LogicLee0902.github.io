@@ -203,13 +203,13 @@ void foo(...); // 三种形式都可以, 但纯省略符的参数难以访问
 ```
 
 - `void va_start(va_list ap, last)`
-    开始读取, `last` 为第一个变量
+  : 开始读取, `last` 为第一个变量
 - `type va_arg(va_list ap, type)`
-    读取 `type` 类型的参数
+  : 读取 `type` 类型的参数
 - `void va_end(va_list ap)`
-    清理
+  : 清理
 - `void va_copy(va_list dest, va_list src)`
-    拷贝
+  : 拷贝
 
 <!-- end list -->
 

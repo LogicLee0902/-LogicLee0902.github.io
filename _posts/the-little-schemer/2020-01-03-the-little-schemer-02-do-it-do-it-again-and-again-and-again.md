@@ -36,10 +36,8 @@ header-style: text
          (not (null? x)))))
 ```
 
-- `(eq? a b)` 表示判断两个 atom 是否相等, 如 `(eq? 'a 'a) => #`, 参数必须是非数字的 atom,
-    不可以是 list
-- `(lat? lat)` 表示判断一个 list 全部都是由 atom 组成,如 `(lat? '(a b (c))) => #f`,
-    对于 null list 也返回 `#t`
+- `(eq? a b)` 表示判断两个 atom 是否相等, 如 `(eq? 'a 'a) => #`, 参数必须是非数字的 atom, 不可以是 list
+- `(lat? lat)` 表示判断一个 list 全部都是由 atom 组成,如 `(lat? '(a b (c))) => #f`, 对于 null list 也返回 `#t`
 
 <!-- end list -->
 

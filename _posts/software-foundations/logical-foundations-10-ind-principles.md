@@ -29,8 +29,7 @@ nat_ind
 `induction` tactic 可以看作是 `apply xxx_ind` 的包装, 但是二者有细微区别:
 
 - 使用归纳规则需要手动在 case 里进行 `intros`
-- 使用归纳规则前一般不会 `intros` 归纳变量, 因为 `apply` 要求命题和结论完全相同, 如果 conclusion
-    中含有量词, 那么当前也要保留量词.
+- 使用归纳规则前一般不会 `intros` 归纳变量, 因为 `apply` 要求命题和结论完全相同, 如果 conclusion 中含有量词, 那么当前也要保留量词.
 
 <!-- end list -->
 

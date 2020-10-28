@@ -58,7 +58,7 @@ Definition ev_4''' : even 4 :=
 ```
 
 - Show Proof
-    输出目前部分完成的命题, `?Goal` 为暂未完成的部分, 称为"hole", 对应着一个 subgoal.
+  : 输出目前部分完成的命题, `?Goal` 为暂未完成的部分, 称为"hole", 对应着一个 subgoal.
 
 <!-- end list -->
 
@@ -320,6 +320,5 @@ Definition four' : 2 + 2 == 1 + 3 := eq_refl 4.
 - 对于类型 `P` 中的每一个 constructor `C` 做以下的事:
   - 生成一个 subgoal, 并假设 `C` 导出了 `H`
   - 将 `C` 的参数和假设添加到当前的条件 (上下文) 中
-  - 将 conclusion 和与当前的 goal 相匹配, 并为 `C` 的成立添加一些等式到条件中 (并自动执行一些
-        tactics)
+  - 将 conclusion 和与当前的 goal 相匹配, 并为 `C` 的成立添加一些等式到条件中 (并自动执行一些 tactics)
   - 如果这些等式不成立, 那么忽略这种情况

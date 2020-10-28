@@ -43,9 +43,9 @@ ca82a6dff817ec66f44342007202690a93763949
 git 的 reflog 记录了最近一段时间 HEAD 和各个 branch 指向的历史.
 
 - `git reflog`
-    查看 reflog
+  : 查看 reflog
 - `git log -g <branch>`
-    查看详细的 reflog 信息
+  : 查看详细的 reflog 信息
 
 <!-- end list -->
 
@@ -164,52 +164,52 @@ What now>
 也能随意切换 branch 了.
 
 - `git stash` 或 `git stash push`
-    将修改保存到栈里
+  : 将修改保存到栈里
 
   - `--keep-alive`
-        只 stash 没有暂存的文件
+    : 只 stash 没有暂存的文件
   - `-u` 或 `--include-untracked`
-        stash 未跟踪的文件 (默认只 stash 跟踪的文件)
+    : stash 未跟踪的文件 (默认只 stash 跟踪的文件)
   - `-a` 或 `--all`
-        stash 所有文件, 包括未跟踪的和 ignore 的 (默认不会 stash ignore 的文件)
+    : stash 所有文件, 包括未跟踪的和 ignore 的 (默认不会 stash ignore 的文件)
   - `-p` 或 `--patch`
-        交互式地 stash 部分文件区块
+    : 交互式地 stash 部分文件区块
 
 - `git stash list`
-    查看栈里的 stash
+  : 查看栈里的 stash
 
 - `git stash apply`
-    恢复最近的 stash, 如果恢复时有冲突需要合并冲突, 默认暂存的文件不会重新暂存
+  : 恢复最近的 stash, 如果恢复时有冲突需要合并冲突, 默认暂存的文件不会重新暂存
 
   - `git stash apply stash@{number}`
-        恢复特定的 stash
+    : 恢复特定的 stash
   - `--index`
-        之前暂存区的文件仍放到暂存区中
+    : 之前暂存区的文件仍放到暂存区中
 
 - `git stash drop stash@{number}`
-    移除指定的 stash
+  : 移除指定的 stash
 
 - `git stash clear`
-    清除所有 stash
+  : 清除所有 stash
 
 - `git stash branch <branch>`
-    在 stash 的工作上创建新的分支, 自动 checkout 并 drop
+  : 在 stash 的工作上创建新的分支, 自动 checkout 并 drop
 
 # 清理工作区文件
 
 - `git clean`
-    删除所有未追踪的文件
+  : 删除所有未追踪的文件
 
   - `-f`
-        强制删除
+    : 强制删除
   - `-n` 或 `--dry-run`
-        告知会删除什么
+    : 告知会删除什么
   - `-x`
-        同时删除 ignore 的文件
+    : 同时删除 ignore 的文件
   - `-i`
-        交互式地删除
+    : 交互式地删除
   - `-d`
-        删除目录
+    : 删除目录
 
 使用前可以用 `git stash --all` 来 stash 文件, 防止错删.
 
@@ -220,12 +220,12 @@ What now>
 首先保证已经用 GPG 生成了密钥, 可以用 `gpg --gen-key` 生成并用 `gpg --list-keys` 查看.
 
 - `git config --global user.singningkey <key>`
-    设置签署密钥
+  : 设置签署密钥
 
 ## 签署 tag
 
 - `git tag -s <tag-name> -m <message>`
-    用 `-s` 代替 `-a` 来签署标签.
+  : 用 `-s` 代替 `-a` 来签署标签.
 
 此时使用 `git show` 就能看到签署的密钥.
 
@@ -240,7 +240,7 @@ user: "Ben Straub <ben@straub.cc>"
 ## 验证 tag
 
 - `git tag -v <tag-name>`
-    验证 tag 签名
+  : 验证 tag 签名
 
 验证 tag 需要先把签署者的公钥保存在 keyring 中, 否则会报错.
 
@@ -278,7 +278,7 @@ create mode 100644 lib/git.rb
 ```
 
 - `git log --show-signature`
-    查看签名
+  : 查看签名
 
 `git merge` 也能用 `-S` 来签署合并提交.
 
@@ -290,16 +290,16 @@ create mode 100644 lib/git.rb
 ## git grep
 
 - `git grep`
-    查找工作区文件
+  : 查找工作区文件
 
   - `-n` 或 `--line-number`
-        显示行号
+    : 显示行号
   - `-c` 或 `--count`
-        输出每个文件有多少匹配
+    : 输出每个文件有多少匹配
   - `-p` 或 `--show-function`
-        显示匹配所在的函数
+    : 显示匹配所在的函数
   - `--and`
-        多个出现在同一行的匹配
+    : 多个出现在同一行的匹配
 
 <!-- end list -->
 
@@ -342,7 +342,7 @@ ef49a7a zlib: zlib can only process 4GB at a time
 ## 行日志搜索
 
 - `git log <start>,<end>:<file>` 或 `git log -L :<funcname>:<file>` 或
-    `git log -L <regex>:<file>`
+  : `git log -L <regex>:<file>`
     查看某一行或某个函数或匹配正则表达式的变化历史.
 
 <!-- end list -->
@@ -374,10 +374,10 @@ diff --git a/zlib.c b/zlib.c
 ## 修改最后一次提交
 
 - `git commit --amend`
-    将当前暂存区合并到上一次提交 (会改变 SHA-1)
+  : 将当前暂存区合并到上一次提交 (会改变 SHA-1)
 
   - `--no-edit`
-        不编辑提交信息
+    : 不编辑提交信息
 
 ## 修改多个提交信息
 

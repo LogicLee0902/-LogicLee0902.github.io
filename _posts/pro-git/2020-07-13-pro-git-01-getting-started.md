@@ -20,9 +20,9 @@ VCS (Version Control System) 是用来管理文件的不同版本的系统.
 
 - Local Version Control Systems (如 RCS) : 在本地用数据库管理文件变更.
 - Centralized Version Control Systems (如 CVS, Subversion, Perforce) :
-    文件版本信息存在服务器上, 本地用客户端访问信息, 易于管理但是依赖于服务器, 存在文件丢失的隐患.
+  : 文件版本信息存在服务器上, 本地用客户端访问信息, 易于管理但是依赖于服务器, 存在文件丢失的隐患.
 - Distributed Version Control Systems (如 Git, Mercurial, Bazaar,
-    Darcs) : 将服务端的文件版本信息全部保存在本地, 可以解决版本信息丢失的问题.
+  : Darcs) : 将服务端的文件版本信息全部保存在本地, 可以解决版本信息丢失的问题.
 
 # Git
 
@@ -43,7 +43,7 @@ Git 用 SHA-1 来计算校验和, 并且用它来指向特定的文件.
 # 初始配置
 
 - `git config`
-    配置 git
+  : 配置 git
 
 Git 将配置存放在三个地方
 
@@ -54,13 +54,13 @@ Git 将配置存放在三个地方
 其中仓库中的配置会覆盖用户配置, 用户配置会覆盖系统配置.
 
 - `git config <key>`
-    显示单项配置.
+  : 显示单项配置.
 
 - `git config --list {--show-origin}`
-    显示所有配置, 相同的变量可能会出现多次 (出现在不同的配置中), 以靠后的为准.
+  : 显示所有配置, 相同的变量可能会出现多次 (出现在不同的配置中), 以靠后的为准.
 
   - `--show-origin`
-        显示配置所在文件.
+    : 显示配置所在文件.
 
 ## Identity
 

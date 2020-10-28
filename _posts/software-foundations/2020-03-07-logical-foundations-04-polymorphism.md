@@ -80,7 +80,7 @@ Definition list123' :=
 ## Implicit Arguments & Explicit Arguments
 
 - Arguments
-    定义隐式参数
+  : 定义隐式参数
 
 用大括号包裹的参数会变成 Impilicit 参数, 使用时被赋予默认值, 不能再显式给出.
 
@@ -212,7 +212,7 @@ Definition doit3times {X:Type} (f:X->X) (n:X) : X :=
 ## anonymous functions
 
 - fun paras =\> body
-    匿名函数.
+  : 匿名函数.
 
 <!-- end list -->
 

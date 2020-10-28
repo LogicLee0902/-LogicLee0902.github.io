@@ -34,9 +34,9 @@ header-style: text
 ## 字符类型
 
 - `char`
-    可放入机器基本字符集中任意字符, 大小和一个机器字节一样.
+  : 可放入机器基本字符集中任意字符, 大小和一个机器字节一样.
 - `char16_t` / `char32_t`
-    用于存放 Unicode 字符集.
+  : 用于存放 Unicode 字符集.
 
 字符型分为 `char`, `signed char` 和 `unsigned char`. `char` 为后二者之一, 由编译器决定.
 

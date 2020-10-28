@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-CO」 09 流水线处理器"
+title: "「BUAA-CO」 10 流水线处理 (unfinished)"
 subtitle: "流水线处理器及冲突解决"
 author: "roife"
 date: 2020-10-15

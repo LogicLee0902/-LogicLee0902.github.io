@@ -119,8 +119,7 @@ void recoup(int) throw();
 - 函数的声明和定义都必须使用 `noexcept`
 - 函数指针的声明和定义中可以指明 `noexcept`
 - `typedef` 和 `using` 作类型别名时不能出现 `noexcept`
-- `noexcept` 应该出现在 `const` 和引用限定符之后, 在 `final`, `override` 和纯虚函数的 `=0`
-    之前
+- `noexcept` 应该出现在 `const` 和引用限定符之后, 在 `final`, `override` 和纯虚函数的 `=0` 之前
 
 ### `noexcept` 说明符
 
@@ -182,8 +181,7 @@ public:
 
 ## 异常类层次
 
-- `std::exception` : 仅定义了拷贝构造函数, 拷贝赋值运算符, 虚析构函数和 `what()` 虚成员 (返回
-    `const char*`, 保证不抛出异常)
+- `std::exception` : 仅定义了拷贝构造函数, 拷贝赋值运算符, 虚析构函数和 `what()` 虚成员 (返回 `const char*`, 保证不抛出异常)
   - `std::bad_cast`
   - `std::bad_alloc`
   - `std::runtime_error` : 无默认构造函数, 有一个接受 `std::string` 或字符数组的构造函数
@@ -360,9 +358,9 @@ namespace primer = cplusplus_primer;
 `using` 有两种用法:
 
 - `using` declaration
-    `using xxx`, 一次只引入一个成员. 在类的作用域中使用时, 只能指向 `Base` 的成员.
+  : `using xxx`, 一次只引入一个成员. 在类的作用域中使用时, 只能指向 `Base` 的成员.
 - `using` directive
-    `using namespace xxx`. 不能用于类的作用域中.
+  : `using namespace xxx`. 不能用于类的作用域中.
 
 在局部作用域中使用 `using` directive 等价于将 `namespace` 的代码放到最近的全局作用域中.
 

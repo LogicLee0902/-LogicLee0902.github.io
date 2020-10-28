@@ -58,15 +58,11 @@ Inductive even' : nat -> Prop :=
 | ev_SS : forall n, even n -> even (S (S n)).
 ```
 
-- even 的类型为 `nat -> Prop`, 即 property of numbers. 其中 H 也被称为
-    `evidence`.
-- `nat` 定义出现在 `:` 右侧, 称为 `index`; 而 Polymorphic list 中的 `X : Type` 出现在
-    `:` 左侧, 称为 `parameter`.
+- even 的类型为 `nat -> Prop`, 即 property of numbers. 其中 H 也被称为 `evidence`.
+- `nat` 定义出现在 `:` 右侧, 称为 `index`; 而 Polymorphic list 中的 `X : Type` 出现在 `:` 左侧, 称为 `parameter`.
   - 对于 parameter 而言, `list X` 定义了一种类型, 它的所有 constructor 中的 X 都相同.
-  - 对于 index 而言, `even nat` 定义了一类类型, 它的 constructor 的参数个数和类型都没有限制. 如
-        `ev_SS` 中 H 的类型可以是 `even 0` 或者 `even 2`.
-- 可以将这种定义看做是一个伴随了两个 Theorem 的 property, constructor 名就是 Theorem 的名字,
-    可以像 Theorem 一样使用.
+  - 对于 index 而言, `even nat` 定义了一类类型, 它的 constructor 的参数个数和类型都没有限制. 如 `ev_SS` 中 H 的类型可以是 `even 0` 或者 `even 2`.
+- 可以将这种定义看做是一个伴随了两个 Theorem 的 property, constructor 名就是 Theorem 的名字, 可以像 Theorem 一样使用.
 
 <!-- end list -->
 
@@ -133,8 +129,7 @@ Qed.
 ## Inversion on evidence
 
 - Inversion
-    结合了 `destruct`, `discriminate`, `injection`, `intros`, `rewrite`,
-    是一个综合的 tactic, 是一个特殊的 `destruct`.
+  : 结合了 `destruct`, `discriminate`, `injection`, `intros`, `rewrite`, 是一个综合的 tactic, 可以看成一个特殊的 `destruct`.
 
 <!-- end list -->
 
@@ -237,7 +232,7 @@ Inductive exp_match {T} : list T -> reg_exp -> Prop :=
 看做一个整体)
 
 - remember
-    记忆某些信息防止在 `induction` 时丢失
+  : 记忆某些信息防止在 `induction` 时丢失
 
 <!-- end list -->
 

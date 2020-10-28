@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P0 完成 Logisim 模块及状态机"
+title: "「BUAA-CO Lab」 P0 Logisim 模块及状态机"
 subtitle: "Logisim 电路模块设计"
 author: "roife"
 date: 2020-10-25

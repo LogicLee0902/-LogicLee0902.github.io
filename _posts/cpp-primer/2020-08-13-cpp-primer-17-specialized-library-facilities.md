@@ -169,13 +169,13 @@ bitvec[0] = 0;
 正则表达式函数的参数为 `(seq, m, r, mft)` 或 `(seq, r, mft)`.
 
 - `seq`
-    字符序列, 可以是 `std::string`, 字符数组或者表示范围的一对迭代器
+  : 字符序列, 可以是 `std::string`, 字符数组或者表示范围的一对迭代器
 - `m`
-    可省略, 是一个 `std::smatch` 对象, 用来保存匹配的结果和细节
+  : 可省略, 是一个 `std::smatch` 对象, 用来保存匹配的结果和细节
 - `r`
-    正则表达式函数
+  : 正则表达式函数
 - `mft`
-    类型为 `std::regex_constants::match_flag_type`, 可选参数, 会影响匹配过程
+  : 类型为 `std::regex_constants::match_flag_type`, 可选参数, 会影响匹配过程
 
 ## 正则表达式
 
@@ -219,23 +219,23 @@ if(std::regex_search(test_str, results, r)) {
 `std::regex::constants::syntax_option_type` 中):
 
 - `icase`
-    忽略大小写
+  : 忽略大小写
 - `nosubs`
-    不保存匹配的字符串
+  : 不保存匹配的字符串
 - `optimize`
-    执行速度优先于构造速度
+  : 执行速度优先于构造速度
 - `ECMAScript`
-    使用 ECMAScript-262 的语法
+  : 使用 ECMAScript-262 的语法
 - `basic`
-    使用 POSIX 基本语法
+  : 使用 POSIX 基本语法
 - `extended`
-    使用 POSIX 扩展语法
+  : 使用 POSIX 扩展语法
 - `awk`
-    使用 POSIX awk 的语法
+  : 使用 POSIX awk 的语法
 - `grep`
-    使用 POSIX grep 的语法
+  : 使用 POSIX grep 的语法
 - `egrep`
-    使用 POSIX egrep 的语法
+  : 使用 POSIX egrep 的语法
 
 同样也是用 `std::regex::icase | std::regex::ECMAScript` 这样的语法.
 
@@ -393,8 +393,7 @@ while(std::getline(std::cin, s)) {
 - 第一个版本中的 `dest` 为迭代器, 表示写入的位置
 - 第二个版本返回 `std::string`
 - `mft` 可选
-- `fmt` 可以是 `std::string` 或字符数组 (如 `"$2.$5.$7"` 表示使用第 `2`, `5`, `7`
-    个参数)
+- `fmt` 可以是 `std::string` 或字符数组 (如 `"$2.$5.$7"` 表示使用第 `2`, `5`, `7` 个参数)
 
 ### 格式标志
 
@@ -441,9 +440,9 @@ std::string pattern = R"R(('(?:[^\\']|\\.)*'|"(?:[^\\"]|\\.)*")|)R";
 随机数相关函数定义在头文件 `random` 中, 包含 **随机数引擎类** 和 **随机数分布类**.
 
 - 随机数引擎
-    生成随机的 `unsigned` 整数序列
+  : 生成随机的 `unsigned` 整数序列
 - 随机数分布
-    使用引擎返回服从特定概率分布的随机数.
+  : 使用引擎返回服从特定概率分布的随机数.
 
 ## 随机数引擎
 
@@ -581,9 +580,9 @@ std::bernoulli_distribution b(.55);
 输出 `bool` 值时, `true` 默认输出 `1`, `false` 默认输出 `0`.
 
 - `std::boolalpha`
-    用 `true` 或 `false` 来替代 `0/1`
+  : 用 `true` 或 `false` 来替代 `0/1`
 - `std::noboolalpha`
-    恢复 `std::boolalpha`
+  : 恢复 `std::boolalpha`
 
 <!-- end list -->
 
@@ -597,13 +596,13 @@ std::cout << true << " " <<
 ### 整数进制
 
 - `std::dec`
-    输出十进制
+  : 输出十进制
 - `std::oct`
-    输出八进制
+  : 输出八进制
 - `std::hex`
-    输出十六进制
+  : 输出十六进制
 - `std::setbase(n)`
-    设定输出的进制
+  : 设定输出的进制
 
 注意操作符的作用是持久的, 且只影响整数 (不影响浮点数).
 
@@ -617,29 +616,29 @@ std::cout << 20 << " " <<
 ```
 
 - `std::showbase`
-    显示进制 (前导 `0x` 表示十六进制, 前导 `0` 表示八进制, 否则为十进制)
+  : 显示进制 (前导 `0x` 表示十六进制, 前导 `0` 表示八进制, 否则为十进制)
 
 - `std::noshowbase`
-    恢复 `std::showcase`
+  : 恢复 `std::showcase`
 
 - `std::uppercase`
-    默认十六进制用小写表示, 改变之后可以用大写
+  : 默认十六进制用小写表示, 改变之后可以用大写
 
 - `std::nouppercase`
-    恢复 `std::uppercase`
+  : 恢复 `std::uppercase`
 
 ### 补白
 
 - `std::setw(n)`
-    指定下一个数字或字符串的最小空间
+  : 指定下一个数字或字符串的最小空间
 - `std::left`
-    左对齐
+  : 左对齐
 - `std::right`
-    右对齐
+  : 右对齐
 - `std::internal`
-    左对齐符号, 右对齐值, 中间用空格填满
+  : 左对齐符号, 右对齐值, 中间用空格填满
 - `std::setfill(c)`
-    用指定字符代替空白补白
+  : 用指定字符代替空白补白
 
 <!-- end list -->
 
@@ -669,16 +668,16 @@ std::cout << std::setfill('#') <<
 ```
 
 - `std::showpos`
-    对于非负数显示 `+`
+  : 对于非负数显示 `+`
 - `std::noshowpos`
-    对于非负数不显示 `+`
+  : 对于非负数不显示 `+`
 
 ### 输入格式控制
 
 - `std::skipws`
-    跳过空白符 (默认)
+  : 跳过空白符 (默认)
 - `std::noskipws`
-    不跳过空白符
+  : 不跳过空白符
 
 <!-- end list -->
 
@@ -700,9 +699,9 @@ std::cin >> std::skipws;
 ### 精度
 
 - `std::cout.precision(int)` 或 `std::cout.setprecision(int)`
-    设置精度
+  : 设置精度
 - `std::cout.precision()`
-    返回当前精度
+  : 返回当前精度
 
 <!-- end list -->
 
@@ -727,13 +726,13 @@ std::cout << "Precision: " << std::cout.precision() <<
 ### 记数法
 
 - `std::scientific`
-    使用科学计数法
+  : 使用科学计数法
 - `std::hexfloat`
-    使用十六进制
+  : 使用十六进制
 - `std::fixed`
-    使用十位定点
+  : 使用十位定点
 - `std::defaultfloat`
-    使用默认方式
+  : 使用默认方式
 
 对于十六进制和科学计数法, 可以用 `std::uppercase` 使字母大写.
 
@@ -754,9 +753,9 @@ std::cout << "default format: " << 100 * sqrt(2.0) << '\n' <<
 ### 小数点
 
 - `std::showpoint`
-    定义小数点
+  : 定义小数点
 - `std::noshowpoint`
-    不打印小数点
+  : 不打印小数点
 
 <!-- end list -->
 
@@ -786,11 +785,11 @@ std::cout << std::showpoint << 10.0 << // 打印 10.0000
 ### 将字节放回输入流
 
 - `is.peek()`
-    返回输入流的下一个字符, 但是不会删除字符
+  : 返回输入流的下一个字符, 但是不会删除字符
 - `is.unget()`
-    使读入的字符回到流中
+  : 使读入的字符回到流中
 - `is.putback(c)`
-    将 `c` 放回输入流
+  : 将 `c` 放回输入流
 
 `std::putback()` 和 `std::unget()` 不能连续使用, 中间必须有其他的读入操作.
 
@@ -810,23 +809,23 @@ while ((ch = std::cin.get()) != EOF) {
 ### 多字节操作
 
 - `is.get(sink, size, delim)`
-    从 `is` 中读入字符存到字符数组 `sink` 中, 最多读入 `size` 个字符, 遇到 `delim` 或读入了 `size`
+  : 从 `is` 中读入字符存到字符数组 `sink` 中, 最多读入 `size` 个字符, 遇到 `delim` 或读入了 `size`
     个字符或遇到文件尾时停止. (不会读入 `delim`)
 - `is.getline(sink, size, delim)`
-    同上, 会读取 `delim` 并将其丢弃
+  : 同上, 会读取 `delim` 并将其丢弃
 - `is.read(sink, size)`
-    同上
+  : 同上
 - `os.write(source, size)`
-    将 `source` 的 `size` 个字符写入 `os`
+  : 将 `source` 的 `size` 个字符写入 `os`
 - `is.ignore(size, delim)`
-    读入并忽略 `size` 个字符或遇到 `delim` 时停止, `size` 默认为 `1`, `delim` 默认为文件尾
+  : 读入并忽略 `size` 个字符或遇到 `delim` 时停止, `size` 默认为 `1`, `delim` 默认为文件尾
 
 无论哪个操作都不会保存 `delim`.
 
 ### 读入字符数量
 
 - `is.gcount()`
-    上一个未格式化操作读入的字符数
+  : 上一个未格式化操作读入的字符数
 
 如果使用了 `peek()`, `unget()`, `putback()` 那么 `gcount()` 返回 `0`
 
@@ -852,11 +851,11 @@ while ((ch = std::cin.get()) != EOF) {
 `seekp` 中的 `from` 可以是以下三个值:
 
 - `std::ios:beg`
-    流开始的位置
+  : 流开始的位置
 - `std::ios:cur`
-    流当前的位置
+  : 流当前的位置
 - `std::ios:end`
-    流结束的位置
+  : 流结束的位置
 
 对 `std::ifstream` 使用 `tellp()` 或对 `std::ostringstream` 使用 `seekg()`
 都会导致错误.

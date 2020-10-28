@@ -44,7 +44,7 @@ Check is_three. (*[nat -> Prop]*)
 `and A B` 或 `A /\ B` 表示 A, B 皆为 true.
 
 - split
-    将一个 conjunction 分解为多个 subgoals 分别证明.
+  : 将一个 conjunction 分解为多个 subgoals 分别证明.
 
 <!-- end list -->
 
@@ -211,7 +211,7 @@ Qed.
 证明不等关系时, 通常先 `apply ex_falso_quodlibet` 转换为 `False`.
 
 - exfalso
-    类似于 `ex_falso_quodlibet`, 将假命题转换为 `False` 后证明.
+  : 类似于 `ex_falso_quodlibet`, 将假命题转换为 `False` 后证明.
 
 <!-- end list -->
 
@@ -424,7 +424,7 @@ A term in Coq is a member of at most one type.
 `functional extensionality` 不是 Coq built-in 的部分, 需要自行定义.
 
 - Axiom
-    引入 Assumptions, 为 Coq 内置类型系统添加规则, 并且无需证明, 但是要保证 Coq 的自洽性.
+  : 引入 Assumptions, 为 Coq 内置类型系统添加规则, 并且无需证明, 但是要保证 Coq 的自洽性.
 
 <!-- end list -->
 
@@ -443,7 +443,7 @@ Qed.
 ```
 
 - Print Assumptions
-    检查一个证明是否依赖于 Assumptions.
+  : 检查一个证明是否依赖于 Assumptions.
 
 <!-- end list -->
 
