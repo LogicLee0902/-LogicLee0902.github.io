@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P0"
+title: "「BUAA-CO Lab」 P0 完成 Logisim 模块及状态机"
 subtitle: "Logisim 电路模块设计"
 author: "roife"
 date: 2020-10-25
@@ -25,7 +25,7 @@ mathjax: true
 
 多谢助教出了两个组合电路救我狗命, 希望下周 Verilog 不要再翻车了, 回去一定好好看计组 (悲).
 
-# 经验
+# 笔记
 
 ## 状态机类型
 
