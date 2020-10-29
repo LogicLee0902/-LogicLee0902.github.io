@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Pro Git」 07 Git Tools"
+title: "「Pro Git」 07 Git Tools (unfinished)"
 subtitle: "Git 高级命令"
 author: "roife"
-date: 2020-01-22
+date: 2020-07-23
 
-tags: ["B「Pro Git」", "Git", "笔记"]
+tags: ["B「Pro Git」", "Git", "笔记", "unfinished"]
 status: Completed
 
 language: zh-CN

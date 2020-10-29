@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Pro Git」 10 Git Internals"
+title: "「Pro Git」 10 Git Internals (unfinished)"
 subtitle: "Git 内部原理"
 author: "roife"
-date: 2020-01-22
+date: 2020-07-25
 
-tags: ["B「Pro Git」", "Git", "笔记"]
+tags: ["B「Pro Git」", "Git", "笔记", "unfinished"]
 status: Completed
 
 language: zh-CN
