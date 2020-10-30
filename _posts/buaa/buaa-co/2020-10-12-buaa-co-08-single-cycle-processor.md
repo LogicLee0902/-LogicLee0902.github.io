@@ -16,6 +16,8 @@ mathjax: true
 
 # 状态元件
 
+## 状态元件组成
+
 CPU 的状态元件有四个:
 - 程序计数器 (Program Counter, PC), 其输出指向当前的指令
 - 指令存储器 (Instruction Memory, IM), 只有一个读端口, 输出地址对应的指令
@@ -25,6 +27,135 @@ CPU 的状态元件有四个:
 ![CPU 状态元件](/img/in-post/post-buaa-co/cpu-state-elements.png "cpu-state-elements"){:height="600px" width="600px"}
 
 其中, PC/RF/DM的读取过程呈现出组合逻辑特征, 不需要时钟参与; 而写入过程仅在时钟上升沿发生.
+
+## 状态元件建模
+
+### 寄存器
+
+```verilog
+module d_ff( d, we, q, clk ) ;
+   input d, we ;
+   output q ;
+   input  clk;
+   reg    r;
+   assign q = r ;
+   always @( posedge clk or posedge rst )
+     if ( we ) r <= d ;
+endmodule
+
+module d32( d, we, q, clk ) ; input [31:0] d ;
+   input we ;
+   output [31:0] q ;
+   input         clk ;
+   genvar        i ;
+   generate
+      for ( i=0; i<32; i=i+1 ) begin : label_d
+         d_ff u_dff(d[i], we, q[i], clk) ;
+      end
+   endgenerate
+endmodule
+```
+
+### PC
+
+由于指令以字为单位, 所以 32 位 PC 可以优化为 30 位 PC.
+
+| 功能描述 | Reset 有效，寄存器置初值 `0x0000_0000` |                  |
+| 信号名   | 方向                                   | 描述             |
+|----------|----------------------------------------|------------------|
+| Clk      | I                                      | MIPS-C处理器时钟 |
+| Reset    | I                                      | 复位信号         |
+| DI[31:0] | I                                      | 32 位输入        |
+| DO[31:0] | I                                      | 32 位输出        |
+
+### NPC
+
+| 指令                                               | NPC 的计算          |
+|----------------------------------------------------|---------------------|
+| 顺序执行指令 `addu` / `subu` / `ori` / `lw` / `sw` | $PC + 4$            |
+| 分支或跳转指令 `beq` / `jal` / `jr`                | 其他计算结果        |
+| `beq`                                              | 计算与PC和imm16相关 |
+| `jal`                                              | 计算与PC和imm26相关 |
+| `jr`                                               | 计算与rs寄存器相关  |
+
+### RF
+
+寄存器堆内部有 31 个寄存器 (`$0` 直接接地).
+
+![RF](/img/in-post/post-buaa-co/single-rf.png "single-rf"){:height="350px" width="350px"}
+
+```verilog
+// 结构建模
+wire        we[31:1];
+wire [31:0] q[31:1];
+genvar i;
+genvar j;
+
+generate
+   for ( i=1; i<32; i=i+1 ) begin : label_we
+      assign we[i] = (RW==i) & WE ; end
+endgenerate
+
+generate
+   for ( j=1; j<32; j=j+1 ) begin : label_d32
+      d32 u_d32(busW, we[j], q[j], clk) ;
+   end
+endgenerate
+
+assign busA = (RA==0) ? 32’b0 : q[RA] ;
+assign busB = ...
+
+// 行为建模
+reg  [31:0] rf[31:1] ;
+always @( posedge clk )
+    if ( WE )
+        rf[RW] <= busW ;
+assign busA = (RA==0) ? 32’b0 : rf[RA] ;
+assign busB = ...
+```
+
+### ALU
+
+ALU 有一个判全 `0` 的输出, 可以用 $32 + 16 + 8 + 4 + 2 + 1 = 63$ 个或门实现.
+
+```verilog
+`define ALU_ADDU 2’b00
+`define ALU_SUBU 2’b01
+`define ALU_OR 2’b10
+
+module ALU( a, b, c, op ) ;
+   input  [3:0]  a, b ;
+   input [1:0]   op ;
+   output [3:0]  c ;
+   assign c = (op==`ALU_ADDU) ? (a + b) : 
+              (op==`ALU_SUBU) ? (a + ~b + 1) :
+              (op==`ALU_OR) ? (a | b) :
+              4’b0000 ;
+endmodule
+
+```
+
+### DM
+
+```verilog
+module MEM4KB( A, DI, We, DO, clk );
+   input [9:0] A;
+   input [31:0] DI;
+   input        We;
+   output [31:0] DO;
+   input         clk;
+   
+   reg [31:0]    array[1023:0];
+   
+   assign DO = array[A];
+   
+   always @(posedge clk) begin
+      if (We) array[A] <= DI;
+   end
+endmodule
+```
+
+实际设计芯片时会使用定制的库来实现 DM.
 
 # 数据路径
 
