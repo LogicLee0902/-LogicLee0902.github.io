@@ -72,6 +72,59 @@ Verilog 在计算表达式前, 会先计算表达式的 signedness. 计算方式
 ## testbench 的优雅写法
 
 ```verilog
+reg [0:1023] S = "abcd";
+
+initial begin
+   while(!S[0:7]) S = S << 8;
+   
+   for(; S[0:7]; S = S << 8) begin
+      in = S[0:7];
+      #5;
+   end
+end
 ```
 
-## 字符串识别状态机的方便写法 (待填坑)
+## 字符串识别状态机的方便写法
+
+识别 `begin` 和 `end` 配对的状态机.
+
+```verilog
+module BlockChecker (
+                     input       clk,
+                     input       reset,
+                     input [7:0] in,
+                     output      result
+                     );
+
+   reg [31:0]                    cnt;
+   reg                           valid;
+   reg [255:0]                   bfr;
+
+   initial begin
+      cnt <= 0;
+      valid <= 1'b1;
+      bfr = "";
+   end
+
+   always @(posedge clk, posedge reset) begin
+      if (reset) begin
+         cnt <= 0;
+         valid <= 1'b1;
+         bfr = "";
+      end else begin
+         bfr = (bfr << 8) | in | 8'h20;
+
+         if (valid) begin
+            if (bfr[47:0] == " begin") cnt <= cnt + 1;
+            else if (bfr[55:8] == " begin" && bfr[7:0] != " ") cnt <= cnt - 1;
+            else if (bfr[31:0] == " end") cnt <= cnt - 1;
+            else if (bfr[39:8] == " end" && bfr[7:0] != " ") cnt <= cnt + 1;
+            else if (bfr[39:8] == " end" && bfr[7:0] == " " && cnt[31]) valid <= 1'b0;
+         end
+      end
+   end
+
+   assign result = ((cnt == 0) && valid);
+
+endmodule
+```
