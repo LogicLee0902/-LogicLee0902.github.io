@@ -114,6 +114,14 @@ reg [31:0] mem [0:1023];
 
 前面的中括号表示位宽, 后面的中括号表示存储器数量, 可以用 `mem[2]` 访问对应的寄存器. Verilog 中没有多维数组.
 
+- `mem[0][7:0]`
+  : 访问 `mem` 中 0 号寄存器的 `7:0` 位值
+- `[bit+: width]`
+  : 从起始 bit 位开始递增, 位宽为 width
+- `[bit-: width]`
+  : 从起始 bit 位开始递减, 位宽为 width
+
+  
 ### 数字字面量
 
 数字字面量格式为 `<位宽>'<进制><值>`, 如 `10'd100`.
@@ -126,7 +134,7 @@ reg [31:0] mem [0:1023];
 
 值之间可以用下划线提高可读性, 如 `8'b0011_1010`, 不可以放在进制和值之间.
 
-字符串可以表示为数字字面量, 如 `"AB" == 16'h4142`.
+字符串可以表示为数字字面量, 如 `"AB" == 16'h4142`. 存入寄存器时, 字符串悲存放在低位, 同时高位用 `0` 填充.
 
 ### integer 型
 
@@ -715,9 +723,11 @@ module io;
 endmodule
 ```
 
-# ISE
+# 开发环境
 
-## ISim
+## ISE
+
+### ISim
 
 选择 `Simulation` → 对应的 testbench → `Behavioral Check Syntax` → `Simulate Behavioral Model`.
 
@@ -730,11 +740,18 @@ endmodule
 - 波形出现不定值 `x`: reg 型没有初始值
 - 波形出现高阻 `z`: 电路存在没有连线的变量信号 (wire 型)
 
-## 综合工程
+### 综合工程
 
 点击 `Synthesize - XST` 可以进行综合工程.
 
 点击其所属的的 `View RTL Schematic` 可以查看综合出的电路.
+
+## iverilog
+
+- 编译文件: `iverilog [.v] [.v] -o [.out]`
+- 运行文件: `vvp [.out]`
+
+查看波形可以用 `gtkwave`.
 
 # 参考资料
 

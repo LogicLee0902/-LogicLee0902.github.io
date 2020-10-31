@@ -5,7 +5,7 @@ subtitle: "Logisim 电路模块设计"
 author: "roife"
 date: 2020-10-25
 
-tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "数字电路"]
+tags: ["C「BUAA - Computer Organization」", "BUAA", "计算机组成", "数字电路"]
 status: Completed
 
 language: zh-CN
@@ -15,9 +15,9 @@ header-style: text
 mathjax: true
 ---
 
-# 课上测试感想
+# 课上总结
 
-第一题是建一个 Mealy 状态机, 第二题是一个简单组合电路, 第三题是 (稍微) 复杂一些的组合电路算 md5.
+第一题是建一个 Mealy 状态机, 第二题是一个简单组合电路, 第三题是 (稍微) 复杂一些的组合电路 (计算 md5).
 
 第一次的题目应该不算难, 但是不知是什么原因没做出来第一题, 可能我平时对状态机也不是很对付. 总之还是勉强过了 P0, 但是丢了优秀 (而且前一天还用了 2 小时专门复习, 结果还是这样, 导致心情极差).
 

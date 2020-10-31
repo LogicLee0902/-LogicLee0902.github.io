@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P1 Verilog 模块及状态机 (unfinished)"
+title: "「BUAA-CO Lab」 P1 Verilog 模块及状态机"
 subtitle: "Verilog 模块设计"
 author: "roife"
-date: 2020-10-25
+date: 2020-10-31
 
-tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "L「Verilog-HDL」", "BUAA", "计算机组成", "unfinished"]
+tags: ["C「BUAA - Computer Organization」", "L「Verilog-HDL」", "BUAA", "计算机组成"]
 status: Completed
 
 language: zh-CN
@@ -14,6 +14,17 @@ header-image: ""
 header-style: text
 mathjax: true
 ---
+
+# 上机总结
+
+上机的第一题是取出输入的各位求和, 第二题是个迷惑的时序电路应用题, 第三题是个字符串识别 (还好不用 KMP).
+
+第一题感觉不是很签到的样子, 需要用 `always @(*)` 加上 `for` 循环写组合电路 (课下 splitter 那种多好). 第二题是一只很让人讨厌的应用题, 关键是要猜到出题人的想法. 第三题还算简单, 状态和转移都不复杂.
+
+总之感觉不是很难, 但是时序电路应用题是真的讨厌, 所以虽然考试延长了半个小时, 但是通过率依旧不乐观.
+考场上大概四十分钟能写完1, 3 两题, 然后第二题卡个一小时 (溜).
+
+然后就是问答环节被问倒了 (悲), 回去一定好好看 ISE 用法.
 
 # 课下总结
 
@@ -98,7 +109,7 @@ module BlockChecker (
 
    reg [31:0]                    cnt;
    reg                           valid;
-   reg [255:0]                   bfr;
+   reg [255:0]                   bfr; // 缓冲区
 
    initial begin
       cnt <= 0;
@@ -110,7 +121,7 @@ module BlockChecker (
       if (reset) begin
          cnt <= 0;
          valid <= 1'b1;
-         bfr = "";
+         bfr = ""; // 每次复位一定要清除缓冲区
       end else begin
          bfr = (bfr << 8) | in | 8'h20;
 

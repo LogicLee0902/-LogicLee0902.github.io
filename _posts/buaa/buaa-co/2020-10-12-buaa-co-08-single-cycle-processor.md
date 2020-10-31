@@ -23,6 +23,9 @@ CPU 的状态元件有四个:
 - 指令存储器 (Instruction Memory, IM), 只有一个读端口, 输出地址对应的指令
 - 寄存器文件 (Register File, RF) 表示 32\*32 的寄存器, WE3 控制 WD3 的写入功能
 - 数据存储器 (Data Memory, DM) 表示存储器, 当 WE 端为 1 时可写入
+- 下指令地址 (Next PC, NPC) 计算下一条指令的地址
+- 扩展单元 (Extender, EXT) 对输入进行零扩展或符号数扩展
+- 算数逻辑单元 (Arithmetic Logic Unit, ALU) 计算
 
 ![CPU 状态元件](/img/in-post/post-buaa-co/cpu-state-elements.png "cpu-state-elements"){:height="600px" width="600px"}
 
@@ -159,6 +162,17 @@ endmodule
 
 # 数据路径
 
+## 数据路径组成
+
+数据通路可以抽象成 5 个阶段:
+- 取指令
+- 译码/读操作数
+- 执行: 运算, 并算出 sw/lw 的地址
+- 访存: 只有 lw 和 sw 指令在该环节有实际操作
+- 回写: beq, jal, jr, sw 不涉及该环节
+
+![数据路径抽象](/img/in-post/post-buaa-co/single-data-path.png "single-data-path"){:height="600px" width="600px"}
+
 ## 第一条指令: lw
 
 `lw` 指令的格式为:
@@ -203,6 +217,14 @@ R 类型指令相对比较复杂, 需要多个控制信号.
 `beq` 指令当两个数字相等时跳转, 比较相等可以利用减法运算, 当相等时结果为 0, 此时 ALU 的 `zero` 端口为 1.
 - `Branch`: `Branch` 表示当前为分支语句, 如果值为 1 且数字相等, 则 PC 不再使用 $PC = PC + 4$, 而是 $PC = SigImm * 4 + PC$.
 
+# 形式建模方法
+
+用数据通路表记录下元件的每个端口的连线, 统一进行规划, 避免重复调整电路.
+
+![CPU-module](/img/in-post/post-buaa-co/single-module.png "single-module"){:height="700px" width="700px"}
+
+有多个输入的地方使用 MUX 进行选择.
+
 # 单周期控制
 
 所有控制信号都要使用 CU 根据指令 opcode 和 funct (R 型指令) 来发出不同的信号.
@@ -237,6 +259,16 @@ R 类型指令相对比较复杂, 需要多个控制信号.
 | lw          | 100011 | 1          | 0        | 1        | 0        | 0          | 1          | 00      |
 | sw          | 101011 | 0          | X        | 1        | 0        | 1          | X          | 00      |
 | beq         | 000100 | 0          | X        | 0        | 1        | 0          | X          | 01      |
+
+```verilog
+assign add = Rtype&(funct==`ADDU)
+// ...
+assign RFWr = add + sub + ori + lw + jal
+```
+
+在电路中通常使用一个 AND-OR 阵列来实现控制器.
+
+
 
 # 更多指令
 

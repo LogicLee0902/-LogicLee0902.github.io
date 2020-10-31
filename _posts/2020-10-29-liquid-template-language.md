@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "Liquid Template Language (unfinished)"
+title: "Liquid Template Language"
 subtitle: ""
 author: "roife"
 date: 2020-10-29

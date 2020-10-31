@@ -167,6 +167,15 @@ MUX 上部为初始值, 下部为 `0`.
 
 ![初始值电路](/img/in-post/post-buaa-co/logisim-register-initial-value.png "logisim-register-initial-value"){:height="200px" width="200px"}
 
+# Logisim 自动化浅谈
+
+Logisim 的文件实际上是一个 XML, 由3 种标签组成:
+- `<circuit>` 是电路或子电路的标签, 用于标记整个电路
+- `<wire>` 标签用于连线，通过 `x-y` 属性定位
+- `<comp>` 标签拥有 `loc` 和 `name` 属性, 用于调用库元件
+
+可以通过代码生成 XML 来实现构造重复性电路.
+
 # 参考资料
 
 1. [下载](http://www.cburch.com/logisim/)
