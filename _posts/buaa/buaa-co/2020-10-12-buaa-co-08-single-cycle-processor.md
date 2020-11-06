@@ -171,7 +171,7 @@ endmodule
 - 访存: 只有 lw 和 sw 指令在该环节有实际操作
 - 回写: beq, jal, jr, sw 不涉及该环节
 
-![数据路径抽象](/img/in-post/post-buaa-co/single-data-path.png "single-data-path"){:height="600px" width="600px"}
+![数据路径抽象](/img/in-post/post-buaa-co/single-data-path.png "single-data-path")!{:height="600px" width="600px"}
 
 ## 第一条指令: lw
 
