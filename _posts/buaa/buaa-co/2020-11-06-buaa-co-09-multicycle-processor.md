@@ -144,7 +144,47 @@ $$T_c = t_{pcq} + t_{mux} + \max(t_{ALU} + t_{mux}, t_{mem}) + t_{setup}$$
 
 # 课上
 
-课上为了简洁所以不复用 ALU 和
+课上为了简洁所以不复用 ALU 和存储器.
 
 ![multi-data-path](/img/in-post/post-buaa-co/multi-data-path.png "multi-data-path"){:height="700px" width="700px"}
 
+将一个周期分为多个段, 每一段包含 “寄存器输出, 组合逻辑, 寄存器写入” 三部分.
+每条指令的 CPI (cycle per instruction) 不同, 因此时钟频率可以更高.
+
+理念: 能尽早算的就尽早算, 即使用不到也可以先算出来放寄存器中.
+
+## RTL
+
+### lw
+
+![multi-rtl-lw](/img/in-post/post-buaa-co/multi-rtl-lw.png "multi-rtl-lw"){:height="700px" width="700px"}
+
+### sw
+
+![multi-rtl-sw](/img/in-post/post-buaa-co/multi-rtl-sw.png "multi-rtl-sw"){:height="700px" width="700px"}
+
+### ori
+
+![multi-rtl-ori](/img/in-post/post-buaa-co/multi-rtl-ori.png "multi-rtl-ori"){:height="700px" width="700px"}
+
+### jal
+
+![multi-rtl-jal](/img/in-post/post-buaa-co/multi-rtl-jal.png "multi-rtl-jal"){:height="700px" width="700px"}
+
+### lui
+
+![multi-rtl-lui](/img/in-post/post-buaa-co/multi-rtl-lui.png "multi-rtl-lui"){:height="700px" width="700px"}
+
+### 最终电路
+
+![multi-rtl](/img/in-post/post-buaa-co/multi-rtl.png "multi-rtl"){:height="700px" width="700px"}
+
+## 控制信号建模
+
+类似于书上, 先建模一个 FSM.
+
+![multi-control-model](/img/in-post/post-buaa-co/multi-control-model.png "multi-control-model"){:height="700px" width="700px"}
+
+![multi-control-fsm](/img/in-post/post-buaa-co/multi-control-fsm.png "multi-control-fsm"){:height="700px" width="700px"}
+
+使用 verilog 进行实现时, 可以用 `PCWr = S1 + (beq & Zero & S3) + (jal & S2)` 实现.
