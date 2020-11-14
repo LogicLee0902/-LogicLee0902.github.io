@@ -162,5 +162,3 @@ for (int i=0; i<=31; ++i) {
 ![P3-lab-cu-1](/img/in-post/post-buaa-co/p3-lab-cu-1.png "p3-lab-cu-1"){:height="700px" width="700px"}
 
 ![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"}
-
-![P3-lab-cu-3](/img/in-post/post-buaa-co/p3-lab-cu-3.png "p3-lab-cu-3"){:height="600px" width="600px"}
