@@ -187,4 +187,6 @@ $$T_c = t_{pcq} + t_{mux} + \max(t_{ALU} + t_{mux}, t_{mem}) + t_{setup}$$
 
 ![multi-control-fsm](/img/in-post/post-buaa-co/multi-control-fsm.png "multi-control-fsm"){:height="700px" width="700px"}
 
+相比于 *Digital Design and Computer Architecture*, 课上建模的 CU 状态更简单, 但是需要根据不同的指令进行判断转移方式. 即教科书根据指令的分类进行转移, 课上根据指令执行的阶段进行转移.
+
 使用 verilog 进行实现时, 可以用 `PCWr = S1 + (beq & Zero & S3) + (jal & S2)` 实现.

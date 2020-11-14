@@ -223,7 +223,7 @@ R 类型指令相对比较复杂, 需要多个控制信号.
 
 ![CPU-module](/img/in-post/post-buaa-co/single-module.png "single-module"){:height="700px" width="700px"}
 
-有多个输入的地方使用 MUX 进行选择.
+有多个输入的地方会被综合成 MUX.
 
 # 单周期控制
 
@@ -267,8 +267,6 @@ assign RFWr = add + sub + ori + lw + jal
 ```
 
 在电路中通常使用一个 AND-OR 阵列来实现控制器.
-
-
 
 # 更多指令
 
