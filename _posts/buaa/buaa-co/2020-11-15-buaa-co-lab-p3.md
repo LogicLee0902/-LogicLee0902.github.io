@@ -3,7 +3,7 @@ layout: "post"
 title: "「BUAA-CO Lab」 P3 单周期 CPU (Logisim 实现)"
 subtitle: "单周期 CPU (Logisim)"
 author: "roife"
-date: 2020-11-13
+date: 2020-11-15
 
 tags: ["C「BUAA - Computer Organization」", "BUAA", "计算机组成", "数字电路"]
 status: Completed
@@ -162,3 +162,5 @@ for (int i=0; i<=31; ++i) {
 ![P3-lab-cu-1](/img/in-post/post-buaa-co/p3-lab-cu-1.png "p3-lab-cu-1"){:height="700px" width="700px"}
 
 ![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"}
+
+![P3-lab-cu-3](/img/in-post/post-buaa-co/p3-lab-cu-3.png "p3-lab-cu-3"){:height="600px" width="600px"}
