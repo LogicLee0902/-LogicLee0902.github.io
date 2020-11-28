@@ -25,31 +25,31 @@ mathjax: true
 
 - 第一题: `balr`
 
-这是一个类似于 `jalr` 的指令, 区别在于 `jalr` 是只写 `$ra` 的.
+    这是一个类似于 `jalr` 的指令, 区别在于 `jalr` 是只写 `$ra` 的.
 
-$$PC \leftarrow PC + 4 + \mathtt{sign\_ext}(imm||0^2)$$
+    $$PC \leftarrow PC + 4 + \mathtt{sign\_ext}(imm||0^2)$$
 
-$$GPR[rt] \leftarrow PC + 4$$
+    $$GPR[rt] \leftarrow PC + 4$$
 
 - 第二题: `wsbh`
 
-这个指令在格式上比较类似于移位指令 `sll`, 不过不需要用到 shamt. 只要稍微修改一下 ALU 就好了.
+    这个指令在格式上比较类似于移位指令 `sll`, 不过不需要用到 shamt. 只要稍微修改一下 ALU 就好了.
 
-$$GPR[rd] \leftarrow GPR[rt]_{23..16}\ ||\ GPR[rt]_{31..24}\ ||\ GPR[rt]_{7..0}\ ||\ GPR[rt]_{15..8}$$
+    $$GPR[rd] \leftarrow GPR[rt]_{23..16}\ ||\ GPR[rt]_{31..24}\ ||\ GPR[rt]_{7..0}\ ||\ GPR[rt]_{15..8}$$
 
 - 第三题: `lbi`
 
-一个很像 `lb` 的指令, 唯一的区别在于需要用到存储器, 需要稍微修改一下数据通路.
+    一个很像 `lb` 的指令, 唯一的区别在于需要用到存储器, 需要稍微修改一下数据通路.
 
-$$Addr \leftarrow GPR[base] + \mathtt{sign\_ext}(offset)$$
+    $$Addr \leftarrow GPR[base] + \mathtt{sign\_ext}(offset)$$
 
-$$mem \leftarrow memory[Addr]$$
+    $$mem \leftarrow memory[Addr]$$
 
-$$byte \leftarrow Addr_{1..0}$$
+    $$byte \leftarrow Addr_{1..0}$$
 
-$$GPR[rt]_{7+8*byte..8*byte} \leftarrow mem_{7+8*byte..8*byte}$$
+    $$GPR[rt]_{7+8*byte..8*byte} \leftarrow mem_{7+8*byte..8*byte}$$
 
-课下如果做过了 `jalr`/`sll`/`lb` 那么这三题就是白送的.
+    课下如果做过了 `jalr`/`sll`/`lb` 那么这三题就是白送的.
 
 加指令方法: 先观察 RTL 确定指令类型, 找到类似的指令 (r/i/b/j), 观察主电路要不要添加数据路径 (元件要不要添加输入). 为元件添加了相应的输入后, 先在各个元件里面完成对应的功能. 最后修改 CU.
 
