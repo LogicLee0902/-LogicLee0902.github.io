@@ -81,6 +81,8 @@ mathjax: true
 
 DM 的设计也不太一样, 可以直接这么写:
 
+{% raw %}
+
 ```verilog
 // 读取
 assign DMout = (DMType == `DM_w) ? `word :
@@ -101,6 +103,8 @@ end else if (DMType == `DM_b) begin
     $display("%d@%h: *%h <= %h", $time, pc, addr, WD[7:0]);
 end
 ```
+
+{% endraw %}
 
 ## Debug 工具
 
