@@ -25,7 +25,7 @@ mathjax: true
 
 - 第一题: `balr`
 
-    这是一个类似于 `jalr` 的指令, 区别在于 `jalr` 是只写 `$ra` 的.
+    这是一个类似于 `jalr` 的指令.
 
     $$PC \leftarrow PC + 4 + \mathtt{sign\_ext}(imm||0^2)$$
 

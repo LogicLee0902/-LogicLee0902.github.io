@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-CO Lab」 P2 MIPS 汇编程序设计"
-subtitle: "Verilog 模块设计"
+subtitle: "MIPS 汇编设计"
 author: "roife"
 date: 2020-10-31
 

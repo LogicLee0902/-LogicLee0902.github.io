@@ -15,6 +15,59 @@ header-style: text
 mathjax: true
 ---
 
+# 上机总结 1
+
+> 失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了
+
+我人没了。
+
+- 第一题：cco
+
+  $$
+    \begin{aligned}
+    & temp \leftarrow 0 \\
+    & \mathrm{for}\ i\ \mathrm{in}\ 31 \cdots 0 \\
+    & \qquad \mathrm{if}\ GPR[rs]_i == 1\ \mathrm{and}\ GPR[rt]_i == 1\  \mathrm{then} \\
+    & \qquad \qquad temp \leftarrow temp + 1 \\
+    & GPR[rd] \leftarrow temp
+    \end{aligned}
+  $$
+
+  改一下 ALU 就好了。
+
+- 第二题：bgezall
+
+  $$
+    \begin{aligned}
+    & target\_offset \leftarrow \mathrm{signed\_ext}(offset || 0^2) \\
+    & condition \leftarrow GPR[rs] \ge 0 \\
+    & GPR[31] \leftarrow PC + 8  \\
+    & \mathrm{if}\ condition\  \mathrm{then} \\
+    & \qquad PC \leftarrow PC + target\_offset \\
+    & \mathrm{else} \\
+    & \qquad \mathrm{NullifyCurrentInstruction()} \\
+    \end{aligned}
+  $$
+
+  $\mathrm{NullifyCurrentInstruction()}$ 的意思是清空延迟槽。
+
+  也就是说仅当跳转时延迟槽生效。
+
+  要考虑当 CPU stall 的时候不能清空延迟槽。
+
+- 第三题：lwso
+
+  $$
+    \begin{aligned}
+    & mem\_data \leftarrow mem[GPR[rs] + offset] \\
+    & temp \leftarrow (GPR[rt]_{31} || GPR[rt]) + (mem\_data_{31} || mem\_data) \\
+    & \mathrm{if}\ temp_{32} == temp_{31}\  \mathrm{then} \\
+    & \qquad GPR[rt] \leftarrow GPR[rt] + mem\_data
+    \end{aligned}
+  $$
+
+  如果第二步相加没有溢出就赋值，否则不赋值。
+
 # 课下总结
 
 P5 做得真是艰难，一方面是流水线这个东西本身比较复杂，包括转发/暂停等一系列机制；另一方面是数据通路由于流水线寄存器的加入，代码量大大上升，个人经验大概比 P4 增加了 1/2 到 1 倍左右。而且 P5 时流水起迭代开发的起点，所以一个好的架构非常重要，所以做的时候会非常想要不停地重构，这又浪费了很多时间。所以建议在做之前先做好设计工作，然后做的过程中不要临时起意去修改。

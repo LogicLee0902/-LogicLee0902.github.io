@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-CO Lab」 P6 流水线 CPU-lite2"
-subtitle: "简单流水线 CPU"
+subtitle: "复杂流水线 CPU"
 author: "roife"
 date: 2020-12-02
 

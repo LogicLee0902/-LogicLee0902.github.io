@@ -23,9 +23,11 @@ mathjax: true
 
   感觉这个指令是全场最难 (溜). 需要熟悉组合电路的 `always @(*)` 写法, 或者直接用 `function`.
 
+  当寄存器值有奇数个 $1$ 的时候跳转。
+
   $$
     \begin{aligned}
-        & if\ \mathrm{has\_odd\_bits}(GRF[rs])\ then \\
+        & if\ \mathrm{has\_odd\_one\_bits}(GRF[rs])\ then \\
         & \qquad PC = PC + 4 + \mathrm{sign\_ext}(offset || 0^2) \\
         & \qquad GRF[31] = PC + 4 \\
         & else \\
@@ -46,9 +48,9 @@ mathjax: true
         & Addr \leftarrow GPR[base] + \mathtt{sign\_ext}(offset) \\
         & temp \leftarrow Addr_{1..0} \\
         & if\ temp == 0\ then \\
-        & \qquad mem_{addr} \leftarrow GRF[rs] \\
+        & \qquad mem_{addr} \leftarrow GRF[rt] \\
         & else \\
-        & \qquad mem_{addr} \leftarrow GRF[rs]_{8*temp - 1 \cdots 0}\ ||\ GRF[rs]_{31 \cdots 8*temp}
+        & \qquad mem_{addr} \leftarrow GRF[rt]_{8*temp - 1 \cdots 0}\ ||\ GRF[rt]_{31 \cdots 8*temp}
     \end{aligned}
     $$
 
