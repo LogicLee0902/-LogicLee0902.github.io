@@ -15,6 +15,83 @@ header-style: text
 mathjax: true
 ---
 
+# 上机总结
+
+- 第一题：bgezalr
+
+  $$
+    \begin{aligned}
+    & condition \leftarrow GPR[rs] \ge 0 \\
+    & GPR[rd] \leftarrow PC + 8 \\
+    & \mathrm{if}\ condition\  \mathrm{then} \\
+    & \qquad PC \leftarrow GPR[rt]  \\
+    \end{aligned}
+  $$
+
+  甚至比 `blezalc` 还简单一点。
+
+- 第二题：msub
+
+  $$temp \leftarrow (HI \mid\mid LO) - (GPR[rs] * GPR[rt])$$
+
+  $$HI \leftarrow temp\_{63..32}$$
+
+  $$LO \leftarrow temp\_{31..0}$$
+
+  标准指令集里面有这个指令。
+
+- 第三题：lhs
+
+  $$
+    \begin{aligned}
+    & Addr \leftarrow GPR[base] + \mathrm{signed\_ext}(offset) \\
+    & memword \leftarrow memory[Addr] \\
+    & byte \leftarrow Addr_{1..0} \\
+    & \mathrm{if}\ byte = 0\ \mathrm{then} \\
+    & \qquad GPR[rt] \leftarrow \mathrm{signed\_ext}(memword_{7..0}) \\
+    & \mathrm{else}\ \mathrm{if}\ byte = 2\ \mathrm{then} \\
+    & \qquad GPR[rt] \leftarrow \mathrm{signed\_ext}(memword_{23..16})
+    \end{aligned}
+  $$
+
+  应该是这样的，记不太清了。
+
+  可以把它看作是条件写的 `lh` 或者是 `lb`。
+
+## 分析
+
+跳转和存储没什么好说的，都在 P5 里面说过了。所以这里说一下 P6 的计算。
+
+P6 的计算一般是和乘除部件有关，但是其实也不难，这里建议课下做一下 `madd`, `maddu`, `msub`, `msubu`。
+
+{% raw %}
+
+一个坑点在于 `madd`（或者 `msub`） 里面。如果你的写法是
+
+```verilog
+{temp_hi, temp_lo} <= {hi, lo} + $signed(rs) * $signed(rt);
+```
+
+好像就会出锅，这个具体的原因在 P1 里面讲过了，和 signedness 有关。另外，如果你写的是
+
+```verilog
+{temp_hi, temp_lo} <= {hi, lo} + $signed($signed(rs) * $signed(rt));
+```
+
+也不对，具体也是 P1 里面有讲。正确的写法是：
+
+```verilog
+{temp_hi, temp_lo} <= {hi, lo} + $signed($signed(64'd0) + $signed(rs) * $signed(rt));
+// 或者
+{temp_hi, temp_lo} <= {hi, lo} + $signed({{32{rs[31]}}, rs[31]} * $signed({{32{rt[31]}}, rt[31]})); // 手动进行符号位扩展
+```
+
+{% endraw %}
+
+总之一句话：小心 `$signed()`。
+
+课上可能会出现 `Your CPU runs less cycles than expected.` 这种情况可以适当加一下乘除部件的 busy 时间。
+
 # 课下总结
 
 P6 似乎没啥好说的，因为大部分指令我在 P5 里面一起做了。所以这里简单说一下 P6 和 P5 的区别。
@@ -62,6 +139,12 @@ P6 似乎没啥好说的，因为大部分指令我在 P5 里面一起做了。�
 |-|-|-|-|
 | `mult` | `mult` | xxx | xxx|
 
-此时指令进入 E 级，下一个时钟上升沿乘除部件将要进行运算，并且将 `busy` 设置为 $1$。但是此时显然需要 stall。所以我们用一个 start 指令指示要开始乘除运算了，让 E 级的指令被清空，防止进入下一级。
+此时指令进入 E 级，下一个时钟上升沿乘除部件将要进行运算，并且将 `busy` 设置为 $1$。但是此时显然需要 stall。所以我们用一个 start 指令指示要开始乘除运算了，让 E 级的指令被清空，防止下一个时钟上升沿进入下一级。
 
 stall 的条件是 `start | busy`。
+
+```verilog
+wire stall_HILO = E_HILObusy & (D_md | D_mt | D_mf);
+
+assign stall = stall_rs | stall_rt | stall_HILO;
+```

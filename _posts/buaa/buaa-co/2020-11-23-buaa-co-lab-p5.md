@@ -33,17 +33,19 @@ mathjax: true
     \end{aligned}
   $$
 
-  改一下 ALU 就好了。
+  改一下 ALU 就好了。注意如果在 ALU 里面用的是 `assign`，那么建议使用 `function`。
 
 - 第二题：bgezall
 
   $$
     \begin{aligned}
+    \mathrm{I}:
     & target\_offset \leftarrow \mathrm{signed\_ext}(offset || 0^2) \\
     & condition \leftarrow GPR[rs] \ge 0 \\
     & GPR[31] \leftarrow PC + 8  \\
+    \mathrm{I+1}:
     & \mathrm{if}\ condition\  \mathrm{then} \\
-    & \qquad PC \leftarrow PC + target\_offset \\
+    & \qquad PC \leftarrow PC + 4 + target\_offset \\
     & \mathrm{else} \\
     & \qquad \mathrm{NullifyCurrentInstruction()} \\
     \end{aligned}
@@ -54,6 +56,12 @@ mathjax: true
   也就是说仅当跳转时延迟槽生效。
 
   要考虑当 CPU stall 的时候不能清空延迟槽。
+
+  还有一种方法是监测到 `D_b_jump` 时，F 级的指令插入 `nop`（这个在 P7 很常用）。
+
+  ```verilog
+  F_instr = (D_b_jump && D_bgezall) ? 32'd0 : im[pc[13:2] - 12'hc00];
+  ```
 
 - 第三题：lwso
 
@@ -66,7 +74,98 @@ mathjax: true
     \end{aligned}
   $$
 
-  如果第二步相加没有溢出就赋值，否则不赋值。
+  实际上就是：如果第二步相加没有溢出就赋值，否则不赋值。
+
+# 上机总结 2
+
+爬了，又没过。
+
+- 第一题：cmco
+
+  $$
+    \begin{aligned}
+    & temp \leftarrow 0 \\
+    & count \leftarrow 0 \\
+    & \mathrm{for}\ i\ \mathrm{in}\ 0 \cdots 31 \\
+    & \qquad \mathrm{if}\ GPR[rs]_i == 1\ \mathrm{then} \\
+    & \qquad \qquad count \leftarrow count + 1 \\
+    & \qquad \qquad \mathrm{if}\ count > temp\ \mathrm{then} \\
+    & \qquad \qquad \qquad temp \leftarrow count \\
+    & \qquad \mathrm{else} \\
+    & \qquad \qquad count \leftarrow 0 \\
+    & GPR[rd] \leftarrow temp
+    \end{aligned}
+  $$
+
+  同样改一下 ALU 就好了。就是统计二进制最长有几个连续的 $1$。
+
+- 第二题：blezalc
+
+  $$
+    \begin{aligned}
+    & target\_offset \leftarrow \mathrm{signed\_ext}(offset || 0^2) \\
+    & condition \leftarrow GPR[rs] \le 0 \\
+    & \mathrm{if}\ condition\  \mathrm{then} \\
+    & \qquad PC \leftarrow PC + 4 + target\_offset \\
+    & \qquad GPR[31] \leftarrow PC + 8  \\
+    \end{aligned}
+  $$
+
+  这个题目课上的 RTL 表述其实有问题……更正后应该是这样的，即如果跳转则链接寄存器。
+
+- 第三题：lrm
+
+  $$
+    \begin{aligned}
+    & vAddr \leftarrow GPR[base] + \mathrm{sign\_extend}(offset) \\
+    & mem\_reg \leftarrow Memory[vAddr]_{4..0} \\
+    & GPR[mem\_reg] \leftarrow GPR[rt]
+    \end{aligned}
+  $$
+
+  存储地址为 DM 输出的低位。
+
+# 上机总结 3 & 分析
+
+终于过了……这次的指令是前两次的混合体，所以就不展开说了。
+
+这里就简单讲讲 P5 的套路吧。
+
+首先课上的三条指令：计算 + 跳转 + 存储。
+
+1. 计算绝对是最简单的，重点在于你的写法。如果你用 `always@(*)` 那么问题不大。但是如果你用的是 `assign` 那么最好使用 `function` 来实现计算指令。
+2. 跳转一般也不难，一般是条件跳转 + 条件写。
+   跳转指令一个好处在于它是在 D 级决定是否跳转的，也就是说在 D 级你可以获得全部的正确信息（相反如果是类似于 `lwso` 这种，你必须要读出 DM 的值才能决定怎么做）。所以我们的方案是 D 级生成一个 `D_check` 信号然后流水它。然后每一级根据这个信号判断写入地址/写入值之类的。
+
+    ```verilog
+    // 检测信号
+    D_check = D_bgezalc & D_b_jump;
+    // CU
+    assign RFDst = // ...
+                  bgezalc ? (check ? 5'd31 : 5'd0) :
+                  5'd0;
+    ```
+3. 条件存储一般是最难的。
+   但是掌握了套路之后也还好。条件存储的特点是必须要到 M 级才知道要写啥，这就给转发之类的造成了困难，所以我们的策略是如果 D 级要读寄存器，而且新指令**可能**要写这个寄存器，那么就 stall。具体来说是这样的：
+    ```verilog
+    // lwso
+    wire stall_rs_e = (TuseRS < TnewE) && D_rs_addr && (D_lwso ? D_rs_addr == 5'd31 : D_rs_addr == E_RFDst);
+    // lrm
+    wire stall_rs_e = (TuseRS < TnewE) && D_rs_addr && (D_lrm ? D_rs_addr : D_rs_addr == E_RFDst);
+    ```
+
+    在 CU 中的写法则与条件跳转类似。
+
+    ```verilog
+    // lwso
+    M_check = D_lwso && condition;
+    // CU
+    assign RFDst = // ...
+                  lwso ? (check==1'd1 ? 5'd31 : 5'd0) : // 注意不是直接一个 check
+                  5'd0;
+    ```
+
+    这里要注意的一点是，如果你用的是统一 CU 的写法，那么会出现一个问题：`check` 信号只有在 M 级传入。这个时候在 E 级的 CU 里面这个信号是不定态 x，这样会导致 RFDst 信号出锅。所以我们这里的写法是 `check==1'd1`，这样可以排除 `x` 的情况。
 
 # 课下总结
 
@@ -167,9 +266,9 @@ P5 是 CPU 迭代开发的起点，因此一个好的架构是很好的起点。
 
 然后是接受端选择数据，选择的顺序按照**就近原则**，优先选择下一级的数据，不行就下两级，如果都不行就采用本级寄存器的数据。接受端可以接受数据的条件为：
 1. 供给端的寄存器地址与当前的相同
-2. 地址不为 0
-3. 供给端可以转发
-4. 供给端的指令会写数据。
+2. 当前需要的地址不为 0
+3. 供给端可以转发（我们使用无脑转发，所以不需要考虑）
+4. 供给端的指令会写数据（如果不写数据我们令写入地址为 0，所以不需要考虑）
 
 即：
 
@@ -230,15 +329,11 @@ wire [31:0] FWD_E_RS =  (E_rs_addr == 5'b0) ? 0 :
 ```verilog
 wire [2:0] TuseRS =     (D_branch | D_j_r) ? 3'd0 :
                         // ...
-                        3'd0;
-
-// ...
+                        3'd3; // 如果用不到就令其为无穷大，防止多余的 stall
 
 wire [2:0] TnewE =  E_calc_r | E_calc_i ? 3'd1 :
                     // ...
-                    3'd0;
-
-// ...
+                    3'd3;
 
 wire stall_rs_e = (TuseRS < TnewE) && (D_rs_addr && D_rs_addr == E_RFDst);
 // ...
@@ -249,4 +344,4 @@ wire stall_rs = stall_rs_e | stall_rs_m;
 assign stall = stall_rs | stall_rt;
 ```
 
-为什么这里写 `stall` 不用判断 `Wr` 信号？理由如上。（AT 法赛高～）
+为什么这里写 `stall` 不用判断 `Wr` 信号？理由如上。

@@ -111,7 +111,3 @@ end
 ## Debug 工具
 
 写了一个用于实时反汇编指令的 module, 详情见 [DASM](https://github.com/roife/dasm).
-
-## 自动化测试
-
-嫖了讨论区 auto-test 的 py 文件, 但是还没写 mips code generator.
