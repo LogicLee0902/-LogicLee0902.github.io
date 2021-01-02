@@ -1,10 +1,10 @@
 # Site settings
-title: ROIFE BLOG
-SEOTitle: roife 的博客 | ROIFE BLOG
+title: ROIFE's BLOG
+SEOTitle: roife 的博客 | ROIFE's BLOG
 header-img: img/home-bg.jpg
 email: roifewu@gmail.com
 description: "roife 的魔法课笔记"
-keyword: "roife, roifewu, @roife, ROIFE BLOG, 博客, 个人网站"
+keyword: "roife, roifewu, @roife, ROIFE's BLOG, 博客, 个人网站"
 url: "https://roife.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -112,5 +112,8 @@ friends: [
     }, {
         title: "Kisin",
         href: "https://www.kisin.tech/index"
+    }, {
+      title: "coekjan",
+      href: "https://coekjan.github.io"
     }
 ]
