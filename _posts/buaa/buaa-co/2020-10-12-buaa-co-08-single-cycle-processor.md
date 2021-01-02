@@ -122,15 +122,15 @@ assign busB = ...
 ALU 有一个判全 `0` 的输出, 可以用 $32 + 16 + 8 + 4 + 2 + 1 = 63$ 个或门实现.
 
 ```verilog
-`define ALU_ADDU 2’b00
-`define ALU_SUBU 2’b01
-`define ALU_OR 2’b10
+`define ALU_ADDU 2'b00
+`define ALU_SUBU 2'b01
+`define ALU_OR 2'b10
 
 module ALU( a, b, c, op ) ;
    input  [3:0]  a, b ;
    input [1:0]   op ;
    output [3:0]  c ;
-   assign c = (op==`ALU_ADDU) ? (a + b) : 
+   assign c = (op==`ALU_ADDU) ? (a + b) :
               (op==`ALU_SUBU) ? (a + ~b + 1) :
               (op==`ALU_OR) ? (a | b) :
               4’b0000 ;
@@ -147,11 +147,11 @@ module MEM4KB( A, DI, We, DO, clk );
    input        We;
    output [31:0] DO;
    input         clk;
-   
+
    reg [31:0]    array[1023:0];
-   
+
    assign DO = array[A];
-   
+
    always @(posedge clk) begin
       if (We) array[A] <= DI;
    end

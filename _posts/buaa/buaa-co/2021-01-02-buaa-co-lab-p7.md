@@ -76,9 +76,9 @@ CP0 要干的事就是接收到中断异常时看看是否允许其发生，允�
 为了方便我们定义一些宏。
 
 ```verilog
-`define IM SR[15:10]    // allow 6 hardware ints
-`define EXL SR[1]       // in int (cannot int/exc)
-`define IE SR[0]        // allow int
+`define IM SR[15:10]
+`define EXL SR[1]
+`define IE SR[0]
 `define BD Cause[31]
 `define hwint_pend Cause[15:10]
 `define ExcCode Cause[6:2]
