@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-CO」 09 多周期 CPU"
+title: "「BUAA-CO」 06 多周期 CPU"
 subtitle: "搭建多周期CPU"
 author: "roife"
 date: 2020-10-12
@@ -152,28 +152,6 @@ $$T_c = t_{pcq} + t_{mux} + \max(t_{ALU} + t_{mux}, t_{mem}) + t_{setup}$$
 每条指令的 CPI (cycle per instruction) 不同, 因此时钟频率可以更高.
 
 理念: 能尽早算的就尽早算, 即使用不到也可以先算出来放寄存器中.
-
-## RTL
-
-### lw
-
-![multi-rtl-lw](/img/in-post/post-buaa-co/multi-rtl-lw.png "multi-rtl-lw"){:height="700px" width="700px"}
-
-### sw
-
-![multi-rtl-sw](/img/in-post/post-buaa-co/multi-rtl-sw.png "multi-rtl-sw"){:height="700px" width="700px"}
-
-### ori
-
-![multi-rtl-ori](/img/in-post/post-buaa-co/multi-rtl-ori.png "multi-rtl-ori"){:height="700px" width="700px"}
-
-### jal
-
-![multi-rtl-jal](/img/in-post/post-buaa-co/multi-rtl-jal.png "multi-rtl-jal"){:height="700px" width="700px"}
-
-### lui
-
-![multi-rtl-lui](/img/in-post/post-buaa-co/multi-rtl-lui.png "multi-rtl-lui"){:height="700px" width="700px"}
 
 ### 最终电路
 

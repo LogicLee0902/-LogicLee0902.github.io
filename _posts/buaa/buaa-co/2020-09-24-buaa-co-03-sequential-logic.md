@@ -118,7 +118,7 @@ D 触发器 (D Flip-Flop) 利用一个 D 锁存器作为缓冲, 实现了输出�
 
 ## Moore 与 Mealy
 
-Moore 和 Mealy 的区别在于, Moore 需要等待状态转移完成后才输出结果 (因此会晚一个周期), 而 Mealy 在输入的时候可以直接响应. 
+Moore 和 Mealy 的区别在于, Moore 需要等待状态转移完成后才输出结果 (因此会晚一个周期), 而 Mealy 在输入的时候可以直接响应.
 在 Mealy 中每一种转移受到输入信号影响, 所以会在转移上的 `/` 后标注输出.
 
 Mealy 的状态数量可以比 Moore 少一个, 因为 Mealy 的输出可以和输入有关. 当 Mealy 和 Moore 使用同样的状态设计时, Mealy 的输出可以只有半个周期 (因为状态机的状态改变需要一个周期, Moore 需要等到到达最后一个状态, Mealy 则可以在倒数第二个状态的时候直接更新输出, 而进入最后一个状态则恢复输出, 此时只有半个周期).
@@ -152,7 +152,7 @@ Mealy 的状态数量可以比 Moore 少一个, 因为 Mealy 的输出可以和�
 
 ![寄存器可重叠实现](/img/in-post/post-buaa-co/1101-register-1.png "1101-register-1"){:height="400px" width="400px"}
 
-不可重叠实现: 
+不可重叠实现:
 
 ![寄存器的可重叠实现](/img/in-post/post-buaa-co/1101-register-2.png "1101-register-2"){:height="400px" width="400px"}
 
@@ -160,7 +160,7 @@ Mealy 的状态数量可以比 Moore 少一个, 因为 Mealy 的输出可以和�
 
 ### 状态机实现
 
-![FSM 可重叠实现](/img/in-post/post-buaa-co/1101-fsm-1.png "1101-fsm-1"){:height="200px" weight="200px"}
+![FSM 可重叠实现](/img/in-post/post-buaa-co/1101-fsm-1.png "1101-fsm-1"){:height="200px" width="200px"}
 
 # 时序逻辑的时序
 

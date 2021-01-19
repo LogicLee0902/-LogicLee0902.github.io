@@ -105,7 +105,7 @@ pMOS 速度较慢, 并且并联速度大于串联速度, 所以一般用类 nMOS
 | $B \cdot (B + C) = B$                                                                   | $B + (B \cdot C) = B$                                                               | Covering            |
 | $(B \cdot C) + (B \cdot \overline{C}) = B$                                              | $(B + C) \cdot (B + \overline{C}) = B$                                              | Combining           |
 | $(B \cdot C) + (\overline{B} \cdot D) + (C \cdot D) = B \cdot C + \overline{B} \cdot D$ | $(B + C) \cdot (\overline{B} + D) \cdot (C + D) = (B + C) \cdot (\overline{B} + D)$ | Consensus           |
-| $\overline{B_{0} \cdot B_{1} \cdots} = (\overline{B_{0}} + \overline{B_{1}} + \cdots)$  | $B_{0} + B_{1} = (\overline{B_{0}} \cdot \overline{B_{1}} \cdot \cdots)$            | De Morgan’s Theorem |
+| $\overline{B_{0} \cdot B_{1} \cdots} = (\overline{B_{0}} + \overline{B_{1}} + \cdots)$  | $B_{0} + B_{1} + \cdots = (\overline{B_{0}} \cdot \overline{B_{1}} \cdot \cdots)$            | De Morgan’s Theorem |
 
 ## 表达式化简 (卡诺图)
 

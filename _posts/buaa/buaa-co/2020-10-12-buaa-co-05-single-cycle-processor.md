@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-CO」 08 单周期 CPU"
+title: "「BUAA-CO」 05 单周期 CPU"
 subtitle: "搭建单周期CPU"
 author: "roife"
 date: 2020-10-12

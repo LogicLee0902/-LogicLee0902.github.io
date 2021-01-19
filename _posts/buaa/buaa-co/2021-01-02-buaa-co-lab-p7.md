@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P7 MIPS 微体系"
+title: "「BUAA-CO-Lab」 P7 MIPS 微体系"
 subtitle: "中断和异常"
 author: "roife"
 date: 2021-01-02
 
-tags: ["C「BUAA - Computer Organization」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
+tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
 status: Completed
 
 language: zh-CN
@@ -129,6 +129,8 @@ assign EPCout = {tempEPC, 2'b0};
 4. 非法指令 `RI`（识别不出来的指令）
 5. 算术溢出 `Ov`
 
+发生异常时要清空流水线，也就是传入流水线寄存器一个 `req` 信号，如果发生了异常中断则类似于 `reset`。
+
 ### AdEL / AdES
 
 读取错误的指令可以在 F 级判断后流水
@@ -188,7 +190,7 @@ assign excOvDM =  ALUDMOverflow && (
                 );
 ```
 
-### 一个大问题（nop）
+### 一个关于空泡的问题
 
 我们会遇到一个问题：在阻塞时我们会往流水线中插入 nop，这个 nop 的 `pc` 和 `bd` 信号都是 `0`。此时宏观 PC 会显示错误的值。并且如果此时发生了中断，就会导致 EPC 存入错误的值。
 
@@ -273,18 +275,6 @@ always @(posedge clk) begin
 end
 ```
 
-### DM
-
-注意 DM 写入的条件（`WE` 接口）为 `M_WE & (!req)`。
-
-内部 `always@(posedge clk)` 中的也要改（考虑到外设）。
-
-```verilog
-if (WE && (addr >= `StartAddrDM) && (addr <= `EndAddrDM)) begin
-  // ...
-end
-```
-
 ### 异常识别
 
 注意前面级的异常优先：
@@ -341,6 +331,28 @@ assign PrRD =   selTC1 ? TCout1 :
                 selTC2 ? TCout2 :
                 0;
 wire [5:0] HWInt = {3'b0, interrupt, IRQ2, IRQ1};
+```
+
+### DM
+
+注意 DM 写入的条件（`WE` 接口）为 `M_WE & (!req)`。
+
+内部 `always@(posedge clk)` 中的也要改（考虑到外设）。
+
+```verilog
+if (WE && (addr >= `StartAddrDM) && (addr <= `EndAddrDM)) begin
+  // ...
+end
+```
+
+注意下一级寄存器（W_reg）传入 DM 数据时要判断是否是外设的数据。
+
+```verilog
+W_REG W_reg(
+    // ...
+    .DM_in((M_ALUout >= 32'h0000_7f00) ? PrRD : M_DMout),
+    // ...
+);
 ```
 
 ## 计时器

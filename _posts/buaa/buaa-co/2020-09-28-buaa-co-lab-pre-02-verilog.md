@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO」 05 Verilog-HDL"
+title: "「BUAA-CO-Lab」 Pre - 02 Verilog-HDL"
 subtitle: "Verilog-HDL"
 author: "roife"
 date: 2020-09-28
 
-tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "数字电路", "L「Verilog-HDL」"]
+tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "数字电路"]
 status: Completed
 
 language: zh-CN

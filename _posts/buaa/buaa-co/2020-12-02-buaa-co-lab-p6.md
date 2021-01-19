@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P6 流水线 CPU-lite2"
+title: "「BUAA-CO-Lab」 P6 流水线 CPU-lite2"
 subtitle: "复杂流水线 CPU"
 author: "roife"
 date: 2020-12-02
 
-tags: ["C「BUAA - Computer Organization」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
+tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
 status: Completed
 
 language: zh-CN

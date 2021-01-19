@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO」 06 MIPS 指令"
+title: "「BUAA-CO-Lab」 Pre - 03 MIPS 指令"
 subtitle: "MIPS 指令集与汇编语言"
 author: "roife"
 date: 2020-10-05
 
-tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "L「MIPS Assembly」"]
+tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "数字电路"]
 status: Completed
 
 language: zh-CN

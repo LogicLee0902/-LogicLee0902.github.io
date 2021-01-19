@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P5 流水线 CPU-lite"
+title: "「BUAA-CO-Lab」 P5 流水线 CPU-lite"
 subtitle: "简单流水线 CPU"
 author: "roife"
 date: 2020-11-23
 
-tags: ["C「BUAA - Computer Organization」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
+tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
 status: Completed
 
 language: zh-CN
@@ -17,7 +17,7 @@ mathjax: true
 
 # 上机总结 1
 
-> 失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了失败了
+> 失败了失败了失败了失败了失败了失败了失败了
 
 我人没了。
 

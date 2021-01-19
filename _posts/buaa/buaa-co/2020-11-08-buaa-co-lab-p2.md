@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P2 MIPS 汇编程序设计"
+title: "「BUAA-CO-Lab」 P2 MIPS 汇编程序设计"
 subtitle: "MIPS 汇编设计"
 author: "roife"
 date: 2020-10-31
 
-tags: ["C「BUAA - Computer Organization」", "L「MIPS Assembly」", "BUAA", "计算机组成"]
+tags: ["C「BUAA - Computer Organization Lab」", "L「MIPS Assembly」", "BUAA", "计算机组成"]
 status: Completed
 
 language: zh-CN

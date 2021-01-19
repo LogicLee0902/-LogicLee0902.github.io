@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P1 Verilog 模块及状态机"
+title: "「BUAA-CO-Lab」 P1 Verilog 模块及状态机"
 subtitle: "Verilog 模块设计"
 author: "roife"
 date: 2020-10-31
 
-tags: ["C「BUAA - Computer Organization」", "L「Verilog-HDL」", "BUAA", "计算机组成"]
+tags: ["C「BUAA - Computer Organization Lab」", "L「Verilog-HDL」", "BUAA", "计算机组成"]
 status: Completed
 
 language: zh-CN

@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO Lab」 P4 单周期 CPU (Verilog 实现)"
+title: "「BUAA-CO-Lab」 P4 单周期 CPU (Verilog 实现)"
 subtitle: "单周期 CPU (Verilog)"
 author: "roife"
 date: 2020-11-19
 
-tags: ["C「BUAA - Computer Organization」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
+tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
 status: Completed
 
 language: zh-CN
