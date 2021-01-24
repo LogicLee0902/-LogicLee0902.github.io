@@ -5,7 +5,7 @@ subtitle: "Cons 与 列表"
 author: "roife"
 date: 2020-01-03
 
-tags: ["B「The Little Schemer」", "L「Scheme」", "Daniel P. Friedman", "笔记"]
+tags: ["B「The Little Schemer」", "L「Scheme」", "Daniel P. Friedman", "PL"]
 status: Completed
 
 language: zh-CN

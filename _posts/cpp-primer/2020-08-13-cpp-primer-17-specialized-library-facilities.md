@@ -5,7 +5,7 @@ subtitle: "特殊标准库"
 author: "roife"
 date: 2020-08-13
 
-tags: ["B「C++ Primer」", "L「C++」", "笔记"]
+tags: ["B「C++ Primer」", "L「C++」"]
 status: Completed
 
 language: zh-CN

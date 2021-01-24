@@ -5,7 +5,7 @@ subtitle: "Git 内部原理"
 author: "roife"
 date: 2020-07-25
 
-tags: ["B「Pro Git」", "Git", "笔记", "unfinished"]
+tags: ["B「Pro Git」", "Git", "unfinished"]
 status: Completed
 
 language: zh-CN

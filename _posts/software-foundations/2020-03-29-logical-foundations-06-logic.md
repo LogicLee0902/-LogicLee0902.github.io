@@ -5,7 +5,7 @@ subtitle: "Logic in Coq"
 author: "roife"
 date: 2020-03-29
 
-tags: ["B「Software Foundations」", "Benjamin C. Pierce", "B「Logical Foundations」", "L「Coq」", "PL", "笔记"]
+tags: ["B「Software Foundations」", "Benjamin C. Pierce", "B「Logical Foundations」", "L「Coq」", "PL"]
 status: Completed
 
 language: zh-CN

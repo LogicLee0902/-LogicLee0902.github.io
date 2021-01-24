@@ -5,7 +5,7 @@ subtitle: "面向对象"
 author: "roife"
 date: 2020-08-07
 
-tags: ["B「C++ Primer」", "L「C++」", "笔记"]
+tags: ["B「C++ Primer」", "L「C++」"]
 status: Completed
 
 language: zh-CN

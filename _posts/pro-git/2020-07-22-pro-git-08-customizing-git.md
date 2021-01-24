@@ -5,7 +5,7 @@ subtitle: "配置 Git"
 author: "roife"
 date: 2020-07-22
 
-tags: ["B「Pro Git」", "Git", "笔记"]
+tags: ["B「Pro Git」", "Git"]
 status: Completed
 
 language: zh-CN

@@ -5,7 +5,7 @@ subtitle: "顺序容器"
 author: "roife"
 date: 2020-02-07
 
-tags: ["B「C++ Primer」", "L「C++」", "笔记"]
+tags: ["B「C++ Primer」", "L「C++」"]
 status: Completed
 
 language: zh-CN

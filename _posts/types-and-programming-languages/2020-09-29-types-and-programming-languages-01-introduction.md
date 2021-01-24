@@ -5,7 +5,7 @@ subtitle: "介绍"
 author: "roife"
 date: 2020-09-29
 
-tags: ["B「Types and Programming Languages」", "L「OCaml」", "笔记", "C「PKU - Design Principles of Programming Languages」"]
+tags: ["B「Types and Programming Languages」", "L「OCaml」", "C「PKU - Design Principles of Programming Languages」"]
 status: Completed
 
 language: zh-CN

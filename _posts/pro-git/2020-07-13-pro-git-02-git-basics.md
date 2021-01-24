@@ -5,7 +5,7 @@ subtitle: "基本命令"
 author: "roife"
 date: 2020-07-13
 
-tags: ["B「Pro Git」", "Git", "笔记"]
+tags: ["B「Pro Git」", "Git"]
 status: Completed
 
 language: zh-CN

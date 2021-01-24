@@ -5,7 +5,7 @@ subtitle: ""
 author: "roife"
 date: 2020-10-29
 
-tags: ["L「Liquid Template Language」", "博客搭建", "笔记"]
+tags: ["L「Liquid Template Language」", "博客搭建"]
 status: Completed
 
 language: zh-CN
@@ -45,7 +45,7 @@ Liquid Template 默认的 `sort` filter 只能进行单关键字排序, 而且�
 
 {%- for _article_group in _sorted_list -%}
 	{%- assign _article_list = _article_group.items | sort: 'title' -%}
-    
+
     {%- for _article in _article_list -%}
         <!-- 主程序 -->
     {%- endfor -%}

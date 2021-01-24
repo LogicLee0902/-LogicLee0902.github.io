@@ -5,7 +5,7 @@ subtitle: "开始"
 author: "roife"
 date: 2020-10-04
 
-tags: ["B「Types and Programming Languages」", "L「OCaml」", "笔记", "C「PKU - Design Principles of Programming Languages」", "笔记"]
+tags: ["B「Types and Programming Languages」", "L「OCaml」", "C「PKU - Design Principles of Programming Languages」"]
 status: Completed
 
 language: zh-CN
@@ -160,7 +160,7 @@ $$depth(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) = \max{depth(t
 ## Theorem: Structural Induction
 
 If, for each term $\mathtt{s}$,
-given $P(\mathtt{r})$ for all immediate subterms $\mathtt{r}$ of $\mathtt{s}$ 
+given $P(\mathtt{r})$ for all immediate subterms $\mathtt{r}$ of $\mathtt{s}$
 we can show $P(\mathtt{s})$,
 then $P(\mathtt{s})$ holds for all $s$.
 

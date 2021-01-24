@@ -5,7 +5,7 @@ subtitle: "访问控制"
 author: "roife"
 date: 2020-09-22
 
-tags: ["B「The Swift PL」", "L「Swift」", "笔记"]
+tags: ["B「The Swift PL」", "L「Swift」"]
 status: Completed
 
 language: zh-CN
