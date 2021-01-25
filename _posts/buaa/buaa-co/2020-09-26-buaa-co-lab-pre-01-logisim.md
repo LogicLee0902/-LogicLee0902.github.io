@@ -12,7 +12,7 @@ language: zh-CN
 catalog: true
 header-image: ""
 header-style: text
-mathjax: true
+katex: true
 ---
 
 # 特殊部件与属性
