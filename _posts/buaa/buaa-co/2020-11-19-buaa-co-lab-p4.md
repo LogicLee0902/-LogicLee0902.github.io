@@ -5,7 +5,7 @@ subtitle: "单周期 CPU (Verilog)"
 author: "roife"
 date: 2020-11-19
 
-tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
+tags: ["C「(BUAA) Computer Organization Lab」", "BUAA", "Computer Organization", "L「Verilog-HDL」", "Digital Circuit"]
 status: Completed
 
 language: zh-CN

@@ -5,7 +5,7 @@ subtitle: "复杂流水线 CPU"
 author: "roife"
 date: 2020-12-02
 
-tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "L「Verilog-HDL」"]
+tags: ["C「(BUAA) Computer Organization Lab」", "BUAA", "Computer Organization", "L「Verilog-HDL」", "Digital Circuit"]
 status: Completed
 
 language: zh-CN

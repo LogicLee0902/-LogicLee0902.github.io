@@ -5,7 +5,7 @@ subtitle: "晶体管, 门电路, 卡诺图, 组合逻辑"
 author: "roife"
 date: 2020-09-23
 
-tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "数字电路"]
+tags: ["C「(BUAA) Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "Computer Organization", "Digital Circuit"]
 status: Completed
 
 language: zh-CN

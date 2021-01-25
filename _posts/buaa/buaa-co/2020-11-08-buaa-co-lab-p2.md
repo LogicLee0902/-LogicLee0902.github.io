@@ -5,7 +5,7 @@ subtitle: "MIPS 汇编设计"
 author: "roife"
 date: 2020-10-31
 
-tags: ["C「BUAA - Computer Organization Lab」", "L「MIPS Assembly」", "BUAA", "计算机组成"]
+tags: ["C「(BUAA) Computer Organization Lab」", "L「MIPS Assembly」", "BUAA", "Computer Organization"]
 status: Completed
 
 language: zh-CN

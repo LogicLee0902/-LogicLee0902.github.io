@@ -5,7 +5,7 @@ subtitle: "MIPS 指令集与汇编语言"
 author: "roife"
 date: 2020-10-05
 
-tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "数字电路"]
+tags: ["C「(BUAA) Computer Organization Lab」", "BUAA", "Computer Organization", "L「MIPS Assembly」"]
 status: Completed
 
 language: zh-CN

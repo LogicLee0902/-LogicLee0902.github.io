@@ -5,7 +5,7 @@ subtitle: "开始"
 author: "roife"
 date: 2020-10-04
 
-tags: ["B「Types and Programming Languages」", "L「OCaml」", "C「PKU - Design Principles of Programming Languages」"]
+tags: ["B「Types and Programming Languages」", "C「(PKU) Design Principles of Programming Languages」"]
 status: Completed
 
 language: zh-CN
@@ -23,7 +23,7 @@ katex: true
 
 $$
 \begin{aligned}
-t ::= & & (terms) \\
+t \Coloneqq & & (terms) \\
     & \mathtt{true} & (constant\ true) \\
     & \mathtt{false} & (constant\ false) \\
     & \mathtt{if}\ t\ \mathtt{then}\ t\ \mathtt{else}\ t & (conditions) \\

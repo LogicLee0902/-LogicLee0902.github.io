@@ -5,7 +5,7 @@ subtitle: "用 Logisim 仿真电路"
 author: "roife"
 date: 2020-09-26
 
-tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "数字电路"]
+tags: ["C「(BUAA) Computer Organization Lab」", "BUAA", "Computer Organization", "Digital Circuit"]
 status: Completed
 
 language: zh-CN

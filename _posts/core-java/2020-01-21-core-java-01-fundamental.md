@@ -60,6 +60,8 @@ $ java Message -g cruel world
 
 ## char
 
+
+
 ### Unicode 与 char
 
 

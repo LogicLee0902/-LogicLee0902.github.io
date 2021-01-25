@@ -5,7 +5,7 @@ subtitle: "数字操作"
 author: "roife"
 date: 2020-01-03
 
-tags: ["B「The Little Schemer」", "L「Scheme」", "Daniel P. Friedman", "PL"]
+tags: ["B「The Little Schemer」", "L「Scheme」", "Programming Languages"]
 status: Completed
 
 language: zh-CN

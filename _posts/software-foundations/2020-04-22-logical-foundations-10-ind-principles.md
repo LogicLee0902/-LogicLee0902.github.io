@@ -5,7 +5,7 @@ subtitle: "Induction Principles"
 author: "roife"
 date: 2020-04-22
 
-tags: ["B「Software Foundations」", "Benjamin C. Pierce", "B「Logical Foundations」", "L「Coq」", "PL", "unfinished"]
+tags: ["B「Software Foundations」", "B「Logical Foundations」", "L「Coq」", "Programming Languages", "unfinished", "Formal Verification"]
 status: Completed
 
 language: zh-CN

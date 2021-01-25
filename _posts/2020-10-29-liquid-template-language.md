@@ -5,7 +5,7 @@ subtitle: ""
 author: "roife"
 date: 2020-10-29
 
-tags: ["L「Liquid Template Language」", "博客搭建"]
+tags: ["L「Liquid」", "Blog"]
 status: Completed
 
 language: zh-CN

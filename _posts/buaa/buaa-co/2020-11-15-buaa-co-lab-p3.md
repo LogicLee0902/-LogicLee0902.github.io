@@ -5,7 +5,7 @@ subtitle: "单周期 CPU (Logisim)"
 author: "roife"
 date: 2020-11-15
 
-tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "数字电路"]
+tags: ["C「(BUAA) Computer Organization Lab」", "BUAA", "Computer Organization", "Digital Circuit"]
 status: Completed
 
 language: zh-CN

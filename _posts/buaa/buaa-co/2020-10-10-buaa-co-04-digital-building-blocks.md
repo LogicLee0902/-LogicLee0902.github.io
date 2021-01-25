@@ -4,7 +4,7 @@ title: "「BUAA-CO」 04 数字模块"
 subtitle: "基础数字模块组成"
 author: "roife"
 date: 2020-10-10
-tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "数字电路", "L「Verilog-HDL」"]
+tags: ["C「(BUAA) Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "Computer Organization", "Digital Circuit", "L「Verilog-HDL」"]
 status: Completed
 
 language: zh-CN

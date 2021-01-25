@@ -5,7 +5,7 @@ subtitle: "Verilog 模块设计"
 author: "roife"
 date: 2020-10-31
 
-tags: ["C「BUAA - Computer Organization Lab」", "L「Verilog-HDL」", "BUAA", "计算机组成"]
+tags: ["C「(BUAA) Computer Organization Lab」", "L「Verilog-HDL」", "BUAA", "Computer Organization", "Digital Circuit"]
 status: Completed
 
 language: zh-CN

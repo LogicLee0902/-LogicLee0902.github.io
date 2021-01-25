@@ -5,7 +5,7 @@ subtitle: "Logisim 电路模块设计"
 author: "roife"
 date: 2020-10-25
 
-tags: ["C「BUAA - Computer Organization Lab」", "BUAA", "计算机组成", "数字电路"]
+tags: ["C「(BUAA) Computer Organization Lab」", "BUAA", "Computer Organization", "Digital Circuit"]
 status: Completed
 
 language: zh-CN

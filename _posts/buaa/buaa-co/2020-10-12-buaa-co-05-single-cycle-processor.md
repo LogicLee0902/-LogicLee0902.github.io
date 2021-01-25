@@ -4,7 +4,7 @@ title: "「BUAA-CO」 05 单周期 CPU"
 subtitle: "搭建单周期CPU"
 author: "roife"
 date: 2020-10-12
-tags: ["C「BUAA - Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "计算机组成", "数字电路", "L「Verilog-HDL」"]
+tags: ["C「(BUAA) Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "Computer Organization", "Digital Circuit", "L「Verilog-HDL」"]
 status: Completed
 
 language: zh-CN
