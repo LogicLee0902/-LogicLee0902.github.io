@@ -5,7 +5,7 @@ subtitle: "嵌套类型"
 author: "roife"
 date: 2020-09-15
 
-tags: ["B「The Swift PL」", "L「Swift」"]
+tags: ["B「The Swift Programming Language」", "L「Swift」"]
 status: Completed
 
 language: zh-CN
