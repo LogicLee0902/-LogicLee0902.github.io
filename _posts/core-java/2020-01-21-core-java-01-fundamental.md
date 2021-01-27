@@ -15,8 +15,7 @@ header-style: text
 katex: true
 ---
 
-
-由于 Java 和 C++ 有不少共同点，所以这里只记录 Java 的特殊之处。
+由于 Java 和 C/C++ 有不少共同点，所以这里只记录 Java 的特殊之处。
 
 # 一个简单的 Java 程序
 
