@@ -5,7 +5,7 @@ subtitle: "Fundamental Programming Structures in Java"
 author: "roife"
 date: 2021-01-21
 
-tags: ["L「Java」"]
+tags: ["L「Java」", "B「Core Java」"]
 status: Completed
 
 language: zh-CN
@@ -59,11 +59,16 @@ $ java Message -g cruel world
 
 ## char
 
+Java 中除了普通的转义字符以外，以 `\u` 开头的字符表示 Unicode 转义字符，如 `\u005B`。
 
+特别的，`\u` 开头的转移还能混在代码中使用，如 `//\u00A0 is a newline` 不代表是一个注释，被转义为换行符，因此会报错。
 
 ### Unicode 与 char
 
+- 码点：如 `U+0041` 表示字符的编码
+- 代码单元：一个字符可以用多个代码单元存储，如 `U+1D546` 可以分为两个代码单元：`U+D835` 和 `U+DD46`
 
+Java 中的 `char` 描述了一个 UTF-16 的代码单元。
 
 ## boolean
 
@@ -109,26 +114,70 @@ greeting = greeting.substring(0, 3) + "p!"; // Hello -> Help!
 
 ## 码点与代码单元
 
+`length()` 可以返回代码单元的数量，得到实际的长度则需要用 `codePointCount()`。
+
+返回第 `i` 个位置的代码单元可以用 `charAt(i)`，但是返回码点则要用 `offsetByCodePoints(0, i)` 或 `codePointAt(index)`。
+
+所有码点用一个或者两个 `char` 表示。注意，`char` 存不下一个码点，要用 `int`。
+
+如果要遍历所有码点，可以用：
+
+```java
+int cp = sentence.codePointAt(i);
+if (Character.isSupplementaryCodePoint(cp)) i += 2;
+else i++;
+// 回退
+--i;
+if (CharacterssSurrogate(sentence.charAt(i))) --i;
+int cp = sentence.codePointAt(i);
+```
+
+也可以用流实现遍历：
+
+```java
+int[] codePoints = str.codePoints().toArray();
+String str = new String(codePoints, 0, codePoints.length());
+```
+
 ## 常用 API
 
-- `s.charAt(i)`
-  : 取出一个代码单元
-- `s.codePointAt(i)`，`s.offsetByCodePoints(start, count)`
-  : 返回码点；返回 `start` 后 `count` 位置的码点
-- `s.equals(s2)`，`s.equalsIgnoreCase(s2)`
-  : 比较相等，第二个可以忽略大小写，注意不能用 `==`！
-- `s.length()`
-  : 返回长度
-- `s.replace(oldStr, newStr)`
-  : 替换，其中 `oldStr` 可以是 `String` 或 `StringBuilder`
-- `s.substring(b, e)`，`s.substring(b)`
-  : 子串：`[b, e)` 或 `[b, len)`
-- `s.toLowerCase()`，`s.toUpperCase()`
-  : 转换大小写
-- `s.trim()`
-  : 删除头尾空格
-- `String.join(delimiter, a, b, ...)`
-  : 拼接，用 `flag` 分割
+- `java.lang.string`
+  + `char charAt(int index)`
+  : 返回给定位置的代码单元。
+  + `int codePointAt(int Index)`
+  : 返回从给定位置开始的码点。
+  + `int offsetByCodePoints(int startIndex, int cpCount)`
+  : 返回从 `startIndex` 码点开始， 位移 `cpCount` 后的码点索引。
+  + `int compareTo(String other)`
+  : 按照字典顺序，相等返回 0，比 `other` 小返回负数，否则为正数。
+  + `IntStream codePoints()`
+  : 将这个字符串的码点作为一个流返回，一般用 `toArray` 将它们放在一个数组中。
+  + `new String(int[] codePoints, int offset, int count)`
+  : 用数组中从 `offset` 开始的 `count` 个码点构造一个字符串。
+  + `boolean equals(0bject other)`
+  : 比较是否相等
+  + `boolean equalsIgnoreCase(String other)`
+  : 忽略大小写比较是否相等
+  + `boolean startsWith(String prefix)`，`boolean endsWith(String suffix)`
+  : 如果字符串以 `suffix` 开头或结尾， 则返回 `true`
+  + `int indexOf(String str)`，`int indexOf(String str, int fromIndex)`，`int indexOf(int cp)`，`int indexOf(int cp, int fromIndex)`
+  : 返回与字符串 `str` 或代码点 `cp` 匹配的第一个子串的开始位置。这个位置从 `0` 或 `fromIndex` 开始计算。 如果在原始串中不存在 `str` 返回 `-1`。
+  + `int lastIndexOf(String str)`，`int lastIndexOf(String str, int fromIndex)`，`int lastindexOf(int cp)`，`int lastindexOf(int cp, int fromIndex)`
+  : 返回与字符串 `str` 或码点 `cp` 匹配的最后一个子串的开始位置。这个位置从原始串尾端或 fromIndex 开始计算。
+  + `int length()`
+  : 返回字符串的长度。
+  + `int codePointCount(int startIndex, int endIndex)`
+  : 返回 `[b, e)` 之间的码点数量。
+  + `String replace(CharSequence oldString, CharSequence newString)`
+  : 替换。可以用 `String`/`StringBuilder` 对象作为 CharSequence 参数。
+  + `String substring(int beginIndex)`，`String substring(int beginIndex, int endIndex)`
+  : 返回子串，为原串从 `[b, e)` 或到尾部的所有**代码单元**。
+  + `String toLowerCase()`，`String toUpperCase()`
+  : 大小写转换
+  + `String trim()`
+  : 删除原串头尾的空格。
+  + `String join(CharSequence delimiter, CharSequence... elements)`
+  : 用给定的定界符连接所有元素。
 
 
 ## StringBuilder

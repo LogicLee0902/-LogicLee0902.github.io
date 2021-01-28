@@ -5,7 +5,7 @@ subtitle: "Classes"
 author: "roife"
 date: 2021-01-25
 
-tags: ["L「Java」"]
+tags: ["L「Java」", "B「Core Java」"]
 status: Completed
 
 language: zh-CN
@@ -20,7 +20,7 @@ katex: true
 Java 中的变量相当于一个指针，赋值时并没有拷贝对象，而是指向了一个对象（称为引用）。对象为 `null` 时表示没有引用任何对象。
 复制一个对象需要调用 `clone()` 方法。
 
-定义了对象变量不意味着定义了一个对象，必须用 `new` 来构造。
+定义了对象变量不意味着定义了一个对象，必须用 `new` 来构造。（C++ 中则不需要）
 
 ```java
 Date deadline;        // deadline doesn't refer to any object
@@ -162,6 +162,8 @@ class Employee {
   + 方法与对象状态无关
   + 方法只访问静态域时使用
   + 用作静态工厂方法
+
+访问 `static` 成员直接用 `.`，C++ 中则需要用 `::`。
 
 ## `main` 方法
 
