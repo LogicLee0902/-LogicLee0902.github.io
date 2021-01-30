@@ -5,7 +5,7 @@ subtitle: "集合运算"
 author: "roife"
 date: 2020-01-05
 
-tags: ["B「The Little Schemer」", "L「Scheme」", "Programming Languages"]
+tags: ["B「The Little Schemer」", "L「Scheme」", "Programming Language Theory"]
 status: Completed
 
 language: zh-CN

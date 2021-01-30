@@ -5,7 +5,7 @@ subtitle: "Polymorphism, Higher-Order Functions and Church numerals"
 author: "roife"
 date: 2020-03-07
 
-tags: ["B「Software Foundations」", "B「Logical Foundations」", "L「Coq」", "Programming Languages", "Formal Verification"]
+tags: ["B「Software Foundations」", "B「Logical Foundations」", "L「Coq」", "Programming Language Theory", "Formal Verification"]
 status: Completed
 
 language: zh-CN

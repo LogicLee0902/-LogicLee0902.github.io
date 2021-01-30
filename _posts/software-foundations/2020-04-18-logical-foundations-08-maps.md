@@ -5,7 +5,7 @@ subtitle: "Total and Partial Maps"
 author: "roife"
 date: 2020-04-18
 
-tags: ["B「Software Foundations」", "B「Logical Foundations」", "L「Coq」", "Programming Languages", "Formal Verification"]
+tags: ["B「Software Foundations」", "B「Logical Foundations」", "L「Coq」", "Programming Language Theory", "Formal Verification"]
 status: Completed
 
 language: zh-CN
@@ -20,6 +20,8 @@ map (即 dictionary) 包括两类:
 
 - total maps : 找不到元素时会返回一个默认值.
 - partial maps : 返回一个 `option` 类型, 找不到元素时返回 None.
+
+**Map 其实就是一个函数。**
 
 # Standard Lib in Coq
 

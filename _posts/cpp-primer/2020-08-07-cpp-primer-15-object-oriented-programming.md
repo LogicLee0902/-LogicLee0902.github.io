@@ -19,9 +19,7 @@ header-style: text
 ## 继承
 
 Derived class (派生类, 以下简称 `Derived`) 通过继承得到 Base class (基类, 以下简称 `Base`)
-的成员.
-
-`Base` 中希望 `Derived` 自己定义的成员函数要声明成 **虚函数**, 用 `virtual` 修饰.
+的成员. 其中, `Base` 中希望 `Derived` 自己定义的成员函数要声明成 **虚函数**, 用 `virtual` 修饰.
 
 `Derived` 通过 **类派生列表** 来指出继承的 `Base`. 类派生列表前可以加访问控制修饰符.
 
@@ -38,7 +36,7 @@ public:
 };
 ```
 
-`Derived` 必须对 **重新覆盖** 的虚函数进行声明, 并且可以把虚函数用 `virtual` 修饰 (非必须).
+`Derived` 必须对 **重新覆盖** 的虚函数进行声明, 并且可以把虚函数用 `virtual` 修饰 (非必须, 因为 `Base` 里面声明过了).
 改写过的虚函数可以用 `override` 来注明.
 
 ## 动态绑定
@@ -72,9 +70,9 @@ double print_total(ostream &os, const Quote &item, size_t n) {
 
 `virtual` 只能在类内部声明时使用, 不能出现在类外部的定义.
 
-`Base` 的虚函数在 `Derived` 中也是隐式的虚函数.
+`Base` 的虚函数在 `Derived` 中也是隐式的虚函数, 可以不加 `virtual`.
 
-Base 中的虚函数也必须有定义!
+Base 中的虚函数也必须有定义! (否则就是纯虚函数了)
 
 ### 访问控制与继承
 
