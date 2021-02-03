@@ -599,6 +599,8 @@ Notation "'while' x 'do' y 'end'" :=
             (in custom com at level 89, x at level 99, y at level 99) : com_scope.
 ```
 
+一个例子：
+
 ```coq
 Definition fact_in_coq : com :=
   <{ Z := X;
@@ -930,6 +932,8 @@ Qed.
 
 下面证明没有循环的程序一定会终止。
 
+### 定义命题
+
 首先用两种方式定义这个性质。
 
 ```coq
@@ -959,7 +963,7 @@ Inductive no_whilesR: com -> Prop :=
 
 ```
 
-证明二者等价：
+证明二者等价（将问题转换为 relation）：
 
 ```coq
 Theorem no_whiles_eqv:
@@ -988,7 +992,7 @@ Proof.
 Qed.
 ```
 
-最后证明命题。
+### 证明命题
 
 需要注意的是不能先 `intros` 再 `induction`。在第三步的时候要证明 `exists st', st =[ c1; c2 ]=> st'`。
 
@@ -1051,11 +1055,11 @@ Inductive sinstr : Type :=
 (* 计算后缀表达式 *)
 
 Fixpoint s_execute (st : state) (stack : list nat)
-    (prog : list sinstr) : list nat := 
+    (prog : list sinstr) : list nat :=
   match prog with
   | [] => stack
   | instr :: tl =>
-    let nstack := 
+    let nstack :=
       match instr with
       | SPush n => n :: stack
       | SLoad s => (st s) :: stack
@@ -1073,10 +1077,10 @@ Fixpoint s_execute (st : state) (stack : list nat)
         end
     end in s_execute st nstack tl
   end.
-  
+
 (* 中缀转后缀 *)
 Fixpoint s_compile (e : aexp) : list sinstr :=
-  match e with 
+  match e with
   | ANum n => [SPush n]
   | AId x => [SLoad x]
   | APlus a1 a2 => (s_compile a1) ++ (s_compile a2) ++ [SPlus]
@@ -1108,6 +1112,30 @@ Theorem s_compile_correct : forall (st : state) (e : aexp),
   s_execute st [] (s_compile e) = [ aeval st e ].
 Proof.
   intros. apply s_compile_correct_aux. Qed.
+```
+
+## 短路运算（short-circuit）
+
+为 `And` 加入短路运算。
+
+```coq
+Fixpoint beval' (st : state) (b : bexp) : bool :=
+  match b with
+  | BTrue       => true
+  | BFalse      => false
+  | BEq a1 a2   => beq_nat (aeval st a1) (aeval st a2)
+  | BLe a1 a2   => leb (aeval st a1) (aeval st a2)
+  | BNot b1     => negb (beval st b1)
+  | BAnd b1 b2  => if (beval st b1) then (beval st b2) else false
+  end.
+
+Theorem beval_equalto_beval' : forall st b,
+  beval st b = beval' st b.
+Proof.
+  intros.
+  generalize dependent st.
+  induction b; intros; simpl; reflexivity.
+Qed.
 ```
 
 ## `break`
@@ -1186,19 +1214,19 @@ Inductive ceval : com -> state -> result -> state -> Prop :=
       st =[ ct ]=> st' / sig ->
       st =[ CIf b ct cf ]=> st' / sig
   | E_If_False : forall b ct cf st st' sig,
-      beval st b = false -> 
+      beval st b = false ->
       st =[ cf ]=> st' / sig ->
       st =[ CIf b ct cf ]=> st' / sig
   | E_While_False : forall b c st,
-      beval st b = false -> 
+      beval st b = false ->
       st =[ CWhile b c ]=> st / SContinue
   | E_While_True_Break : forall b c st st',
-      beval st b = true -> 
+      beval st b = true ->
       st =[ c ]=> st' / SBreak ->
       st =[ CWhile b c ]=> st' / SContinue
   | E_While_True_Continue : forall b c st st' st'',
       beval st b = true ->
-      st =[ c ]=> st' / SContinue -> 
+      st =[ c ]=> st' / SContinue ->
       beval st'' b = false ->
       st' =[ CWhile b c ]=> st'' / SContinue ->
                            st =[ CWhile b c ]=> st'' / SContinue
@@ -1232,7 +1260,7 @@ Theorem while_stops_on_break : forall b c st st',
 Proof.
   intros.
   inversion H0; constructor; subst; assumption.
-Qed. 
+Qed.
 
 Theorem while_break_true : forall b c st st',
   st =[ while b do c end ]=> st' / SContinue ->
@@ -1262,10 +1290,10 @@ Proof.
   - auto.
   - auto.
   - apply IHceval2. apply IHceval1 in H1. inversion H1. rewrite H. assumption.
-  - apply IHceval2. apply IHceval1 in H5. inversion H5. inversion H0. 
+  - apply IHceval2. apply IHceval1 in H5. inversion H5. inversion H0.
   - apply IHceval in H3. inversion H3. inversion H0.
   - apply IHceval in H6. assumption.
-  - apply IHceval. assumption. 
+  - apply IHceval. assumption.
   - rewrite H8 in H. inversion H.
   - rewrite H8 in H. inversion H.
   - apply IHceval. assumption.
