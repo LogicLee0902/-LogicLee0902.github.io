@@ -57,7 +57,7 @@ Proof.
 
 - `auto`
   : `auto` 可以自动搜索一些可以 `apply` 的前提，并且进行 `intros` & `apply`。使用 `auto` 不用担心它使证明误入歧途。要么它没解决问题，那么不改变当前的状态；要么直接解决了当前的 goal
-  
+
 ```coq
 Example auto_example_2 : forall P Q R S T U : Prop,
   (P -> Q) ->
@@ -105,7 +105,7 @@ Proof. info_auto. Qed.
 *)
 
 ```
-  
+
 - `auto using ...`
   : 使用某个命题进行证明（即扩展 hint database）
 
@@ -231,7 +231,7 @@ Ltac find_eqn :=
     H2: ?P ?X
     |- _ => rewrite (H1 X H2) in *
   end.
-  
+
 Theorem ceval_deterministic''''': forall c st st1 st2,
     st =[ c ]=> st1  ->
     st =[ c ]=> st2 ->
@@ -260,7 +260,7 @@ Inductive com : Type :=
 
 Notation "'repeat' x 'until' y 'end'" :=
          (CRepeat x y)
-            (in custom com at level 0, 
+            (in custom com at level 0,
              x at level 99, y at level 99).
 Notation "'skip'"  :=
          CSkip (in custom com at level 0).
@@ -403,10 +403,10 @@ Qed.
 
 - `eauto`
   : 使用 `eapply` 代替 `apply` 的特殊 `auto`
-  
+
 - `info_eauto`
   : 类似 `info_auto`
-  
+
 ```coq
 (* 为了方便，先给一些 HINT *)
 Hint Constructors ceval : core.
