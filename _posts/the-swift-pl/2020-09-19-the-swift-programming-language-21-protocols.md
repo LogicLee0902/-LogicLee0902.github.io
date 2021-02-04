@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 21 Protocols"
+title: "「Swift」 21 Protocols"
 subtitle: "协议"
 author: "roife"
 date: 2020-09-19
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 16 Optional Chaining"
+title: "「Swift」 16 Optional Chaining"
 subtitle: "可选链"
 author: "roife"
 date: 2020-09-15
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

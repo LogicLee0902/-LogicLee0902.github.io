@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 26 Access Control"
+title: "「Swift」 26 Access Control"
 subtitle: "访问控制"
 author: "roife"
 date: 2020-09-22
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

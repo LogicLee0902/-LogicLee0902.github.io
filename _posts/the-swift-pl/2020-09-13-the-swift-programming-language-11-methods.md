@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 11 Methods"
+title: "「Swift」 11 Methods"
 subtitle: "方法"
 author: "roife"
 date: 2020-09-13
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

@@ -8,10 +8,10 @@
 
 - 数学不好，但是想学代数 🦘
 
-- Emacs 拥趸，但是会用 evil
+- Emacs 拥趸，也是 evil 用户
 
 - 「SCP Foundations」爱好者
 
 - Любэ 乐队忠实粉丝
 
-<!-- - Furry 控，小狗狗能有什么坏心眼呢？ -->
+- Furry 控

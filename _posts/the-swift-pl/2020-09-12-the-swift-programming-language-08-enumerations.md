@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 08 Enumerations"
+title: "「Swift」 08 Enumerations"
 subtitle: "枚举类型"
 author: "roife"
 date: 2020-09-12
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 22 Generics"
+title: "「Swift」 22 Generics"
 subtitle: "泛型"
 author: "roife"
 date: 2020-09-19
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

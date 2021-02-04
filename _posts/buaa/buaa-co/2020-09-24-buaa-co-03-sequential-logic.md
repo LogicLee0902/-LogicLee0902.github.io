@@ -5,9 +5,7 @@ subtitle: "触发器, 时序逻辑, 状态机"
 author: "roife"
 date: 2020-09-24
 
-tags: ["C「(BUAA) Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "Computer Organization", "Digital Circuit"]
-status: Completed
-
+tags: ["B「BUAA - 计算机组成」", "B「Digital Design and Computer Architecture」", "北航", "计算机组成", "数字电路"]
 language: zh-CN
 catalog: true
 header-image: ""

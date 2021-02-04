@@ -5,9 +5,7 @@ subtitle: "Git 高级命令"
 author: "roife"
 date: 2020-07-23
 
-tags: ["B「Pro Git」", "Git", "unfinished"]
-status: Completed
-
+tags: ["B「Pro Git」", "Git", "未完成"]
 language: zh-CN
 catalog: true
 header-image: ""

@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 14 Initialization"
+title: "「Swift」 14 Initialization"
 subtitle: "构造方法"
 author: "roife"
 date: 2020-09-14
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

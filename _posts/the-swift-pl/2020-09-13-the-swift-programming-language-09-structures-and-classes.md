@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 09 Structures and Classes"
+title: "「Swift」 09 Structures and Classes"
 subtitle: "类和结构体"
 author: "roife"
 date: 2020-09-13
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

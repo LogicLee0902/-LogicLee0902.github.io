@@ -6,8 +6,6 @@ author: "roife"
 date: 2020-07-14
 
 tags: ["B「Pro Git」", "Git"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

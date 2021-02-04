@@ -4,9 +4,7 @@ title: "「BUAA-CO」 08 异常及高级微体系架构介绍"
 subtitle: "异常，分支预测、超标量、乱序处理器等"
 author: "roife"
 date: 2021-01-17
-tags: ["C「(BUAA) Computer Organization」", "B「Digital Design and Computer Architecture」", "BUAA", "Computer Organization", "Digital Circuit"]
-status: Completed
-
+tags: ["B「BUAA - 计算机组成」", "B「Digital Design and Computer Architecture」", "B「Computer Organization and Design: The Hardware/Software Interface」", "北航", "计算机组成", "数字电路"]
 language: zh-CN
 catalog: true
 header-image: ""

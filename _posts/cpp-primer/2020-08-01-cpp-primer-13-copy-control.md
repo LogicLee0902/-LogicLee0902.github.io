@@ -6,8 +6,6 @@ author: "roife"
 date: 2020-08-01
 
 tags: ["B「C++ Primer」", "L「C++」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

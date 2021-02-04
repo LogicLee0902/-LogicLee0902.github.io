@@ -5,9 +5,7 @@ subtitle: "Verilog-HDL"
 author: "roife"
 date: 2020-09-28
 
-tags: ["C「(BUAA) Computer Organization Lab」", "BUAA", "Computer Organization", "Digital Circuit"]
-status: Completed
-
+tags: ["B「BUAA - 计算机组成实验」", "北航", "计算机组成", "数字电路"]
 language: zh-CN
 catalog: true
 header-image: ""

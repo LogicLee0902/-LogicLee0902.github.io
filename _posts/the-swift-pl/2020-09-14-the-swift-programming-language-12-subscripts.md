@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 12 Subscripts"
+title: "「Swift」 12 Subscripts"
 subtitle: "下标"
 author: "roife"
 date: 2020-09-14
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

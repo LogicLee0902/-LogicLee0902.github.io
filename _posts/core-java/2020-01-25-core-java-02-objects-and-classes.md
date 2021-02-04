@@ -6,8 +6,6 @@ author: "roife"
 date: 2021-01-25
 
 tags: ["L「Java」", "B「Core Java」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 23 Opaque Types"
+title: "「Swift」 23 Opaque Types"
 subtitle: "不透明类型"
 author: "roife"
 date: 2020-09-20
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

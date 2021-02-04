@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 10 Properties"
+title: "「Swift」 10 Properties"
 subtitle: "属性"
 author: "roife"
 date: 2020-09-13
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

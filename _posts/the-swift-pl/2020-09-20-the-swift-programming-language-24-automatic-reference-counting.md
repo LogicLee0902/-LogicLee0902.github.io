@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 24 Automatic Reference Counting"
+title: "「Swift」 24 Automatic Reference Counting"
 subtitle: "ARC"
 author: "roife"
 date: 2020-09-20
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

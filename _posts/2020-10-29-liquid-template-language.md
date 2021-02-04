@@ -1,13 +1,11 @@
 ---
 layout: "post"
 title: "Liquid Template Language"
-subtitle: ""
+subtitle: "搭建博客过程中的一些问题及解决方案"
 author: "roife"
 date: 2020-10-29
 
-tags: ["L「Liquid」", "Blog"]
-status: Completed
-
+tags: ["L「Liquid」", "博客搭建"]
 language: zh-CN
 catalog: true
 header-image: ""

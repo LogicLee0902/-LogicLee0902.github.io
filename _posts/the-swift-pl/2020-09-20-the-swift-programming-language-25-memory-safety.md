@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 25 Memory Safety"
+title: "「Swift」 25 Memory Safety"
 subtitle: "内存安全"
 author: "roife"
 date: 2020-09-20
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

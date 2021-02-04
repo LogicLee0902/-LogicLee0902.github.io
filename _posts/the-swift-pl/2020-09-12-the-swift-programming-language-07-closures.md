@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 07 Closures"
+title: "「Swift」 07 Closures"
 subtitle: "闭包"
 author: "roife"
 date: 2020-09-12
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

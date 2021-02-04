@@ -5,9 +5,7 @@ subtitle: "无限循环"
 author: "roife"
 date: 2020-01-06
 
-tags: ["B「The Little Schemer」", "L「Scheme」", "Programming Language Theory"]
-status: Completed
-
+tags: ["B「The Little Schemer」", "L「Scheme」", "程序语言理论"]
 language: zh-CN
 catalog: true
 header-image: ""

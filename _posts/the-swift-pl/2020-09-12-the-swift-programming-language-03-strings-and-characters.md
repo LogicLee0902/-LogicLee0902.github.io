@@ -1,13 +1,11 @@
 ---
 layout: "post"
-title: "「The Swift PL」 03 Strings and Characters"
+title: "「Swift」 03 Strings and Characters"
 subtitle: "字符串和字符"
 author: "roife"
 date: 2020-09-12
 
 tags: ["B「The Swift Programming Language」", "L「Swift」"]
-status: Completed
-
 language: zh-CN
 catalog: true
 header-image: ""

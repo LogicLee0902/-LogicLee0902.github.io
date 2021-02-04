@@ -5,9 +5,7 @@ subtitle: "介绍"
 author: "roife"
 date: 2020-09-29
 
-tags: ["B「Types and Programming Languages」", "C「(PKU) Design Principles of Programming Languages」"]
-status: Completed
-
+tags: ["B「Types and Programming Languages」", "B「PKU - 编程语言的设计原理」"]
 language: zh-CN
 catalog: true
 header-image: ""
