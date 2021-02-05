@@ -5,7 +5,7 @@ subtitle: "Verilog 模块设计"
 author: "roife"
 date: 2020-10-31
 
-tags: ["B「BUAA - 计算机组成实验」", "L「Verilog-HDL」", "北航", "计算机组成", "数字电路"]
+tags: ["C「BUAA - 计算机组成实验」", "L「Verilog-HDL」", "北航", "计算机组成", "数字电路"]
 language: zh-CN
 catalog: true
 header-image: ""

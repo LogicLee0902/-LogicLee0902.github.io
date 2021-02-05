@@ -5,7 +5,7 @@ subtitle: "数制, 数字存储, 四则运算"
 author: "roife"
 date: 2020-09-23
 
-tags: ["B「BUAA - 计算机组成」", "B「Digital Design and Computer Architecture」", "B「Computer Organization and Design: The Hardware/Software Interface」", "北航", "计算机组成"]
+tags: ["C「BUAA - 计算机组成」", "B「Digital Design and Computer Architecture」", "B「Computer Organization and Design: The Hardware/Software Interface」", "北航", "计算机组成"]
 language: zh-CN
 catalog: true
 header-image: ""

@@ -39,7 +39,7 @@ header-img: "img/tag-bg.jpg"
 				{% endcapture %}
 				{{ tags | split:'__SEPERATOR__' | sort }}
 
-				<h4>Books & Courses</h4>
+				<h4>Books</h4>
 				{% capture books %}
 					{%- for tag in site.tags -%}
 						{%- assign _first_char = tag[0] | slice: 0 -%}
@@ -58,7 +58,26 @@ header-img: "img/tag-bg.jpg"
 				{% endcapture %}
 				{{ books | split:'__SEPERATOR__' | sort }}
 
-				<h4>Languages & Framworks</h4>
+				<h4>Courses</h4>
+				{% capture courses %}
+					{%- for tag in site.tags -%}
+						{%- assign _first_char = tag[0] | slice: 0 -%}
+						{%- assign _second_char = tag[0] | slice: 1 -%}
+						{%- assign _last_char = tag[0] | slice: -1 -%}
+						{%- assign length = tag[0] | size | minus: 3 -%}
+						{%- if _first_char == 'C' and _second_char == '「' and _last_char == '」' -%}
+							<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+										  data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+										  rel="{{ tag[1].size }}">
+								{{ tag[0] | slice: 2, length }}
+								<sup>{{tag[1].size}}</sup>
+							</a>__SEPERATOR__
+						{%- endif -%}
+					{%- endfor -%}
+				{% endcapture %}
+				{{ courses | split:'__SEPERATOR__' | sort }}
+
+				<h4>Languages</h4>
 				{% capture languages %}
 					{%- for tag in site.tags -%}
 						{%- assign _first_char = tag[0] | slice: 0 -%}

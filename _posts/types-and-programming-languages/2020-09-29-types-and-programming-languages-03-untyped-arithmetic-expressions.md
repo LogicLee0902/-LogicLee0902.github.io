@@ -5,7 +5,7 @@ subtitle: "开始"
 author: "roife"
 date: 2020-10-04
 
-tags: ["B「Types and Programming Languages」", "B「PKU - 编程语言的设计原理」"]
+tags: ["B「Types and Programming Languages」", "C「PKU - 编程语言的设计原理」"]
 language: zh-CN
 catalog: true
 header-image: ""

@@ -5,7 +5,7 @@ subtitle: "复杂流水线 CPU"
 author: "roife"
 date: 2020-12-02
 
-tags: ["B「BUAA - 计算机组成实验」", "北航", "计算机组成", "L「Verilog-HDL」", "数字电路"]
+tags: ["C「BUAA - 计算机组成实验」", "北航", "计算机组成", "L「Verilog-HDL」", "数字电路"]
 language: zh-CN
 catalog: true
 header-image: ""
