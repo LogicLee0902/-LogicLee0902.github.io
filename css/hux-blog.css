@@ -189,7 +189,7 @@
     Multi-line snackbar height: 80 dp
     Text: Roboto Regular 14 sp
     Action button: Roboto Medium 14 sp, all-caps text
-    Default background fill: #323232 100%  
+    Default background fill: #323232 100%
   */
     left: 0px;
     right: 0px;
@@ -673,7 +673,7 @@ button.paper-button {
   font-size: 20px;
 }
 .search-page #search-input {
-  font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", "Noto Mono", "DejaVu Sans Mono", monospace;
   border: none;
   outline: none;
   padding: 0;
@@ -830,7 +830,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", "Noto Mono", "DejaVu Sans Mono", monospace;
 }
 .postlist-container {
   margin-bottom: 15px;
