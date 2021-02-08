@@ -5,7 +5,7 @@ subtitle: "开始"
 author: "roife"
 date: 2020-01-22
 
-tags: ["B「C++ Primer」", "L「C++」"]
+tags: ["C++ Primer@B", "C++@L"]
 language: zh-CN
 catalog: true
 header-image: ""

@@ -5,7 +5,7 @@ subtitle: "Proof by Induction"
 author: "roife"
 date: 2020-03-05
 
-tags: ["B「Software Foundations」", "B「Logical Foundations」", "L「Coq」", "程序语言理论", "形式化验证"]
+tags: ["Software Foundations@B", "Logical Foundations@B", "Coq@L", "程序语言理论@T", "形式化验证@T"]
 language: zh-CN
 catalog: true
 header-image: ""

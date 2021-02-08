@@ -5,7 +5,7 @@ subtitle: "面向对象"
 author: "roife"
 date: 2020-08-07
 
-tags: ["B「C++ Primer」", "L「C++」"]
+tags: ["C++ Primer@B", "C++@L"]
 language: zh-CN
 catalog: true
 header-image: ""

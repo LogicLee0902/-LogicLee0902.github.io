@@ -5,7 +5,7 @@ subtitle: "Git 内部原理"
 author: "roife"
 date: 2020-07-25
 
-tags: ["B「Pro Git」", "Git", "未完成"]
+tags: ["Pro Git@B", "Git@T", "未完成@T"]
 language: zh-CN
 catalog: true
 header-image: ""

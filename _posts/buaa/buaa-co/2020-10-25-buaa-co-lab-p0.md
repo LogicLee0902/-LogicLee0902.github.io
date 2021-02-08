@@ -5,7 +5,7 @@ subtitle: "Logisim 电路模块设计"
 author: "roife"
 date: 2020-10-25
 
-tags: ["C「BUAA - 计算机组成实验」", "北航", "计算机组成", "数字电路"]
+tags: ["BUAA - 计算机组成实验@C", "北航@T", "计算机组成@T", "数字电路@T"]
 language: zh-CN
 catalog: true
 header-image: ""

@@ -12,89 +12,114 @@ header-img: "img/tag-bg.jpg"
 <!-- Page Header -->
 {% include intro-header.html type='page'%}
 
+<!-- TAGS -->
+{% capture tags %}
+	{%- for tag in site.tags -%}
+		{%- assign _last_char = tag[0] | slice: -1 -%}
+		{%- assign length_2 = tag[0] | size | minus: 2 -%}
+		{%- if _last_char == 'T' -%}
+			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+							rel="{{ tag[1].size }}">
+				{{ tag[0] | slice: 0, length_2 }}
+				<sup>{{tag[1].size}}</sup>
+			</a>__SEPERATOR__
+		{%- endif -%}
+	{%- endfor -%}
+{% endcapture %}
+
+<!-- LANGUAGES -->
+{% capture languages %}
+	{%- for tag in site.tags -%}
+		{%- assign _last_char = tag[0] | slice: -1 -%}
+		{%- assign length_2 = tag[0] | size | minus: 2 -%}
+		{%- if _last_char == 'L' -%}
+			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+							rel="{{ tag[1].size }}">
+				{{ tag[0] | slice: 0, length_2 }}
+				<sup>{{tag[1].size}}</sup>
+			</a>__SEPERATOR__
+		{%- endif -%}
+	{%- endfor -%}
+{% endcapture %}
+
+<!-- BOOKS -->
+{% capture books %}
+	{%- for tag in site.tags -%}
+		{%- assign _last_char = tag[0] | slice: -1 -%}
+		{%- assign length_2 = tag[0] | size | minus: 2 -%}
+		{%- if _last_char == 'B' -%}
+			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+							rel="{{ tag[1].size }}">
+				{{ tag[0] | slice: 0, length_2 }}
+				<sup>{{tag[1].size}}</sup>
+			</a>__SEPERATOR__
+		{%- endif -%}
+	{%- endfor -%}
+{% endcapture %}
+
+<!-- COURSES -->
+{% capture courses %}
+	{%- for tag in site.tags -%}
+		{%- assign _last_char = tag[0] | slice: -1 -%}
+		{%- assign length_2 = tag[0] | size | minus: 2 -%}
+		{%- if _last_char == 'C' -%}
+			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+							rel="{{ tag[1].size }}">
+				{{ tag[0] | slice: 0, length_2 }}
+				<sup>{{tag[1].size}}</sup>
+			</a>__SEPERATOR__
+		{%- endif -%}
+	{%- endfor -%}
+{% endcapture %}
+
 <!-- Main Content -->
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<!-- Tags (as filter) -->
-			<div id='tag_cloud' class="tags tags-sup js-tags">
-				<a class="tag-button--all" data-encode="">
-					Show All
-					<sup>{{site.posts.size}}</sup>
-				</a>
+			<!-- Order Selector -->
+			<select class="sel-lang" onchange= "onOrderChange(this.options[this.options.selectedIndex].value)">
+				<option value="0" selected> 标签 | TAG </option>
+				<option value="1"> 合集 | CAT </option>
+			</select>
 
-				{% capture tags %}
-					{%- for tag in site.tags -%}
-						{%- assign _first_char = tag[0] | slice: 1 -%}
-						{%- assign _last_char = tag[0] | slice: -1 -%}
-						{%- unless _first_char == '「' and _last_char == '」' -%}
-							<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-										  data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-										  rel="{{ tag[1].size }}">
-								{{ tag[0] }}
-								<sup>{{tag[1].size}}</sup>
-							</a>__SEPERATOR__
-						{%- endunless -%}
-					{%- endfor -%}
-				{% endcapture %}
-				{{ tags | split:'__SEPERATOR__' | sort }}
+			<div class='tag'>
+				<!-- Tags (as filter) -->
+				<div id='tag_cloud' class="tags tags-sup js-tags">
+					<a class="tag-button--all" data-encode="">
+						Show All
+						<sup>{{site.posts.size}}</sup>
+					</a>
+					{{ tags | split:'__SEPERATOR__' | sort }}
+					<br>
+						<span class="fa listing-seperator">
+							<span class="tag-text">Languages</span>
+						</span> <br>
+						{{ languages | split:'__SEPERATOR__' | sort }}
+				</div>
+			</div>
 
-				<h4>Books</h4>
-				{% capture books %}
-					{%- for tag in site.tags -%}
-						{%- assign _first_char = tag[0] | slice: 0 -%}
-						{%- assign _second_char = tag[0] | slice: 1 -%}
-						{%- assign _last_char = tag[0] | slice: -1 -%}
-						{%- assign length = tag[0] | size | minus: 3 -%}
-						{%- if _first_char == 'B' and _second_char == '「' and _last_char == '」' -%}
-							<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-										  data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-										  rel="{{ tag[1].size }}">
-								{{ tag[0] | slice: 2, length }}
-								<sup>{{tag[1].size}}</sup>
-							</a>__SEPERATOR__
-						{%- endif -%}
-					{%- endfor -%}
-				{% endcapture %}
-				{{ books | split:'__SEPERATOR__' | sort }}
-
-				<h4>Courses</h4>
-				{% capture courses %}
-					{%- for tag in site.tags -%}
-						{%- assign _first_char = tag[0] | slice: 0 -%}
-						{%- assign _second_char = tag[0] | slice: 1 -%}
-						{%- assign _last_char = tag[0] | slice: -1 -%}
-						{%- assign length = tag[0] | size | minus: 3 -%}
-						{%- if _first_char == 'C' and _second_char == '「' and _last_char == '」' -%}
-							<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-										  data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-										  rel="{{ tag[1].size }}">
-								{{ tag[0] | slice: 2, length }}
-								<sup>{{tag[1].size}}</sup>
-							</a>__SEPERATOR__
-						{%- endif -%}
-					{%- endfor -%}
-				{% endcapture %}
-				{{ courses | split:'__SEPERATOR__' | sort }}
-
-				<h4>Languages</h4>
-				{% capture languages %}
-					{%- for tag in site.tags -%}
-						{%- assign _first_char = tag[0] | slice: 0 -%}
-						{%- assign _second_char = tag[0] | slice: 1 -%}
-						{%- assign _last_char = tag[0] | slice: -1 -%}
-						{%- assign length = tag[0] | size | minus: 3 -%}
-						{%- if _first_char == 'L' and _second_char == '「' and _last_char == '」' -%}
-							<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-										  data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-										  rel="{{ tag[1].size }}">
-								{{ tag[0] | slice: 2, length }}
-								<sup>{{tag[1].size}}</sup>
-							</a>__SEPERATOR__
-						{%- endif -%}
-					{%- endfor -%}
-				{% endcapture %}
-				{{ languages | split:'__SEPERATOR__' | sort }}
+			<div class='cat'>
+				<!-- Tags (as filter) -->
+				<div id='tag_cloud' class="tags tags-sup js-tags">
+					<a class="tag-button--all" data-encode="">
+						Show All
+						<sup>{{site.posts.size}}</sup>
+					</a>
+					<br>
+						<span class="fa listing-seperator">
+							<span class="tag-text">Books</span>
+						</span> <br>
+						{{ books | split:'__SEPERATOR__' | sort }}
+					<br>
+						<span class="fa listing-seperator">
+							<span class="tag-text">Courses</span>
+						</span> <br>
+					{{ courses | split:'__SEPERATOR__' | sort }}
+				</div>
 			</div>
 
 			<!-- Article List -->
@@ -146,3 +171,55 @@ header-img: "img/tag-bg.jpg"
 		</div>
 	</div>
 </div>
+
+<!-- Selection -->
+<script type="text/javascript">
+    // get nodes
+    var $tag = document.querySelector(".tag");
+    var $cat = document.querySelector(".cat");
+    var $select = document.querySelector("select");
+
+    // Changes at v1.8.1: include order flag as a url query. This interop well with catalog hash anchors.
+    function getOrder() { return new URLSearchParams(document.location.search).get("order") }
+
+    function setOrder(newOrder) {
+        var params = new URLSearchParams(document.location.search)
+        params.set("order", newOrder)
+        document.location.search = params.toString()  // refresh.
+    }
+
+    // handle render
+    function _render() {
+        var order = getOrder()
+        // category
+        if (order == "cat") {
+            $select.selectedIndex = 1;
+            $cat.style.display = "block";
+            $cat.classList.add("active");
+            $tag.style.display = "none";
+            $tag.classList.remove("active");
+            // default to tag
+        } else {
+            $select.selectedIndex = 0;
+            $tag.style.display = "block";
+            $tag.classList.add("active");
+            $cat.style.display = "none";
+            $cat.classList.remove("active");
+        }
+        // interop with catalog
+        generateCatalog(".catalog-body");
+    }
+
+    // handle select change
+    function onOrderChange(index) {
+        if (index == 0) {
+            order = "tag"
+        } else {
+            order = "cat"
+        }
+        setOrder(order)
+    }
+
+    // init
+    _render();
+</script>

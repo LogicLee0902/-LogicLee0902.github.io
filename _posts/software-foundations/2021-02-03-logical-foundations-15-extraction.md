@@ -5,7 +5,7 @@ subtitle: "Extraction ML from Coq"
 author: "roife"
 date: 2021-02-03
 
-tags: ["B「Software Foundations」", "B「Logical Foundations」", "L「Coq」", "程序语言理论", "形式化验证"]
+tags: ["Software Foundations@B", "Logical Foundations@B", "Coq@L", "程序语言理论@T", "形式化验证@T"]
 language: zh-CN
 catalog: true
 header-image: ""

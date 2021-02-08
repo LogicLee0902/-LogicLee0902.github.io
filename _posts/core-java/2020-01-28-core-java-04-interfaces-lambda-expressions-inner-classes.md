@@ -5,7 +5,7 @@ subtitle: "接口，lambda 表达式和内部类"
 author: "roife"
 date: 2021-01-28
 
-tags: ["L「Java」", "B「Core Java」", "未完成"]
+tags: ["Java@L", "Core Java@B", "未完成@T"]
 language: zh-CN
 catalog: true
 header-image: ""

@@ -5,7 +5,7 @@ subtitle: "继承"
 author: "roife"
 date: 2021-01-27
 
-tags: ["L「Java」", "B「Core Java」"]
+tags: ["Java@L", "Core Java@B"]
 language: zh-CN
 catalog: true
 header-image: ""

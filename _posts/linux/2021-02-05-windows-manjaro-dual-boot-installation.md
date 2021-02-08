@@ -5,7 +5,7 @@ subtitle: "系统安装，软件配置及介绍"
 author: "roife"
 date: 2021-02-05
 
-tags: ["Linux", "Manjaro"]
+tags: ["Linux@T", "Manjaro@T"]
 language: zh-CN
 catalog: true
 header-image: ""

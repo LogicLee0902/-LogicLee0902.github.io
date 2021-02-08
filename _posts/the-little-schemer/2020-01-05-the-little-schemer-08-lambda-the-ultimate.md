@@ -5,7 +5,7 @@ subtitle: "高阶函数"
 author: "roife"
 date: 2020-01-05
 
-tags: ["B「The Little Schemer」", "L「Scheme」", "程序语言理论"]
+tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@T"]
 language: zh-CN
 catalog: true
 header-image: ""

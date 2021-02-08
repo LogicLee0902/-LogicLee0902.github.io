@@ -5,7 +5,7 @@ subtitle: "特殊标准库"
 author: "roife"
 date: 2020-08-13
 
-tags: ["B「C++ Primer」", "L「C++」"]
+tags: ["C++ Primer@B", "C++@L"]
 language: zh-CN
 catalog: true
 header-image: ""
