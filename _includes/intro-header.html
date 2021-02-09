@@ -37,14 +37,8 @@
                 <div class="post-heading">
                     <div class="tags">
                         {% for tag in page.tags %}
-          				{%- assign _second_char = tag | slice: 1 -%}
-          				{%- assign _last_char = tag | slice: -1 -%}
-         				{%- assign length = tag | size | minus: 3 -%}
-				        {%- if _second_char == '「' and _last_char == '」' -%}
-                        <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | slice: 2, length | url_encode }}" title="{{ tag | slice: 2, length }}">{{ tag | slice: 2, length }}</a>
-                        {%- else -%}
-                        <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag }}">{{ tag }}</a>
-				        {%- endif -%}
+                            {%- assign length = tag | size | minus: 2 -%}
+                            <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | slice: 0, length | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
