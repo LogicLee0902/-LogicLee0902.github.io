@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 15 Extraction"
+title: "「SF-LF」 15 Extraction"
 subtitle: "Extraction ML from Coq"
 author: "roife"
 date: 2021-02-03

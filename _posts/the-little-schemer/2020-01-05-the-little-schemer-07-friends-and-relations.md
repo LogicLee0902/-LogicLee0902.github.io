@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 07 Friends and Relations"
+title: "「TLS」 07 Friends and Relations"
 subtitle: "集合运算"
 author: "roife"
 date: 2020-01-05

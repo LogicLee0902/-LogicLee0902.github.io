@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 08 Maps"
+title: "「SF-LF」 08 Maps"
 subtitle: "Total and Partial Maps"
 author: "roife"
 date: 2020-04-18

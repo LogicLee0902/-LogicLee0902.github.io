@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 05 *Oh My Gawd* : It's Full of Stars"
+title: "「TLS」 05 *Oh My Gawd* : It's Full of Stars"
 subtitle: "list 嵌套"
 author: "roife"
 date: 2020-01-04

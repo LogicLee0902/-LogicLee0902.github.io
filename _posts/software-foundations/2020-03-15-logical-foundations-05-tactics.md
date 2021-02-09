@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 05 Tactics"
+title: "「SF-LF」 05 Tactics"
 subtitle: "More Basic Tactics"
 author: "roife"
 date: 2020-03-15

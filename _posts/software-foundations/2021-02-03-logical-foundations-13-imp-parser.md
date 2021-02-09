@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 13 ImpParser"
+title: "「SF-LF」 13 ImpParser"
 subtitle: "Lexing and Parsing in Coq"
 author: "roife"
 date: 2021-02-03

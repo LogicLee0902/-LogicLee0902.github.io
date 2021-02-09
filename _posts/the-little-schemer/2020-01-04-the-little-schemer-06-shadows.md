@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 06 Shadows"
+title: "「TLS」 06 Shadows"
 subtitle: "表达式"
 author: "roife"
 date: 2020-01-04

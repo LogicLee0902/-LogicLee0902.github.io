@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 11 Rel"
+title: "「SF-LF」 11 Rel"
 subtitle: "Properties of Relations"
 author: "roife"
 date: 2021-01-30

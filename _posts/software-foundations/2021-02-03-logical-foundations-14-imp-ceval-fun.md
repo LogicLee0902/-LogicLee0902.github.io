@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 14 ImpCEvalFun"
+title: "「SF-LF」 14 ImpCEvalFun"
 subtitle: "An Evaluation Function For Imp"
 author: "roife"
 date: 2021-02-03

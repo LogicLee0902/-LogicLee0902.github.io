@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 16 Auto"
+title: "「SF-LF」 16 Auto"
 subtitle: "More Automation"
 author: "roife"
 date: 2021-02-03

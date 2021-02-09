@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 02 Do It, Do It Again, and Again, and Again..."
+title: "「TLS」 02 Do It, Do It Again, and Again, and Again..."
 subtitle: "基本函数"
 author: "roife"
 date: 2020-01-03

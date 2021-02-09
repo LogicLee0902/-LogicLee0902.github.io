@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 02 Induction"
+title: "「SF-LF」 02 Induction"
 subtitle: "Proof by Induction"
 author: "roife"
 date: 2020-03-05

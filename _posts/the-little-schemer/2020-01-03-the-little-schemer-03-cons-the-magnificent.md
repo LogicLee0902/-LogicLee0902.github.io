@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 03 Cons the Magnificent"
+title: "「TLS」 03 Cons the Magnificent"
 subtitle: "Cons 与 列表"
 author: "roife"
 date: 2020-01-03

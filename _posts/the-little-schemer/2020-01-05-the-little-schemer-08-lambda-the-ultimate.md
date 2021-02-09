@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 08 Lambda the Ultimate"
+title: "「TLS」 08 Lambda the Ultimate"
 subtitle: "高阶函数"
 author: "roife"
 date: 2020-01-05

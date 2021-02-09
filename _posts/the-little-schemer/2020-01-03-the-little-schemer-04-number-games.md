@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 04 Number Games"
+title: "「TLS」 04 Number Games"
 subtitle: "数字操作"
 author: "roife"
 date: 2020-01-03

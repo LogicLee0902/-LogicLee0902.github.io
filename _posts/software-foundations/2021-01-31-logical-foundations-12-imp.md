@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 12 Imp"
+title: "「SF-LF」 12 Imp"
 subtitle: "Simple Imperative Programs"
 author: "roife"
 date: 2021-01-31

@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 10 Ind Principles"
+title: "「SF-LF」 10 Ind Principles"
 subtitle: "Induction Principles"
 author: "roife"
 date: 2020-04-22

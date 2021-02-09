@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 00 Preface"
+title: "「SF-LF」 00 Preface"
 subtitle: "Introduction"
 author: "roife"
 date: 2020-03-04

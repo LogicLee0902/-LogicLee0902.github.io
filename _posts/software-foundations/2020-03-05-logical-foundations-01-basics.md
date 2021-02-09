@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 01 Basics"
+title: "「SF-LF」 01 Basics"
 subtitle: "Functional Programming in Coq"
 author: "roife"
 date: 2020-03-05

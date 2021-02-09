@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 09 Proof Objects"
+title: "「SF-LF」 09 Proof Objects"
 subtitle: "The Curry-Howard Correspondence"
 author: "roife"
 date: 2020-04-20

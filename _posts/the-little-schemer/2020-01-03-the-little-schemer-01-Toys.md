@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「The Little Schemer」 01 Toys"
+title: "「TLS」 01 Toys"
 subtitle: "atom 和 list"
 author: "roife"
 date: 2020-01-03

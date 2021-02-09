@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 07 Ind Prop"
+title: "「SF-LF」 07 Ind Prop"
 subtitle: "Inductively Defined Propositions"
 author: "roife"
 date: 2020-04-05

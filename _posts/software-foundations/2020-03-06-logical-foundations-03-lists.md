@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 03 Lists"
+title: "「SF-LF」 03 Lists"
 subtitle: "Working with Structured Data"
 author: "roife"
 date: 2020-03-06

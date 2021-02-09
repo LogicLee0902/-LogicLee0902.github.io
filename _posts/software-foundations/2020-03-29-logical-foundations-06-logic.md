@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 06 Logic"
+title: "「SF-LF」 06 Logic"
 subtitle: "Logic in Coq"
 author: "roife"
 date: 2020-03-29

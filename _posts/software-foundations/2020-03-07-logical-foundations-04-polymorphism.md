@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Logical Foundations」 04 Polymorphism"
+title: "「SF-LF」 04 Polymorphism"
 subtitle: "Polymorphism, Higher-Order Functions and Church numerals"
 author: "roife"
 date: 2020-03-07
