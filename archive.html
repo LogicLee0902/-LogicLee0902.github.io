@@ -96,7 +96,7 @@ header-img: "img/tag-bg.jpg"
 					{{ tags | split:'__SEPERATOR__' | sort }}
 					<br>
 						<span class="fa listing-seperator">
-							<span class="tag-text">Languages</span>
+							<span class="tag-text">Programming Languages</span>
 						</span> <br>
 						{{ languages | split:'__SEPERATOR__' | sort }}
 				</div>
@@ -207,7 +207,6 @@ header-img: "img/tag-bg.jpg"
             $cat.classList.remove("active");
         }
         // interop with catalog
-        generateCatalog(".catalog-body");
     }
 
     // handle select change
