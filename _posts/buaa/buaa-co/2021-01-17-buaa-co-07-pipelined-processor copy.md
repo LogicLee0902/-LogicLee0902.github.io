@@ -4,7 +4,7 @@ title: "「BUAA-CO」 07 流水线处理器"
 subtitle: "流水线处理器及冲突解决"
 author: "roife"
 date: 2021-01-17
-tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "Computer Organization and Design: The Hardware/Software Interface@B", "北航@T", "计算机组成@T", "数字电路@T", "Verilog-HDL@L"]
+tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "Computer Organization and Design@B", "北航@T", "计算机组成@T", "数字电路@T", "Verilog-HDL@L"]
 language: zh-CN
 catalog: true
 header-image: ""
