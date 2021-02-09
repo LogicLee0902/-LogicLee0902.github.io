@@ -5,7 +5,7 @@ subtitle: "单周期 CPU (Verilog)"
 author: "roife"
 date: 2020-11-19
 
-tags: ["BUAA - 计算机组成实验@C", "北航@T", "计算机组成@T", "Verilog-HDL@L", "数字电路@T"]
+tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "Verilog-HDL@L", "数字电路@D"]
 language: zh-CN
 catalog: true
 header-image: ""

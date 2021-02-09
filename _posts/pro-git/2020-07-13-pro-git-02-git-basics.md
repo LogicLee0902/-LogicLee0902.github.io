@@ -5,7 +5,7 @@ subtitle: "基本命令"
 author: "roife"
 date: 2020-07-13
 
-tags: ["Pro Git@B", "Git@T"]
+tags: ["Pro Git@B", "Git@D"]
 language: zh-CN
 catalog: true
 header-image: ""

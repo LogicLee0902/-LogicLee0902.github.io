@@ -5,7 +5,7 @@ subtitle: "表达式"
 author: "roife"
 date: 2020-01-04
 
-tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@T"]
+tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@D"]
 language: zh-CN
 catalog: true
 header-image: ""

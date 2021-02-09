@@ -5,7 +5,7 @@ subtitle: "晶体管, 门电路, 卡诺图, 组合逻辑"
 author: "roife"
 date: 2020-09-23
 
-tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "北航@T", "计算机组成@T", "数字电路@T"]
+tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "北航@D", "计算机组成@D", "数字电路@D"]
 language: zh-CN
 catalog: true
 header-image: ""

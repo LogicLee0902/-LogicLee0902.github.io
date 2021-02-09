@@ -5,7 +5,7 @@ subtitle: "MIPS 汇编设计"
 author: "roife"
 date: 2020-10-31
 
-tags: ["BUAA - 计算机组成实验@C", "MIPS Assembly@L", "北航@T", "计算机组成@T"]
+tags: ["BUAA - 计算机组成实验@C", "MIPS Assembly@L", "北航@D", "计算机组成@D"]
 language: zh-CN
 catalog: true
 header-image: ""

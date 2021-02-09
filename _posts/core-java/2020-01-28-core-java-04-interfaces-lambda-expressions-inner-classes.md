@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Core Java」 03 Interfaces, Lambda Expressions, and Inner Classes（Unfinished）"
+title: "「Core Java」 03 Interfaces, Lambda, Inner Classes"
 subtitle: "接口，lambda 表达式和内部类"
 author: "roife"
 date: 2021-01-28
 
-tags: ["Java@L", "Core Java@B", "未完成@T"]
+tags: ["Java@L", "Core Java@B", "未完成@D"]
 language: zh-CN
 catalog: true
 header-image: ""

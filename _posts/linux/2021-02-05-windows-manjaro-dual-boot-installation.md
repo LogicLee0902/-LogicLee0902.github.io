@@ -5,7 +5,7 @@ subtitle: "系统安装，软件配置及介绍（以 Y7000p 为例）"
 author: "roife"
 date: 2021-02-05
 
-tags: ["Linux@T", "Manjaro@T"]
+tags: ["Linux@D", "Manjaro@D"]
 language: zh-CN
 catalog: true
 header-image: ""

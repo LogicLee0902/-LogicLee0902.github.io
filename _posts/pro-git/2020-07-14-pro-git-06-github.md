@@ -5,7 +5,7 @@ subtitle: "GitHub 的使用"
 author: "roife"
 date: 2020-07-14
 
-tags: ["Pro Git@B", "Git@T"]
+tags: ["Pro Git@B", "Git@D"]
 language: zh-CN
 catalog: true
 header-image: ""

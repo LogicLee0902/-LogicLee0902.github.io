@@ -17,7 +17,7 @@ header-img: "img/tag-bg.jpg"
 	{%- for tag in site.tags -%}
 		{%- assign _last_char = tag[0] | slice: -1 -%}
 		{%- assign length_2 = tag[0] | size | minus: 2 -%}
-		{%- if _last_char == 'T' -%}
+		{%- if _last_char == 'D' -%}
 			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
 							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
 							rel="{{ tag[1].size }}">

@@ -5,7 +5,7 @@ subtitle: "搭建博客遇到的问题及解答"
 author: "roife"
 date: 2020-10-29
 
-tags: ["Liquid@L", "博客搭建@T"]
+tags: ["Liquid@L", "博客搭建@D"]
 language: zh-CN
 catalog: true
 header-image: ""

@@ -5,7 +5,7 @@ subtitle: "写一个 Scheme 解释器"
 author: "roife"
 date: 2020-01-06
 
-tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@T"]
+tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@D"]
 language: zh-CN
 catalog: true
 header-image: ""

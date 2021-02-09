@@ -5,7 +5,7 @@ subtitle: "配置 Git"
 author: "roife"
 date: 2020-07-22
 
-tags: ["Pro Git@B", "Git@T"]
+tags: ["Pro Git@B", "Git@D"]
 language: zh-CN
 catalog: true
 header-image: ""

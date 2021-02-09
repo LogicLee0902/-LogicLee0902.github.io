@@ -5,7 +5,7 @@ subtitle: "Inductively Defined Propositions"
 author: "roife"
 date: 2020-04-05
 
-tags: ["Software Foundations@B", "Logical Foundations@B", "Coq@L", "程序语言理论@T", "形式化验证@T"]
+tags: ["Software Foundations@B", "Logical Foundations@B", "Coq@L", "程序语言理论@D", "形式化验证@D"]
 language: zh-CN
 catalog: true
 header-image: ""
