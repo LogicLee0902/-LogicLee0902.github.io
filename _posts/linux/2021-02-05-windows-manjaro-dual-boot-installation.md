@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "Win10/Manjaro 双系统配置（Y7000P）"
-subtitle: "系统安装，软件配置及介绍"
+title: "Win 10 & Manjaro 双系统配置"
+subtitle: "系统安装，软件配置及介绍（以 Y7000p 为例）"
 author: "roife"
 date: 2021-02-05
 
