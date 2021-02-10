@@ -6,7 +6,7 @@ author: "roife"
 date: 2020-09-23
 
 tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "Computer Organization and Design@B", "北航@D", "计算机组成@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text
@@ -16,6 +16,7 @@ katex: true
 # 重要认识
 
 ## 摩尔定律
+
 集成电路上可以容纳的晶体管数目在大约每经过 24 个月便会增加一倍, 即处理器的性能每隔两年翻一倍.
 
 ## 局部性原理

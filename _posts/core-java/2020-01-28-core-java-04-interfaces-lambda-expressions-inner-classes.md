@@ -6,7 +6,7 @@ author: "roife"
 date: 2021-01-28
 
 tags: ["Java@L", "Core Java@B", "未完成@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

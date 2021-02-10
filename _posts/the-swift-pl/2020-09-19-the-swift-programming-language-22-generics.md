@@ -6,7 +6,7 @@ author: "roife"
 date: 2020-09-19
 
 tags: ["The Swift Programming Language@B", "Swift@L"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

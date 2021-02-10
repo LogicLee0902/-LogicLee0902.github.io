@@ -6,7 +6,7 @@ author: "roife"
 date: 2020-08-24
 
 tags: ["C++ Primer@B", "C++@L"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

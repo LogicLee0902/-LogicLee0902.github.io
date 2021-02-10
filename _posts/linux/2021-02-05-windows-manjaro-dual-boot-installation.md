@@ -6,7 +6,7 @@ author: "roife"
 date: 2021-02-05
 
 tags: ["Linux@D", "Manjaro@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

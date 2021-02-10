@@ -6,7 +6,7 @@ author: "roife"
 date: 2020-01-04
 
 tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

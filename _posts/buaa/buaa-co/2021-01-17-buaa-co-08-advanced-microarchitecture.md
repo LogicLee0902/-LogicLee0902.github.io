@@ -5,7 +5,7 @@ subtitle: "异常，分支预测、超标量、乱序处理器等"
 author: "roife"
 date: 2021-01-17
 tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "Computer Organization and Design@B", "北航@D", "计算机组成@D", "数字电路@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

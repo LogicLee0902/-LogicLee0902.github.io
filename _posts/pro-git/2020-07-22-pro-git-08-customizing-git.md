@@ -6,7 +6,7 @@ author: "roife"
 date: 2020-07-22
 
 tags: ["Pro Git@B", "Git@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

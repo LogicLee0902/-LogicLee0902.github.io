@@ -6,7 +6,7 @@ author: "roife"
 date: 2021-02-03
 
 tags: ["Software Foundations@B", "Logical Foundations@B", "Coq@L", "程序语言理论@D", "形式化验证@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

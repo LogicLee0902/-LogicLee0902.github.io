@@ -6,7 +6,7 @@ author: "roife"
 date: 2020-10-29
 
 tags: ["Liquid@L", "博客搭建@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text

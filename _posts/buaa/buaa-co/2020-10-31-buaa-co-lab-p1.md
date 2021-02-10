@@ -6,7 +6,7 @@ author: "roife"
 date: 2020-10-31
 
 tags: ["BUAA - 计算机组成实验@C", "Verilog-HDL@L", "北航@D", "计算机组成@D", "数字电路@D"]
-language: zh-CN
+lang: zh
 catalog: true
 header-image: ""
 header-style: text
