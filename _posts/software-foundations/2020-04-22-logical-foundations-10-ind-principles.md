@@ -29,8 +29,6 @@ nat_ind
 - 使用归纳规则需要手动在 case 里进行 `intros`
 - 使用归纳规则前一般不会 `intros` 归纳变量, 因为 `apply` 要求命题和结论完全相同, 如果 conclusion 中含有量词, 那么当前也要保留量词.
 
-<!-- end list -->
-
 ``` coq
 Theorem mult_0_r' : forall n:nat,
   n * 0 = 0.

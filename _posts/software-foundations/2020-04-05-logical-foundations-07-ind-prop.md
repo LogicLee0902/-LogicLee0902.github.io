@@ -65,8 +65,6 @@ Inductive even' : nat -> Prop :=
   - 对于 index 而言, `even nat` 定义了一类类型, 它的 constructor 的参数个数和类型都没有限制. 如 `ev_SS` 中 H 的类型可以是 `even 0` 或者 `even 2`.
 - 可以将这种定义看做是一个伴随了两个 Theorem 的 property, constructor 名就是 Theorem 的名字, 可以像 Theorem 一样使用.
 
-<!-- end list -->
-
 ``` coq
 Theorem ev_4 : even 4.
 Proof. apply ev_SS. apply ev_SS. apply ev_0. Qed.
@@ -132,8 +130,6 @@ Qed.
 - Inversion
   : 结合了 `destruct`, `discriminate`, `injection`, `intros`, `rewrite`, 是一个综合的 tactic, 可以看成一个特殊的 `destruct`. 如果两边不同的 constructor 不同, 说明可以 `discriminate`, `inversion` 会自动调用; 如果 constructor 相同, 说明可以 `injection`, `inversion` 会自动添加条件.
 
-
-<!-- end list -->
 
 ``` coq
 Theorem evSS_ev' : forall n,
@@ -388,8 +384,6 @@ Inductive exp_match {T} : list T -> reg_exp -> Prop :=
 
 - remember
   : 记忆某些信息防止在 `induction` 时丢失
-
-<!-- end list -->
 
 ``` coq
 Lemma star_app: forall T (s1 s2 : list T) (re : reg_exp),

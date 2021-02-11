@@ -324,8 +324,6 @@ template declaration;        // 实例化定义, 用来强制实例化模板
 - 由于使用模板时就会实例化, 因此要在使用前就用 `extern` 声明.
 - 由于模板不使用就不实例化, 因此可以用实例化定义强制实例化一个版本.
 
-<!-- end list -->
-
 ``` cpp
 // app.cc
 extern template int cmp(const int&, const int&); // extern 声明
@@ -353,8 +351,6 @@ template class Blob<int>(); // 强制实例化整个类, 相反如果是自动�
 - `const` 转换: 非 `const` 类型可以传递给 `const` 形参, 非引用的情况下顶层 const 也会被忽略
 - 数组/函数转换: 如果形参不是 **引用类型**, 把数组和函数都看成指针
 - 其它类型转换 (如: 算术类型转换 / 派生类转换 / 用户定义的转换) 都不会发生
-
-<!-- end list -->
 
 ``` cpp
 template <typename T> T fobj(T, T);
@@ -486,8 +482,6 @@ f2(5); // const int
   - `X& &`, `X& &&`, `X&& &` : `X&`
   - `X&& &&` : `X&&`
 
-<!-- end list -->
-
 ``` cpp
 template <typename T> void f(T &&);
 
@@ -519,8 +513,6 @@ typename std::remove_reference<T>::type move(T&& t) {
 
 - 首先引用可以保持 const 属性
 - 其次通过引用折叠可以保持左右值属性
-
-<!-- end list -->
 
 ``` cpp
 template <typename F, typename T1, typename T2>
@@ -558,8 +550,6 @@ void flip2(F f, T1 &&t1, T2 &&t2) {
 - 如果匹配度相同, 且只有一个普通函数, 优先选择普通函数
 - 选择模板函数时, 优先选择特例化程度高的函数
 - 否则调用有歧义
-
-<!-- end list -->
 
 ``` cpp
 template <typename T> std::string debug_rep(const T &t);

@@ -44,8 +44,6 @@ refs/ # 存储指针
   - `--stdin`
     : 从标准输入读取, 不加就要加上路径
 
-<!-- end list -->
-
 ``` shell
 $ echo 'test content' | git hash-object -w --stdin
 d670460b4b4aece5915caf5c68d12f560a9fe3e4
@@ -65,8 +63,6 @@ $ git hash-object -w test.txt
     : 自动识别类型
   - `-t`
     : 输出类型
-
-<!-- end list -->
 
 ``` shell
 $ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4

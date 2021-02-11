@@ -29,8 +29,6 @@ pull request 的使用技巧:
 2. pr 中途要修改代码只要直接 push 就好, pr 记录会直接更新
 3. 如果上游代码发生变动, 可能会导致 pr 无法合并, 此时一般手动将上游代码合并到 pr 中.
 
-<!-- end list -->
-
 ``` shell
 $ git remote add upstream <link>
 $ git fetch upstream

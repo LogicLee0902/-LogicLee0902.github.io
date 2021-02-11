@@ -5,7 +5,7 @@ subtitle: "Verilog-HDL"
 author: "roife"
 date: 2020-09-28
 
-tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "数字电路@D"]
+tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "数字电路@D", "Verilog-HDL@L"]
 lang: zh
 catalog: true
 header-image: ""

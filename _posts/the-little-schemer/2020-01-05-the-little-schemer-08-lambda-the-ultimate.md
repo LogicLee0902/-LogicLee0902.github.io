@@ -16,8 +16,6 @@ header-style: text
 
 - `(rember-f test? a l)` 从 list l 中移除 atom a, 其中 test? 是判断是否相等的函数
 
-<!-- end list -->
-
 ``` scheme
 (define rember-f
   (lambda (test? a l)
@@ -35,8 +33,6 @@ header-style: text
 > Thanks to Haskell B. Curry
 
 - `(eq?-c a)` 返回一个函数, 这个函数的作用是判断参数是否等于 c, 如 `(eq?-c 'a) => (lambda (x) (eq? x 'a))`
-
-<!-- end list -->
 
 ``` scheme
 (define eq?-c
@@ -91,8 +87,6 @@ header-style: text
 发现 insertL-f 和 insertR-f 代码非常相似, 不妨合并成一个 `insert-g`.
 
 - `(insert-g seq)` 表示返回一个 insertL 或者 insertR
-
-<!-- end list -->
 
 ``` scheme
 (define seqL (lambda (a b l) (cons a (cons b (cdr l)))))
@@ -224,8 +218,6 @@ header-style: text
 
 - `(multirember&co a lat col)` 将等于 a 的元素放到列表 l1, 把不等于 a 的元素放到列表 l2, 最后计算 `(col l1 l2)`
 
-<!-- end list -->
-
 ``` scheme
 (define multiinsertLR&co
   (lambda (new oldL oldR lat col)
@@ -246,8 +238,6 @@ header-style: text
 
 - `(evens-only* l)` 从 l 中移除所有奇数
 
-<!-- end list -->
-
 ``` scheme
 (define even? (lambda (n) (= 0 (remainder n 2))))
 
@@ -264,8 +254,6 @@ header-style: text
 ```
 
 - `(evens-only*&co l)` 从 l 中移除所有奇数, 同时计算所有奇数的和与偶数的乘积
-
-<!-- end list -->
 
 ``` scheme
 (define evens-only*&co

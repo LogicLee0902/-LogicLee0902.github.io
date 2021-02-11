@@ -44,8 +44,6 @@ Check is_three. (*[nat -> Prop]*)
 - split
   : 将一个 conjunction 分解为多个 subgoals 分别证明.
 
-<!-- end list -->
-
 ``` coq
 Lemma and_intro : forall A B : Prop, A -> B -> A /\ B.
 Proof.
@@ -210,8 +208,6 @@ Qed.
 
 - exfalso
   : 类似于 `ex_falso_quodlibet`, 将假命题转换为 `False` 后证明.
-
-<!-- end list -->
 
 ``` coq
 Theorem not_true_is_false : forall b : bool,
@@ -424,8 +420,6 @@ A term in Coq is a member of at most one type.
 - Axiom
   : 引入 Assumptions, 为 Coq 内置类型系统添加规则, 并且无需证明, 但是要保证 Coq 的自洽性.
 
-<!-- end list -->
-
 ``` coq
 (* functional extensionality 与Coq 内置系统自洽. *)
 Axiom functional_extensionality : forall {X Y : Type}
@@ -442,8 +436,6 @@ Qed.
 
 - Print Assumptions
   : 检查一个证明是否依赖于 Assumptions.
-
-<!-- end list -->
 
 ``` coq
 Print Assumptions function_equality_ex2.

@@ -16,8 +16,6 @@ header-style: text
 
 - `(member? a lat)` 表示判断一个 atom 是否为一个 lat 的一部分, 如 `(member? 'a '(a b c)) => #t`
 
-<!-- end list -->
-
 ``` scheme
 (define member?
   (lambda (a lat)
@@ -28,8 +26,6 @@ header-style: text
 ```
 
 - `(rember a lat)` 表示从一个 lat 中移除一个 atom 第一次出现的地方,如 `(rember 'mint '(mint lamb chops mint)) => '(lamb chops)`, 若未出现则不改变
-
-<!-- end list -->
 
 ``` scheme
 (define rember
@@ -43,8 +39,6 @@ header-style: text
 
 - `(firsts l)` 表示取出 list 中每一个子列表的第一个元素,来组成新列表,如 `(firsts '((a b) (c d) (e f))) => '(a c e)`
 
-<!-- end list -->
-
 ``` scheme
 (define firsts
   (lambda (l)
@@ -54,8 +48,6 @@ header-style: text
 ```
 
 - `(insertR a b lat)` 表示把 atom a 插入到 lat 里 atom b 第一次出现的位置后, 如 `(insertR 'a 'b '(c d b)) => '(c d b a)`
-
-<!-- end list -->
 
 ``` scheme
 (define insertR
@@ -80,8 +72,6 @@ header-style: text
 
 - `(subst a b lat)` 表示用 atom a 替换第一个 atom b, 如 `(subst 'a 'b '(c b)) => '(c a)`
 
-<!-- end list -->
-
 ``` scheme
 (define subst
   (lambda (a b lat)
@@ -93,8 +83,6 @@ header-style: text
 ```
 
 - `(subst2 a b c lat)` 表示用 atom a 替换 atom b 或第一个 atom c , 如 `(subst2 'a 'b '(c b)) => '(c a)`
-
-<!-- end list -->
 
 ``` scheme
 (define subst2
@@ -111,8 +99,6 @@ header-style: text
 
 - `(multirember a lat)` 表示删除 lat 中所有的 atom a
 
-<!-- end list -->
-
 ``` scheme
 (define multirember
   (lambda (a lat)
@@ -124,8 +110,6 @@ header-style: text
 ```
 
 - `(multiinsertR a b lat)` 表示在所有的 atom b 后面插入 atom a
-
-<!-- end list -->
 
 ``` scheme
 (define multiinsertR
@@ -140,8 +124,6 @@ header-style: text
 
 - `(multiinsertR a b lat)` 表示在所有的 atom b 前面插入 atom a
 
-<!-- end list -->
-
 ``` scheme
 (define multiinsertL
   (lambda (a b lat)
@@ -153,8 +135,6 @@ header-style: text
 ```
 
 - `(multisubst a b lat)` 表示把所有的 atom b 替换成 atom a
-
-<!-- end list -->
 
 ``` scheme
 (define multisubst

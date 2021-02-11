@@ -26,8 +26,6 @@ header-style: text
 
 - `(o- m n)` 返回 m-n
 
-<!-- end list -->
-
 ``` scheme
 (define o+
   (lambda (m n)
@@ -53,8 +51,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(addtup tup)` 求出 tup 中所有数字之和
 
-<!-- end list -->
-
 ``` scheme
 (define addtup
   (lambda (tup)
@@ -66,8 +62,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(o* a b)` 返回 a\*b
 
-<!-- end list -->
-
 ``` scheme
 (define o*
   (lambda (a b)
@@ -77,8 +71,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 ```
 
 - `(tup+ tup1 tup2)` 将 tup1 中元素与 tup2 中对应位置的元素相加, 对于空元素视为 0, 如 `(tup+ '(1 2 3) '(3 4)) => '(4 6 3)`
-
-<!-- end list -->
 
 ``` scheme
 (define tup+
@@ -94,8 +86,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(> a b)` 返回 a\>b
 
-<!-- end list -->
-
 ``` scheme
 (define >
   (lambda (a b)
@@ -108,8 +98,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 ```
 
 - `( = a b)` 返回 a=b
-
-<!-- end list -->
 
 ``` scheme
 (define =
@@ -124,8 +112,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(^ a b)` 计算 `a^b`
 
-<!-- end list -->
-
 ``` scheme
 (define ^
   (lambda (a b)
@@ -135,8 +121,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 ```
 
 - `(o/ a b)` 计算 a/b
-
-<!-- end list -->
 
 ``` scheme
 (define o/
@@ -150,8 +134,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(length lat)` 计算 lat 的长度
 
-<!-- end list -->
-
 ``` scheme
 (define length
   (lambda (lat)
@@ -162,8 +144,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(pick n lat)` 返回计算 lat 中第 n 个元素
 
-<!-- end list -->
-
 ``` scheme
 (define pick
   (lambda (n lat)
@@ -173,8 +153,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 ```
 
 - `(rempick n lat)` 返回去掉第 n 个元素后的 lat
-
-<!-- end list -->
 
 ``` scheme
 (define rempick
@@ -189,8 +167,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(non-nums lat)` 去除 lat 中所有的数字
 
-<!-- end list -->
-
 ``` scheme
 (define non-nums
   (lambda (lat)
@@ -202,8 +178,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 ```
 
 - `(all-nums lat)` 提取出 lat 中所有数字组成 tup
-
-<!-- end list -->
 
 ``` scheme
 (define all-nums
@@ -217,8 +191,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 
 - `(eqan? a b)` 比较 a 和 b 是否相同 (考虑数字和普通 atom)
 
-<!-- end list -->
-
 ``` scheme
 (define eqan?
   (lambda (a b)
@@ -231,8 +203,6 @@ tup 的判空语句和 list 一样, 都是 `(null? tup)`. 同时,在数字运算
 ```
 
 - `(occur a lat)` 统计 a 在 lat 中出现的次数
-
-<!-- end list -->
 
 ``` scheme
 (define occur

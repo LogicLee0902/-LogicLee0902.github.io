@@ -18,8 +18,6 @@ set 是一个不包含重复元素的 lat
 
 - `(set? lat)` 判断 lat 是否是一个 set
 
-<!-- end list -->
-
 ``` scheme
 (define set?
   (lambda (lat)
@@ -30,8 +28,6 @@ set 是一个不包含重复元素的 lat
 ```
 
 - `(makeset lat)` 去掉 lat 中的重复元素使其成为 set
-
-<!-- end list -->
 
 ``` scheme
 (define makeset
@@ -51,8 +47,6 @@ set 是一个不包含重复元素的 lat
 
 - `(subset? set1 set2)` 判断 set1 是否为 set2 的子集
 
-<!-- end list -->
-
 ``` scheme
 (define subset?
   (lambda (set1 set2)
@@ -71,8 +65,6 @@ set 是一个不包含重复元素的 lat
 
 - `(eqset? set1 set2)` 判断两个 set 是否相等
 
-<!-- end list -->
-
 ``` scheme
 (define eqset?
   (lambda (set1 set2)
@@ -81,8 +73,6 @@ set 是一个不包含重复元素的 lat
 ```
 
 - `(intersect? set1 set2)` 判断两个 set 是否有交集
-
-<!-- end list -->
 
 ``` scheme
 (define intersect?
@@ -94,8 +84,6 @@ set 是一个不包含重复元素的 lat
 ```
 
 - `(intersect set1 set2)` 求 set1 and set2
-
-<!-- end list -->
 
 ``` scheme
 (define intersect
@@ -109,8 +97,6 @@ set 是一个不包含重复元素的 lat
 
 - `(union set1 set2)` 求 set1+set2
 
-<!-- end list -->
-
 ``` scheme
 (define union
   (lambda (set1 set2)
@@ -123,8 +109,6 @@ set 是一个不包含重复元素的 lat
 
 - `(xxx set1 set2)` 返回 set1-set2
 
-<!-- end list -->
-
 ``` scheme
 (define xxx
   (lambda (set1 set2)
@@ -136,8 +120,6 @@ set 是一个不包含重复元素的 lat
 ```
 
 - `(intersectall l-set)` l-set 是一个一重集合构成的集合, 求这些一重集合构成的交
-
-<!-- end list -->
 
 ``` scheme
 (define intersectall
@@ -153,8 +135,6 @@ set 是一个不包含重复元素的 lat
 Scheme 中将两个不同含义但是有关联的元素组成的 list 称作 pair
 
 - `(a-pair? x)` 判断 x 是否为 pair
-
-<!-- end list -->
 
 ``` scheme
 (define a-pair?
@@ -172,8 +152,6 @@ Scheme 中将两个不同含义但是有关联的元素组成的 list 称作 pai
 - `(first p)` 获取 pair 的一个元素
 - `(second p)` 获取 pair 的第二个元素
 - `(build s1 s2)` 将 s1 与 s2 组成 pair
-
-<!-- end list -->
 
 ``` scheme
 (define first (lambda (p) (car p)))
@@ -195,8 +173,6 @@ Scheme 中将两个不同含义但是有关联的元素组成的 list 称作 pai
 
 - `(reveal rel)` 构建反向映射关系, 即交换每一个 pair 的 first 和 second
 
-<!-- end list -->
-
 ``` scheme
 (define reveal
   (lambda (rel)
@@ -209,8 +185,6 @@ Scheme 中将两个不同含义但是有关联的元素组成的 list 称作 pai
 
 - `(revpair pair)` 交换一个 pair 的两个元素
 
-<!-- end list -->
-
 ``` scheme
 (define revpair
   (lambda (pair)
@@ -220,8 +194,6 @@ Scheme 中将两个不同含义但是有关联的元素组成的 list 称作 pai
 可以用这个函数进一步简化 reveal
 
 - `(fullfun? fun)` 判断一个函数是否可逆 (一一映射)
-
-<!-- end list -->
 
 ``` scheme
 (define fullfun?

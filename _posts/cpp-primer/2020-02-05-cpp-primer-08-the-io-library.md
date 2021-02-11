@@ -67,8 +67,6 @@ std::ofstream print(std::ofstream); // 函数定义非法
 - `setstate(flags)`
   : 在原始状态上叠加新状态.
 
-<!-- end list -->
-
 ``` cpp
 std::cin.clear(std::istream::failbit | std::istream::badbit | std::stream::eofbit); // 结果为 7 = 4 + 2 + 1
 std::cin.clear(std::istream::failbit); // 结果为 4
@@ -128,8 +126,6 @@ std::cout << std::unitbuf
   : 返回关联的 `std::ostream` 的指针或 `nullptr`
 - `tie(&os)` 有参数
   : 参数为 `std::ostream` 的指针, 将对象关联到这个 `std::ostream`, 并返回用来关联的 `std::ostream` 的指针
-
-<!-- end list -->
 
 ``` cpp
 std::cin.tie(&std::cout);

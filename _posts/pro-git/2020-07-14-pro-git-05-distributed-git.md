@@ -81,8 +81,6 @@ fork 项目后工作, 然后发起 pr 请求合并.
 - `git request-pull <remote1/branch> <remote2>`
   : 产生一个 remote2 向 remote1/branch 的 pr (需要先把本地 commit 推送到自己的远程仓库)
 
-<!-- end list -->
-
 ``` shell
 $ git checkout -b featureB origin/master
 ... work ...
@@ -112,8 +110,6 @@ $ git push -f myfork featureA
 - `git merge --squash <branchA>`
   : 将分支 A 的多个 commit 合并成一个放到当前分支.
 
-<!-- end list -->
-
 ``` shell
 $ git checkout -b featureBv2 origin/master
 $ git merge --squash featureB
@@ -134,8 +130,6 @@ $ git push myfork featureBv2
 
   - `-M`
     : 检测 commit 是否重命名
-
-<!-- end list -->
 
 ``` shell
 $ git format-patch -M origin/master
@@ -320,8 +314,6 @@ Merge made by the 'recursive' strategy.
 - `git diff <branchA>...<branchB>`
   : 查看 B 到 A 和 B 的公共祖先的修改
 
-<!-- end list -->
-
 ``` shell
 $ git diff $(git merge-base contrib master)
 # 等价形式
@@ -387,8 +379,6 @@ $ git show maintainer-pgp-pub | gpg --import
   - `--tags`
     : 使用 lightweight tag
 
-<!-- end list -->
-
 ``` shell
 $ git describe master
 v1.6.2-rc1-20-g8c5b85c
@@ -398,8 +388,6 @@ v1.6.2-rc1-20-g8c5b85c
 
 - `git archive`
   : 创建压缩包
-
-<!-- end list -->
 
 ``` shell
 # 创建 tar
@@ -412,8 +400,6 @@ $ git archive master --prefix='project/' --format=zip > `git describe master`.zi
 
 - `git shortlog`
   : 快速生成发布简报和 changelog
-
-<!-- end list -->
 
 ``` shell
 $ git shortlog --no-merges master --not v1.0.1

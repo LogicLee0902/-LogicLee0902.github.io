@@ -33,8 +33,6 @@ header-style: text
 - 在语句后面加一对括号: 值初始化
 - 花括号: 列表初始化
 
-<!-- end list -->
-
 ``` cpp
 int *pi = new int; // 默认初始化, 值不确定
 std::string *ps = new std::string; // 默认初始化, 空字符串
@@ -286,8 +284,6 @@ std::unique_ptr<int> p(new int (42));
 
 - `release()` 会切断所有权的联系, 不会释放资源. (因此 `release()` 时必须给另一个智能指针对象赋值)
 - `reset()` 会释放资源
-
-<!-- end list -->
 
 ``` cpp
 std::unique_ptr<int> p1(new int (42));

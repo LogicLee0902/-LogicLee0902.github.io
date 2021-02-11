@@ -508,8 +508,6 @@ S st2 = static_cast<S> (1); // 合法
 - 没有构造函数或类内初始值
 - 没有 `Base` 类, 没有 `virtual` 函数
 
-<!-- end list -->
-
 ``` cpp
 struct Data {
     int ival;
@@ -624,8 +622,6 @@ class S {
 
 - 定义不完全类型成员, 即包含自身的成员.
 - 静态成员也可以作默认实参 (可编译阶段确定).
-
-<!-- end list -->
 
 ``` cpp
 class S {

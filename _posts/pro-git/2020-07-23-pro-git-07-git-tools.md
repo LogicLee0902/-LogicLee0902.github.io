@@ -45,8 +45,6 @@ git 的 reflog 记录了最近一段时间 HEAD 和各个 branch 指向的历史
 - `git log -g <branch>`
   : 查看详细的 reflog 信息
 
-<!-- end list -->
-
 ``` shell
 $ git reflog
 734713b HEAD@{0}: commit: fixed refs handling, added gc auto, updated d921970 HEAD@{1}: merge phedders/rdocs: Merge made by the 'recursive' strategy.
@@ -299,8 +297,6 @@ create mode 100644 lib/git.rb
   - `--and`
     : 多个出现在同一行的匹配
 
-<!-- end list -->
-
 ``` shell
 $ git grep --break --heading \
   -n -e '#define' --and \( -e LINK -e BUF_MAX \) v1.8.0
@@ -342,8 +338,6 @@ ef49a7a zlib: zlib can only process 4GB at a time
 - `git log <start>,<end>:<file>` 或 `git log -L :<funcname>:<file>` 或
   : `git log -L <regex>:<file>`
     查看某一行或某个函数或匹配正则表达式的变化历史.
-
-<!-- end list -->
 
 ``` shell
 $ git log -L :git_deflate_bound:zlib.c

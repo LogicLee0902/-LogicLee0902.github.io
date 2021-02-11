@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「C++ Primer」 19 Specialized Tools and Techniques"
-subtitle: "特殊工具"
+subtitle: "特殊工具：控制内存分配、RTTI、枚举类型、类成员指针、嵌套类、union、局部类、一些不可移植的特性"
 author: "roife"
 date: 2020-08-24
 
@@ -47,23 +47,19 @@ void operator delete[](void*, std::nothrow_t&) noexcept;
 ```
 
 - `delete` 一般不会抛出异常
-
 - `std::nothrow_t` 类型 :: 定义在头文件 `new` 中的一个 `struct`.
-
 - `std::nothrow` :: `const std::nothrow_t` 对象, 定义在头文件 `new` 中, 可以用作 `new` 和 `delete` 的参数从而调用不抛出异常的版本.
 
 声明在类中时, `operator new` 和 `operator delete` 默认是 `static` 的, 而且不能操控类的成员
 (因为它们的调用发生在类构造之前和析构之后).
 
-`operator new` 的第一个参数必须是 `size_t` 类型而且不能有默认参数. 用 placement new 的形式可以给
-`operator new` 传入额外实参, 但是不能重载这个函数:
+- `operator new` 的第一个参数必须是 `size_t` 类型而且不能有默认参数. 用 placement new 的形式可以给 `operator new` 传入额外实参, 但是不能重载这个函数:
 
 ``` cpp
 void *operator new(size_t, void*); // 被标准库用了
 ```
 
-使用 `operator delete` 时也可以提供一个额外的 `size_t` 参数, 初始值为第一个 `void*` 形参指向对象的大小.
-当基类有一个虚析构函数时, 传入的 `size_t` 由动态类型的大小决定.
+- 使用 `operator delete` 时也可以提供一个额外的 `size_t` 参数, 初始值为第一个 `void*` 形参指向对象的大小. 当基类有一个虚析构函数时, 传入的 `size_t` 由动态类型的大小决定.
 
 ## `malloc` 和 `free`
 
@@ -221,12 +217,9 @@ bool Derived::equal(const Base &rhs) {
 
 ## `std::type_info` 类
 
-`std::type_info` 类定义在 `typeinfo` 头文件中.
+`std::type_info` 类定义在 `typeinfo` 头文件中, 通常作为一个基类, 额外的类型信息会被保存到 `Derived` 中.
 
-`std::type_info` 类通常作为一个基类, 额外的类型信息会被保存到 `Derived` 中.
-
-`std::type_info` 没有默认构造函数, 且拷贝和移动函数被定义为 `delete`. 因此无法拷贝和赋值
-`std::type_info` 成员, 只能使用 `typeid` 运算符创建.
+`std::type_info` 没有默认构造函数, 且拷贝和移动函数被定义为 `delete`. 因此无法拷贝和赋值 `std::type_info` 成员, 只能使用 `typeid` 运算符创建.
 
 | 操作                   | 作用                                                          |
 | ---------------------- | ------------------------------------------------------------- |
@@ -296,7 +289,7 @@ void newf(int);
 newf(INLINE);
 ```
 
-## 指定 `enum` 的大小
+## 指定 `enum` 的整数表示
 
 虽然枚举类型是一种独立的类型, 但是其本质是整数类型, 可以指定其整数类型.
 
@@ -468,11 +461,9 @@ f(&svec[0]);
 
 # 嵌套类
 
-嵌套类即一个类定义在另一个类的内部, 本质上是在外层类定义了一个 **类型**.
+嵌套类即一个类定义在另一个类的内部, 本质上是在外层类里面定义了一个 **类型**.
 
-嵌套类的名字在外层类可见, 在外层类之外不可见.
-
-嵌套类可以直接访问外层类的 `private` 对象.
+嵌套类的名字在外层类可见, 但是在外层类之外不可见.
 
 ## 声明嵌套类
 
@@ -516,9 +507,9 @@ TextQuery::QueryResult::QueryResult(std::string s,
 int TextQuery::QueryResult::member = 1024;
 ```
 
-## 嵌套类的名字查找
+## 嵌套类的名字查找和访问外层类
 
-嵌套类可以在外层类进行名字查找.
+嵌套类可以在外层类进行名字查找, 并且可以直接访问外层类的 `private` 对象.
 
 外层类也可以使用嵌套类来定义对象.
 
@@ -669,8 +660,6 @@ Token &Token::operator=(const Token &t) {
 - 外层函数访问局部类要遵循访问控制 (也可以定义外侧函数为 `friend`, 但是一般直接声明为 `public`)
 - 局部类可以嵌套 (此时嵌套类可以定义在局部类之外), 并且也是一个局部类, 其成员必须定义在嵌套类的内部
 
-<!-- end list -->
-
 ``` cpp
 void foo {
     class Bar {
@@ -692,12 +681,10 @@ void foo {
 
 非 `static` 的数据成员可以被定义为位域, 类型必须是整型或枚举类型, 一般使用无符号类型.
 
-位域的声明使用一个冒号和一个常量表达式:
-
 ``` cpp
 typedef unsigned int Bit;
 class File {
-    Bit mode: 2;
+    Bit mode: 2; // 位域的声明使用一个冒号和一个常量表达式
     Bit modified: 1;
     Bit prot_owner: 3;
     Bit prot_group: 3;
@@ -709,7 +696,7 @@ public:
 
 一般类内定义的连续位域会被压缩到一个整数的相邻位, 从而节省空间.
 
-`&` 不能作用于位域.
+`&` (取地址符) 不能作用于位域.
 
 ### 操作位域
 

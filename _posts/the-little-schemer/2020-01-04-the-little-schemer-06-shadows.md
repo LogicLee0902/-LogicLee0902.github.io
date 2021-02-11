@@ -16,8 +16,6 @@ header-style: text
 
 - `(numbered? aexp)` 表示询问 aexp 是否为 +, \*, ^ 和数字组成的运算式子,如 `(1 + (3 + 2))`
 
-<!-- end list -->
-
 ``` scheme
 (define numbered?
   (lambda (aexp)
@@ -30,8 +28,6 @@ header-style: text
 ```
 
 - `(1st-sub-exp)` 返回第一个表达式的值
-
-<!-- end list -->
 
 ``` scheme
 (define 1st-sub-exp
@@ -48,8 +44,6 @@ header-style: text
 ```
 
 - `(value aexp)` 计算 aexp,其中 aexp 是前缀表达式,如 `(+ 3 4)`
-
-<!-- end list -->
 
 ``` scheme
 (define value

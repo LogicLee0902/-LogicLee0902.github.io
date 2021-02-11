@@ -55,15 +55,11 @@ header-style: text
 
 - `(extend-table entry table)` 向 table 中添加 entry
 
-<!-- end list -->
-
 ``` scheme
 (define extend-table cons)
 ```
 
 - `(lookup-in-table name table table-f)` 在 table 中寻找 name 对应的第一个值, 否则调用 table-f
-
-<!-- end list -->
 
 ``` scheme
 (define lookup-in-table
@@ -97,8 +93,6 @@ header-style: text
 分别处理每一种类型的函数被称为 **action**
 
 - `(expresstion-to-action e)` 将一个表达式转化成相应的 action.
-
-<!-- end list -->
 
 ``` scheme
 (define expression-to-action

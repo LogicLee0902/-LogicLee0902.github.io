@@ -30,8 +30,6 @@ Inductive list(X : Type) : Type :=
 - nil 的类型为 `forall X : Type, list X`.
 - cons 的类型为 `forall X : Type, X -> list X -> list X`
 
-<!-- end list -->
-
 ``` coq
 (* Polymorphic function *)
 Fixpoint repeat (X : Type) (x : X) (count : nat) : list X :=
@@ -211,8 +209,6 @@ Definition doit3times {X:Type} (f:X->X) (n:X) : X :=
 
 - fun paras =\> body
   : 匿名函数.
-
-<!-- end list -->
 
 ``` coq
 Example test_anon_fun':

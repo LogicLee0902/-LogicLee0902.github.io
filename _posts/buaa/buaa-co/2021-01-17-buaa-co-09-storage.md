@@ -24,7 +24,7 @@ $$AMAT = t_{cache} + MR_{cache} (t_{MM} + MR_{MM} t_{VM})$$
 
 # 存储层次
 
-$$Registers \rightarrow L1\\$ \rightarrow L2\\$ \rightarrow MainMemory \rightarrow SecondaryMemory(Disks)$$
+$$Registers \rightarrow L1\$ \rightarrow L2\$ \rightarrow MainMemory \rightarrow SecondaryMemory(Disks)$$
 
 # 高速缓存 Cache
 
@@ -119,19 +119,19 @@ $$TotalBits = \#raws \times (b + T + 1)$$
 
 ## 多级 Cache
 
-现代处理器一般会使用多级 Cache，即 $L1\$ \rightarrow L3\$$，速度以此减小，容量逐渐增大。
+现代处理器一般会使用多级 Cache，即 L1 ~ L3，速度以此减小，容量逐渐增大。
 
-其中，L1\\$ 会区分指令 Cache (I\\$) 和数据 Cache (D\\$)（哈弗架构）。
+其中，L1 会区分指令 Cache (Instructions Cache) 和数据 Cache (Data Cache)（哈弗架构）。
 
 多级 Cache 的平均访问时间 $AMAT = L1 HT + L1 MR × (L2 HT + L2 MR × L2 MP)$，依次类推。
 
 同时定义两种 Miss Rate。LMR 表示当前 Cache 缺失率，GMR 表示整个 Cache 缺失率。可以发现 $GMR \leq LMR$。
 
-$$L2\\$\ local\ MR = \frac{L2\\$\ misses}{L1\\$\ misses}$$
+$$L2\$\ local\ MR = \frac{L2\$\ misses}{L1\$\ misses}$$
 
-$$Global\ MR = L1\\$\ misses \times \cdots Ln\\$\ misses$$
+$$Global\ MR = L1\$\ misses \times \cdots Ln\$\ misses$$
 
-由于主存访问比 Cache 慢很多，所以一般 L1\\$ 重点在于减少 Hit 时间（比如通过变得更小），而 L2\\$/L3\\$ 重点在于减小 MR（例如变得更大）。
+由于主存访问比 Cache 慢很多，所以一般 L1 重点在于减少 Hit 时间（比如通过变得更小），而 L2/L3 重点在于减小 MR（例如变得更大）。
 
 ## Cache 性能及改进
 

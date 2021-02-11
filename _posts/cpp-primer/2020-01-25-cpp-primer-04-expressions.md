@@ -177,8 +177,6 @@ finalGrade = (grade > 90) ? "high pass"
     - 如果有符号类型的范围包含了无符号类型的范围, 则 → 带符号
     - 否则全部 → 无符号
 
-<!-- end list -->
-
 ``` cpp
 unsigned a = 20;
 int b = -130;
@@ -223,8 +221,6 @@ int *pp = p, &r = j; // 非法
 - `static_cast`
   : 任何不涉及 `const` 转换的情况都可以用, 如将大范围类型转换成小范围类型, 或者还原 `void*` 类型.
 
-<!-- end list -->
-
 ``` cpp
 double slope = static_cast<double>(j) / i;
 
@@ -235,8 +231,6 @@ double *dp = static_cast<double*>(p);
 - `const_cast`
   : 能且只能改变对象的底层 `const` 属性, 常用于函数重载. 去掉 `const` 属性后若修改会产生 UB.
 
-<!-- end list -->
-
 ``` cpp
 const char *cp;
 
@@ -246,8 +240,6 @@ const_cast<char*>(cp);
 
 - `reinterpret_cast`
   : 对底层数据重新解释 (暴力修改), 十分危险.
-
-<!-- end list -->
 
 ``` cpp
 int *ip;

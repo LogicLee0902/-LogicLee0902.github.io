@@ -19,8 +19,6 @@ header-style: text
 - Inductive
   : 定义递归类型
 
-<!-- end list -->
-
 ``` coq
 Inductive bool : Type :=
 | true
@@ -52,8 +50,6 @@ Inductive nybble : Type :=
 - Definition
   : 定义函数
 
-<!-- end list -->
-
 ``` coq
 Definition andb (b1:bool) (b2:bool) : bool :=
   match b1 with
@@ -79,8 +75,6 @@ Definition pred(n : nat) : nat :=
 - Compute
   : 计算函数
 
-<!-- end list -->
-
 ``` coq
 Compute (andb true false).
 ```
@@ -98,8 +92,6 @@ Proof. simpl. reflexivity. Qed.
 - Notation
   : 定义运算符
 
-<!-- end list -->
-
 ``` coq
 Notation "x && y" := (andb x y).
 
@@ -113,16 +105,12 @@ Notation "x + y" := (plus x y)
 - Admitted
   : 表示定理可以直接使用. (用作占位符)
 
-<!-- end list -->
-
 ``` coq
 Admitted.
 ```
 
 - Check
   : 输出语句的类型.
-
-<!-- end list -->
 
 ``` coq
 Check andb. (*[bool -> bool]*)
@@ -140,8 +128,6 @@ end.
 
 - Fixpoint
   : 递归函数
-
-<!-- end list -->
 
 ``` coq
 Fixpoint evenb(n : nat) : bool :=
@@ -165,8 +151,6 @@ Proof 和 Qed 之间的证明部分被称为 Tactics
 - rewrite
   : 使用条件重写命题
 
-<!-- end list -->
-
 ``` coq
 Theorem plus_id_example : forall n m : nat,
     n = m ->
@@ -181,8 +165,6 @@ Qed.
 
 - destructive
   : 按照归纳定义分类讨论
-
-<!-- end list -->
 
 ``` coq
 Theorem plus_1_neq_0 : forall n : nat,

@@ -39,8 +39,6 @@ header-style: text
 - 定义 `std::map` 要指明关键字与值的类型, 初始化要使用 `{key, value}` 的形式
 - 定义 `std::set` 只要指明关键字类型
 
-<!-- end list -->
-
 ``` cpp
 std::map<std::string, std::string> authors = { {"Joyce", "James"}, {"Austen", "Jane"}};
 std::set<std::string> exclude = {"the" "but" "and"};
@@ -59,8 +57,6 @@ std::set<std::string> set2(v.begin(), v.end()); // 用序列迭代器初始化
 - 两个元素不能同时小于对方
 - 不等关系的传递性
 - 若 `v1>=v2 && v2>=v1`, 则 `v1=v2`, 且等号有传递性
-
-<!-- end list -->
 
 ``` cpp
 bool compareIsbn(const Sales_data &lhs, const Sales_data &rhs) { return lhs.isbn() < rhs.isbn; }
@@ -162,8 +158,6 @@ if(set_it != iset.end()) {
 - 对于 `multimap` 或 `multiset` 总是可以插入成功, 因此只返回新元素的迭代器
 - 向 `map` 中插入的元素 `v` 必须是一个 `std::pair`, 如 `word_count.insert({word, 1})` 或 `word_count.insert(std::make_pair(word, 1))`
 
-<!-- end list -->
-
 ``` cpp
 std::map<std::string, size_t> word_count;
 std::string word;
@@ -230,8 +224,6 @@ while(entries--) {
 - 当元素存在时, `lower_bound()` 返回第一个位置, `upper_bound()` 返回最后一个元素的尾后迭代器
 - 当元素不存在时, 则都返回能插入的位置
 
-<!-- end list -->
-
 ``` cpp
 for (auto beg = authors.lower_bound(search_item), end = authors.upper_bound(search_item);
      beg != end; ++beg)
@@ -244,8 +236,6 @@ for (auto beg = authors.lower_bound(search_item), end = authors.upper_bound(sear
 
 - 如果关键字存在, 则分别为第一个匹配元素的迭代器和最后一个匹配元素的尾后迭代器
 - 如果关键字不存在, 则两个迭代器都返回可插入位置
-
-<!-- end list -->
 
 ``` cpp
 for (auto pos = authors.equal_range(search_item);

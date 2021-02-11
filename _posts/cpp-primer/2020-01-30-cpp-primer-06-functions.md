@@ -120,8 +120,6 @@ void print(const ARR2);
 - 使用标准库规范 (提供头指针和尾指针)
 - 显式传入数组大小
 
-<!-- end list -->
-
 ``` cpp
 void print(const int *beg, const int *end);
 
@@ -208,8 +206,6 @@ void foo(...); // 三种形式都可以, 但纯省略符的参数难以访问
   : 清理
 - `void va_copy(va_list dest, va_list src)`
   : 拷贝
-
-<!-- end list -->
 
 ``` cpp
 #include <cstdarg>

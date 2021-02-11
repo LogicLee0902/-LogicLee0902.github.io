@@ -63,8 +63,6 @@ public:
 - 花括号初始化数组元素或聚合类
 - 标准库容器的 `insert()` 或 `push_back()` 操作等 (`emplace()` 会直接初始化)
 
-<!-- end list -->
-
 ``` cpp
 std::string s2(s); // 直接初始化
 std::string s3 = s2; // 拷贝初始化

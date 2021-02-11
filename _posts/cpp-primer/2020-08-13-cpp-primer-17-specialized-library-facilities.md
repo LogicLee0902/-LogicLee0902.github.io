@@ -582,8 +582,6 @@ std::bernoulli_distribution b(.55);
 - `std::noboolalpha`
   : 恢复 `std::boolalpha`
 
-<!-- end list -->
-
 ``` cpp
 std::cout << true << " " <<
     std::boolalpha << true << " " <<
@@ -638,8 +636,6 @@ std::cout << 20 << " " <<
 - `std::setfill(c)`
   : 用指定字符代替空白补白
 
-<!-- end list -->
-
 ``` cpp
 int i = -16;
 double d = 3.14159;
@@ -677,8 +673,6 @@ std::cout << std::setfill('#') <<
 - `std::noskipws`
   : 不跳过空白符
 
-<!-- end list -->
-
 ``` cpp
 char ch;
 std::cin >> std::noskipws;
@@ -700,8 +694,6 @@ std::cin >> std::skipws;
   : 设置精度
 - `std::cout.precision()`
   : 返回当前精度
-
-<!-- end list -->
 
 ``` cpp
 std::cout << "Precision: " << std::cout.precision() <<
@@ -754,8 +746,6 @@ std::cout << "default format: " << 100 * sqrt(2.0) << '\n' <<
   : 定义小数点
 - `std::noshowpoint`
   : 不打印小数点
-
-<!-- end list -->
 
 ``` cpp
 std::cout << 10.0 << std::endl; // 打印 10

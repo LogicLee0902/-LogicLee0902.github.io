@@ -53,8 +53,6 @@ Proof.
 - apply with
   : apply 无法自动匹配变量时, 进行手动变量匹配.
 
-<!-- end list -->
-
 ``` coq
 Theorem trans_eq : forall (X:Type) (n m o : X),
   n = m -> m = o -> n = o.
@@ -80,8 +78,6 @@ Qed.
 - injective: `if S n=S m, then n=m.`
 - disjoint: `forall n, O <> S n.`
 
-<!-- end list -->
-
 ``` coq
 (* 单射性证明 *)
 Theorem S_injective : forall (n m : nat),
@@ -96,8 +92,6 @@ Qed.
 
 - injective
   : 利用单射性得出新条件
-
-<!-- end list -->
 
 ``` coq
 Theorem S_injective' : forall (n m : nat),
@@ -121,8 +115,6 @@ Qed.
 
 - injective as
   : 得出新等式的同时命名.
-
-<!-- end list -->
 
 ``` coq
 Theorem injection_ex2 : forall (n m : nat),
@@ -151,8 +143,6 @@ Qed.
 
 - discriminate
   : 利用互斥性, 当条件命题不成立时退出证明.
-
-<!-- end list -->
 
 ``` coq
 Theorem eqb_0_l : forall n,

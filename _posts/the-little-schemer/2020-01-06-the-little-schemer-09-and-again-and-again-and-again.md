@@ -16,8 +16,6 @@ header-style: text
 
 - `(looking a lat)` 表示在 lat 中找 a, 寻找方式是, 先看第一个元素, 如果是数字 (比如 i) 就跳到第 i 个位置, 重复操作, 直到找到非数字. 判断这个非数字元素是否是 a.
 
-<!-- end list -->
-
 ``` scheme
 (define keep-looking
   (lambda (a sorn lat)
@@ -36,8 +34,6 @@ header-style: text
 前面提到的可以接受所有参数函数被称为 total functions.
 
 - `(shift pair)` 表示让 pair (这个 pair 的第一个元素也是一个 pair) 的第一部分的第二个元素和其第二部分形成一个 pair, 如 `(shift '((a b) (c d))) => '(a (b (c d)))`
-
-<!-- end list -->
 
 ``` scheme
 (define shift
@@ -67,8 +63,6 @@ header-style: text
 所以我们定义一个 length\* 函数计算其复杂度
 
 - `(length* pora)` 计算 pora 中 atom 的数量
-
-<!-- end list -->
 
 ``` scheme
 (define length*
@@ -112,8 +106,6 @@ d))) , 因此它是 partial function
 
 - `(eternity x)` 一个不会停机的函数
 
-<!-- end list -->
-
 ``` scheme
 (define eternity
   (lambda (x)
@@ -121,8 +113,6 @@ d))) , 因此它是 partial function
 ```
 
 - `(C n)` 计算 Collatz 猜想 (即 3n+1 问题)
-
-<!-- end list -->
 
 ``` scheme
 (define C
@@ -136,8 +126,6 @@ d))) , 因此它是 partial function
 > Thanks to Lothar Collatz
 
 - `(A n m)` 计算阿克曼函数
-
-<!-- end list -->
 
 ``` scheme
 (define A

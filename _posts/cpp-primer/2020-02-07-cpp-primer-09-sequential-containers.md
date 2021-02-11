@@ -358,8 +358,6 @@ while (beg != v.end()) { // 注意这里
 - `std::vector`
   : 注意操作之后一定要利用返回的迭代器
 
-<!-- end list -->
-
 ``` cpp
 std::vector<int> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 auto beg = v.begin();
@@ -372,8 +370,6 @@ while (beg != v.end()) {
 - `std::list`
   : 限制最少
 
-<!-- end list -->
-
 ``` cpp
 std::list<int> lst{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 auto beg = lst.begin();
@@ -385,8 +381,6 @@ while (beg != lst.end()) {
 
 - `std::forward_list`
   : 要保存 `prev`
-
-<!-- end list -->
 
 ``` cpp
 std::forward_list<int> flst{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};

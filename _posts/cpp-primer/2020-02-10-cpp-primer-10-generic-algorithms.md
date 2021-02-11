@@ -45,8 +45,6 @@ header-style: text
 - `std::fill_n(beg, n, val)`
   : 写入 `n` 个 `val`
 
-<!-- end list -->
-
 ``` cpp
 std::vector<int> v;
 std::fill_n(v.begin(), 10, 0); // 错误! v 可能放不下
@@ -82,8 +80,6 @@ auto it = back_inserter(v); // 类型为 std::back_insert_iterator<std::vector<i
 - `std::unique(beg, end)`
   : 去除重复(要求先排序), 把元素挪到尾部, 返回新序列的尾后迭代器
 
-<!-- end list -->
-
 ``` cpp
 void elimDups(std::vector<std::string> &words) {
     std::sort(words.begin(), words.end());
@@ -100,8 +96,6 @@ void elimDups(std::vector<std::string> &words) {
 
 - `std::sort(beg, end, pred)`
   : 用 `pred` 来代替 `<` 比较元素
-
-<!-- end list -->
 
 ``` cpp
 bool isShorter(const std::string &s1, const std::string &s2) {
@@ -134,8 +128,6 @@ lambda 表达式的形式为 `[capture list] (parameter list) -> return type {fu
 - lambda 表达式可以像函数一样调用, 在对象被创建的时候初始化.
 - 任意两个 lambda 表达式 (即使结构相同) 的类型都不同.
 
-<!-- end list -->
-
 ``` cpp
 auto f = [] { return 42; };
 std::cout << f() << std::endl;
@@ -156,8 +148,6 @@ lambda 不能有默认参数.
 
 - 值捕获 :: `[names]` (前提是变量可拷贝)
 
-<!-- end list -->
-
 ``` cpp
 void fcn1() {
     size_t v1 = 42;
@@ -171,8 +161,6 @@ void fcn1() {
 
 - 引用捕获
   : `[&names]`
-
-<!-- end list -->
 
 ``` cpp
 void fcn2() {
@@ -211,8 +199,6 @@ std::for_each(v.begin(), v.end(),
 ### 改变值传递参数值
 
 - 值捕获的变量默认是 `const` 的, 若要在 lambda 中修改, 需用 `mutable` 修饰. (此时仍不会改变外面的变量, 与引用捕获区分)
-
-<!-- end list -->
 
 ``` cpp
 void fcn3() {
@@ -289,8 +275,6 @@ std::for_each(v.begin(), v.end(), std::bind(print, std::ref(os), _1, ' '));
 - `std::inserter(c, iter)`
   : 使用 `insert()`, 接受第二个参数 (迭代器) 表示位置, 每次元素被插入到迭代器之前
 
-<!-- end list -->
-
 ``` cpp
 std::copy(lst.cbegin(), lst.cend(), std::front_inserter(lst2));
 std::copy(lst.cbegin(), lst.cend(), std::inserter(lst3, list3.begin()));
@@ -304,8 +288,6 @@ std::copy(lst.cbegin(), lst.cend(), std::inserter(lst3, list3.begin()));
 
 - 创建流迭代器必须指明对象类型, 且要求类型定义 `>>` 运算.
 - 创建时要绑定一个流, 若不绑定则成为一个尾后值.
-
-<!-- end list -->
 
 ``` cpp
 std::istream_iterator<int> int_it(std::cin);

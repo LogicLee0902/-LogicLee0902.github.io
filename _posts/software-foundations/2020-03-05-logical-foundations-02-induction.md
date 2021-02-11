@@ -17,8 +17,6 @@ header-style: text
 - replace (a) with (b).
   : 将 a 替换为 b, 同时多出一个证明 a 的 subgoal.
 
-<!-- end list -->
-
 ``` coq
 Theorem plus_swap' : forall n m p : nat,
     n + (m + p) = m + (n + p).
@@ -33,8 +31,6 @@ Qed.
 
 - assert (a). {}
   : 声明一个局部命题 a, 并在 `{}` 中给出证明.
-
-<!-- end list -->
 
 ``` coq
 Theorem plus_rearrange : forall n m p q : nat,
@@ -54,8 +50,6 @@ Qed.
 
 - 证明 `P(0)` 成立
 - 假设 `P(n')` 成立(`IHn'` 成立), 将 `P(n)` 中的 `n` 替换成 `n'`, 利用 `P(n')` 证明 `P(n)` 成立.
-
-<!-- end list -->
 
 ``` coq
 Theorem plus_n_O : forall n : nat,

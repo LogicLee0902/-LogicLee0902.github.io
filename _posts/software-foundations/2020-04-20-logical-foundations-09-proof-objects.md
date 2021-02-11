@@ -58,8 +58,6 @@ Definition ev_4''' : even 4 :=
 - Show Proof
   : 输出目前部分完成的命题, `?Goal` 为暂未完成的部分, 称为"hole", 对应着一个 subgoal.
 
-<!-- end list -->
-
 ``` coq
 Theorem ev_4'' : even 4.   (*  match? (even 4) *)
 Proof.
@@ -84,8 +82,6 @@ Qed.
 
 - `Inductive` 定义的 propositions
 - 定义函数 (即之前提到的命题可以被当成函数使用)
-
-<!-- end list -->
 
 ``` coq
 Theorem ev_plus4 : forall n, even n -> even (4 + n).

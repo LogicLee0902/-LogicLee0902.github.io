@@ -25,8 +25,6 @@ header-style: text
 
 - `(null? l)` 表示判断 list 是否为 null, 如 `(null? '(a)) => #f`, 参数必须是 list
 
-<!-- end list -->
-
 ``` scheme
 (define atom?
   (lambda (x)
@@ -36,8 +34,6 @@ header-style: text
 
 - `(eq? a b)` 表示判断两个 atom 是否相等, 如 `(eq? 'a 'a) => #`, 参数必须是非数字的 atom, 不可以是 list
 - `(lat? lat)` 表示判断一个 list 全部都是由 atom 组成,如 `(lat? '(a b (c))) => #f`, 对于 null list 也返回 `#t`
-
-<!-- end list -->
 
 ``` scheme
 (define lat?

@@ -18,8 +18,6 @@ header-style: text
 
 - `(rember* a l)` 把 l 中所有 atom a 以及包含 a 的列表中的 a 删除
 
-<!-- end list -->
-
 ``` scheme
 (define rember*
   (lambda (a l)
@@ -38,8 +36,6 @@ header-style: text
 
 - `(insertR* a b l)` 在 l 中所有的 atom b 后面加入 atom a
 
-<!-- end list -->
-
 ``` scheme
 (define insertR*
   (lambda (a b l)
@@ -54,8 +50,6 @@ header-style: text
 ```
 
 - `(occur* a l)` l 中 atom a 出现的次数
-
-<!-- end list -->
 
 ``` scheme
 (define occur*
@@ -72,8 +66,6 @@ header-style: text
 
 - `(subst* a b l)` 把 atom b 全部替换成 atom a
 
-<!-- end list -->
-
 ``` scheme
 (define subst*
   (lambda (a b l)
@@ -88,8 +80,6 @@ header-style: text
 ```
 
 - `(insertL* a b l)` 在 l 中所有的 atom b 前插入 atom a
-
-<!-- end list -->
 
 ``` scheme
 (define insertL*
@@ -106,8 +96,6 @@ header-style: text
 
 - `(member* a l)` 询问 l 中是否包含 a
 
-<!-- end list -->
-
 ``` scheme
 (define member*
   (lambda (a l)
@@ -123,8 +111,6 @@ header-style: text
 
 - `(leftmost l)` 返回非空 S-expr 中最左边的 atom,
 
-<!-- end list -->
-
 ``` scheme
 (define leftmost
   (lambda (l)
@@ -137,16 +123,12 @@ header-style: text
 
 - `and`, `or`, `cond` 都是短路的, 且
 
-<!-- end list -->
-
 ``` scheme
 (and a b) => (cond (a b) (else #f))
 (or a b) => (cond (a #t) (else b))
 ```
 
 - `(eqlist? l1 l2)` 询问 list l1 与 list l2 是否相等
-
-<!-- end list -->
 
 ``` scheme
 (define eqlist?
@@ -164,8 +146,6 @@ header-style: text
 ```
 
 - `(equal? s1 s2)` 询问两个 S-expr 是否相等 (要么是 atom,要么是 list)
-
-<!-- end list -->
 
 ``` scheme
 (define equal?

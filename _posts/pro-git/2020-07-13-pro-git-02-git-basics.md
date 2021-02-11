@@ -20,8 +20,6 @@ header-style: text
   - `-o <remote>`
     : 指定远程仓库名字
 
-<!-- end list -->
-
 ``` shell
 # 通过以下命令进一步track文件
 $ git add *.c
@@ -88,8 +86,6 @@ A  lib/git.rb         # 新暂存的文件
   - `-a`
     : 自动将追踪的文件暂存并提交, 即自动 `add`.
 
-<!-- end list -->
-
 ``` shell
 $ git commit -m "Story 182: Fix benchmarks for speed"
 [master 463dc4f] Story 182: Fix benchmarks for speed # 463dc4f 是校验和
@@ -113,8 +109,6 @@ $ git commit -m "Story 182: Fix benchmarks for speed"
 - `git mv <file1> <file2>`
   : 将文件 1 改名为文件 2.
 
-<!-- end list -->
-
 ``` shell
 $ git mv README.md README
 # 等价于执行了三条命令
@@ -137,8 +131,6 @@ $ git add README
 - 以 `/` 开头可以防止递归
 - 以 `/` 结尾可以指定所在目录
 - 以 `!` 开头表示取反, 用来忽略一些模式
-
-<!-- end list -->
 
 ``` gitignore
 # 忽略所有的 .a 文件
@@ -204,8 +196,6 @@ GitHub 上针对各门语言的[ `.gitignore` 文件](https://github.com/github/
     : 来限制显示的 log 数目.
 
   - `--since`, `--until`
-
-<!-- end list -->
 
 ``` shell
 $ git log --pretty=format:"%h - %an, %ar : %s"
@@ -312,8 +302,6 @@ git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库�
 - `git show`
   : 查看标签及对应的信息
 
-<!-- end list -->
-
 ``` shell
 $ git tag -l "v1.8.5*"
 v1.8.5
@@ -377,8 +365,6 @@ v1.8.5-rc0
 
 - `git alias --global alias.<abbr> <op>`
   : 设置操作别名
-
-<!-- end list -->
 
 ``` shell
 $ git config --global alias.unstage 'reset HEAD --'
