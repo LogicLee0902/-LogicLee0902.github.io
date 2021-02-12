@@ -3,7 +3,7 @@ layout: "post"
 title: "「Pro Git」 07 Git Tools (unfinished)"
 subtitle: "Git 高级命令"
 author: "roife"
-date: 2020-07-23
+date: 2020-07-21
 
 tags: ["Pro Git@B", "Git@D", "未完成@D"]
 lang: zh
@@ -359,17 +359,16 @@ diff --git a/zlib.c b/zlib.c
 }
 ```
 
-# 重写历史 <span class="tag" data-tag-name="TODO"><span class="smallcaps">TODO</span></span>
+# 重写历史
 
-在推送之前可以随意更改提交的内容, 但是要保证推送之后不再对提交进行修改.
+在推送之前可以随意更改提交的内容, 但是要保证推送之后不再对提交进行修改, 否则可能就会遇到冲突.
 
 ## 修改最后一次提交
 
 - `git commit --amend`
   : 将当前暂存区合并到上一次提交 (会改变 SHA-1)
-
   - `--no-edit`
-    : 不编辑提交信息
+    : 不编辑提交 commit message
 
 ## 修改多个提交信息
 

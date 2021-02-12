@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「Pro Git」 10 Git Internals (unfinished)"
+title: "「Pro Git」 10 Git Internals"
 subtitle: "Git 内部原理"
 author: "roife"
 date: 2020-07-25
 
-tags: ["Pro Git@B", "Git@D", "未完成@D"]
+tags: ["Pro Git@B", "Git@D"]
 lang: zh
 catalog: true
 header-image: ""
@@ -77,3 +77,18 @@ blob
 ```
 
 ### 树对象
+
+blob 对象只能存储文件内容, 树对象能够存储一些元数据信息.
+
+```shell
+$ git cat-file -p master^{tree} # master^{tree} 表示当前 master 分支上最新 commit 指向的树对象
+100644 blob a906cb2a4a904a152e80877d4088654daad0c859      README
+100644 blob 8f94139338f9404f26296befa88755fc2598c289      Rakefile
+040000 tree 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0      lib # lib 是目录, 所以它是一个树对象指针, 指向另一个树对象
+
+$ git cat-file -p 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0
+100644 blob 47c6340d6459e05787f644c2447d2595f5d3a54b      simplegit.rb
+```
+
+![data-model-1](/img/in-post/post-pro-git/data-model-1.png){:height="450px" width="450px"}
+
