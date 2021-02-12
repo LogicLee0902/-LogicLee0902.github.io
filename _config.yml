@@ -57,15 +57,8 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-
-
-# Disqus settings
-disqus_username: roife-github-io
-
-# Netease settings
-netease_comment: false
-
-
+# utterances
+utterances_comment: true
 
 # Analytics settings
 # Baidu Analytics
