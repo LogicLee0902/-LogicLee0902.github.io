@@ -54,7 +54,7 @@ $ git hash-object -w test.txt
 83baae61804e65cc73a7201a7252750c76066a30
 ```
 
-此时数据用 blob 对象存储
+此时数据用 blob 对象存储.
 
 - `git cat-file <SHA-1>`
   : 用 SHA-1 取回数据

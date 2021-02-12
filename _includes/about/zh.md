@@ -1,4 +1,4 @@
-> Remember OI For Ever
+> **R**emember **OI** **F**or **E**ver
 
 我是 roife，北航 CS 专业在读大二本科生。
 
