@@ -79,13 +79,15 @@ header-img: "img/tag-bg.jpg"
 <!-- Main Content -->
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<div class="col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-0">
 			<!-- Order Selector -->
 			<select class="sel-lang" onchange= "onOrderChange(this.options[this.options.selectedIndex].value)">
 				<option value="0" selected> 标签 | TAG </option>
 				<option value="1"> 合集 | CAT </option>
 			</select>
+		</div>
 
+		<div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
 			<div class='tag'>
 				<!-- Tags (as filter) -->
 				<div id='tag_cloud' class="tags tags-sup js-tags">
