@@ -9,8 +9,7 @@ layout: default
 <div class="container">
   <div class="row">
     <!-- **** About **** -->
-    {% if page.title == 'About' %}
-      <!-- NO SIDEBAR -->
+    {% if page.sidebar %}
       <!-- PostList Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 postlist-container">
         {{ content }}
@@ -28,6 +27,14 @@ layout: default
       <!-- PostList Container -->
       <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-0 col-sm-12 col-xs-12 postlist-container">
         {{ content }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="row">
+    <!-- utterances -->
+    {% if site.utterances_comment and page.comment %}
+      <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+        {% include utterances_comment.html %}
       </div>
     {% endif %}
   </div>
