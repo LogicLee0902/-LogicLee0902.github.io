@@ -283,7 +283,7 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
   : 将本地的分支推送到远程仓库, 如果有他人推送了则应该先拉取再推送
 
   - `git push <remote> <local_branch>:<remote_branch>`
-    : 推送本地分支到远程分支
+    : 推送本地分支到远程分支, 如将本地的 `master` 推送到远程的 `qa/master`: `$ git push origin master:refs/heads/qa/master`
 
 git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支, 并将拉取的仓库名字设置为 origin.
 
@@ -350,9 +350,9 @@ v1.8.5-rc0
 - `git tag -d <tagname>`
   : 删除标签
 - `git push <remote> :refs/tags/<tagname>`
-  : 删除远程仓库的标签
+  : 删除远程仓库的标签 (`:` 前面为空表示推送空值, 即删除)
 - `git push origin --delete <tagname>`
-  : 删除远程仓库的标签
+  : 删除远程仓库的标签 (第二种方法)
 
 ## Checkout tag
 

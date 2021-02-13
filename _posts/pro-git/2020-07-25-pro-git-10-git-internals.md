@@ -254,5 +254,382 @@ ref: refs/heads/test
 
 ## 标签引用
 
-标签对象也是一种 git 对象, 类似于 commit 对象包含日期注释等信息. 区别在于标签对象指向一个 commit 对象, 而不是树对象. 标签对象像一个不移动的分支, 永远指向同一个 commit 对象.
+标签对象也是一种 git 对象, 类似于 commit 对象包含日期注释等信息. 区别在于标签对象指向一个 commit 对象, 而不是树对象. 标签对象像一个不移动的分支, 永远指向同一个 commit 对象 (相当于 alias).
 
+tags 分为 lightweight tags 和 annotated tags. 创建 annotated tags 时会生成一个标签对象.
+
+- `git update-ref refs/tags/<version> <commit_id>`
+  : 创建 lightweight tag
+- `git tag -a <version> <commit_id> -m <message>`
+
+```shell
+$ git tag -a v1.1 1a410efbd13591db07496601ebc7a059dd55cfe9 -m 'test tag' # 创建 annotated tag
+
+$ git cat-file -p 9585191f37f7b0fb9444f35a9bf50de191beadc2
+object 1a410efbd13591db07496601ebc7a059dd55cfe9 # object 项目指向对应的 commit id
+type commit
+tag v1.1
+tagger Scott Chacon <schacon@gmail.com> Sat May 23 16:48:58 2009 -0700
+
+test tag
+```
+
+对于标签对象而言, 并不一定要指向某个 commit 对象, 可以对任意类型打标签.
+
+```shell
+$ git cat-file blob junio-gpg-pub # 指向一个 blob 对象
+```
+
+## 远程引用
+
+远程引用保存在 `refs/remote` 下, 和分支 (`refs/heads`) 的区别在于, 远程引用是只读的, 不能用 `commit` 修改.
+
+Git 记录远程引用的目的在于记录最后一次和服务器通信时远程分支和标签的状态.
+
+# 包文件
+
+在以下三种情况中, Git 会将多个 loose 对象打包成一个包文件 (packfile).
+- 当版本库中 loose 对象过多
+- 手动执行 `git gc`
+- 向远程服务器推送
+
+```shell
+$ git gc
+Counting objects: 18, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (18/18), done.
+Total 18 (delta 3), reused 0 (delta 0)
+```
+
+打包后查看 `objects` 目录会发现一些对象不见了, 同时多出一些新创建的 packfile (`.pack`) 和对包文件的索引文件 (`.idx`).
+
+Git 在打包时会查找大小和命名相近的文件, 同时只保存相似文件的 diff 信息. 一般来说会比较新的版本会存储完整的文件内容, 而旧版本作为 diff 的形式保存, 因为新版本比旧版本被访问到的概率更大.
+
+- `git verify-pack`
+  : 查看已打包的内容
+
+```shell
+$ git verify-pack -v .git/objects/pack/pack-978e03944f5c581011e6998cd0e9e30000905586.idx
+2431da676938450a4d72e260db3bf7b0f587bbc1 commit 223 155 12
+# 省略一部分
+b042a60ef7dff760008df33cee372b945b6e884e blob   22054 5799 1463
+033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5 blob   9 20 7262 1 b042a60ef7dff760008df33cee372b945b6e884e # 引用了 b042a 的信息
+```
+
+# 引用规范
+
+引用规范用于服务器分支和本地远程引用 (`refs/reomtes`) 的映射.
+
+## 引用规范简介
+
+使用 `git remote add` 会在 `.git/config` 中添加一个远程引用, 包含远程版本库的名称, URL 以及引用规范.
+
+``` gitconfig
+[remote "origin"]
+  url = https://github.com/schacon/simplegit-progit
+  fetch = +refs/heads/*:refs/remotes/origin/* # 服务器的 refs/heads/ 下面所有引用都写入 refs/remotes/origin/
+```
+
+引用规范由一个可选的 `+` 和 `<src>:<dst>` 组成. 其中 `<src>`是一个 pattern (但是不能使用部分通配符, 如 `*.txt`), 代表远程版本库中的引用; `<dst>` 是本地跟踪的位置. `+` 表示即使在不能快进的情况下也要 (强制) 更新引用.
+
+```shell
+# 根据引用规范, 以下三者展开后没有区别, 都是 refs/remotes/origin/master
+$ git log origin/master
+$ git log remotes/origin/master
+$ git log refs/remotes/origin/master
+```
+
+`fetch` 时可以使用引用规范拉取文件.
+
+- `git fetch <remote> <remote_branch>:refs/remotes/<remote>/<branch>`
+  : 从服务器的远程分支拉取到本地的跟踪分支
+
+```shell
+# 将远程的 master 分支拉取到本地的 mymaster
+$ git fetch origin master:refs/remotes/origin/mymaster
+```
+
+## 引用规范推送
+
+- `git push <local_branch>:refs/heads/<branch>`
+  : 推送本地分支到服务器的分支 (`:` 后面的为服务器地址)
+
+## 删除引用
+
+- `$ git push origin :<branch>`
+  : (即把 `src` 清空)
+- `git push origin --delete <branch>`
+  : 删除引用
+
+# 传输协议
+
+## dumb 协议
+
+dumb 协议的意思是只进行 `get` 操作, 但是现在很少使用, 因为无法保证安全性和私有化.
+
+1. 拉取 `info/refs` (可以通过 `git update-server-info` 生成), 此时获得了一个远程引用和 SHA-1 值列表
+2. 拉取 `HEAD`, 确定 HEAD 引用
+3. 根据 SHA-1 值列表遍历对象. 如果是 loose 对象则可以直接获取, 否则将得到 404. 此时文件可能在替代版本库或者 packfile 中.
+   1. 首先检查替代版本库 `objects/info/http-alternates`
+   2. 检查 packfile
+      1. 拉取 `objects/info/packs` 得到包文件列表 (也是通过 `git update-server-info` 生成)
+      2. 拉取包文件索引, 查看文件是否在里面
+      3. 拉取对应的包文件
+
+## smart 协议
+
+smart 协议可以和服务器进行通信.
+
+### 上传数据
+
+为了上传数据至远端, Git 使用 `send-pack` 和 `receive-pack` 进程. Client 的 `send-pack` 进程连接到 Server 的 `receive-pack` 进程.
+
+#### SSH
+
+1. 本地启动 `send-pack`
+2. 尝试 SSH 并在远端执行 `receive-pack`. 此时服务端的 `git-receive-pack` 为为它所拥有的每一个引用发送一行响应.
+  ```shell
+  $ ssh -x git@server "git-receive-pack 'simplegit-progit.git'"
+  00a5ca82a6dff817ec66f4437202690a93763949 refs/heads/master report-status delete-refs side-band-64k quiet ofs-delta agent=git/2:2.1.1+github-607-gfba4028 delete-refs
+  0000
+  # 第一行包含 master 分支和其 SHA-1, 以及响应能力 (report-status)
+  # 每一行以一个四位的 HEX 开始, 用于指明本行的长度. (如第一行的 00a5表示第一行有 165B)
+  # 0000 表示结束发送
+  ```
+3. `send-pack` 判断服务端没有的文件并选择性发送.
+  ```shell
+  0076ca82a6dff817ec66f44342007202690a93763949 15027957951b64cf874c3557a0f3547bd83b3ff6 \
+    refs/heads/master report-status
+  006c0000000000000000000000000000000000000000 cdfdb42577e2506715f8cfeacdbabc092bf63e8d \
+    refs/heads/experiment
+  0000
+  # 类似 receive-pack. 左边全 0 的 HEX 表示之前没有过这个引用, 删除引用时则会显示右边全 0
+  ```
+4. Client 发送一个包含所有服务端需要的文件的打包
+5. Server 返回 `000eunpack ok` 表示成功
+
+#### HTTP(S)
+
+HTTP 的过程大致相同, 只有握手阶段有区别.
+
+首先 Get 数据.
+
+```shell
+=> GET http://server/simplegit-progit.git/info/refs?service=git-receive-pack
+001f# service=git-receive-pack
+00ab6c5f0e45abd7832bf23074a333f739977c9e8188 refs/heads/master□report-status delete-refs side-band-64k quiet ofs-delta agent=git/2:2.1.1~vmg-bitmaps-bugaloo-608-g116744e
+0000
+```
+
+然后客户端再 POST 数据.
+
+```shell
+=> POST http://server/simplegit-progit.git/git-receive-pack
+```
+
+POST 请求包含了 `send-pack` 的输出以及一个 packfile. 然后服务端会返回一个 HTTP 响应. HTTP 协议可能会将这个数据用分块传输编码包裹起来.
+
+### 下载数据
+
+当你在下载数据时, Client 启动 `fetch-pack` 进程, Server 启动 `upload-pack` 进程.
+
+#### SSH
+
+首先 SSH 到服务端.
+
+```shell
+$ ssh -x git@server "git-upload-pack 'simplegit-progit.git'"
+```
+
+等 `fetch-pack` 连接后, `upload-pack` 会返回内容.
+
+```shell
+00dfca82a6dff817ec66f44342007202690a93763949 HEAD□multi_ack thin-pack \
+	side-band side-band-64k ofs-delta shallow no-progress include-tag \
+	multi_ack_detailed symref=HEAD:refs/heads/master \
+	agent=git/2:2.1.1+github-607-gfba4028
+003fe2409a098dc3e53539a9028a94b6224db9d6a6b6 refs/heads/master
+0000
+```
+
+然后 `fetch-pack` 检查有用的对象并且发出请求.
+
+```shell
+003cwant ca82a6dff817ec66f44342007202690a93763949 ofs-delta # 需要的对象
+0032have 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 # 拥有的对象
+0009done # 完成, 通知服务端开始发送
+0000
+```
+
+#### HTTP(S)
+
+HTTP(S) 需要两次握手.
+
+首先向和 dump 协议中相同的端点发送 GET 请求 (类似于 SSH 的 `git-upload-pack`).
+
+```shell
+=> GET $GIT_URL/info/refs?service=git-upload-pack
+001e# service=git-upload-pack
+00e7ca82a6dff817ec66f44342007202690a93763949 HEAD multi_ack thin-pack \
+    side-band side-band-64k ofs-delta shallow no-progress include-tag \
+    multi_ack_detailed no-done symref=HEAD:refs/heads/master \
+    agent=git/2:2.1.1+github-607-gfba4028
+003fca82a6dff817ec66f44342007202690a93763949 refs/heads/master
+0000
+```
+
+然后 POST 数据. 这个请求的响应包含了所需要的包文件, 并指明成功或失败.
+
+```shell
+=> POST $GIT_URL/git-upload-pack HTTP/1.0
+0032want 0a53e9ddeaddad63ad106860237bbf53411d11a7
+0032have 441b40d833fdfa93eb2908e52742248faf0ee993
+0000
+```
+
+# 维护与数据恢复
+
+## 维护
+
+Git 会自动执行 `auto gc`, 包文件太多时可以将其合并. 通过修改 `gc.auto` 与 `gc.autopacklimit` 可以修改发生 gc 的阈值.
+
+- `git gc --auto`
+  : 手动执行自动垃圾回收
+
+类似的, 一些引用也会被打包到 `.git/packed-refs`. 但是更新引用后并不会更新 `packed-refs`, 只会在 `refs/heads` 中创建新文件. 只有在 `refs/heads` 中找不到时才会到 `packed-refs` 中寻找. (类似于一个 cache 关系)
+
+```shell
+$ cat .git/packed-refs
+# pack-refs with: peeled fully-peeled
+cac0cab538b970a37ea1e769cbbde608743bc96d refs/heads/experiment
+ab1afef80fac8e34258ff41fc1b867c702daa24b refs/heads/master
+cac0cab538b970a37ea1e769cbbde608743bc96d refs/tags/v1.0
+9585191f37f7b0fb9444f35a9bf50de191beadc2 refs/tags/v1.1
+^1a410efbd13591db07496601ebc7a059dd55cfe9 # ^ 开头表示 annotated tag
+```
+
+## 数据恢复
+
+- `git reflog`
+  : 显示每一次改变 HEAD 时的 SHA-1
+
+reflog 会在执行 `git update-ref` 时更新 (所以使用 `update-ref` 比直接向文件中写入 SHA-1 值安全).
+
+```shell
+$ git reflog
+1a410ef HEAD@{0}: reset: moving to 1a410ef
+ab1afef HEAD@{1}: commit: modified repo.rb a bit
+484a592 HEAD@{2}: commit: added repo.rb
+```
+
+- `git log -g`
+  : 用标准日志的格式输出引用日志 (比 `reflog` 更详细)
+
+```shell
+$ git log -g
+commit 1a410efbd13591db07496601ebc7a059dd55cfe9
+Reflog: HEAD@{0} (Scott Chacon <schacon@gmail.com>)
+Reflog message: updating HEAD
+Author: Scott Chacon <schacon@gmail.com>
+Date: Fri May 22 18:22:37 2009 -0700
+
+        third commit
+
+commit ab1afef80fac8e34258ff41fc1b867c702daa24b
+Reflog: HEAD@{1} (Scott Chacon <schacon@gmail.com>)
+Reflog message: updating HEAD
+Author: Scott Chacon <schacon@gmail.com>
+Date: Fri May 22 18:15:24 2009 -0700
+        modified repo.rb a bit
+```
+
+但是如果发现 `reflog` 里面也没有发现需要的分支, 则要用 `git fsck` 解决. 其中 `dangling commit` 表示丢失的提交.
+
+- `git fsck --full`
+  : 查看没有被其他对象指向的对象
+
+```shell
+$ git fsck --full
+Checking object directories: 100% (256/256), done.
+Checking objects: 100% (18/18), done.
+dangling blob d670460b4b4aece5915caf5c68d12f560a9fe3e4
+dangling commit ab1afef80fac8e34258ff41fc1b867c702daa24b # 丢失的提交
+dangling tree aea790b9a58f6cf6f2804eeac9f0abbe9631e4c9
+dangling blob 7108f7ecb345ee9d0084193f147cdad4d2998293
+```
+
+## 移除对象
+
+加入有人不小心向版本库中添加了非常大的文件, 然后又删除了它, 导致这个文件在版本库中留下了记录, 此时可以将其从历史中删除.
+
+**注意, 下面的操作都是破坏性的!**
+
+这个过程需要重写添加大文件后的每一个 commit, 并且需要其他 contributor 的配合, 将其工作 rebase 到新的版本库上.
+
+- `git count-objects`
+  : 查看占用空间
+
+```shell
+$ git count-objects -v
+count: 7
+size: 32
+in-pack: 17
+packs: 1
+size-pack: 4868 # 单位为 KB
+prune-packable: 0
+garbage: 0
+size-garbage: 0
+```
+
+1. 找到这个文件的对象
+   - `git verify-pack`
+     : 检查 packfile
+
+   ```shell
+   $ git verify-pack -v .git/objects/pack/pack-29...69.idx | sort -k 3 -n | tail -3
+   dadf7258d699da2c8d89b09ef6670edb7d5f91b4 commit 229 159 12
+   033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5 blob   22044 5792 4977696
+   82c99a3e86bb1267b236a4b6eff7868d97489af1 blob   4975916 4976258 1438 # 找到文件, 大约 5MB
+   ```
+
+2. 找到具体的文件
+   - `git rev-list`
+     : 倒序输出所有对象
+     + `--objects`
+     : 列出对象的 SHA-1 与路径
+
+   ```shell
+   $ git rev-list --objects --all | grep 82c99a3
+   82c99a3e86bb1267b236a4b6eff7868d97489af1 git.tgz
+   ```
+
+3. 找到对应的 commit
+  ```shell
+  $ git log --oneline --branches -- git.tgz
+  dadf725 oops - removed large tarball
+  7b30847 add git tarball
+  ```
+
+4. 重写历史
+  ```shell
+  # index-filter 不会修改 checkout 的文件, 会修改暂存区或索引中的文件
+  $ git filter-branch --index-filter \
+      'git rm --cached --ignore-unmatch git.tbz2' -- 6df7640^..
+  Rewrite 6df764092f3e7c8f5f94cbe08ee5cf42e92a0289 (1/2)rm 'git.tbz2'
+  Rewrite da3f30d019005479c99eb4c3406225613985a1db (2/2)
+  Ref 'refs/heads/master' was rewritten
+  ```
+
+5. 重新打包
+  ```shell
+  # 清理引用日志和数据库并重新打包
+  $ rm -Rf .git/refs/original
+  $ rm -Rf .git/logs/
+  $ git gc
+  ```
+
+6. 完全移除对象
+  ```shell
+  $ git prune --expire now
+  ```
