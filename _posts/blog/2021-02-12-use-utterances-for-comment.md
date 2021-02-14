@@ -5,7 +5,7 @@ subtitle: "比 Gitalk 更安全，比 Disqus 更轻量"
 author: "roife"
 date: 2021-02-12
 
-tags: ["博客搭建@D"]
+tags: ["博客搭建@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

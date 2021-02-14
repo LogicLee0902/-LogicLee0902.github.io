@@ -5,7 +5,7 @@ subtitle: "特殊工具：控制内存分配、RTTI、枚举类型、类成员�
 author: "roife"
 date: 2020-08-24
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

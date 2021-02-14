@@ -5,7 +5,7 @@ subtitle: "中断和异常"
 author: "roife"
 date: 2021-01-02
 
-tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "Verilog-HDL@L", "数字电路@D"]
+tags: ["BUAA - 计算机组成实验@Courses@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags", "Verilog-HDL@Languages@Tags", "数字电路@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

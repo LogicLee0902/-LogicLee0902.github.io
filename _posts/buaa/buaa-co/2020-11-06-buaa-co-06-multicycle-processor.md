@@ -4,7 +4,7 @@ title: "「BUAA-CO」 06 多周期 CPU"
 subtitle: "搭建多周期CPU"
 author: "roife"
 date: 2020-10-12
-tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "Computer Organization and Design@B", "北航@D", "计算机组成@D", "数字电路@D", "Verilog-HDL@L"]
+tags: ["BUAA - 计算机组成@Courses@Series", "Digital Design and Computer Architecture@Books@Series", "Computer Organization and Design@Books@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags", "数字电路@Tags@Tags", "Verilog-HDL@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

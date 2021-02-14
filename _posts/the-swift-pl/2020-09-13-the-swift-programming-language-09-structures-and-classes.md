@@ -5,7 +5,7 @@ subtitle: "类和结构体"
 author: "roife"
 date: 2020-09-13
 
-tags: ["The Swift Programming Language@B", "Swift@L"]
+tags: ["The Swift Programming Language@Books@Series", "Swift@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

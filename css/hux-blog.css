@@ -1627,6 +1627,7 @@ footer .copyright a:focus {
 .listing-seperator {
   color: #0085a1;
   font-size: 21px !important;
+  cursor: pointer;
 }
 .listing-seperator::before {
   margin-right: 5px;

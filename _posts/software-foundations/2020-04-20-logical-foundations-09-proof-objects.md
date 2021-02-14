@@ -5,7 +5,7 @@ subtitle: "The Curry-Howard Correspondence"
 author: "roife"
 date: 2020-04-20
 
-tags: ["Software Foundations@B", "Logical Foundations@B", "Coq@L", "程序语言理论@D", "形式化验证@D"]
+tags: ["Software Foundations@Books@Series", "Logical Foundations@Books@Series", "Coq@Languages@Tags", "程序语言理论@Tags@Tags", "形式化验证@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

@@ -5,7 +5,7 @@ subtitle: "接口，lambda 表达式和内部类"
 author: "roife"
 date: 2021-01-28
 
-tags: ["Java@L", "Core Java@B"]
+tags: ["Java@Languages@Tags", "Core Java@Books@Series"]
 lang: zh
 catalog: true
 header-image: ""

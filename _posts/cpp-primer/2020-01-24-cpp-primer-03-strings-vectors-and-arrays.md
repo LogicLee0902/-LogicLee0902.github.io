@@ -5,7 +5,7 @@ subtitle: "字符串, 向量和数组"
 author: "roife"
 date: 2020-01-24
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

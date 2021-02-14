@@ -5,7 +5,7 @@ subtitle: "继承"
 author: "roife"
 date: 2021-01-27
 
-tags: ["Java@L", "Core Java@B"]
+tags: ["Java@Languages@Tags", "Core Java@Books@Series"]
 lang: zh
 catalog: true
 header-image: ""

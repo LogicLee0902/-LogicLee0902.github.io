@@ -5,7 +5,7 @@ subtitle: "Cons 与 列表"
 author: "roife"
 date: 2020-01-03
 
-tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@D"]
+tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

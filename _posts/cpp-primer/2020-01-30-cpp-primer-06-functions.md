@@ -5,7 +5,7 @@ subtitle: "函数"
 author: "roife"
 date: 2020-01-30
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

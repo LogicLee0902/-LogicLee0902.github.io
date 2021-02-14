@@ -5,7 +5,7 @@ subtitle: "基本命令"
 author: "roife"
 date: 2020-07-13
 
-tags: ["Pro Git@B", "Git@D"]
+tags: ["Pro Git@Books@Series", "版本管理@Tags@Tags", "Git@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

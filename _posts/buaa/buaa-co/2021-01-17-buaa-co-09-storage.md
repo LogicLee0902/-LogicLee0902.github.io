@@ -4,7 +4,7 @@ title: "「BUAA-CO」 09 存储系统"
 subtitle: "Cache，VM，磁盘，CD 等"
 author: "roife"
 date: 2021-01-17
-tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "Computer Organization and Design@B", "北航@D", "计算机组成@D", "数字电路@D"]
+tags: ["BUAA - 计算机组成@Courses@Series", "Digital Design and Computer Architecture@Books@Series", "Computer Organization and Design@Books@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags", "数字电路@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

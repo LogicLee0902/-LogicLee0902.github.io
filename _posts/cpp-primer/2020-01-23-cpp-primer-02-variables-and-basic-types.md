@@ -5,7 +5,7 @@ subtitle: "变量和基本类型"
 author: "roife"
 date: 2020-01-23
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

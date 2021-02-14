@@ -5,7 +5,7 @@ subtitle: "Classes"
 author: "roife"
 date: 2021-01-25
 
-tags: ["Java@L", "Core Java@B"]
+tags: ["Java@Languages@Tags", "Core Java@Books@Series"]
 lang: zh
 catalog: true
 header-image: ""
