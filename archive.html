@@ -21,19 +21,9 @@ header-img: "img/tag-bg.jpg"
 				<option value="0" selected> 标签 | TAG </option>
 				<option value="1"> 系列 | SER </option>
 			</select>
-
-			<div class='tag'>
-				<!-- Tags (as filter) -->
-				<div id='tag_cloud' class="tags tags-sup js-tags">
-					{% include archive-tags.html identifier="Tags" %}
-				</div>
-			</div>
-
-			<div class='ser'>
-				<!-- Tags (as filter) -->
-				<div id='tag_cloud' class="tags tags-sup js-tags">
-					{% include archive-tags.html identifier="Series" %}
-				</div>
+			<div id='tag_cloud' class="tags tags-sup js-tags">
+				<div class='tag-section'> {% include archive-tags.html identifier="Tags" %} </div>
+				<div class='series-section'> {% include archive-tags.html identifier="Series" %} </div>
 			</div>
 
 			<hr>
