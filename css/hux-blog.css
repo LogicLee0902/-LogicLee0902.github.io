@@ -15,7 +15,7 @@
 }
 .sidebar-container h5 {
   color: #a3a3a3;
-  padding-bottom: 1em;
+  padding-bottom: 0.5em;
 }
 .sidebar-container h5 a {
   color: #a3a3a3 !important;
@@ -77,8 +77,9 @@
 .side-catalog .catalog-body {
   position: relative;
   list-style: none;
-  height: auto;
+  height: 80%;
   overflow: hidden;
+  overflow-y: auto;
   padding-left: 0px;
   padding-right: 5px;
   text-indent: 0;
