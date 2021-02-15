@@ -37,8 +37,9 @@
                 <div class="post-heading">
                     <div class="tags">
                         {% for tag in page.tags %}
-                            {%- assign length = tag | size | minus: 2 -%}
-                            <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | slice: 0, length | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
+                            {%- assign top_identifier_len = tag | split: '@' | slice: -2, 2 | join: '' | size | plus: 2 -%}
+                            {%- assign length = tag | size | minus: top_identifier_len -%}
+                            <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
@@ -76,14 +77,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         {% for tag in page.tags %}
-                        <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag }}">{{ tag }}</a>
+                            {%- assign top_identifier_len = tag | split: '@' | slice: -2, 2 | join: '' | size | plus: 2 -%}
+                            {%- assign length = tag | size | minus: top_identifier_len -%}
+                            <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
                     {% comment %} always create a h2 for keeping the margin {% endcomment %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
-                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %}
-                        on {{ page.date | date: "%B %-d, %Y" }}</span>
+                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
                 </div>
             </div>
         </div>

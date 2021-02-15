@@ -46,16 +46,20 @@
 	{%- endfor -%}
 
 	{%- if each_top_tag != include.identifier -%}
-		<span class="fa listing-seperator">
-			<span class="tag-text"
-					data-toggle="collapse"
-					data-target="#{{each_top_tag | append: '@' | append: include.identifier}}">
-				{{each_top_tag}}
+		<div>
+			<span class="fa listing-seperator">
+				<span class="tag-text tag-collapse-toggle"
+						data-toggle="collapse"
+						data-target="#{{each_top_tag | append: '-' | append: include.identifier}}"
+						onselectstart="return false"
+						style="position:relative; left: -0.5em">
+					{{each_top_tag}}
+				</span>
 			</span>
-		</span>
-		<br>
-		<div id="{{each_top_tag | append: '@' | append: include.identifier}}" class="collapse in">
-			{{ top_tag_ui | sort }}
+			<br>
+			<div id="{{each_top_tag | append: '-' | append: include.identifier}}" class="collapse in tag-collapse-body">
+				{{ top_tag_ui | sort }}
+			</div>
 		</div>
 	{%- else -%}
 		{{ top_tag_ui | sort }}

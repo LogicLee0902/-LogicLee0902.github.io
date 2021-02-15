@@ -927,9 +927,6 @@ footer {
   color: #0085a1;
   font-size: 21px !important;
   cursor: pointer;
-  &::before {
-    margin-right: 5px;
-  }
   @media only screen and (min-width: 768px) {
     font-size: 20px !important;
     line-height: 2 !important;
@@ -940,8 +937,8 @@ footer {
 .mini-post-list {
   margin: 20px 0 15px 0;
   .tag-text {
-    font-weight: 200;
     .sans-serif;
+    font-weight: 200;
   }
   .post-preview {
     position: relative;
@@ -1083,4 +1080,28 @@ footer {
 
 .utterances {
   max-width: 100%;
+}
+
+// roife's tag-collapse
+.tag-collapse-body {
+  &.collapsing {
+    transition: height 0.01s;
+  }
+}
+
+.tag-collapse-toggle {
+  &.collapsed::before {
+    content: "+";
+  }
+  &:hover {
+    color: #7898C5;
+  }
+  &::before {
+    content: "-";
+    font-family: monospace;
+    font-size: medium;
+    position: relative;
+    margin-right: 0px;
+    bottom: 1px;
+  }
 }

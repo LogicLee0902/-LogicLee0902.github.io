@@ -1629,9 +1629,6 @@ footer .copyright a:focus {
   font-size: 21px !important;
   cursor: pointer;
 }
-.listing-seperator::before {
-  margin-right: 5px;
-}
 @media only screen and (min-width: 768px) {
   .listing-seperator {
     font-size: 20px !important;
@@ -1642,13 +1639,13 @@ footer .copyright a:focus {
   margin: 20px 0 15px 0;
 }
 .mini-post-list .tag-text {
-  font-weight: 200;
   /* Hux learn from
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
+  font-weight: 200;
 }
 .mini-post-list .post-preview {
   position: relative;
@@ -1770,4 +1767,21 @@ footer .copyright a:focus {
 }
 .utterances {
   max-width: 100%;
+}
+.tag-collapse-body.collapsing {
+  transition: height 0.01s;
+}
+.tag-collapse-toggle.collapsed::before {
+  content: "+";
+}
+.tag-collapse-toggle:hover {
+  color: #7898C5;
+}
+.tag-collapse-toggle::before {
+  content: "-";
+  font-family: monospace;
+  font-size: medium;
+  position: relative;
+  margin-right: 0px;
+  bottom: 1px;
 }
