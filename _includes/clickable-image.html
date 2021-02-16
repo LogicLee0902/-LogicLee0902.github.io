@@ -1,20 +1,5 @@
 <div id="image-cover-modal" class="image-cover-modal">
-    <img id="image-cover-image" class="image-cover-modal-content">
+    <div id="image-cover-modal-container" class="image-cover-modal-container">
+        <img id="image-cover-image" class="image-cover-modal-content img-unzoomable">
+    </div>
 </div>
-
-<script>
-    var modal = document.getElementById('image-cover-modal');
-    var modalImg = document.getElementById("image-cover-image");
-    var span = document.getElementsByClassName("image-cover-close")[0];
-
-    modal.onclick = function () {
-        this.classList.remove("model-shown");
-    }
-
-    for (var i = 0; i < document.images.length; i++) {
-        document.images[i].onclick = function () {
-            modal.classList.add("model-shown");
-            modalImg.src = this.src;
-        }
-    }
-</script>
