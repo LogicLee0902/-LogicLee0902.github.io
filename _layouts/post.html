@@ -21,7 +21,7 @@ layout: default
                 {% endif %}
 
                 {{ content }}
-                <a id="article-end-anchor"></a>
+                <span id="article-end-anchor"></span>
 
                 <hr style="visibility: hidden"/>
                 <ul class="pager">
@@ -57,9 +57,11 @@ layout: default
                         <hr class="hidden-sm hidden-xs"/>
                         <h5>
                             <a class="catalog-toggle" href="#">CATALOG</a>
+
                         </h5>
                         <ul class="catalog-body"></ul>
                         <hr class="hidden-sm hidden-xs">
+                        <a href="#top" style="float:right; text-decoration: none;">▲ TOP</a>
                     </div>
                 </div>
             {% endunless %}
