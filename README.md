@@ -15,6 +15,7 @@ The theme was based on [Hux Blog](https://github.com/Huxpro/huxpro.github.io) an
 - Add support for zooming images
 - Add `back-to-top` button
 - Add auto-scroll for catalogs
+- Remove service worker
 - ...
 
 #### How to build my own blog based on the theme?
