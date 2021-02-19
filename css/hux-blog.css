@@ -843,6 +843,7 @@ table.table > thead th,
 table.table > tbody td,
 table.table > thead td {
   border: 1px solid #eee !important;
+  white-space: nowrap;
 }
 @media screen and (max-width: 767px) {
   .table-responsive {
