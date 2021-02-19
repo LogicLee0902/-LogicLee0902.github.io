@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "使用 Utterances 作为静态博客的评论插件"
-subtitle: "比 Gitalk 更安全，比 Disqus 更轻量"
+subtitle: "比 Gitalk 更安全"
 author: "roife"
 date: 2021-02-12
 
@@ -11,6 +11,10 @@ catalog: true
 header-image: ""
 header-style: text
 ---
+
+**UPDATE : 2021.2.20**：由于 utterances 功能缺乏，我又用回 Disqus 了，至少等它可以上传图片/逆序查看评论再考虑吧。
+
+---------
 
 [utterances](https://utteranc.es) 是一款基于 GitHub issues 的开源评论插件，类似于 Gitalk，支持 markdown。
 
