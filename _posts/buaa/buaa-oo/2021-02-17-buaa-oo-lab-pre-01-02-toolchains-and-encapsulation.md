@@ -9,7 +9,6 @@ lang: zh
 catalog: true
 header-image: ""
 header-style: text
-katex: true
 ---
 
 # 工具链介绍

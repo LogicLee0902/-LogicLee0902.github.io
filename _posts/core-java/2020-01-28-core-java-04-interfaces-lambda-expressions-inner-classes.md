@@ -194,7 +194,7 @@ class Employee implements Clonable {
 
 // 无参数 lambda 表达式
 
-0 -> { for (int i = 100; i >= 0; i-- ) System.out.println(i); }
+() -> { for (int i = 100; i >= 0; i-- ) System.out.println(i); }
 
 // 单参数可推导类型 lambda 表达式
 
@@ -276,7 +276,7 @@ repeat(10, () -> System.out.println("Hello, World!"));
 ```java
 ArrayList<String> names = ...;
 Stream<Person> stream = names.stream().map(Person::new);
-List<Person> people = stream.collect(Col1ectors.toList());
+List<Person> people = stream.collect(Collectors.toList());
 ```
 
 ## 变量作用域
@@ -314,4 +314,253 @@ Comparator interface 包含很多 static 方法用于比较：
 
 # 内部类
 
+## 对象内部类
 
+内部类只是定义在内部，不一定所有的外部类实例都有内部类成员。
+
+```java
+public class Outer {
+    private int own = 1;
+    public void outerMethod() {
+        Inner inner = new Inner();
+        inner.innerMethod();
+    }
+
+    private class Inner {
+        public void innerMethod() {
+            ++own; // 内部类可以引用外部类的变量
+        }
+    }
+}
+```
+
+内部类可以访问外部类的成员。原理是内部类有一个外部类的隐式引用，可以通过它访问外部类成员。
+并且由于内部类没有构造函数，所以编译器会生成一个构造函数，并传入 `this`。
+
+```java
+// 假设这个引用叫做 outer，实际上并不存在
+public Inner(Outer o) {
+    outer = o;
+}
+
+public void innerMethod() {
+    ++outer.own;
+}
+
+// ...
+
+Innter inner = new Outer(this);
+```
+
+只有内部类可以被声明为私有的，普通类要么是 `public`，要么是包内可见。
+
+## 内部类的特殊语法规则
+
+用 `OuterClassName.this` 表示外部类的引用。
+
+```java
+Outer.this.own++;
+```
+
+内部类对象的构造也可以用类似写法：`outerObject.new InnerClassName(args);`。在外部类的作用域外可以用 `OuterClassName.InnterClassName` 引用内部类。
+
+```java
+// 在外部类里面
+this.new Inner();
+
+// 在外部类外面
+Outer outer = new Outer();
+Outer.Inner inn = outer.new Inner();
+```
+
+内部类不能有 static 方法，防止语法太复杂。而且内部类的 static 成员必须是 final，因为严格看内部类是属于它的外部类的，不同外部类实例的内部类本质是不一样的，所以不应该共享数据，那样的话可变的 static 成员就没有意义了。
+
+## 内部类的编译
+
+内部类会被编译为 `Outer$Inner` 的形式，同时会在内部类中生成 `this$0` 来引用外部类对象（只有编译器能用）。同时，编译器允许内部类访问外部类的**私有域**。
+
+同时编译器在外部类生成方法 `static int access$0(Outer)`。那么编译器会对内部类中使用外部成员的地方，使用这个函数。这个函数传入外部类引用，能返回对应的成员。（具体的更复杂）
+
+```java
+own++;
+// 等价于
+access$0(outer)++
+```
+
+## 局部内部类
+
+内部类可以放在一个方法之中，称为局部类。局部类不需要访问控制符，因为它天然就被隐藏起来。
+
+```java
+public class Outer {
+    private int own = 1;
+    public void outerMethod() {
+        private class Inner {
+            public void innerMethod() {
+                ++own; // 内部类可以引用外部类的变量
+            }
+        }
+        Inner inner = new Inner();
+        inner.innerMethod();
+    }
+
+}
+```
+
+局部类不仅能访问外部类，还能访问局部变量，前提是这些变量是 effectively final（虽然没用 `final` 修饰，但是不能改变的变量）的。
+
+```java
+public void outerMethod(int own) {
+    private class Inner {
+        public void innerMethod() {
+            ++own;
+        }
+    }
+    Inner inner = new Inner();
+    // 假设 inner 在离开函数后仍然会用到，比如作为 callback
+}
+
+```
+
+编译器会自动为这些变量创建拷贝，保证离开函数体后还能继续用。
+
+```java
+private class Inner {
+    public void innerMethod()
+    final int val$own; // 存储局部变量 own
+    final Outer this$0;
+}
+```
+
+## 匿名内部类
+
+如果一个类只创建了一个对象，那么就不需要命名了。语法格式为
+
+``` java
+new SuperTypeName(args) { /* inner class */ }; // 不能忘记分号
+```
+
+其中，Super 可以是 interface，那么内部类要实现这个 interface。例如：
+
+```java
+ActionListener listener = new ActionListener() {
+    public void actionPerformed(ActionEvent event) {
+        // ...
+    }
+};
+```
+
+匿名类没有类名，所以也没有构造器。传递参数只传递给 SuperType 的构造器。
+
+匿名类是在 lambda 表达式出现以前，用来替代 lambda 的一种手段。
+
+### 匿名类的更多用法
+
+除了替代 lambda 表达式，匿名类还有其他用法。
+
+#### 双括号初始化
+
+<!-- {% raw %} -->
+```java
+invite(new ArrayList<String> () {{ add ( "Harry "); add ("Tony"); }});
+// 外面的 {} 表示一个匿名类
+// 内部的 {} 表示一个对象构造块
+```
+<!-- {% endraw %} -->
+
+#### `getClass()`
+
+匿名类不能用 `getClass() != other.getClass()` 判断是不是一个类。
+
+#### 获取静态方法名字
+
+静态方法没有 `this`，所以在方法内部不能用 `getClass()`（本质上是 `this.getClass()`）获取名字。此时可以用内部类。
+
+```java
+new Object(){}.getClass().getEnclosingClass() // gets class of static method
+```
+
+这里首先通过 `getClass()` 得到匿名子类的匿名对象，然后通过 `getEnclosingClass()` 得到它的外部类，也就是静态方法所在的类。
+
+## 静态内部类
+
+如果只是想通过内部类来隐藏一个类，而不想使用外部类的引用，那么可以声明为静态内部类，取消产生的引用。
+
+```java
+public class Outer {
+    private int own = 1;
+
+    private static class Inner {
+        public void innerMethod() { }
+    }
+}
+```
+
+此时访问 `Inner` 仍然需要通过 `Outer.Inner`，虽然不能访问外部类变量，但是也避免了 `Inner` 与外界名字冲突。
+例如在某个类中返回了一个叫 `Pair` 的类，为了避免名字冲突，可以用 `Class.Pair` 来做到名字的隐藏。
+
+静态内部类可以有静态域和静态方法，并且可以被外部类的静态方法使用。除此之外，静态内部类和内部类完全一样。
+
+# 代理
+
+## 代理的用处
+
+代理可以实现在一个方法被调用前或被调用后执行一些用户指定的操作。例如调用后打印调用函数的信息，或者在调用前为被调用的函数过滤掉一些无效的调用。
+
+个人理解，之所以叫做代理，是因为用户调用的是这个伪装函数，伪装函数干了一些自己的事情同时调用了真正的函数。
+
+这里并不是说给函数加上全局的钩子！而是说给定一个类，以及要附加的操作（调用处理器），然后动态生成一个新的类，这个类就是原来的类的代理。然后必须要是这个动态生成的类的对象才能实现代理的效果。
+
+代理类的用处主要是有时候想为某个类实现类似的效果，但是这样就要手写一个新的伴随类，而代理可以自动生成需要的代理类。
+
+## 使用代理
+
+使用代理分为三步。
+
+首先要实现调用处理器（一个类）。这个类必须要实现 `InvocationHandler` 接口，在此接口中只有一个方法：
+
+```java
+Object invoke (Object proxy, Method method, Object[] args) // 代理对象，代理方法，代理方法参数
+```
+
+一个例子如下：
+
+```java
+class TraceHandler implements InvocationHandler {
+    private Object target;
+
+    public TraceHandler(Object t) {
+        target = t;
+    }
+
+    public Object invoke(Object proxy, Method m, Object[] args) throws Throwable {
+        // 调用前做一些事
+        Object result = m.invoke(target, args);  // 调用真正的函数
+        // 调用后做一些事
+    }
+}
+```
+
+然后使用 `Proxy.newProxyInstance()` 生成代理类（这个过程会反射），即利用代理在运行时创建一个实现了一组给定接口的新类。
+
+```java
+InvocationHandler handler = new TraceHandler (value);  // 创建调用处理器
+Class[] interfaces = new Class[] { Comparable.class }; // 获取对象
+Object proxy = Proxy.newProxyInstance(null, interfaces, handler); // 分别是类加载器，对象实现的方法，调用处理器
+```
+
+最后就可以使用 `proxy` 对象了，此时使用的 `proxy` 的类是动态生成的。只有通过 `proxy` 调用的函数才会被代理，并且函数必须要实现指定的 interfaces（例如上面的 `Comparable`，但是除此之外 `toString()` 等方法也会被默认代理）。
+
+```java
+proxy.equals(xxx); // 调用代理类
+```
+
+## 代理类的特性
+
+代理类只有一个实例域，即调用处理器，如果要附加数据，那么必须添加在调用处理器中。
+
+并且所有的代理类都默认覆盖了 `toString`/`equals`/`hashCode`，而其他方法没有。
+
+对于特定的类加载器和相同的接口，只能实现一个代理类。这个类可以通过 `Proxy.getProxyClass(loader, interfaces)` 获取。同样，可以用 `Proxy.isProxyClass` 判断某个类是不是代理类。
+
+代理类一定是 `public` 和 `final` 。如果代理类实现的所有接口都是 `public`，代理类就不属于某个特定的包；反之，所有非公有的接口都必须属于同一个包，而且，代理类也必须属于这个包。
