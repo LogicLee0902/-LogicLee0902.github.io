@@ -58,9 +58,9 @@ kramdown:
       start_line: 1
 
 # utterances
-utterances_comment: false
+utterances_comment: true
 # Disqus
-disqus_username: roife-github-io
+# disqus_username: roife-github-io
 
 
 # Sidebar settings

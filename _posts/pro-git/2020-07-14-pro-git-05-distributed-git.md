@@ -5,7 +5,7 @@ subtitle: "分布式 Git 的工作流"
 author: "roife"
 date: 2020-07-14
 
-tags: ["Pro Git@Books@Series", "版本管理@Tags@Tags", "Git@Tags@Tags"]
+tags: ["Pro Git@Books@Series", "版本控制@Tags@Tags", "Git@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

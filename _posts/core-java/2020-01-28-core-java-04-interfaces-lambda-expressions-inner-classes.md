@@ -307,7 +307,7 @@ public class Application() {
 Comparator interface 包含很多 static 方法用于比较：
 - `Comparator.comparing()` 将类型 `T` 映射到一个可以用于比较的类型，如 `Arrays.sort(people, Comparator.comparing(Person::getName));`
 - `thenComparing()` 用于比较第二关键字，如 `Arrays.sort(people, Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName));`
-- `comparing()` 和 `thenComparing()` 可以指定比较器：`Arrays.sort(people, Comparator.comparing(Person::getName, (s, t) -> Integer.compare(s.1ength(), t.length())));`
+- `comparing()` 和 `thenComparing()` 可以指定比较器：`Arrays.sort(people, Comparator.comparing(Person::getName, (s, t) -> Integer.compare(s.length(), t.length())));`
 - 对于基本类型有特定的静态函数防止装箱：`Arrays.sort(people, Comparator.comparingInt(p -> p.getName().length()));`
 - `naturalOrder()` 表示正向排序，`reverseOrder()` 等价于 `naturalOrder().reversed()` 表示逆向排序
 - 如果比较内容可能为 `null`，可以用 `nullFirst(cmp)` 或 `nullLast(cmp)` 按照 `cmp` 排序并使 `null` 排在开头或末尾：`Arrays.sort(people, comparing(Person::getMiddleName, nulIsFirst(naturalOrder())));`

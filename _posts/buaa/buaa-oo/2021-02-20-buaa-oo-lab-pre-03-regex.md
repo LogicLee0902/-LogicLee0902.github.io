@@ -68,7 +68,7 @@ private static final String patternDomain = "(?<domain>[A-Za-z0-9.]+)";
 private static final String patternYyyyMmDd =
     "(?<yyyy>[\\d]{4})-(?<mm>[\\d]{2})-(?<dd>[\\d]{2})";
 private static final String patternHhMimiSsMaybe =
-    "(?<hh>[\\d]{2})?(:)?(?<mimi>[\\d]{2})?(:)?(?<ss>[\\d]{2})?";
+    "((?<hh>[\\d]{2}):)?((?<mimi>[\\d]{2}):)?(?<ss>[\\d]{2})?"; // 贪心
 private static final String pattern = patternUsername + "@" + patternDomain +
     "-" + patternYyyyMmDd + "(-)?" + patternHhMimiSsMaybe;
 public static final Pattern regex = Pattern.compile(pattern);
@@ -226,7 +226,7 @@ private static final String patternPlace = "(?<place>[A-Za-z]+)";
 private static final String patternYyyyMmDd =
     "(?<dd>[\\d]{2})-(?<mm>[\\d]{2})-(?<yyyy>[\\d]{4})";
 private static final String patternHhMimiSsMaybe =
-    "(?<ss>[\\d]{2})?(:)?(?<mimi>[\\d]{2})?(:)?(?<hh>[\\d]{2})?";
+    "((((?<ss>[\\d]{2}):)?(?<mimi>[\\d]{2}):)?(?<hh>[\\d]{2}))?";
 private static final String pattern = patternHhMimiSsMaybe + "(-)?" + patternYyyyMmDd + "-" +
     patternUsername + "@" + patternDomain + "-" + patternPlace;
 public static final Pattern regex = Pattern.compile(pattern);

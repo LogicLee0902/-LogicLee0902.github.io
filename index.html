@@ -16,9 +16,9 @@ description: "roife 的魔法科见闻"
         {% endif %}
         <div class="post-content-preview">
             {% if post.lang == 'en' %}
-            {{ post.content | strip_html | truncate:250 }}
+            {{ post.content | strip_html | truncate:300 }}
             {% else %}
-            {{ post.content | strip_html | truncate:150 }}
+            {{ post.content | strip_html | truncate:200 }}
             {% endif %}
         </div>
     </a>

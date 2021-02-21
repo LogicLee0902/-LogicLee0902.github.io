@@ -5,7 +5,7 @@ subtitle: "Git 高级命令"
 author: "roife"
 date: 2020-07-21
 
-tags: ["Pro Git@Books@Series", "版本管理@Tags@Tags", "Git@Tags@Tags", "未完成@Tags@Tags"]
+tags: ["Pro Git@Books@Series", "版本控制@Tags@Tags", "Git@Tags@Tags", "未完成@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
