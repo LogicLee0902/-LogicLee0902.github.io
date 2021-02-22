@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「Swift」 24 Automatic Reference Counting"
-subtitle: "ARC"
+title: "「Swift」 24 ARC"
+subtitle: "自动引用计数（Automatic Reference Counting）"
 author: "roife"
 date: 2020-09-20
 

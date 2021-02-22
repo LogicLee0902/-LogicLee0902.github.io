@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「C++ Primer」 17 Specialized Library Facilities"
-subtitle: "特殊标准库"
+subtitle: "tuple / bitset / regex / random / IO"
 author: "roife"
 date: 2020-08-13
 

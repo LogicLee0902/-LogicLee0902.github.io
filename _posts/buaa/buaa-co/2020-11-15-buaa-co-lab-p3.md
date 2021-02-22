@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 P3 单周期 CPU (Logisim 实现)"
-subtitle: "单周期 CPU (Logisim)"
+title: "「BUAA-CO-Lab」 P3 单周期 CPU - 1"
+subtitle: "用 Logisim 搭建单周期 CPU"
 author: "roife"
 date: 2020-11-15
 

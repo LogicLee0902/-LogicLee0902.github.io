@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "使用 Utterances 作为静态博客的评论插件"
-subtitle: "比 Gitalk 更安全，比 Disqus 更轻量的评论插件"
+subtitle: "更轻量安全的评论插件"
 author: "roife"
 date: 2021-02-12
 

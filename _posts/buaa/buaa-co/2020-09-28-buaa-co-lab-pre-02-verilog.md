@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 Pre - 02 Verilog-HDL"
-subtitle: "Verilog-HDL"
+title: "「BUAA-CO-Lab」 Pre-02 Verilog-HDL"
+subtitle: "Verilog 电路建模"
 author: "roife"
 date: 2020-09-28
 

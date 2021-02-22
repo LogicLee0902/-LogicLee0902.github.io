@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 Pre - 03 MIPS 指令"
+title: "「BUAA-CO-Lab」 Pre-03 MIPS 指令"
 subtitle: "MIPS 指令集与汇编语言"
 author: "roife"
 date: 2020-10-05

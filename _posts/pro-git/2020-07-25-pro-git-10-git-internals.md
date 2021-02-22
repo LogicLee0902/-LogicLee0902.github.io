@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「Pro Git」 10 Git Internals"
-subtitle: "Git 内部原理"
+subtitle: "Git 对象/引用/包文件/引用规范/传输协议/数据维护"
 author: "roife"
 date: 2020-07-25
 

@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「C++ Primer」 11 Associative Containers"
-subtitle: "关联容器"
+subtitle: "关联型容器"
 author: "roife"
 date: 2020-02-11
 

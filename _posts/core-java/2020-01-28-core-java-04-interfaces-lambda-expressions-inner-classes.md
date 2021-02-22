@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「Core Java」 03 Interfaces, Lambda, Inner Classes"
-subtitle: "接口，lambda 表达式和内部类"
+title: "「Core Java」 03 Interfaces & Lambda"
+subtitle: "接口，lambda 表达式，内部类和 Proxy"
 author: "roife"
 date: 2021-01-28
 

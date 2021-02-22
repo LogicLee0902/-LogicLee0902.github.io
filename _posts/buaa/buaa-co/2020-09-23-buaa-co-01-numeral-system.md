@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-CO」 01 数制"
-subtitle: "数制, 数字存储, 四则运算"
+subtitle: "数制，数字存储以及二进制的四则运算"
 author: "roife"
 date: 2020-09-23
 

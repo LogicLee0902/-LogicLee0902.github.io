@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "Liquid Template Language"
-subtitle: "搭建博客遇到的问题及解答"
+subtitle: "Liquid 博客搭建解决方案"
 author: "roife"
 date: 2020-10-29
 

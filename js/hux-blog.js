@@ -72,21 +72,26 @@ jQuery(document).ready(function($) {
                 this.previousTop = currentTop;
 
 
-                //adjust the appearance of side-catalog
-                $catalog.show()
-                if (currentTop > (bannerHeight + 41)) {
-                    $catalog.addClass('fixed')
-                } else {
-                    $catalog.removeClass('fixed')
-                }
+                var articleEndAnchor = $('#article-end-anchor')
+                if (articleEndAnchor.length > 0) {
+                    var endPos = articleEndAnchor.offset().top;
+                    var catalogBodyHeight = $('.catalog-body').height();
 
-                //do not too below
-                var endPos = $('#article-end-anchor').offset().top;
-                var catalogBodyHeight = $('.catalog-body').height();
-                if (endPos < currentTop - 21 + catalogBodyHeight + 716 - 570) {
-                    $catalog.offset({ top: endPos - catalogBodyHeight - 716 + 570 });
-                } else {
-                    $catalog.css("top", "");
+                    //adjust the appearance of side-catalog
+                    $catalog.show()
+                    if (currentTop > (bannerHeight + 41)) {
+                        $catalog.addClass('fixed')
+                    } else {
+                        $catalog.removeClass('fixed')
+                    }
+
+                    //do not too below
+
+                    if (endPos < currentTop - 21 + catalogBodyHeight + 716 - 570) {
+                        $catalog.offset({ top: endPos - catalogBodyHeight - 716 + 570 });
+                    } else {
+                        $catalog.css("top", "");
+                    }
                 }
             });
     }

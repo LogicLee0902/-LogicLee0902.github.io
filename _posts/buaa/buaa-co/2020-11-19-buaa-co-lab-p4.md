@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 P4 单周期 CPU (Verilog 实现)"
-subtitle: "单周期 CPU (Verilog)"
+title: "「BUAA-CO-Lab」 P4 单周期 CPU - 2"
+subtitle: "用 Verilog 建模单周期 CPU"
 author: "roife"
 date: 2020-11-19
 

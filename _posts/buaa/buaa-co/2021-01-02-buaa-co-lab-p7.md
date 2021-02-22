@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-CO-Lab」 P7 MIPS 微体系"
-subtitle: "中断和异常"
+subtitle: "加入中断和异常"
 author: "roife"
 date: 2021-01-02
 

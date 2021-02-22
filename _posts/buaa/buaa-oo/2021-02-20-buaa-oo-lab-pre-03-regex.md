@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-OO-Lab」 Pre - 03 正则表达式与应用"
+title: "「BUAA-OO-Lab」 Pre-03 正则表达式与应用"
 subtitle: "应用正则表达式匹配邮件"
 author: "roife"
 date: 2021-02-20

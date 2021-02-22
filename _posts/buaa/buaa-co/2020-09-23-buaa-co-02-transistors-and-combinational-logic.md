@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-CO」 02 晶体管和组合逻辑"
-subtitle: "晶体管, 门电路, 卡诺图, 组合逻辑"
+subtitle: "晶体管，门电路，卡诺图"
 author: "roife"
 date: 2020-09-23
 

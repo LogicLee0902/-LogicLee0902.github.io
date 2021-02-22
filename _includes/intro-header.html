@@ -31,25 +31,7 @@
         Image by <a href="//{{page.header-img-credit-href}}">{{page.header-img-credit}}</a>
     </div>
     {% endif %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        {% for tag in page.tags %}
-                            {%- assign top_identifier_len = tag | split: '@' | slice: -2, 2 | join: '' | size | plus: 2 -%}
-                            {%- assign length = tag | size | minus: top_identifier_len -%}
-                            <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
-                        {% endfor %}
-                    </div>
-                    <h1>{{ page.title }}</h1>
-                    {% comment %} always create a h2 for keeping the margin {% endcomment %}
-                    <h2 class="subheading">{{ page.subtitle }}</h2>
-                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include intro-header_title.html %}
 </header>
 {% endif %}
 
@@ -71,25 +53,7 @@
 <header class="intro-header" >
     <iframe src="{{page.iframe}}"></iframe>
     <!-- keep for SEO -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        {% for tag in page.tags %}
-                            {%- assign top_identifier_len = tag | split: '@' | slice: -2, 2 | join: '' | size | plus: 2 -%}
-                            {%- assign length = tag | size | minus: top_identifier_len -%}
-                            <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
-                        {% endfor %}
-                    </div>
-                    <h1>{{ page.title }}</h1>
-                    {% comment %} always create a h2 for keeping the margin {% endcomment %}
-                    <h2 class="subheading">{{ page.subtitle }}</h2>
-                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include intro-header_title.html %}
 </header>
 {% endif %}
 

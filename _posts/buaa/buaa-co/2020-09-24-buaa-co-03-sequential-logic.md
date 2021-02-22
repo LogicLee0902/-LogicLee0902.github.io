@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-CO」 03 时序逻辑"
-subtitle: "触发器, 时序逻辑, 状态机"
+subtitle: "触发器，时序，状态机"
 author: "roife"
 date: 2020-09-24
 

@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「C++ Primer」 12 Dynamic Memory"
-subtitle: "动态内存"
+subtitle: "动态内存管理与智能指针"
 author: "roife"
 date: 2020-02-12
 

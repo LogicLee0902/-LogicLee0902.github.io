@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「BUAA-OO-Lab」 Pre - 01 & 02 熟悉 Java"
-subtitle: "开发图书馆管理系统"
+title: "「BUAA-OO-Lab」 Pre-01&02 熟悉 Java"
+subtitle: "图书馆管理系统"
 author: "roife"
 date: 2021-02-17
 tags: ["BUAA - 面向对象设计与构造@Courses@Series", "北航@Tags@Tags", "面向对象@Tags@Tags", "Java@Languages@Tags"]
