@@ -162,6 +162,12 @@
         $('.side-catalog').toggleClass("fold")
     }))
 
+    $(".catalog-body").hover(function() {
+        $("body").css("overflow", "hidden")
+    }, function() {
+        $("body").css("overflow", "auto")
+    })
+
     /*
      * Doc: https://github.com/davist11/jQuery-One-Page-Nav
      * Fork by Hux to support padding

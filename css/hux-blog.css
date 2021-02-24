@@ -62,9 +62,6 @@
   padding-bottom: 40px;
   width: 250px;
 }
-.side-catalog.fixed {
-  top: 10px;
-}
 .side-catalog.fold .catalog-toggle::before {
   content: "+";
 }
