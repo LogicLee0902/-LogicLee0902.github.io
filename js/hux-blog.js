@@ -72,25 +72,28 @@ jQuery(document).ready(function($) {
                 this.previousTop = currentTop;
 
 
+                var articleTopAnchor = $('#article-top-anchor')
                 var articleEndAnchor = $('#article-end-anchor')
                 if (articleEndAnchor.length > 0) {
                     var endPos = articleEndAnchor.offset().top;
+                    var topPos = articleTopAnchor.offset().top;
                     var catalogBodyHeight = $('.catalog-body').height();
 
                     //adjust the appearance of side-catalog
                     $catalog.show()
-                    if (currentTop > (bannerHeight + 41)) {
-                        $catalog.addClass('fixed')
-                    } else {
-                        $catalog.removeClass('fixed')
-                    }
+
 
                     //do not too below
 
-                    if (endPos < currentTop - 21 + catalogBodyHeight + 716 - 570) {
+                    if (topPos > currentTop + 5) {
+                        $catalog.removeClass('fixed')
+                        $('.side-catalog').offset({ top: topPos + 5 })
+                    } else if (endPos < currentTop - 21 + catalogBodyHeight + 716 - 570) {
+                        $catalog.removeClass('fixed')
                         $catalog.offset({ top: endPos - catalogBodyHeight - 716 + 570 });
-                    } else {
-                        $catalog.css("top", "");
+                    } else if (currentTop > (bannerHeight + 11)) {
+                        $catalog.css("top", "")
+                        $catalog.addClass('fixed')
                     }
                 }
             });
