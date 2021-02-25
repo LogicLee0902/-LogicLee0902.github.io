@@ -227,6 +227,7 @@ private static final String patternYyyyMmDd =
     "(?<dd>[\\d]{2})-(?<mm>[\\d]{2})-(?<yyyy>[\\d]{4})";
 private static final String patternHhMimiSsMaybe =
     "((((?<ss>[\\d]{2}):)?(?<mimi>[\\d]{2}):)?(?<hh>[\\d]{2}))?";
+// 注意这里的时间部分是嵌套的
 private static final String pattern = patternHhMimiSsMaybe + "(-)?" + patternYyyyMmDd + "-" +
     patternUsername + "@" + patternDomain + "-" + patternPlace;
 public static final Pattern regex = Pattern.compile(pattern);

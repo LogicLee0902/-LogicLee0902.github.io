@@ -123,7 +123,7 @@ Pre 02 主要是熟悉面向对象和 Java 语法用的，分为 5 个 Tasks：
 这个 Task 开始正式进入架构设计了，我来讲讲我的架构（其实挺直观的），根据这个架构分析每个类继承的属性和新增的属性，然后对应封装即可。
 
 ```
-Bookshelf (abstract)
+Bookset (abstract)
  |- Other
  |- Art (abstract)
      |- OtherA
