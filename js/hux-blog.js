@@ -81,12 +81,12 @@ jQuery(document).ready(function($) {
 
                     //adjust the appearance of side-catalog
                     $catalog.show()
-                    if (topPos > currentTop + 5) {
-                        $catalog.offset({ top: topPos + 5 })
+                    if (topPos > currentTop - 10) {
+                        $catalog.offset({ top: topPos - 10 })
                     } else if (endPos < currentTop - 21 + catalogBodyHeight + 716 - 570) {
                         $catalog.offset({ top: endPos - catalogBodyHeight - 716 + 570 });
                     } else if (currentTop > (bannerHeight + 11)) {
-                        $catalog.css("top", "10px")
+                        $catalog.css("top", "-21px")
                     }
                 }
             });
