@@ -5,7 +5,7 @@ subtitle: "list 嵌套"
 author: "roife"
 date: 2020-01-04
 
-tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags"]
+tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

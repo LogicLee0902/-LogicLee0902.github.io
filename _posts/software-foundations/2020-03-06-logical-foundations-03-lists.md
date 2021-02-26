@@ -5,7 +5,7 @@ subtitle: "Working with Structured Data"
 author: "roife"
 date: 2020-03-06
 
-tags: ["Software Foundations@Books@Series", "Logical Foundations@Books@Series", "Coq@Languages@Tags", "程序语言理论@Tags@Tags", "形式化验证@Tags@Tags"]
+tags: ["Software Foundations@Books@Series", "Logical Foundations@Books@Series", "Coq@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "形式化验证@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
