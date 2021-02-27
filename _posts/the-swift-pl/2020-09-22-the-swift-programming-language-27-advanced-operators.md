@@ -172,3 +172,112 @@ default:
     print("The point is at (\(point.0), \(point.1)).")
 }
 ```
+
+# Result Builders
+
+Result Builder 是一种特殊的类型, 他可以让你用命令式语句 (`if` 和 `for`) 更方便地来构建嵌套类型.
+
+比如以下这个例子定义了一个 `Drawable` 协议, 并且构建了一个 `Line` 类型, 但是 `AllCaps` 的内容包括了一个选择项，看起来比较复杂:
+
+```swift
+protocol Drawable {
+    func draw() -> String
+}
+struct Line: Drawable {
+    var elements: [Drawable]
+    func draw() -> String {
+        return elements.map { $0.draw() }.joined(separator: "")
+    }
+}
+struct Text: Drawable {
+    var content: String
+    init(_ content: String) { self.content = content }
+    func draw() -> String { return content }
+}
+struct AllCaps: Drawable {
+    var content: Drawable
+    func draw() -> String { return content.draw().uppercased() }
+}
+
+let name: String? = "Ravi Patel"
+let manualDrawing = Line(elements: [
+    Text("Hello"),
+    AllCaps(content: Text((name ?? "World") + "!")), // 看起来比较复杂
+    ])
+
+print(manualDrawing.draw())
+```
+
+Result Builder 可以让你用 `if-else` 的语法写这种选择结构. 首先定义 `DrawingBuilder` 类型并加上属性 `@resultBuilder`, 然后在里面定义 `buildBlock` 等特定的方法, Swift 会将命令式的 `if-else` 等转换成对这些方法的调用.
+
+```swift
+@resultBuilder
+struct DrawingBuilder {
+    static func buildBlock(_ components: Drawable...) -> Drawable {
+        return Line(elements: components)
+    }
+    static func buildEither(first: Drawable) -> Drawable {
+        return first
+    }
+    static func buildEither(second: Drawable) -> Drawable {
+        return second
+    }
+}
+```
+
+使用 resultBuilder 时, 只需要用它来修饰函数传入的参数, 然后 Swift 就会自动将闭包转换成对应的数据.
+
+```swift
+func draw(@DrawingBuilder content: () -> Drawable) -> Drawable {
+    return content()
+}
+func caps(@DrawingBuilder content: () -> Drawable) -> Drawable {
+    return AllCaps(content: content())
+}
+
+func makeGreeting(for name: String? = nil) -> Drawable {
+    let greeting = draw { // 会被改写
+        Stars(length: 3)
+        Text("Hello")
+        Space()
+        caps { // 会被改写
+            if let name = name {
+                Text(name + "!")
+            } else {
+                Text("World!")
+            }
+        }
+        Stars(length: 2)
+    }
+    return greeting
+}
+
+// caps 语句会被改写成这个样子
+let capsDrawing = caps {
+    let partialDrawing: Drawable
+    if let name = name {
+        let text = Text(name + "!")
+        partialDrawing = DrawingBuilder.buildEither(first: text)
+    } else {
+        let text = Text("World!")
+        partialDrawing = DrawingBuilder.buildEither(second: text)
+    }
+    return partialDrawing
+}
+```
+
+对于 `for` 循环, 则应该使用 `buildArray` 方法.
+
+```swift
+extension DrawingBuilder {
+    static func buildArray(_ components: [Drawable]) -> Drawable {
+        return Line(elements: components)
+    }
+}
+let manyStars = draw {
+    Text("Stars:")
+    for length in 1...3 {
+        Stars(length: length)
+    }
+}
+```

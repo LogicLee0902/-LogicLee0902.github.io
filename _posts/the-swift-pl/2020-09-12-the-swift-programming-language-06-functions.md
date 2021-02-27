@@ -139,7 +139,7 @@ func arithmeticMean(_ numbers: Double...) -> Double {
 arithmeticMean(1, 2, 3, 4, 5)
 ```
 
-一个函数最多只能拥有一个 Variadic Parameter.
+一个函数可以有多个 variadic parameters. 为了防止混淆, variadic parameters 后面的跟的第一个参数必须带上 argument label (argument label 使得 Swift 可以有多个可变参数).
 
 ## In-Out Parameters
 
