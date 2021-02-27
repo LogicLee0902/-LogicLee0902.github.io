@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「BUAA-CO」 01 数制"
-subtitle: "数制, 数字存储, 四则运算"
+subtitle: "数制，数字存储以及二进制的四则运算"
 author: "roife"
 date: 2020-09-23
 
-tags: ["BUAA - 计算机组成@C", "Digital Design and Computer Architecture@B", "Computer Organization and Design@B", "北航@D", "计算机组成@D"]
+tags: ["BUAA - 计算机组成@Courses@Series", "Digital Design and Computer Architecture@Books@Series", "Computer Organization and Design@Books@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

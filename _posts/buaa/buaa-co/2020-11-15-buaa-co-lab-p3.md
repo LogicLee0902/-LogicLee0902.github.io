@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 P3 单周期 CPU (Logisim 实现)"
-subtitle: "单周期 CPU (Logisim)"
+title: "「BUAA-CO-Lab」 P3 单周期 CPU - 1"
+subtitle: "用 Logisim 搭建单周期 CPU"
 author: "roife"
 date: 2020-11-15
 
-tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "数字电路@D"]
+tags: ["BUAA - 计算机组成实验@Courses@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags", "数字电路@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

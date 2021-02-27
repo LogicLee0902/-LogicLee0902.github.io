@@ -1,17 +1,19 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 Pre - 01 Logisim"
-subtitle: "用 Logisim 仿真电路"
+title: "「BUAA-CO-Lab」 Pre-01 Logisim"
+subtitle: "电路仿真"
 author: "roife"
 date: 2020-09-26
 
-tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "数字电路@D"]
+tags: ["BUAA - 计算机组成实验@Courses@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags", "数字电路@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
 header-style: text
 katex: true
 ---
+
+Logisim 是课上用于模拟仿真电路的一个软件。
 
 # 特殊部件与属性
 

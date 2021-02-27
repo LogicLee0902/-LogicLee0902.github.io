@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「Core Java」 02 Objects and Classes"
-subtitle: "Classes"
+subtitle: "对象与类"
 author: "roife"
 date: 2021-01-25
 
-tags: ["Java@L", "Core Java@B"]
+tags: ["Java@Languages@Tags", "Core Java@Books@Series"]
 lang: zh
 catalog: true
 header-image: ""

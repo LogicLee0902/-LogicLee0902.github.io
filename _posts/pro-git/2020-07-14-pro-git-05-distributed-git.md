@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「Pro Git」 05 Distributed Git"
-subtitle: "分布式 Git 的工作流"
+subtitle: "分布式 Git 使用的工作流程"
 author: "roife"
 date: 2020-07-14
 
-tags: ["Pro Git@B", "Git@D"]
+tags: ["Pro Git@Books@Series", "版本控制@Tags@Tags", "Git@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

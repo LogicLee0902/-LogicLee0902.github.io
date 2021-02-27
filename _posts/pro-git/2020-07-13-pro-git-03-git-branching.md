@@ -5,7 +5,7 @@ subtitle: "Git 分支"
 author: "roife"
 date: 2020-07-13
 
-tags: ["Pro Git@B", "Git@D"]
+tags: ["Pro Git@Books@Series", "版本控制@Tags@Tags", "Git@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
@@ -163,7 +163,7 @@ both modified:      index.html
 - `git checkout --track <remote>/<branch>`
   : 创建新分支跟踪远程分支.
 
-- `git branch -u <remote>` 或 `git branch --set-upstream-to <remote>`
+- `git branch -u <remote/branch>` 或 `git branch --set-upstream-to <remote/branch>`
   : 设置本地分支追踪远程分支.
 
 - `git branch -vv`

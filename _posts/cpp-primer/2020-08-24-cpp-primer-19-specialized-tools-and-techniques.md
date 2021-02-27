@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「C++ Primer」 19 Specialized Tools and Techniques"
-subtitle: "特殊工具：控制内存分配、RTTI、枚举类型、类成员指针、嵌套类、union、局部类、一些不可移植的特性"
+subtitle: "内存分配、RTTI、枚举类型、嵌套类、内部类等"
 author: "roife"
 date: 2020-08-24
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

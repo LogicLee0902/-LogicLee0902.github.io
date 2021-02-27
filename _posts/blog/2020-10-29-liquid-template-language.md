@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "Liquid Template Language"
-subtitle: "搭建博客遇到的问题及解答"
+subtitle: "Liquid 博客搭建解决方案"
 author: "roife"
 date: 2020-10-29
 
-tags: ["Liquid@L", "博客搭建@D"]
+tags: ["Liquid@Languages@Tags", "博客搭建@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
@@ -42,7 +42,7 @@ Liquid Template 默认的 `sort` filter 只能进行单关键字排序, 而且�
 {%- assign _sorted_list = site.posts | group_by: 'date' -%}
 
 {%- for _article_group in _sorted_list -%}
-	{%- assign _article_list = _article_group.items | sort: 'title' -%}
+    {%- assign _article_list = _article_group.items | sort: 'title' -%}
 
     {%- for _article in _article_list -%}
         <!-- 主程序 -->

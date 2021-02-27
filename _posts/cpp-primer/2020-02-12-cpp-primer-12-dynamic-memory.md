@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「C++ Primer」 12 Dynamic Memory"
-subtitle: "动态内存"
+subtitle: "动态内存管理与智能指针"
 author: "roife"
 date: 2020-02-12
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 Pre - 02 Verilog-HDL"
-subtitle: "Verilog-HDL"
+title: "「BUAA-CO-Lab」 Pre-02 Verilog-HDL"
+subtitle: "Verilog 电路建模"
 author: "roife"
 date: 2020-09-28
 
-tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "数字电路@D", "Verilog-HDL@L"]
+tags: ["BUAA - 计算机组成实验@Courses@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags", "数字电路@Tags@Tags", "Verilog-HDL@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

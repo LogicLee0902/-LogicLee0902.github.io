@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「Core Java」 01 Fundamental"
-subtitle: "Fundamental Programming Structures in Java"
+subtitle: "Java 基础语法"
 author: "roife"
 date: 2021-01-21
 
-tags: ["Java@L", "Core Java@B"]
+tags: ["Java@Languages@Tags", "Core Java@Books@Series"]
 lang: zh
 catalog: true
 header-image: ""

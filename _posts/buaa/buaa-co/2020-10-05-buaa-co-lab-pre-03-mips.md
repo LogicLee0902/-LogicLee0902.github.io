@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-CO-Lab」 Pre - 03 MIPS 指令"
+title: "「BUAA-CO-Lab」 Pre-03 MIPS 指令"
 subtitle: "MIPS 指令集与汇编语言"
 author: "roife"
 date: 2020-10-05
 
-tags: ["BUAA - 计算机组成实验@C", "北航@D", "计算机组成@D", "MIPS Assembly@L"]
+tags: ["BUAA - 计算机组成实验@Courses@Series", "北航@Tags@Tags", "计算机组成@Tags@Tags", "MIPS Assembly@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

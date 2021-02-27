@@ -1,0 +1,69 @@
+<a class="tag-button--all" data-encode="">
+	Show All
+	<sup>{{site.posts.size}}</sup>
+</a>
+
+{%- assign top_tag_list = "" | split: '' -%}
+
+{% comment %} tag = subtag@toptag@indentifier {% endcomment %}
+{% comment %} Collect top tags {% endcomment %}
+{%- for each_tag in site.tags -%}
+    {%- assign tag_split = each_tag[0] | split: '@' | slice: -2, 2 -%}
+    {%- assign tag_identifier = tag_split[1] | join: '' -%}
+	{%- assign top_tag = tag_split[0] | join: ''  -%}
+
+	{%- if tag_identifier == include.identifier and tag_identifier != top_tag -%}
+        {%- assign top_tag_list = top_tag_list | push: top_tag -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{%- assign top_tag_list = top_tag_list | uniq | sort -%}
+{%- assign top_tag_list = include.identifier | split: ',' | concat: top_tag_list -%}
+
+{%- for each_top_tag in top_tag_list -%}
+	{%- assign top_tag_ui = "" | split: '' -%}
+
+	{%- for each_tag in site.tags -%}
+		{%- assign tag_split = each_tag[0] | split: '@' | slice: -2, 2 -%}
+		{%- assign tag_identifier = tag_split[1] | join: '' -%}
+		{%- assign top_tag = tag_split[0] | join: ''  -%}
+
+		{%- if top_tag == each_top_tag and tag_identifier == include.identifier -%}
+			{%- assign top_identifier_len = tag_split | join: '' | size | plus: 2 -%}
+			{%- assign sub_tag_len = each_tag[0] | size | minus: top_identifier_len -%}
+
+			{%- capture tag_ui -%}
+				<a data-sort="{{ site.posts.size | minus: each_tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+								data-encode="{{ each_tag[0] | strip | url_encode }}" class="tag-button" title="{{each_tag[0]}}"
+								rel="{{ each_tag[1].size }}">
+					{{ each_tag[0] | slice: 0, sub_tag_len }}
+					<sup>{{each_tag[1].size}}</sup>
+				</a>
+			{%- endcapture -%}
+
+			{%- assign top_tag_ui = top_tag_ui | push: tag_ui -%}
+		{%- endif -%}
+	{%- endfor -%}
+
+	{%- if each_top_tag != include.identifier -%}
+		<div>
+			<span class="fa listing-seperator">
+				<span class="tag-text tag-collapse-toggle"
+						data-toggle="collapse"
+						data-target="#{{each_top_tag | append: '-' | append: include.identifier}}"
+						onselectstart="return false"
+						style="position:relative; left: -0.5em">
+					{{each_top_tag}}
+				</span>
+			</span>
+			<br>
+			<div id="{{each_top_tag | append: '-' | append: include.identifier}}" class="collapse in tag-collapse-body">
+				{{ top_tag_ui | sort }}
+			</div>
+		</div>
+	{%- else -%}
+		{{ top_tag_ui | sort }}
+		<br>
+	{%- endif -%}
+
+{%- endfor -%}

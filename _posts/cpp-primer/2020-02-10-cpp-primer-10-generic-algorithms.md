@@ -5,7 +5,7 @@ subtitle: "泛型算法"
 author: "roife"
 date: 2020-02-10
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

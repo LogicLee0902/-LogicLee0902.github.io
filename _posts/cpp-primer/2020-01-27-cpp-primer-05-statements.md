@@ -5,7 +5,7 @@ subtitle: "语句"
 author: "roife"
 date: 2020-01-27
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

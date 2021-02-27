@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「Swift」 01 The Basics"
-subtitle: "基础语法"
+subtitle: "Swift 基础语法"
 author: "roife"
 date: 2020-09-12
 
-tags: ["The Swift Programming Language@B", "Swift@L"]
+tags: ["The Swift Programming Language@Books@Series", "Swift@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

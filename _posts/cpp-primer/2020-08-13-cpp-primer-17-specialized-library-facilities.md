@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「C++ Primer」 17 Specialized Library Facilities"
-subtitle: "特殊标准库"
+subtitle: "tuple / bitset / regex / random / IO"
 author: "roife"
 date: 2020-08-13
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

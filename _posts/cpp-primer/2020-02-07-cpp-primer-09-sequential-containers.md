@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「C++ Primer」 09 Sequential Containers"
-subtitle: "顺序容器"
+subtitle: "顺序型容器"
 author: "roife"
 date: 2020-02-07
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

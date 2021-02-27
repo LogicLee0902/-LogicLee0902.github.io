@@ -12,70 +12,6 @@ header-img: "img/tag-bg.jpg"
 <!-- Page Header -->
 {% include intro-header.html type='page'%}
 
-<!-- TAGS -->
-{% capture tags %}
-	{%- for tag in site.tags -%}
-		{%- assign _last_char = tag[0] | slice: -1 -%}
-		{%- assign length_2 = tag[0] | size | minus: 2 -%}
-		{%- if _last_char == 'D' -%}
-			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-							rel="{{ tag[1].size }}">
-				{{ tag[0] | slice: 0, length_2 }}
-				<sup>{{tag[1].size}}</sup>
-			</a>__SEPERATOR__
-		{%- endif -%}
-	{%- endfor -%}
-{% endcapture %}
-
-<!-- LANGUAGES -->
-{% capture languages %}
-	{%- for tag in site.tags -%}
-		{%- assign _last_char = tag[0] | slice: -1 -%}
-		{%- assign length_2 = tag[0] | size | minus: 2 -%}
-		{%- if _last_char == 'L' -%}
-			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-							rel="{{ tag[1].size }}">
-				{{ tag[0] | slice: 0, length_2 }}
-				<sup>{{tag[1].size}}</sup>
-			</a>__SEPERATOR__
-		{%- endif -%}
-	{%- endfor -%}
-{% endcapture %}
-
-<!-- BOOKS -->
-{% capture books %}
-	{%- for tag in site.tags -%}
-		{%- assign _last_char = tag[0] | slice: -1 -%}
-		{%- assign length_2 = tag[0] | size | minus: 2 -%}
-		{%- if _last_char == 'B' -%}
-			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-							rel="{{ tag[1].size }}">
-				{{ tag[0] | slice: 0, length_2 }}
-				<sup>{{tag[1].size}}</sup>
-			</a>__SEPERATOR__
-		{%- endif -%}
-	{%- endfor -%}
-{% endcapture %}
-
-<!-- COURSES -->
-{% capture courses %}
-	{%- for tag in site.tags -%}
-		{%- assign _last_char = tag[0] | slice: -1 -%}
-		{%- assign length_2 = tag[0] | size | minus: 2 -%}
-		{%- if _last_char == 'C' -%}
-			<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-							data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-							rel="{{ tag[1].size }}">
-				{{ tag[0] | slice: 0, length_2 }}
-				<sup>{{tag[1].size}}</sup>
-			</a>__SEPERATOR__
-		{%- endif -%}
-	{%- endfor -%}
-{% endcapture %}
-
 <!-- Main Content -->
 <div class="container">
 	<div class="row">
@@ -83,44 +19,14 @@ header-img: "img/tag-bg.jpg"
 			<!-- Order Selector -->
 			<select class="sel-lang" onchange= "onOrderChange(this.options[this.options.selectedIndex].value)">
 				<option value="0" selected> 标签 | TAG </option>
-				<option value="1"> 合集 | CAT </option>
+				<option value="1"> 系列 | SER </option>
 			</select>
-
-			<div class='tag'>
-				<!-- Tags (as filter) -->
-				<div id='tag_cloud' class="tags tags-sup js-tags">
-					<a class="tag-button--all" data-encode="">
-						Show All
-						<sup>{{site.posts.size}}</sup>
-					</a>
-					{{ tags | split:'__SEPERATOR__' | sort }}
-					<br>
-						<span class="fa listing-seperator">
-							<span class="tag-text">Programming Languages</span>
-						</span> <br>
-						{{ languages | split:'__SEPERATOR__' | sort }}
-				</div>
+			<div id='tag_cloud' class="tags tags-sup js-tags">
+				<div class='tag-section'> {% include archive-tags.html identifier="Tags" %} </div>
+				<div class='series-section'> {% include archive-tags.html identifier="Series" %} </div>
 			</div>
 
-			<div class='cat'>
-				<!-- Tags (as filter) -->
-				<div id='tag_cloud' class="tags tags-sup js-tags">
-					<a class="tag-button--all" data-encode="">
-						Show All
-						<sup>{{site.posts.size}}</sup>
-					</a>
-					<br>
-						<span class="fa listing-seperator">
-							<span class="tag-text">Books</span>
-						</span> <br>
-						{{ books | split:'__SEPERATOR__' | sort }}
-					<br>
-						<span class="fa listing-seperator">
-							<span class="tag-text">Courses</span>
-						</span> <br>
-					{{ courses | split:'__SEPERATOR__' | sort }}
-				</div>
-			</div>
+			<hr>
 
 			<!-- Article List -->
 			<div class="mini-post-list js-result d-none">
@@ -128,8 +34,10 @@ header-img: "img/tag-bg.jpg"
 
 				{%- for _article_group in _sorted_list -%}
 					{%- assign _article_list = _article_group.items | sort: 'title' | reverse -%}
+					{%- assign _out_loop_first = forloop.first -%}
 
 					{%- for _article in _article_list -%}
+
 						{%- assign _tags = '' -%}
 						{%- for _tag in _article.tags -%}
 							{%- assign _tag_encode = _tag | strip | url_encode -%}
@@ -143,11 +51,18 @@ header-img: "img/tag-bg.jpg"
 						{% comment %} group by year {% endcomment %}
 						{%- assign _currentdate = _article.date | date: '%Y' -%}
 						{%- if _currentdate != _date -%}
-							{%- unless forloop.first -%}</section>{%- endunless -%}
+							{%- unless _out_loop_first -%}</div></section>{%- endunless -%}
 							<section>
 								<span class="fa listing-seperator">
-									<span class="tag-text">{{ _currentdate }}</span>
+									<span class="tag-text tag-collapse-toggle"
+										data-toggle="collapse"
+										data-target="#{{ _currentdate }}"
+										onselectstart="return false"
+										style="position:relative; left: -0.5em">
+											{{ _currentdate }}
+									</span>
 								</span>
+								<div id="{{ _currentdate }}" class="collapse in tag-collapse-body">
 								{%- assign _date = _currentdate -%}
 						{%- endif -%}
 
@@ -165,60 +80,9 @@ header-img: "img/tag-bg.jpg"
 							<hr>
 						</div>
 					{%- endfor -%}
-					{%- if forloop.last -%}</section>{%- endif -%}
+					{%- if forloop.last -%}</div></section>{%- endif -%}
 				{%- endfor -%}
 			</div>
 		</div>
 	</div>
 </div>
-
-<!-- Selection -->
-<script type="text/javascript">
-    // get nodes
-    var $tag = document.querySelector(".tag");
-    var $cat = document.querySelector(".cat");
-    var $select = document.querySelector("select");
-
-    // Changes at v1.8.1: include order flag as a url query. This interop well with catalog hash anchors.
-    function getOrder() { return new URLSearchParams(document.location.search).get("order") }
-
-    function setOrder(newOrder) {
-        var params = new URLSearchParams(document.location.search)
-        params.set("order", newOrder)
-        document.location.search = params.toString()  // refresh.
-    }
-
-    // handle render
-    function _render() {
-        var order = getOrder()
-        // category
-        if (order == "cat") {
-            $select.selectedIndex = 1;
-            $cat.style.display = "block";
-            $cat.classList.add("active");
-            $tag.style.display = "none";
-            $tag.classList.remove("active");
-            // default to tag
-        } else {
-            $select.selectedIndex = 0;
-            $tag.style.display = "block";
-            $tag.classList.add("active");
-            $cat.style.display = "none";
-            $cat.classList.remove("active");
-        }
-        // interop with catalog
-    }
-
-    // handle select change
-    function onOrderChange(index) {
-        if (index == 0) {
-            order = "tag"
-        } else {
-            order = "cat"
-        }
-        setOrder(order)
-    }
-
-    // init
-    _render();
-</script>

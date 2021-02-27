@@ -7,7 +7,7 @@
  /*!
  * Hux Blog v1.6.0 (http://startbootstrap.com)
  * Copyright 2016 @huxpro
- * Licensed under Apache 2.0 
+ * Licensed under Apache 2.0
  */
 
 // Tooltip Init
@@ -18,7 +18,7 @@
 
 
 // make all images responsive
-/* 
+/*
  * Unuse by Hux
  * actually only Portfolio-Pages can't use it and only post-img need it.
  * so I modify the _layout/post and CSS to make post-img responsive!
@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
     //primary navigation slide-in effect
     if ($(window).width() > MQL) {
         var headerHeight = $('.navbar-custom').height(),
-            bannerHeight  = $('.intro-header .container').height();     
+            bannerHeight  = $('.intro-header .container').height();
         $(window).on('scroll', {
                 previousTop: 0
             },
@@ -72,12 +72,22 @@ jQuery(document).ready(function($) {
                 this.previousTop = currentTop;
 
 
-                //adjust the appearance of side-catalog
-                $catalog.show()
-                if (currentTop > (bannerHeight + 41)) {
-                    $catalog.addClass('fixed')
-                } else {
-                    $catalog.removeClass('fixed')
+                var articleTopAnchor = $('#article-top-anchor')
+                var articleEndAnchor = $('#article-end-anchor')
+                if (articleEndAnchor.length > 0) {
+                    var endPos = articleEndAnchor.offset().top;
+                    var topPos = articleTopAnchor.offset().top;
+                    var catalogBodyHeight = $('.catalog-body').height();
+
+                    //adjust the appearance of side-catalog
+                    $catalog.show()
+                    if (topPos > currentTop - 10) {
+                        $catalog.offset({ top: topPos - 10 })
+                    } else if (endPos < currentTop - 21 + catalogBodyHeight + 716 - 570) {
+                        $catalog.offset({ top: endPos - catalogBodyHeight - 716 + 570 });
+                    } else if (currentTop > (bannerHeight + 11)) {
+                        $catalog.css("top", "-21px")
+                    }
                 }
             });
     }

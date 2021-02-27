@@ -5,9 +5,9 @@
 }
 
 .side-catalog {
-  &.fixed {
-    position: fixed;
-    top: -21px;
+  hr {
+    width: 100%;
+    margin-bottom: 10px;
   }
   &.fold {
     .catalog-toggle::before {
@@ -23,16 +23,22 @@
     margin-right: 5px;
     bottom: 1px;
   }
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   overflow: auto;
   height: 100%;
+  max-height: 99%;
+  position: fixed;
   padding-bottom: 40px;
-  width: 270px;
+  width: 250px;
   .catalog-body {
     position: relative;
     list-style: none;
     height: auto;
+    max-height: 100%;
     overflow: hidden;
+    overflow-y: auto;
     padding-left: 0px;
     padding-right: 5px;
     text-indent: 0;

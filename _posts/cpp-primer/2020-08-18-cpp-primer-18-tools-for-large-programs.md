@@ -1,11 +1,11 @@
 ---
 layout: "post"
 title: "「C++ Primer」 18 Tools for Large Programs"
-subtitle: "用于大型程序的工具：异常处理、命名空间、多重继承与虚继承"
+subtitle: "异常处理、命名空间、多重继承与虚继承"
 author: "roife"
 date: 2020-08-18
 
-tags: ["C++ Primer@B", "C++@L"]
+tags: ["C++ Primer@Books@Series", "C++@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""

@@ -5,7 +5,7 @@ subtitle: "集合运算"
 author: "roife"
 date: 2020-01-05
 
-tags: ["The Little Schemer@B", "Scheme@L", "程序语言理论@D"]
+tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

@@ -5,7 +5,7 @@ subtitle: "More Automation"
 author: "roife"
 date: 2021-02-03
 
-tags: ["Software Foundations@B", "Logical Foundations@B", "Coq@L", "程序语言理论@D", "形式化验证@D"]
+tags: ["Software Foundations@Books@Series", "Logical Foundations@Books@Series", "Coq@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "形式化验证@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
