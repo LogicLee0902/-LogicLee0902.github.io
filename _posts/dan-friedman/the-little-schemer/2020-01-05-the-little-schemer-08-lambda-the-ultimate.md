@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「TLS」 08 Lambda the Ultimate"
+title: "「The Little Schemer」 08 Lambda the Ultimate"
 subtitle: "高阶函数"
 author: "roife"
 date: 2020-01-05
 
-tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
+tags: ["The Little Schemer@Books@Series", "Dan Friedman@Series@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

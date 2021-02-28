@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「TLS」 01 Toys"
+title: "「The Little Schemer」 01 Toys"
 subtitle: "atom 和 list"
 author: "roife"
 date: 2020-01-03
 
-tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
+tags: ["The Little Schemer@Books@Series", "Dan Friedman@Series@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

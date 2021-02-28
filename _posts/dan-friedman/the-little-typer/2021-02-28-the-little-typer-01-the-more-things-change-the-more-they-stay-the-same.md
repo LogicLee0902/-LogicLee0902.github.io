@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「TLT」 01 The More Things Change, the More They Stay the Same"
-subtitle: ""
+title: "「The Little Typer」 01 The More Things Change, the More They Stay the Same"
+subtitle: "Pie 中的类型：Atom/Pair/Nat"
 author: "roife"
 date: 2021-02-28
 

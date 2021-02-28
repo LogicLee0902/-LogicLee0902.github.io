@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「TLS」 04 Number Games"
+title: "「The Little Schemer」 04 Number Games"
 subtitle: "数字操作"
 author: "roife"
 date: 2020-01-03
 
-tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
+tags: ["The Little Schemer@Books@Series", "Dan Friedman@Series@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

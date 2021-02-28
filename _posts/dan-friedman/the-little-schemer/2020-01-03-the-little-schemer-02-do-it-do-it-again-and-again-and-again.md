@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「TLS」 02 Do It, Do It Again, and Again, and Again..."
+title: "「The Little Schemer」 02 Do It, Do It Again, and Again, and Again..."
 subtitle: "基本函数"
 author: "roife"
 date: 2020-01-03
 
-tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
+tags: ["The Little Schemer@Books@Series", "Dan Friedman@Series@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""

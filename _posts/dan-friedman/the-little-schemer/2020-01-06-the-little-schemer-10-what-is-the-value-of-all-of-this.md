@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「TLS」 10 What Is the Value of All of This?"
+title: "「The Little Schemer」 10 What Is the Value of All of This?"
 subtitle: "写一个 Scheme 解释器"
 author: "roife"
 date: 2020-01-06
 
-tags: ["The Little Schemer@Books@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
+tags: ["The Little Schemer@Books@Series", "Dan Friedman@Series@Series", "Scheme@Languages@Tags", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
