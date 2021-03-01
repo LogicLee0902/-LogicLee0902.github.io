@@ -211,7 +211,11 @@ header-style: text
   (lambda (x y) (null? y)))
 ```
 
-这被称为 **collector** 或者 **continuation**
+这被称为 **collector** 或者 **continuation**.
+
+> 2021.03.02 备注
+>
+> 什么是 continuation? Continuation 就是将当前程序运行的上下文 (运行时情况) 保存下来, 以后需要的时候再恢复. 在这里对应的则是用闭包来保存程序的上下文.
 
 分析代码会发现每次递归变化的是函数 col, 每次递归改变的信息也是存储在 col 里面, 每递归一次 col 就多了一层,
 最后会用所有信息进行计算. 即将数据和状态用闭包存储.
