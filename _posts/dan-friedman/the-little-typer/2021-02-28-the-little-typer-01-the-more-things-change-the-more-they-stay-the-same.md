@@ -66,15 +66,15 @@ Judgement 的第三种形式是 `____ is a type.`，如 `Atom is a type.`。
 
 Normal Forms 是指描述一个表达式的最简单的形式，注意描述时必须要带上类型。例如：
 
-```lisp
-'olive-oil is the normal form of the Atom
-(car
-  (cdr
-    (cons 'ratatouille
-      (cons ('baguette 'olive-oil)))))
-
-(cons 'ratatouille 'baguette) is a normal (Pair Atom Atom)
-```
+> `'olive-oil` is the normal form of the Atom
+> ```lisp
+> (car
+>   (cdr
+>     (cons 'ratatouille
+>       (cons ('baguette 'olive-oil)))))
+>
+> (cons 'ratatouille 'baguette) is a normal (Pair Atom Atom)
+> ```
 
 > **所有的表达式都有 Normal Form 吗？**
 >
