@@ -31,7 +31,7 @@ header-style: text
 `keep-looking` 函数的特点是它并不是对列表 lat 进行调用, 所以被称作 unnatural recursion.
 
 但是, keep-looking 有可能不会停机, 即它只能接受部分合法的参数, 所以被称为 **partial functions**,
-前面提到的可以接受所有参数函数被称为 total functions.
+前面提到的可以接受所有参数的函数被称为 total functions.
 
 - `(shift pair)` 表示让 pair (这个 pair 的第一个元素也是一个 pair) 的第一部分的第二个元素和其第二部分形成一个 pair, 如 `(shift '((a b) (c d))) => '(a (b (c d)))`
 

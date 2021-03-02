@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 02 Doin’ What Comes Naturally"
-subtitle: ""
+subtitle: "λ 表达式"
 author: "roife"
 date: 2021-03-01
 
@@ -51,9 +51,9 @@ header-style: text
     root))
 ```
 
-## λ 的类型
+## λ 的类型：→
 
-λ 的类型类似于 `(→ (Type0 Type ...) Body)`，其中 `Type` 表示参数类型。
+λ 的类型类似于 `(→ (Type0 Type ...) Body)`，其中 `Type` 表示参数类型，最后一个参数是返回类型。
 
 ```lisp
 (→ Atom
@@ -233,15 +233,6 @@ header-style: text
 >
 > **注解**：因为写法相同的 neutral expression 中的相同变量会被一起替换
 
-# λ 表达式的类型 →
-
-`→` 后面跟多个参数，那么除了最后一个参数以外都是参数，最后一个是 value 的类型。例如：
-
-```lisp
-(→ Atom Atom
-  (Pair Atom Atom))
-```
-
 # `define`
 
 用 `define` 可以简化程序：
@@ -268,7 +259,7 @@ header-style: text
 
 ## which-nat
 
-`which-Nat` 是一个函数，它判断一个 Nat 是否是 `zero`。如果不是，它可以去掉 Nat 的 top constructor。
+`which-Nat` 是一个函数，它判断一个 Nat 是否是 `zero`。如果不是，它可以去掉 Nat 的 top constructor 代入新的 λ。
 
 使用格式如下：
 
@@ -293,6 +284,8 @@ header-style: text
     'more))
 ; 返回 'more，可以发现与 n 无关
 ```
+
+不难发现，`which-Nat` 是一个 `if` 结构，是一种**模式匹配**。
 
 > **The Law of which-Nat**
 >
@@ -334,9 +327,9 @@ header-style: text
 >   step)
 > ```
 >
-> is an `X`, then it is the same `X` as `(stepn)`.
+> is an `X`, then it is the same `X` as `(step n)`.
 
-# 无法递归 Recursion is not an option
+# 无法递归 Recursion is not an option (Gauss function 1)
 
 - `(gause n)`：计算 $0 + \cdots + n$
 
@@ -449,3 +442,43 @@ Values 可以用 Types 来描述，而 Types 可以用 U 来描述。
     (cons d a)))
 ; (cons 17 3)
 ```
+
+# Recess: Forkful of Pie
+
+## the-expression
+
+对于 claims 和 definitions，Pie 会返回它们是否是有意义的。对于表达式，Pie 会返回它们的类型和 normal forms。
+
+```lisp
+'spinach
+; 返回 (the Atom 'spinach)
+```
+
+但是 Pie 不一定能自动推断出所有表达式的类型，所以可以用 the-expressions 来告诉 Pie 表达式的类型（类似于 type notations）。例如 Pie 不能自动推断出 `cons` 组成的类型：
+
+```lisp
+(the (Pair Atom Atom)
+  (cons 'spinach 'cauliflower))
+
+(the
+  (Pair Atom
+    (Pair Atom Atom))
+  (cons 'spinach
+    (cons 'kale 'cauliflower))) ; 内层的 cons 不需要另外的 the
+```
+
+> **The Law of `the`**
+>
+> If `X` is a type and `e` is an `X`, then `(the X e)` is an `X`.
+
+> **The Commandment of `the`**
+>
+> If `X` is a type and `e` is an `X`, then `(the X e)` is the same `X` as `e`.
+
+当然也可以用 `claim` 和 `define` 来说明类型（`claim` 一个名字，然后将名字 `define` 为一个值）。但是这样就要求 `define` 的名字不能重复。
+
+## U
+
+对于 U 这样的类型，它本身就是类型，而且没有类型，所以 Pie 会直接返回它的 normal form。
+
+存在一些类型不是 U 的类型，如 `(Pair Atom U)` 等。
