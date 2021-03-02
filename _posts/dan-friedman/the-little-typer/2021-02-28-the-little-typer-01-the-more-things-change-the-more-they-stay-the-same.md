@@ -203,13 +203,10 @@ Constructors 是用来构建新类型的工具，例如 Nat 的 `zero`/`add1` �
 > `zero` is the same Nat as `zero`.
 
 > **The Commandment of `add1`**
+>
 > If `n` is the same Nat as `k`, then `(add1 n)` is the same Nat as `(add1 k)`.
 
-对于定义过的符号，不能重复定义。
-
-> **Definitions Are Forever**
->
-> Once a name has been claimed, it cannot be reclaimed, and once a name has been defined, it cannot be redefined.
+当然，对于定义过的符号，不能重复定义。
 
 # Evaluation on Pairs
 
