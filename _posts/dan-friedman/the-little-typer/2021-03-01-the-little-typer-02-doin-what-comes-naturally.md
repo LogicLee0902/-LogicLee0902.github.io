@@ -327,7 +327,7 @@ header-style: text
 >   step)
 > ```
 >
-> is an `X`, then it is the same `X` as `(stepn)`.
+> is an `X`, then it is the same `X` as `(step n)`.
 
 # 无法递归 Recursion is not an option (Gauss function 1)
 
