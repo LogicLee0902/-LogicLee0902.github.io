@@ -140,7 +140,7 @@ header-style: text
         (λ (start end)
             (rec-List start
                 end
-                (step-append start)))))
+                (step-append E)))))
 ```
 
 可以发现，`append` 和 `+` 非常像。
