@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 05 Lists, Lists, and More Lists"
-subtitle: "Polymorphism"
+subtitle: "List"
 author: "roife"
 date: 2021-03-09
 

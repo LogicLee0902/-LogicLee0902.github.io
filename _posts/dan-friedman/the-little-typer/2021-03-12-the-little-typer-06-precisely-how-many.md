@@ -1,9 +1,9 @@
 ---
 layout: "post"
-title: "「The Little Typer」 05 Lists, Lists, and More Lists"
-subtitle: "Polymorphism"
+title: "「The Little Typer」 06 Precisely How Many?"
+subtitle: ""
 author: "roife"
-date: 2021-03-09
+date: 2021-03-20
 
 tags: ["The Little Typer@Books@Series", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "Dependent Type@Tags@Tags", "Dan Friedman@Series@Series", "Pie@Languages@Tags"]
 lang: zh
@@ -12,197 +12,25 @@ header-image: ""
 header-style: text
 ---
 
-# List
+# Vec
 
-列表的类型是 `(List E)`，其中 `List` 是一个 type constructor。它有两个 constructor，分别是 `nil` 与 `::`。可以发现，`List` 和 `Nat` 很像，`nil` 对应 `zero`，`::` 对应 `add1`。
+`(Vec E k)` 表示一个长度为 `k` 的 `(List E)`。
+- `(Vec E zero)` 的 constructor 为 `vecnil`
+- `(Vec E (add1 k))` 的 constructor `vec::`
+  - 当 `e` 为 `E` 类型，而且 `es` 为 `(Vec E k)` 类型时，`(vec:: e es)` 的类型为 `(Vec E (add1 k))`。
+  - 如果一个表达式的类型为 `(Vec E (add1 k))`，则这个列表一定至少有一个 entry
 
-> **The Law of List**
+> **The Law of `Vec`**
 >
-> if `E` is a type,
+> If `E` is a type and `k` is a Nat,
+> then `(Vec E k)` is a type.
+
+> **The Law of `vecnil`**
 >
-> then `(List E)` is a type.
+> `vecnil` is a `(Vec E zero)`.
 
-> **The Law of `nil`**
+> **The Law of `vec::`**
 >
-> `nil` is a `(List E)`, no matter what type `E` is.
+> If `e` is an `E` and `es` is a `(Vec E k)`,
+> then `(vec:: e es)` is a `(Vec E (add1 k))`.
 
-
-> **The Law of `::`**
->
-> If `e` is an `E` and `es` is a `(ListE)`, then `(:: e es)` is a `(List E)`.
-
-> List Entry Types
->
-> All the entries in a list must have the same type.
-
-# `rec-List`
-
-类似 `rec-Nat`，有 `rec-List`。`(rec-List e es step-n-1)` 的三个参数分别代表 `car`、`cdr`、下一层递归的返回值。
-
-> **The Law of `rec-List`**
->
-> If target is a `(List E)`, `base` is an `X`, and `step` is an
->
-> ```lisp
-> (→ E (List E) X
->     X)
-> ```
->
-> then
->
-> ```lisp
-> (rec-List target
->     base
->     step)
-> ```
->
-> is an `X`.
-
-> **The First Commandment of `rec-List`**
->
-> If
->
-> ```lisp
-> (rec-List nil
->     base
->     step)
-> ```
->
-> is an `X`, then it is the same `X` as `base`.
-
-> **The Second Commandment of `rec-List`**
->
-> If
->
-> ```lisp
-> (rec-List (:: e es)
->     base
->     step)
-> ```
->
-> is an `X`, then it is the same `X` as
->
-> ```lisp
-> (step e es
->     (rec-List es
->         base
->         step))
-> ```
-
-## `length`
-
-```lisp
-(claim step-length
-    (Π ((E U))
-        (→ E (List E) Nat
-            Nat)))
-
-(define step-length
-    (λ (E)
-        (λ (e es length-es)
-            (add1 length-es))))
-
-(claim length
-    (Π ((E U))
-        (→ (List E)
-    Nat)))
-
-(define length
-    (λ (E)
-        (λ (es)
-            (rec-List es
-                0
-                (step-length E)))))
-```
-
-## `append`
-
-在一个列表后面添加另一个列表。
-
-```lisp
-(claim step-append
-    (Π ((E U))
-        (→ E (List E) (List E)
-            (List E))))
-
-(define step-append
-    (λ (E)
-        (λ (e es append-es)
-            (:: e append-es))))
-
-(claim append
-    (Π ((E U))
-        (→ (List E) (List E)
-            (List E))))
-
-(define append
-    (λ (E)
-        (λ (start end)
-            (rec-List start
-                end
-                (step-append start)))))
-```
-
-可以发现，`append` 和 `+` 非常像。
-
-## snoc
-
-在列表末尾添加元素。
-
-```lisp
-(claim snoc
-    (Π ((E U))
-        (→ (List E) E
-            (List E))))
-
-(define snoc
-    (λ (E)
-        (λ (start e)
-            (rec-List start
-                (:: e nil)
-                (step-append E)))))
-```
-
-## concat
-
-类似于 `append`，使用 `snoc` 定义。
-
-```lisp
-(claim step-concat
-    (Π ((E U))
-        (→ E (List E) (List E)
-            (List E))))
-
-(define step-concat
-    (λ (E)
-        (λ (e es concates)
-            (snoc E concates e))))
-
-(claim concat
-    (Π ((E U))
-        (→ (List E) (List E)
-            (List E))))
-
-(define concat (λ (E)
-    (λ (start end)
-        (rec-List end
-            start
-            (step-concat E)))))
-```
-
-## reverse
-
-翻转一个列表。
-
-```lisp
-(define step-reverse
-    (λ (E)
-        (λ (e es reversees)
-            (snoc E reversees e))))
-
-(define reverse
-    (λ (E)
-    (λ (es) (rec-List es
-        nil
-        (step-reverse E)))))
-```

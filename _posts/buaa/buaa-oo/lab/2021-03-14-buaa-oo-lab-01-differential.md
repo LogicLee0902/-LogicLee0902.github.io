@@ -28,7 +28,7 @@ $$\mathrm{inStr} \xrightarrow{\mathrm{parse}} \mathrm{Expr} \xrightarrow{\mathrm
 
 我的代码分为了两个 package，其中 `parser` 用于解析输入，`expression` 用于处理表达式。这个架构还是比较直观的，分类方法是“因子类型”或者说是“求导法则”。
 
-其中，`Expr` 是一个 `Term` 的容器，表示所有 `Term` 加起来。`Term`
+其中，`Expr` 是一个 `Term` 的容器，表示所有 `Term` 加起来。`Term` 由 `Powers` 组成，表示的乘方的乘积。乘积由底数因子（可以是常数/变量等）组成，指数是一个 `BigInteger`。
 
 ```
 |- MainClass
@@ -55,7 +55,7 @@ $$\mathrm{inStr} \xrightarrow{\mathrm{parse}} \mathrm{Expr} \xrightarrow{\mathrm
         |- TokenType (enum)
 ```
 
-Factor 总共有三个方法：
+Factor 总共有这几个方法：
 - `abstract Factor getDerivative()`：求导
 - `abstract String display()`：打印当前因子
 - `abstract Factor simplify()`：化简因子
