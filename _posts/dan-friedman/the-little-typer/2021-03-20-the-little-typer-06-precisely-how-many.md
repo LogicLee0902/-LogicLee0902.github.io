@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 06 Precisely How Many?"
-subtitle: "简单的 DT"
+subtitle: "精确的类型：基于 Nat 的类型"
 author: "roife"
 date: 2021-03-20
 
@@ -120,7 +120,7 @@ header-style: text
 >
 > when `y` is not used in `X`.
 >
-> **注解**：实际 → 表达式是 Π 表达式的特殊形式，传入类型参数和传入值参数没有区别
+> **注解**：实际 → 表达式是 Π 表达式的特殊形式，传入类型参数和传入值参数没有区别。个人理解是如果一个 type 或者 term 要被用于构建其他类型，则用 Π 表达式；否则用 → 表达式。后者是传统意义上的参数，前者类似于泛型。
 
 例如 `first` 也可以写成这样：
 

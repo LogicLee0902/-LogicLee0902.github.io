@@ -99,8 +99,8 @@ header-style: text
 
 (define step-length
     (λ (E)
-        (λ (e es length-es)
-            (add1 length-es))))
+        (λ (e es length_es)
+            (add1 length_es))))
 
 (claim length
     (Π ((E U))
@@ -127,8 +127,8 @@ header-style: text
 
 (define step-append
     (λ (E)
-        (λ (e es append-es)
-            (:: e append-es))))
+        (λ (e es append_es)
+            (:: e append_es))))
 
 (claim append
     (Π ((E U))
@@ -175,8 +175,8 @@ header-style: text
 
 (define step-concat
     (λ (E)
-        (λ (e es concates)
-            (snoc E concates e))))
+        (λ (e es concat_es)
+            (snoc E concat_es e))))
 
 (claim concat
     (Π ((E U))
@@ -197,8 +197,8 @@ header-style: text
 ```lisp
 (define step-reverse
     (λ (E)
-        (λ (e es reversees)
-            (snoc E reversees e))))
+        (λ (e es reverse_es)
+            (snoc E reverse_es e))))
 
 (define reverse
     (λ (E)

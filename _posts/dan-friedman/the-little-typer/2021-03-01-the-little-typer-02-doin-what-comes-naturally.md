@@ -33,7 +33,7 @@ header-style: text
 ```lisp
 ((λ (flavor)
     (cons flavor 'lentils))
-  'garlic)?
+  'garlic)
 ; (cons 'garlic 'lentils)
 ```
 
@@ -136,7 +136,7 @@ header-style: text
 >
 > ```lisp
 > (λ (y)
-> (cons y y))?
+>   (cons y y))
 > ```
 
 > ```lisp
@@ -337,7 +337,7 @@ header-style: text
 
 ```lisp
 (claim gauss
-  (-> Nat
+  (→ Nat
       Nat))
 
 (define gauss

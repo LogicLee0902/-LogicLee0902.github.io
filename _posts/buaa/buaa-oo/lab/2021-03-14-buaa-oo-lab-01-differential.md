@@ -240,12 +240,17 @@ return new Expr(derivedTerms); // add
 - $1^{\mathrm{exp}} = 1$
 - $Y^0 = 1$
 - $(Y^{\mathrm{e1}})^{\mathrm{e2}} = Y^{\mathrm{e1} * \mathrm{e2}}$
+- `x**2` $\rightarrow$ `x*x`（注意这一条在三角函数内部不能使用，因为 `sin(x*x)` 是错误格式，应该用 `sin((x*x))`，而这样不如直接 `sin(x**2)`）
 
 主要如果 `base` 是常数，那么也要展开。
 
 ### `Term`
 
 - $0 * [Y] = 0$
+
+### `Expr`
+
+- 让正项排在前面：`-x+1` 与 `x-1`
 
 ## 类型拆包
 

@@ -34,7 +34,7 @@ header-style: text
   step)
 ```
 
-如果 `target is zero`，那么返回 `base`；否则如果是 `(add1 n)`，则返回 `(step (step (... (step zero))))`。`step` 也是一个 λ 表达式。不过和 `which-Nat` 有一个区别，`iter-Nat` 的 `step` 接受的是一个 `X`，而 `which-Nat` 接受一个 `Nat`。
+如果 `target is zero`，那么返回 `base`；否则如果是 `(add1 n)`，则返回 `(step (step (... (step zero))))`。`step` 也是一个 λ 表达式。不过和 `which-Nat` 有一个区别，`iter-Nat` 的 `step` 接受的是一个 `X`（即一个 almost-answer），而 `which-Nat` 接受一个 `Nat`。
 
 `iter-Nat` 也是一个**模式匹配**，但是他可以对自然数进行递归。
 
@@ -129,7 +129,7 @@ header-style: text
     step))
 ```
 
-`rec-Nat` 结合了 `which-Nat` 和 `iter-Nat` 二者。和 `which-Nat` 的共同点在于 `step` 可以接受一个 `Nat`，这样就可以知道当前对于哪一个 Nat 进行递归了；和 `iter-Nat` 的共同点在于 `step` 可以对 `target` 进行递归。比起原来的两个，`rec-Nat` 更加通用，所以后面就只是它。
+`rec-Nat` 结合了 `which-Nat` 和 `iter-Nat` 二者。和 `which-Nat` 的共同点在于 `step` 可以接受一个 `Nat`，这样就可以知道当前对于哪一个 Nat 进行递归了；和 `iter-Nat` 的共同点在于 `step` 可以对 `target` 进行递归吗，可以接受一个 almost-answer。比起原来的两个，`rec-Nat` 更加通用，所以后面就只是它。
 
 `rec-Nat` 其实就是 **primitive recursion**。
 
@@ -140,7 +140,7 @@ header-style: text
   (→ Nat Atom
     Atom))
 (define step-zerop
-  (λ (n-1 zerop-n-1) ; 这两个参数都没用到，这样的话只要展开一步就可以停止了
+  (λ (n-1 zerop_n-1) ; 这两个参数都没用到，这样的话只要展开一步就可以停止了
     'nil))
 
 (claim zerop
@@ -211,8 +211,8 @@ header-style: text
   (→ Nat Nat
     Nat)
 (define step-gauss
-  (λ (n-1 gauss-n-1)
-    (+ (add1 n-1) (gauss-n-1 n-1))))
+  (λ (n-1 gauss_n-1)
+    (+ (add1 n-1) (gauss_n-1 n-1))))
 
 (claim gauss
   (→ Nat
