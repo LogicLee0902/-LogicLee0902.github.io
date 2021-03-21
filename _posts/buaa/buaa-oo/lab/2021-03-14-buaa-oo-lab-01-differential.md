@@ -173,7 +173,7 @@ private static Expr consumeExpr() throws WrongFormatException {
 
 # 表达式类
 
-## 显示`display`
+## 显示 `display`
 
 打印的过程比较简单，这里讲一些细节：
 
@@ -269,7 +269,7 @@ return new Expr(derivedTerms); // add
 - `Expr`
   - `Terms` 为空：$[\ ] = 0$
   - `Terms` 只有一项 $(T_0)$
-    - Powers 为空 $T_0 = C*[\ ]$：$(C*[\ ]) = C$
+    - Powers 为空 $T_0 = C * [\ ]$：$(C * [\ ]) = C$
     - 系数为 1，而且 Powers 只有一项 $T_0 = 1 * [Y^{\mathrm{exp}}]$：$(1 * [Y^{\mathrm{exp}}]) = Y^{\mathrm{exp}}$
 
 还有一些拆包工作是**展开嵌套类型**。这些展开需要根据当前式子的类型对于子因子进行的拆包，比如 `Expr` 内套 `Expr` 这种，需要在子因子被化简后，对化简结果进行拆包：
