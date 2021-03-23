@@ -116,6 +116,7 @@ header-style: text
 ### Consistently Renaming
 
 > **The Law of Renaming Variables**
+>
 > Consistently renaming variables can’t change the meaning of anything.
 
 下面是两个例子：

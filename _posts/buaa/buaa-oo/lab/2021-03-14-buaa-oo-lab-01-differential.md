@@ -329,7 +329,8 @@ return hashSet;
 
 ## 三角优化
 
-关于三角函数，我只做了一个优化：$a \sin^2 x + b \cos^2 x + c$。
+### $a \sin^2 x + b \cos^2 x + c$
+
 我的思路是做这个优化有两种可能，要么是 $\sin \rightarrow \cos$，要么是 $\cos \rightarrow \sin$，这两个涵盖了所有情况，包括 $1 - \sin^2 x$ 这样的。（想一想，为什么）
 
 这个合并过程显然在 `Expr` 中进行，针对 `Term` 进行合并。
@@ -377,6 +378,20 @@ if (sin2cos <= cos2sin) { // sin -> cos
 ```
 
 最后，我们将 `HashMap` 里面的内容恢复到 `terms` 中。遍历 `hashMapSin`，如果一个 `key` 的 `value != 0`，那么复制一下这个 `key`，然后加入 $\sin^2$（因为这个 `key` 对象可能被多个 `HashMap` 共享，我们不能干扰另外两个，所以要先复制一份）。再将其加入 `terms` 即可。
+
+### $A(\cos^2 - \sin^2)$
+
+直接在上面的做法上操作，如果最后是 $A \cos^2 - A \sin^2$ 的形式，就替换成 $\cos2Y$。
+
+### $2 * \sin * \cos$
+
+这个公式需要针对 `Term` 进行优化。
+
+如果系数是偶数，那么在 `Term` 内部开一个 HashMap，将所有 `sin` 的内层丢进去，然后用 `cos` 去碰撞。如果可以替换，就替换成 $\sin2Y$。
+
+### $\cos(-Y)$
+
+如果 $Y$ 是一个 `Term`，而且 `Y.getCoe() < 0`，那么可以去掉这个负号。
 
 ## 括号展开
 

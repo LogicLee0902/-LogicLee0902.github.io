@@ -256,7 +256,7 @@ motive 反映了 `ind-Nat` 的类型！
 
 ## `step`
 
-`step` 会传入对于 `l-1` 的结果并返回对于 `(add1 l-1)` 的结果。在这里，即将一个返回值为 `(Vec E (add1 l-1))` 的函数变为一个返回值为 `(Vec E (add1 (add1 l-1)))` 的函数。
+`step` 会传入对于 `(add1 l-1)` 的结果并返回对于 `(add1 (add1 l-1))` 的结果。在这里，即将一个返回值为 `(Vec E (add1 l-1))` 的函数变为一个返回值为 `(Vec E (add1 (add1 l-1)))` 的函数。（之所以加 1 是因为保证运算的列表至少有一个元素）
 
 这里的两个 `add1` 有不同的含义。内层的 `add1` 是根据 `ind-Nat` 的规则传入的参数 `k`；而外层的 `add1` 目的在于确保列表至少有一个元素（这个 `add1` 来自于 motive 的函数体），保证 totoality。
 
@@ -430,3 +430,79 @@ motive 反映了 `ind-Nat` 的类型！
     (vec:: (head (tail es))
       vecnil)))
 ```
+
+# Recess: One Piece at a Time
+
+## TODO
+
+`TODO` 可以作为占位符使用，当程序比较难写的时候，可以用来占位。
+
+> TODO is an expression that is a placeholder for another expression. A TODO can have any type, and Pie keeps track of which TODOs have which types.
+
+下面是两个例子：
+
+> ```lisp
+> (claim peas
+>   (Pi ((n Nat))
+>     TODO))
+> ```
+>
+> 返回
+>
+> ```
+> Frame 5:3.5: TODO: ; TODO 的位置
+>   n : Nat ; 表示 TODO 中可以用的变量
+> --------------
+>   U ; 表示占位地方的类型
+> ```
+
+> ```lisp
+> (claim peas
+>   (Pi ((n Nat))
+>     (Vec Atom n)))
+> (define peas
+>   TODO)
+> ```
+>
+> 返回
+>
+> ```
+> Frame 7:5.3: TODO:
+>   (Π ((n Nat))
+>     (Vec Atom n))
+> ```
+
+一个程序里面可以用多个 `TODO`。
+
+> ```lisp
+> (claim peas
+>   (Pi ((n Nat))
+>     (Vec Atom n)))
+> (define peas
+>   (λ (n)
+>     (ind-Nat n
+>       (λ (k)
+>         (Vec Atom k))
+>       vecnil
+>       (λ (n-1 peas-of-n-1)
+>         (vec:: TODO TODO)))))
+> ```
+>
+> ```
+> Frame 13:11.16: TODO:
+>             n : Nat
+>           n-1 : Nat
+>   peas-of-n-1 : (Vec Atom n-1)
+> ------------------------------
+>   Atom
+> Frame 13:11.21: TODO:
+>             n : Nat
+>           n-1 : Nat
+>   peas-of-n-1 : (Vec Atom n-1)
+> ------------------------------
+>   (Vec Atom n-1)
+> ```
+
+写程序的时候可以把难确定的地方用 `TODO` 占位，然后一点点补全。
+
+> **注释**：有点像 Coq 里面的 hole？
