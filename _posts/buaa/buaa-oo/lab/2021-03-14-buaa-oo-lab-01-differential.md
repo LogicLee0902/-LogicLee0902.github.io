@@ -4,7 +4,7 @@ title: "「BUAA-OO-Lab」 01 表达式求导"
 subtitle: "求导"
 author: "roife"
 date: 2021-03-14
-tags: ["BUAA - 面向对象设计与构造实验@Courses@Series", "北航@Tags@Tags", "面向对象@Tags@Tags", "Java@Languages@Tags"]
+tags: ["BUAA - 面向对象设计与构造@Courses@Series", "北航@Tags@Tags", "面向对象@Tags@Tags", "Java@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""
@@ -99,9 +99,9 @@ Parser 使用递归下降法解析表达式（不推荐用正则表达式）。�
 
 递归下降是一种根据形式化语法对字符串进行解析的算法。
 
-递归下降的思想是对于每一个语法元素，都用单独的函数对其进行读取。例如对 `sin` 的解析。首先在 Tokenizer 里面已经去掉了空白项，所以语法变成 `sin（因子）`，由三部分组成：`sin()` 和因子。其中难点在于因子的解析，使用递归下降时只要直接调用对应的解析函数 `consumeXXX()` 即可。
+递归下降的思想是对于每一个语法元素，都用单独的函数对其进行读取。例如对 `sin` 的解析。首先在 Tokenizer 里面已经去掉了空白项，所以语法变成 `sin`，`(`，因子，`)`，由四部分组成。其中难点在于因子的解析，使用递归下降时只要直接调用对应的解析函数 `consumeXXX()` 即可。
 
-`consumeXXX()` 的要点在于，调用时要只要保证当前位置恰好在 `XXX` 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。可以看出这个方法比较像分治。
+`consumeXXX()` 的要点在于，调用时要只要保证当前位置恰好在 `XXX` 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。可以看出这个方法比较像分治。（建议多读几遍结合代码理解）
 
 ```java
 private static Sin consumeSin() throws WrongFormatException {
@@ -272,6 +272,14 @@ return new Expr(derivedTerms); // add
     - Powers 为空 $T_0 = C * [\ ]$：$(C * [\ ]) = C$
     - 系数为 1，而且 Powers 只有一项 $T_0 = 1 * [Y^{\mathrm{exp}}]$：$(1 * [Y^{\mathrm{exp}}]) = Y^{\mathrm{exp}}$
 
+拆包工作怎么写？例如对于 $Y^1 = Y$，实际上就是在返回前判断一下：
+
+```java
+if (this.exp.equals(BigInteger.ONE)) {
+    return this.base;
+}
+```
+
 还有一些拆包工作是**展开嵌套类型**。这些展开需要根据当前式子的类型对于子因子进行的拆包，比如 `Expr` 内套 `Expr` 这种，需要在子因子被化简后，对化简结果进行拆包：
 
 - `Term`
@@ -393,7 +401,7 @@ if (sin2cos <= cos2sin) { // sin -> cos
 
 如果 $Y$ 是一个 `Term`，而且 `Y.getCoe() < 0`，那么可以去掉这个负号。
 
-## 括号展开
+## 括号展开（得分点，一定要写！）
 
 我采用的策略是“要么全部不展开”，“要么全部展开”。
 
