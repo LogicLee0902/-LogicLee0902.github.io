@@ -18,8 +18,8 @@ header-img: "img/tag-bg.jpg"
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<!-- Order Selector -->
 			<select class="sel-lang" onchange= "onOrderChange(this.options[this.options.selectedIndex].value)">
-				<option value="0" selected> 标签 | TAG </option>
-				<option value="1"> 系列 | SER </option>
+				<option value="0" selected> 按标签分类 </option>
+				<option value="1"> 按合集分类 </option>
 			</select>
 			<div id='tag_cloud' class="tags tags-sup js-tags">
 				<div class='tag-section'> {% include archive-tags.html identifier="Tags" %} </div>

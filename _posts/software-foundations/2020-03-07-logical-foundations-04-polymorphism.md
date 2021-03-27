@@ -344,5 +344,6 @@ Definition mult (n m : cnat) : cnat :=
 
 Definition exp (n m : cnat) : cnat :=
   fun (X : Type) => m (X -> X) (n X).
- (* 即 [fun (X : Type) (f : X -> X) (x : X) => (m (X -> X) (n X) f) x.] *)
+(* 即 [fun (X : Type) (f : X -> X) (x : X) => (m (X -> X) (n X) f) x.] *)
+(* 想象一棵 [m] 层的树，每个节点有 [n] 个叶子节点，那么第 [m] 层就是答案 *)
 ```

@@ -198,6 +198,14 @@ header-style: text
       (l Nat))
     (→ (Vec E (add1 l))
       E)))
+
+(define last
+  (λ (E l)
+    (ind-Nat l
+      (mot-last E)
+      (base-last E)
+      (step-last E))))
+; 注意这里 `last` 的定义只有两个类型参数
 ```
 
 `last` 总共传入三个参数，前两个是类型，最后一个是数据。下面对于 `last` 的定义实际上定义了一个组合子，传入前两个类型参数，返回的是一个函数（而不是具体的值）。得到函数后，需要再传入参数利用 curry-ing 计算出结果。
@@ -293,18 +301,6 @@ motive 反映了 `ind-Nat` 的类型！
         (last_l-1 (tail es)))))) ; 整个 λ 表达式类型为 (mot-last E (add1 l-1))
 ; (tail es) 类型为 (Vec E (add1 l-1))
 ; 将传入的列表去掉头部，然后递归处理
-```
-
-## `last`
-
-```lisp
-(define last
-  (λ (E l)
-    (ind-Nat l
-      (mot-last E)
-      (base-last E)
-      (step-last E))))
-; 注意这里 `last` 的定义只有两个类型参数
 ```
 
 可以发现，虽然这定义了一个组合子，但是 `base` 和 `step-last` 都有 `es` 这个参数。

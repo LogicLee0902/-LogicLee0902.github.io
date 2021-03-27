@@ -37,7 +37,7 @@ header-style: text
 
 `(+ 1)` is the same `(→ Nat Nat)` as `incr`，因为它们的 normal form 相同，都是 `(λ (j) (add1 j))`。
 
-# `=`
+# `=` 表达式
 
 Sameness 是一种表达二者相等的 judgment，而二者相等的这个 fact 可以写成一个 type，这个 type 表达了 sameness。
 
@@ -112,7 +112,7 @@ Sameness 是一种表达二者相等的 judgment，而二者相等的这个 fact
 
 通过 `=` 和 `same`，现在可以用 expressions 来描述一个 judgment，这个过程称为 internalizing the form of judgment。
 
-## 证明：`+1=add1`
+# 证明：`+1=add1`
 
 ```lisp
 (claim +1=add1
@@ -126,7 +126,7 @@ Sameness 是一种表达二者相等的 judgment，而二者相等的这个 fact
 
 For every Nat `n`, `(incr n)` is equal to `(add1 n)`.
 
-## `incr=add1`：1
+# `incr=add1`：claim
 
 ```lisp
 (claim incr=add1
@@ -158,7 +158,7 @@ Neutral Expressions 并非都是 normal 的。一些 type 可以把 neutral expr
 
 在 = 表达式中，neutral expressions 会作为参数经常出现。
 
-# `incr=add1` 2
+# `incr=add1`：definition
 
 > Expressions, however, can encode interesting patterns of reasoning, such as using **induction** to try each possibility for the variable in a neutral expression.
 
@@ -187,7 +187,7 @@ Neutral Expressions 并非都是 normal 的。一些 type 可以把 neutral expr
 
 ## `mot`
 
-这里先定义 `base` 再定义 `mot` 是因为 `base` 比较好写，而 motive 可以从中抽象出来。
+motive 的类型由 `incr=add1` 可以显然得到。
 
 ```lisp
 (claim mot-incr=add1
@@ -209,9 +209,9 @@ Neutral Expressions 并非都是 normal 的。一些 type 可以把 neutral expr
       (mot-incr=add1 (add1 n-1)))))
 ```
 
-### `if...then`
+## `step` 的另一种写法：→ 表达式
 
-但是这里还有另外一种更加直观的写法（其实就是展开写，看起来更像归纳法）。
+`step-incr=add1` 还有另外一种更加直观的写法（其实就是展开写，看起来更像归纳法）。
 
 ```lisp
 (claim step-incr=add1
@@ -251,9 +251,9 @@ Neutral Expressions 并非都是 normal 的。一些 type 可以把 neutral expr
 >
 > then `(incr (add1 n))` equals `(add1 (add1 n))`
 
-### `(incr (add1 n-1))` ~ `(add1 (incr n-1))`
+### `(incr (add1 n-1))` = `(add1 (incr n-1))`
 
-为了，我们还需要发现一些 `inct` 其他的性质。
+为了证明这个，我们还需要另一个 `incr` 其他的性质。
 
 > `(incr (add1 n-1))`
 >
@@ -312,11 +312,11 @@ Neutral Expressions 并非都是 normal 的。一些 type 可以把 neutral expr
 ```lisp
 (define step-incr=add1
   (λ (n-1)
-    (λ (incr=add1n-1)
-      (cong incr=add1n-1 (+ 1)))))
+    (λ (incr=add1_n-1)
+      (cong incr=add1_n-1 (+ 1)))))
 ```
 
-## 使用 `ind-Nat` 与 `cong` 归纳
+### 使用 `ind-Nat` 与 `cong` 归纳
 
 对于 `incr=add1` 要使用 `ind-Nat`，而对于 `+1=add1` 不用，因为前者是一个 neutral expression 且 normal form 形式不一样，而后者的 normal form 是相同的。
 
