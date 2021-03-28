@@ -4,9 +4,10 @@
             <div class="post-heading">
                 <div class="tags">
                     {% for tag in page.tags %}
-                        {%- assign top_identifier_len = tag | split: '@' | slice: -2, 2 | join: '' | size | plus: 2 -%}
-                        {%- assign length = tag | size | minus: top_identifier_len -%}
-                        <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
+                        {%- assign top_identifier = tag | split: '@' | slice: -1 | join: '' -%}
+                        {%- assign identifier_len = tag | split: '@' | slice: -2, 2 | join: '' | size | plus: 2 -%}
+                        {%- assign length = tag | size | minus: identifier_len -%}
+                        <a class="tag" href="{{ site.baseurl }}/archive/?order={{ top_identifier | downcase | url_encode }}&tag={{ tag | url_encode }}" title="{{ tag | slice: 0, length }}">{{ tag | slice: 0, length }}</a>
                     {% endfor %}
                 </div>
 
