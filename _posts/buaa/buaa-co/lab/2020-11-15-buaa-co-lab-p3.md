@@ -73,6 +73,8 @@ katex: true
 
 # 课下实现
 
+主要看 *Digital Design and Computer Architecture* 这本书，按照上面的方法搭建 CPU 即可。
+
 ## PC
 
 没什么好说的, 就是一个寄存器. 可能要注意一下复位方式 (同步还是异步).
