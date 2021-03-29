@@ -20,7 +20,7 @@ header-style: text
 >
 > A function that always assigns a value to every possible argument is called a total function.
 >
-> **备注**：Pie 中所有函数都是全函数。而这使得 Pie 中子表达式的求值顺序是无关紧要的。因为如果不是全函数，那么不同的求值顺序会导致
+> **备注**：Pie 中所有函数都是全函数，而这使得 Pie 中子表达式的求值顺序是无关紧要的。因为如果不是全函数，那么不同的求值顺序会导致函数无值。
 
 # `iter-Nat`
 

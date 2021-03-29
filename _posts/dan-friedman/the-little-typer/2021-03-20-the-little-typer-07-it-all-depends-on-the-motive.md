@@ -42,7 +42,12 @@ header-style: text
 
 `ind-Nat` 和 `rec-Nat` 相似，但是它允许 `base` 和 `step` 的返回结果不同，因此`ind-Nat` 专门用于 DT，例如 `(Vec Atom how-many-peas)`。
 
-但是使用 `ind-Nat` 时需要一个额外的参数，用来描述 `base` 的 `step` 的结果是怎样依赖于 `Nat` 的，或者说如何利用 `Nat` 构建出这个类型。这个参数被称为 **motive**，类型为 `(→ Nat U)`（注意返回类型为 `U`）。
+但是使用 `ind-Nat` 时需要一个额外的参数，用来描述 `base` 的 `step` 的结果是怎样依赖于 `Nat` 的，或者说如何利用 `Nat` 构建出这个类型。这个参数被称为 **motive**，类型为
+
+```lisp
+(→ Nat
+  U) ; 注意返回类型为 U
+```
 
 一个 `int-Nat` 表达式的类型即为将 Nat 传入 motive 后返回的结果。
 

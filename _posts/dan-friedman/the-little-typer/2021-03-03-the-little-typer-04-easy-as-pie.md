@@ -12,7 +12,7 @@ header-image: ""
 header-style: text
 ---
 
-# Polymophism：Π
+# Pi Type：Π
 
 Π 表达式可以用于编写泛型 lambda 表达式的类型声明，并且用于参数化类型。
 
@@ -41,6 +41,8 @@ header-style: text
 > ```
 >
 > and `Z` is a U, then `(f Z)` is an `X`, and every `Y` in `X` has been consistently replaced by `Z`.
+>
+> **注解**：Π Type 相当于全称量词，因为 Pie 中的函数都是 total function，所以 Π 表达式的参数可以传入对应类型任意的值，它们都可以使类型成立，即其类型为 $\forall\ a:Y, X[Y:=a]$
 
 Π 表达式和 → 表达式都可以**描述 λ 表达式的类型**，区别在于传入参数后表达式的类型。Π 表达式传入全部参数后返回一个 → 表达式。
 
