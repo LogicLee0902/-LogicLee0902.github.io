@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 10 It also depends on the List"
-subtitle: ""
+subtitle: "Dependent List on Nat"
 author: "roife"
 date: 2021-03-29
 
@@ -10,6 +10,7 @@ lang: zh
 catalog: true
 header-image: ""
 header-style: text
+katex: true
 ---
 
 # Sigma Type：Σ
@@ -33,8 +34,6 @@ header-style: text
 > 它和 Π Type 的区别在于：
 > - Π 可以代入 `Y` 类型所有的值，并且 Π 类型描述的值就是 `X`，其中 `X` 由 `Y` 构建
 > - Σ 需要找到可以构建类型的特定值 `a`，并且 Σ 类型描述的值为特定值 `a` 和 `d` 组成的一个 Pair `(cons a d): (Pair A D[x:=a])`（而不是一个单一的 `d`），其中 `D` 由 `a` 构建，不能将 `D` 独立于 `a` 作为命题。
->
-> 并且 Π 需要传入所依赖的值，而 Σ 的依赖有时候可以被计算出来（比如 List 的长度）。
 
 Σ 类型类似于一个 type constructor。对于一个 Pair `(cons a d): (Σ ((x A)) D)`，`x` 是一个变量，值为 `a`，类型为 `A`。将类型 `D` 中出现的所有 `x` 替换为值 `a` 即得到 `d` 的类型。
 
@@ -86,6 +85,8 @@ header-style: text
 ## Σ 与 Vec
 
 用 Σ 表达式可以让列表长度和内容组成一个 Pair，例如 `(cons 17 (peas 17))` 或者 `(cons 2 (vec:: 'a (vec:: 'b vecnil)))`。
+
+Π 需要传入所依赖的值，而 Σ 的依赖有时候可以被计算出来（比如 List 的长度）。
 
 ## Pair/Σ as statement
 

@@ -10,6 +10,7 @@ lang: zh
 catalog: true
 header-image: ""
 header-style: text
+katex: true
 ---
 
 # Eliminators
