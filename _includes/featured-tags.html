@@ -1,5 +1,5 @@
 {% comment %}
-    @param {boolean} bottom - bottom will render <hr> 
+    @param {boolean} bottom - bottom will render <hr>
 {% endcomment %}
 
 {% if site.featured-tags %}
@@ -9,20 +9,37 @@
     {% endif %}
     <h5><a href="{{'/archive/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
     <div class="tags">
-        {% capture tags %}
-        {% comment %}
-            there must be no space between for and if otherwise this tricky sort won't work.
-            url_encode/decode is for escaping otherwise extra <a> will get generated 
-            but it will break sort...
-        {% endcomment %}
-        {% for tag in site.tags %}{% if tag[1].size > site.featured-condition-size %}
-                <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}" 
-                    href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}"
-                    title="{{ tag[0] }}"
-                    rel="{{ tag[1].size }}">{{ tag[0] }}</a>__SEPARATOR__
-        {% endif %}{% endfor %}
-        {% endcapture %}
-        {{ tags | split:'__SEPARATOR__' | sort }}
+        {%- assign identifier = "Tags" -%}
+
+        {% comment %} tag = subtag@toptag@indentifier {% endcomment %}
+        {%- assign all_tag_ui = "" | split: '' -%}
+
+        {%- for each_tag in site.tags -%}
+            {% if each_tag[1].size > site.featured-condition-size %}
+                {%- assign tag_split = each_tag[0] | split: '@' | slice: -2, 2 -%}
+                {%- assign tag_identifier = tag_split[1] | join: '' -%}
+                {%- assign top_tag = tag_split[0] | join: ''  -%}
+
+                {%- if tag_identifier == identifier -%}
+                    {%- assign top_identifier_len = tag_split | join: '' | size | plus: 2 -%}
+                    {%- assign sub_tag_len = each_tag[0] | size | minus: top_identifier_len -%}
+
+                    {%- capture tag_ui -%}
+                        <a data-sort="{{ site.posts.size | minus: each_tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+                                        href="{{ site.baseurl }}/archive/?order={{ identifier | downcase | url_encode }}&tag={{ each_tag[0] | url_encode }}"
+                                        data-encode="{{ each_tag[0] | strip | url_encode }}"
+                                        class="tag"
+                                        title="{{each_tag[0]}}" />
+                            {{ each_tag[0] | slice: 0, sub_tag_len }}
+                        </a>
+                    {%- endcapture -%}
+
+                    {%- assign all_tag_ui = all_tag_ui | push: tag_ui -%}
+                {%- endif -%}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {{ all_tag_ui | sort }}
     </div>
 </section>
 {% endif %}
