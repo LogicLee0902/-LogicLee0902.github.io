@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 04 Easy as Pie"
-subtitle: "Polymorphism"
+subtitle: "Pi Type & Polymorphism"
 author: "roife"
 date: 2021-03-03
 

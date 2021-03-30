@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 10 It also depends on the List"
-subtitle: "Dependent List on Nat"
+subtitle: "Sigma Type & Dependent List"
 author: "roife"
 date: 2021-03-29
 
