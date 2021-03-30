@@ -1,11 +1,11 @@
 ---
 layout: "post"
-title: "「BUAA-OS-Lab」 Lab1-1 内核制作、启动和 printf"
+title: "「BUAA-OS-Lab」 Lab1-2 内核制作、启动和 printf"
 subtitle: "printf 函数 & 系统启动"
 author: "roife"
 date: 2021-03-30
 
-tags: ["BUAA - 操作系统@Courses@Series", "北航@Tags@Tags", "操作系统@Tags@Tags", "MIPS Assembly@Tags@Tags", "C@Languages@Tags"]
+tags: ["BUAA - 操作系统@Courses@Series", "北航@Tags@Tags", "操作系统@Tags@Tags", "MIPS Assembly@Languages@Tags", "C@Languages@Tags"]
 lang: zh
 catalog: true
 header-image: ""
@@ -14,6 +14,10 @@ katex: true
 ---
 
 # 课上
+
+做 Lab1-2 的时候一定要学会调试 `printf`！
+
+方法是在 `init/main.c` 里面添加 `printf` 语句，这里的 `printf` 就是自己写的函数。
 
 ## Exam
 
@@ -42,6 +46,8 @@ struct s2 {
 主要是传入结构体参数怎么访问到其中的元素。我们可以在 `print.c` 里面按照定义一个结构体，然后用箭头运算符去访问。
 
 也可以直接访问地址，如 `*(addr + 4)`，但是要注意结构体内数据的排列要字对齐（尤其是 `char`）。
+
+另一个需要注意的是，如果定义结构体，那么这个数组的长度不能写 `c[size]`，因为这里 `size` 是不知道的。可以随便填一个数字或者不写，如 `c[100]` 或 `c[]`。而且这里的数组也不能用 `int *c`，因为此时 `c` 里面并非数组的地址，而是数组第一个元素的值。
 
 输出就模仿原来的代码即可，这里我用宏简化了代码。
 
@@ -204,7 +210,7 @@ END(NAME)
 
 其实从 `drivers/gxconsole` 下面的 `console.c` 和 `dev_cons.h` 文件也不难发现读写外设访问的是 `0xB0000000` 这个地址，终止程序的是 `0xB0000010`。
 
-```mips
+```c
 #include <asm/regdef.h>
 #include <asm/cp0regdef.h>
 #include <asm/asm.h>
@@ -228,7 +234,7 @@ LEAF(_my_getchar)
     end_check_r:
 
     or v0, zero, t1
-    jr ra
+    jr ra /* 注意函数调用要返回！ */
 END(_my_getchar)
 
 LEAF(_my_putchar)
@@ -242,4 +248,78 @@ LEAF(_my_exit)
     sb zero, 0x10(t0)
     jr ra
 END(_my_exit)
+```
+
+### Task 3
+
+#### 题目
+
+利用 `char _my_getchar()` 和 `void _my_putchar(char)` 写一个计算加法的程序，即读入两个正整数，用 `\n` 分隔，将其相加然后输出。
+
+保证数字在 `int` 范围内，不能使用 `printf`。
+
+#### 分析
+
+就是一个快读快写。
+
+为了让程序能访问到我们自己编写的函数，需要在程序头部对用到的函数进行声明。
+
+数字在 `int` 范围内，输出的时候注意一下。
+
+自己测试的时候，换行不能直接敲回车，要使用 `Ctrl + j`，这样才是 `\n`。
+
+```c
+// 课上写的很丑的代码
+char _my_getchar();
+void _my_putchar(char ch);
+
+void my_cal() {
+    char c = _my_getchar();
+    int a = 0;
+    int b = 0;
+    while (c != '\n') {
+        a = a * 10 + c - '0';
+        c = _my_getchar();
+    }
+    c = _my_getchar();
+    while (c != '\n') {
+        b = b * 10 + c - '0';
+        c = _my_getchar();
+    }
+    int d = a + b;
+    if (d == 0) _my_putchar('0');
+    else {
+        int e = 1000000000;
+        while (d / e == 0) e = e / 10;
+        while (e) {
+            _my_putchar(d / e + '0');
+            d = d % e;
+            e = e / 10;
+        }
+    }
+}
+```
+
+```c
+// 课下总结的代码
+char _my_getchar();
+void _my_putchar(char ch);
+inline int isdigit(char c) { return c>='0' && c<='9'; }
+
+int rd() {
+    int x = 0; char c;
+    while(!isdigit(c = _my_getchar())); x = c^48;
+    while(isdigit(c = _my_getchar())) x=(x<<1)+(x<<3)+(c^48);
+    return x;
+}
+
+void wr(int x) {
+    static char c[10], *s=c; *s=0;
+    do *++s=x%10^48; while(x/=10);
+    while(*s) _my_putchar(*s--);
+}
+
+void my_cal() {
+    wr(rd() + rd());
+}
 ```
