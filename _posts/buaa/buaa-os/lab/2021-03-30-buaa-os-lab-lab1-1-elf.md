@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「BUAA-OS-Lab」 Lab1-1 ELF 文件解析"
+title: "「BUAA-OS-Lab」 Lab1-1 ELF"
 subtitle: "ELF 文件解析"
 author: "roife"
 date: 2021-03-30

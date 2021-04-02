@@ -46,15 +46,15 @@ katex: true
 >
 > ```lisp
 > (→ E (List E) X
->     X)
+>   X)
 > ```
 >
 > then
 >
 > ```lisp
 > (rec-List target
->     base
->     step)
+>   base
+>   step)
 > ```
 >
 > is an `X`.
@@ -65,8 +65,8 @@ katex: true
 >
 > ```lisp
 > (rec-List nil
->     base
->     step)
+>   base
+>   step)
 > ```
 >
 > is an `X`, then it is the same `X` as `base`.
@@ -77,43 +77,43 @@ katex: true
 >
 > ```lisp
 > (rec-List (:: e es)
->     base
->     step)
+>   base
+>   step)
 > ```
 >
 > is an `X`, then it is the same `X` as
 >
 > ```lisp
 > (step e es
->     (rec-List es
->         base
->         step))
+>   (rec-List es
+>     base
+>     step))
 > ```
 
 ## `length`
 
 ```lisp
 (claim step-length
-    (Π ((E U))
-        (→ E (List E) Nat
-            Nat)))
+  (Π ((E U))
+    (→ E (List E) Nat
+      Nat)))
 
 (define step-length
-    (λ (E)
-        (λ (e es length_es)
-            (add1 length_es))))
+  (λ (E)
+    (λ (e es length_es)
+      (add1 length_es))))
 
 (claim length
-    (Π ((E U))
-        (→ (List E)
-    Nat)))
+  (Π ((E U))
+    (→ (List E)
+  Nat)))
 
 (define length
-    (λ (E)
-        (λ (es)
-            (rec-List es
-                0
-                (step-length E)))))
+  (λ (E)
+    (λ (es)
+      (rec-List es
+        0
+        (step-length E)))))
 ```
 
 ## `append`
@@ -122,88 +122,88 @@ katex: true
 
 ```lisp
 (claim step-append
-    (Π ((E U))
-        (→ E (List E) (List E)
-            (List E))))
+  (Π ((E U))
+    (→ E (List E) (List E)
+      (List E))))
 
 (define step-append
-    (λ (E)
-        (λ (e es append_es)
-            (:: e append_es))))
+  (λ (E)
+    (λ (e es append_es)
+      (:: e append_es))))
 
 (claim append
-    (Π ((E U))
-        (→ (List E) (List E)
-            (List E))))
+  (Π ((E U))
+    (→ (List E) (List E)
+      (List E))))
 
 (define append
-    (λ (E)
-        (λ (start end)
-            (rec-List start
-                end
-                (step-append E)))))
+  (λ (E)
+    (λ (start end)
+      (rec-List start
+        end
+        (step-append E)))))
 ```
 
 可以发现，`append` 和 `+` 非常像。
 
-## snoc
+## `snoc`
 
 在列表末尾添加元素。
 
 ```lisp
 (claim snoc
-    (Π ((E U))
-        (→ (List E) E
-            (List E))))
+  (Π ((E U))
+    (→ (List E) E
+      (List E))))
 
 (define snoc
-    (λ (E)
-        (λ (start e)
-            (rec-List start
-                (:: e nil)
-                (step-append E)))))
+  (λ (E)
+    (λ (start e)
+      (rec-List start
+        (:: e nil)
+        (step-append E)))))
 ```
 
-## concat
+## `concat`
 
 类似于 `append`，使用 `snoc` 定义。
 
 ```lisp
 (claim step-concat
-    (Π ((E U))
-        (→ E (List E) (List E)
-            (List E))))
+  (Π ((E U))
+    (→ E (List E) (List E)
+      (List E))))
 
 (define step-concat
-    (λ (E)
-        (λ (e es concat_es)
-            (snoc E concat_es e))))
+  (λ (E)
+    (λ (e es concat_es)
+      (snoc E concat_es e))))
 
 (claim concat
-    (Π ((E U))
-        (→ (List E) (List E)
-            (List E))))
+  (Π ((E U))
+    (→ (List E) (List E)
+      (List E))))
 
 (define concat (λ (E)
-    (λ (start end)
-        (rec-List end
-            start
-            (step-concat E)))))
+  (λ (start end)
+    (rec-List end
+      start
+      (step-concat E)))))
 ```
 
-## reverse
+## `reverse`
 
 翻转一个列表。
 
 ```lisp
 (define step-reverse
-    (λ (E)
-        (λ (e es reverse_es)
-            (snoc E reverse_es e))))
+  (λ (E)
+    (λ (e es reverse_es)
+      (snoc E reverse_es e))))
 
 (define reverse
-    (λ (E)
-    (λ (es) (rec-List es
-        nil
-        (step-reverse E)))))
+  (λ (E)
+  (λ (es) (rec-List es
+    nil
+    (step-reverse E)))))
 ```

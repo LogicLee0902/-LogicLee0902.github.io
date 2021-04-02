@@ -271,6 +271,8 @@ katex: true
     (mot (:: e es))))
 ```
 
+`e` 和 `es` 分别代表头部元素和去掉头部元素后的列表。每次会对 `es` 进行递归。
+
 > **The Law of `ind-List`**
 >
 > If `target` is a `(List E)`, mot is an
@@ -335,8 +337,9 @@ katex: true
 
 ## Better definition for `list→vec`
 
-```lisp
+将长度纳入类型定义。
 
+```lisp
 (claim list→vec
   (Π ((E U)
       (es (List E)))
@@ -371,12 +374,12 @@ katex: true
       (step-list→vec E))))
 ```
 
-遗憾的是，这个定义依然有漏洞。如果更改 `step` 的定义，并且使用 `replicate` 重新定义：
+遗憾的是，这个定义依然有漏洞。如果更改 `step` 的定义，并且使用 `replicate` 重新定义，将其变成第一个元素的重复：
 
 ```lisp
 (define step-list→vec
   (λ (E e es)
-    (λ (list→veces)
+    (λ (list→vec_es)
       (replicate E (length E (:: e es))
         e))))
 ```
