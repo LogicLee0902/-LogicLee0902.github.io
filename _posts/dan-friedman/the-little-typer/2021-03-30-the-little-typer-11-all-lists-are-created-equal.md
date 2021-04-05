@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 11 All lists are created equals"
-subtitle: ""
+subtitle: "ind-Vec"
 author: "roife"
 date: 2021-03-30
 

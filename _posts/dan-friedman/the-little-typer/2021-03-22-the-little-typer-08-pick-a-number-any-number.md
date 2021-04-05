@@ -107,7 +107,7 @@ Sameness 是一种表达二者相等的 judgment，而二者相等的这个 fact
 >
 > The expression `(same e)` is an `(= X e e)` if `e` is an `X`.
 
-例如 `(same (incr 3))` is an `(= Nat (+ 2 2) 4)`。后者是前者的 proof。
+例如 `(same (incr 3))` is an `(= Nat (+ 2 2) 4)`。前者是后者的 proof。
 
 在 `same` 中要求 the *from* is the same `X` as the *to*。
 
