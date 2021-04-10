@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「The Little Typer」 15 Imagine that..."
-subtitle: "谬模式与可判定性"
+subtitle: "谬模式与排中律"
 author: "roife"
 date: 2021-04-09
 
@@ -297,7 +297,7 @@ katex: true
 
 (define step-front
   (λ (E l e es)
-    (λ (frontes)
+    (λ (front_es)
       (λ (j eq)
         e))))
 ```

@@ -381,6 +381,8 @@ Values 可以用 Types 来描述，而 Types 可以用 U 来描述。
 >
 > **注解**：U is a type, but U is not a U.（一个类型的类型不能是自己）
 
+判断一个值是否是某个类型，那么需要知道这个类型所有的值。但是对于 `U` 而言，不可能知道所有的 type constructor，因为可以创建新的 type，因此也可以创建新的 type constructor。
+
 # Pear
 
 通过 U，我们可以用 `define` 去定义类型 `Pear`：
