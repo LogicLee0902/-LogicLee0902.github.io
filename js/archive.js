@@ -119,20 +119,21 @@ https://github.com/kitian616/jekyll-TeXt-theme
       if (target) {
         buttonFocus(target);
         _tag = target.attr('data-encode');
+        _order = _tag.split("%40").slice(-1)[0].toLowerCase()
         if (_tag === '' || typeof _tag !== 'string') {
           setUrlQuery();
         } else {
-          setUrlQuery('?tag=' + _tag);
+          setUrlQuery('?order=' + _order + '&tag=' + _tag);
         }
       } else {
         buttonFocus(searchButtonsByTag(tag));
       }
     }
 
-    var query = queryString(), 
+    var query = queryString(),
         _tag = query.tag;
 
-    init(); 
+    init();
     tagSelect(_tag);
 
     $tags.on('click', 'a', function() {   /* only change */
