@@ -238,6 +238,8 @@ Fixpoint leb (n m : nat) : bool :=
 
 有些时候分类讨论会出现, 当前讨论与条件矛盾, 此时应该结束讨论. (后面可以直接用 `discriminate` 这个 tactic )
 
+这里用了一个小技巧使得遇到矛盾的条件时, 能够停止讨论.
+
 ``` coq
 Theorem andb_true_elim2 : forall b c : bool,
     andb b c = true -> c = true.

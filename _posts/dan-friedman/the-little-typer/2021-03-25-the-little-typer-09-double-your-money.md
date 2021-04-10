@@ -60,6 +60,8 @@ katex: true
 > ```lisp
 > (mot to)
 > ```
+>
+> **注解**：类似于 Coq 的 `rewrite -> target`
 
 # `incr=add1`：`replace`
 
