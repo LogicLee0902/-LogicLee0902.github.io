@@ -25,10 +25,10 @@ katex: true
 
   $$
     \begin{aligned}
-        & if\ \mathrm{has\_odd\_one\_bits}(GRF[rs])\ then \\
-        & \qquad PC = PC + 4 + \mathrm{sign\_ext}(offset || 0^2) \\
+        & \operatorname{if}\ \operatorname{has\_odd\_one\_bits}(GRF[rs])\ \operatorname{then} \\
+        & \qquad PC = PC + 4 + \operatorname{sign\_ext}(offset || 0^2) \\
         & \qquad GRF[31] = PC + 4 \\
-        & else \\
+        & \operatorname{else} \\
         & \qquad PC = PC + 4
     \end{aligned}
   $$
@@ -45,10 +45,10 @@ katex: true
     \begin{aligned}
         & Addr \leftarrow GPR[base] + \mathtt{sign\_ext}(offset) \\
         & temp \leftarrow Addr_{1..0} \\
-        & if\ temp == 0\ then \\
+        & \operatorname{if}\ temp == 0\ \operatorname{then} \\
         & \qquad mem_{addr} \leftarrow GRF[rt] \\
-        & else \\
-        & \qquad mem_{addr} \leftarrow GRF[rt]_{8*temp - 1 \cdots 0}\ ||\ GRF[rt]_{31 \cdots 8*temp}
+        & \operatorname{else} \\
+        & \qquad mem_{addr} \leftarrow GRF[rt]_{8*temp - 1 \cdots 0}||GRF[rt]_{31 \cdots 8*temp}
     \end{aligned}
     $$
 

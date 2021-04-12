@@ -181,7 +181,7 @@ endmodule
 
 首先从 PC 中取出指令地址, 并据此从 IM 中取出对应的指令. 根据指令格式, 用其 21~25 位从 RF 中读取对应的 `base` 寄存器.
 
-同时, 对其 0~15 位的 `offset` 进行符号扩展, 送至 ALU 中算出 $R[base] + \mathrm{sign\\\_ext}(offset)$, 即对应的 DM 中数据的地址.
+同时, 对其 0~15 位的 `offset` 进行符号扩展, 送至 ALU 中算出 $R[base] + \operatorname{sign\\\_ext}(offset)$, 即对应的 DM 中数据的地址.
 
 其中 ALU 的运算符用一个 3 位的信号 `ALUControl` 控制, 这个信号由 CU 根据指令的 `opcode` 发出.
 

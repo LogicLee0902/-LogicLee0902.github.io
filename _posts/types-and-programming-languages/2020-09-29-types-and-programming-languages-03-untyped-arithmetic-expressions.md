@@ -21,14 +21,14 @@ katex: true
 
 $$
 \begin{aligned}
-t \Coloneqq & & (terms) \\
-    & \mathtt{true} & (constant\ true) \\
-    & \mathtt{false} & (constant\ false) \\
-    & \mathtt{if}\ t\ \mathtt{then}\ t\ \mathtt{else}\ t & (conditions) \\
-    & \mathtt{0} & (constant\ 0) \\
-    & \mathtt{succ}\ t & (successor) \\
-    & \mathtt{pred}\ t & (predecessor) \\
-    & \mathtt{iszero}\ t & (zero\ test)
+t \Coloneqq & & (\text{terms}) \\
+    & \mathtt{true} & (\text{constant}\ true) \\
+    & \mathtt{false} & (\text{constant}\ false) \\
+    & \mathtt{if}\ t\ \mathtt{then}\ t\ \mathtt{else}\ t & (\text{conditions}) \\
+    & \mathtt{0} & (\text{constant}\ 0) \\
+    & \mathtt{succ}\ t & (\text{successor}) \\
+    & \mathtt{pred}\ t & (\text{predecessor}) \\
+    & \mathtt{iszero}\ t & (\text{zero}\ test)
 \end{aligned}
 $$
 

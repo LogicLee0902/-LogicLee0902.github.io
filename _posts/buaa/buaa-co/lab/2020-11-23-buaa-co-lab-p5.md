@@ -24,8 +24,8 @@ katex: true
   $$
     \begin{aligned}
     & temp \leftarrow 0 \\
-    & \mathrm{for}\ i\ \mathrm{in}\ 31 \cdots 0 \\
-    & \qquad \mathrm{if}\ GPR[rs]_i == 1\ \mathrm{and}\ GPR[rt]_i == 1\  \mathrm{then} \\
+    & \operatorname{for}\ i\ \operatorname{in}\ 31 \cdots 0 \\
+    & \qquad \operatorname{if}\ GPR[rs]_i == 1\ \operatorname{and}\ GPR[rt]_i == 1\  \operatorname{then} \\
     & \qquad \qquad temp \leftarrow temp + 1 \\
     & GPR[rd] \leftarrow temp
     \end{aligned}
@@ -37,19 +37,19 @@ katex: true
 
   $$
     \begin{aligned}
-    \mathrm{I}:
-    & target\_offset \leftarrow \mathrm{signed\_ext}(offset || 0^2) \\
+    \operatorname{I}:
+    & target\_offset \leftarrow \operatorname{signed\_ext}(offset || 0^2) \\
     & condition \leftarrow GPR[rs] \ge 0 \\
     & GPR[31] \leftarrow PC + 8  \\
-    \mathrm{I+1}:
-    & \mathrm{if}\ condition\  \mathrm{then} \\
+    \operatorname{I+1}:
+    & \operatorname{if}\ condition\  \operatorname{then} \\
     & \qquad PC \leftarrow PC + 4 + target\_offset \\
-    & \mathrm{else} \\
-    & \qquad \mathrm{NullifyCurrentInstruction()} \\
+    & \operatorname{else} \\
+    & \qquad \operatorname{NullifyCurrentInstruction()} \\
     \end{aligned}
   $$
 
-  $\mathrm{NullifyCurrentInstruction()}$ 的意思是清空延迟槽。
+  $\operatorname{NullifyCurrentInstruction()}$ 的意思是清空延迟槽。
 
   也就是说仅当跳转时延迟槽生效。
 
@@ -67,7 +67,7 @@ katex: true
     \begin{aligned}
     & mem\_data \leftarrow mem[GPR[rs] + offset] \\
     & temp \leftarrow (GPR[rt]_{31} || GPR[rt]) + (mem\_data_{31} || mem\_data) \\
-    & \mathrm{if}\ temp_{32} == temp_{31}\  \mathrm{then} \\
+    & \operatorname{if}\ temp_{32} == temp_{31}\  \operatorname{then} \\
     & \qquad GPR[rt] \leftarrow GPR[rt] + mem\_data
     \end{aligned}
   $$
@@ -84,12 +84,12 @@ katex: true
     \begin{aligned}
     & temp \leftarrow 0 \\
     & count \leftarrow 0 \\
-    & \mathrm{for}\ i\ \mathrm{in}\ 0 \cdots 31 \\
-    & \qquad \mathrm{if}\ GPR[rs]_i == 1\ \mathrm{then} \\
+    & \operatorname{for}\ i\ \operatorname{in}\ 0 \cdots 31 \\
+    & \qquad \operatorname{if}\ GPR[rs]_i == 1\ \operatorname{then} \\
     & \qquad \qquad count \leftarrow count + 1 \\
-    & \qquad \qquad \mathrm{if}\ count > temp\ \mathrm{then} \\
+    & \qquad \qquad \operatorname{if}\ count > temp\ \operatorname{then} \\
     & \qquad \qquad \qquad temp \leftarrow count \\
-    & \qquad \mathrm{else} \\
+    & \qquad \operatorname{else} \\
     & \qquad \qquad count \leftarrow 0 \\
     & GPR[rd] \leftarrow temp
     \end{aligned}
@@ -101,9 +101,9 @@ katex: true
 
   $$
     \begin{aligned}
-    & target\_offset \leftarrow \mathrm{signed\_ext}(offset || 0^2) \\
+    & target\_offset \leftarrow \operatorname{signed\_ext}(offset || 0^2) \\
     & condition \leftarrow GPR[rs] \le 0 \\
-    & \mathrm{if}\ condition\  \mathrm{then} \\
+    & \operatorname{if}\ condition\  \operatorname{then} \\
     & \qquad PC \leftarrow PC + 4 + target\_offset \\
     & \qquad GPR[31] \leftarrow PC + 8  \\
     \end{aligned}
@@ -115,7 +115,7 @@ katex: true
 
   $$
     \begin{aligned}
-    & vAddr \leftarrow GPR[base] + \mathrm{sign\_extend}(offset) \\
+    & vAddr \leftarrow GPR[base] + \operatorname{sign\_extend}(offset) \\
     & mem\_reg \leftarrow Memory[vAddr]_{4..0} \\
     & GPR[mem\_reg] \leftarrow GPR[rt]
     \end{aligned}

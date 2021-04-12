@@ -21,7 +21,7 @@ katex: true
     \begin{aligned}
     & condition \leftarrow GPR[rs] \ge 0 \\
     & GPR[rd] \leftarrow PC + 8 \\
-    & \mathrm{if}\ condition\  \mathrm{then} \\
+    & \operatorname{if}\ condition\  \operatorname{then} \\
     & \qquad PC \leftarrow GPR[rt]  \\
     \end{aligned}
   $$
@@ -42,13 +42,13 @@ katex: true
 
   $$
     \begin{aligned}
-    & Addr \leftarrow GPR[base] + \mathrm{signed\_ext}(offset) \\
+    & Addr \leftarrow GPR[base] + \operatorname{signed\_ext}(offset) \\
     & memword \leftarrow memory[Addr] \\
     & byte \leftarrow Addr_{1..0} \\
-    & \mathrm{if}\ byte = 0\ \mathrm{then} \\
-    & \qquad GPR[rt] \leftarrow \mathrm{signed\_ext}(memword_{7..0}) \\
-    & \mathrm{else}\ \mathrm{if}\ byte = 2\ \mathrm{then} \\
-    & \qquad GPR[rt] \leftarrow \mathrm{signed\_ext}(memword_{23..16})
+    & \operatorname{if}\ byte = 0\ \operatorname{then} \\
+    & \qquad GPR[rt] \leftarrow \operatorname{signed\_ext}(memword_{7..0}) \\
+    & \operatorname{else}\ \operatorname{if}\ byte = 2\ \operatorname{then} \\
+    & \qquad GPR[rt] \leftarrow \operatorname{signed\_ext}(memword_{23..16})
     \end{aligned}
   $$
 

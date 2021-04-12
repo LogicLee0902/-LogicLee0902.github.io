@@ -723,50 +723,50 @@ Fixpoint loop_false (n : nat) : False := loop_false n.
 
 $$
 \dfrac{}
-{st =[ \mathrm{skip} ]\Rightarrow st}
+{st =[ \operatorname{skip} ]\Rightarrow st}
 \textbf{(E\_Skip)}
 $$
 
 $$
-\dfrac{\mathrm{aeval}\ st\ a = n}
+\dfrac{\operatorname{aeval}\ st\ a = n}
 {st =[ x \coloneqq a ]\Rightarrow (x !\rightarrow n ; st)}
 \textbf{(E\_Ass)}
 $$
 
 $$
-\dfrac{st =[ \mathrm{c_1} ]\Rightarrow st',
-       st' =[ \mathrm{c_2} ]\Rightarrow st''}
-{st =[\mathrm{c_1; c_2}]\Rightarrow st''}
+\dfrac{st =[ \operatorname{c_1} ]\Rightarrow st',
+       st' =[ \operatorname{c_2} ]\Rightarrow st''}
+{st =[\operatorname{c_1; c_2}]\Rightarrow st''}
 \textbf{(E\_Seq)}
 $$
 
 $$
-\dfrac{\mathrm{beval}\ st\ b = \mathrm{true},
-       st =[ \mathrm{c_1}]\Rightarrow st'}
-{st =[\mathrm{if}\ b\ \mathrm{then}\ \mathrm{c_1}
-      \ \mathrm{else}\ \mathrm{c_2}\ \mathrm{end}]\Rightarrow st'}
+\dfrac{\operatorname{beval}\ st\ b = \operatorname{true},
+       st =[ \operatorname{c_1}]\Rightarrow st'}
+{st =[\operatorname{if}\ b\ \operatorname{then}\ \operatorname{c_1}
+      \ \operatorname{else}\ \operatorname{c_2}\ \operatorname{end}]\Rightarrow st'}
 \textbf{(E\_IfTrue)}
 $$
 
 $$
-\dfrac{\mathrm{beval}\ st\ b = \mathrm{false},
-       st =[ \mathrm{c_2}]\Rightarrow st'}
-{st =[\mathrm{if}\ b\ \mathrm{then}\ \mathrm{c_1}
-      \ \mathrm{else}\ \mathrm{c_2}\ \mathrm{end}]\Rightarrow st'}
+\dfrac{\operatorname{beval}\ st\ b = \operatorname{false},
+       st =[ \operatorname{c_2}]\Rightarrow st'}
+{st =[\operatorname{if}\ b\ \operatorname{then}\ \operatorname{c_1}
+      \ \operatorname{else}\ \operatorname{c_2}\ \operatorname{end}]\Rightarrow st'}
 \textbf{(E\_IfFalse)}
 $$
 
 $$
-\dfrac{\mathrm{beval}\ st\ b = \mathrm{false}}
-{st =[\mathrm{while}\ b\ \mathrm{do}\ \mathrm{c}\ \mathrm{end}]\Rightarrow st}
+\dfrac{\operatorname{beval}\ st\ b = \operatorname{false}}
+{st =[\operatorname{while}\ b\ \operatorname{do}\ \operatorname{c}\ \operatorname{end}]\Rightarrow st}
 \textbf{(E\_WhileFalse)}
 $$
 
 $$
-\dfrac{\mathrm{beval}\ st\ b = \mathrm{true},
-       st =[ \mathrm{c} ]\Rightarrow st',
-       st'=[\mathrm{while}\ b\ \mathrm{do}\ \mathrm{c}\ \mathrm{end}]\Rightarrow st''}
-{st =[\mathrm{while}\ b\ \mathrm{do}\ \mathrm{c}\ \mathrm{end}]\Rightarrow st''}
+\dfrac{\operatorname{beval}\ st\ b = \operatorname{true},
+       st =[ \operatorname{c} ]\Rightarrow st',
+       st'=[\operatorname{while}\ b\ \operatorname{do}\ \operatorname{c}\ \operatorname{end}]\Rightarrow st''}
+{st =[\operatorname{while}\ b\ \operatorname{do}\ \operatorname{c}\ \operatorname{end}]\Rightarrow st''}
 \textbf{(E\_WhileTrue)}
 $$
 
