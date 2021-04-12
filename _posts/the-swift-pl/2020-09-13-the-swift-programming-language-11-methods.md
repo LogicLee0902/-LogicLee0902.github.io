@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 11 Methods"
+title: "「The Swift PL」 11 Methods"
 subtitle: "方法"
 author: "roife"
 date: 2020-09-13

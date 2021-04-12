@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 18 Type Casting"
+title: "「The Swift PL」 18 Type Casting"
 subtitle: "类型转换"
 author: "roife"
 date: 2020-09-15

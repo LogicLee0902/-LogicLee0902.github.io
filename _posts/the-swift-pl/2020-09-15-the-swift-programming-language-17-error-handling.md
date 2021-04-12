@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 17 Error Handling"
+title: "「The Swift PL」 17 Error Handling"
 subtitle: "错误处理"
 author: "roife"
 date: 2020-09-15

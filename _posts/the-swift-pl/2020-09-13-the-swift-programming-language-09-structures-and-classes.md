@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 09 Structures and Classes"
+title: "「The Swift PL」 09 Structures and Classes"
 subtitle: "类和结构体"
 author: "roife"
 date: 2020-09-13

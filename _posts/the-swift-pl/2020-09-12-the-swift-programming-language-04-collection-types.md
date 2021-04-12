@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 04 Collection Types"
+title: "「The Swift PL」 04 Collection Types"
 subtitle: "集合类型"
 author: "roife"
 date: 2020-09-12

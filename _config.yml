@@ -64,7 +64,7 @@ utterances_comment: true
 
 
 # Sidebar settings
-sidebar: true # whether or not using Sidebar.
+sidebar: false # whether or not using Sidebar.
 sidebar-about-description: "「魔法科的劣等生」"
 sidebar-avatar: /img/avatar-roife-ny.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 

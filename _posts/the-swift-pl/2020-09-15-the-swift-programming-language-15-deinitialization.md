@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 15 Deinitialization"
+title: "「The Swift PL」 15 Deinitialization"
 subtitle: "析构方法"
 author: "roife"
 date: 2020-09-15

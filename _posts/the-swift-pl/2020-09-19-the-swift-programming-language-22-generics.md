@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 22 Generics"
+title: "「The Swift PL」 22 Generics"
 subtitle: "泛型"
 author: "roife"
 date: 2020-09-19

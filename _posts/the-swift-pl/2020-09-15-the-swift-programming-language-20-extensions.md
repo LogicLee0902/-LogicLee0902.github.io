@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 20 Extensions"
+title: "「The Swift PL」 20 Extensions"
 subtitle: "扩展"
 author: "roife"
 date: 2020-09-15

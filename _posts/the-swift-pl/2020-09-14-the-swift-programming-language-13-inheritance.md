@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 13 Inheritance"
+title: "「The Swift PL」 13 Inheritance"
 subtitle: "继承"
 author: "roife"
 date: 2020-09-14

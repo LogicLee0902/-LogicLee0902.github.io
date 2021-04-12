@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 19 Nested Types"
+title: "「The Swift PL」 19 Nested Types"
 subtitle: "嵌套类型"
 author: "roife"
 date: 2020-09-15

@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 08 Enumerations"
+title: "「The Swift PL」 08 Enumerations"
 subtitle: "枚举类型"
 author: "roife"
 date: 2020-09-12

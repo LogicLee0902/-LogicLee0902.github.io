@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 25 Memory Safety"
+title: "「The Swift PL」 25 Memory Safety"
 subtitle: "内存安全"
 author: "roife"
 date: 2020-09-20

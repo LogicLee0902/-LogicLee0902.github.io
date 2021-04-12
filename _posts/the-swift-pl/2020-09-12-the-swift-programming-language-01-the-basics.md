@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 01 The Basics"
+title: "「The Swift PL」 01 The Basics"
 subtitle: "Swift 基础语法"
 author: "roife"
 date: 2020-09-12

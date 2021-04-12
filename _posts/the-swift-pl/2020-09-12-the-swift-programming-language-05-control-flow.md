@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 05 Control Flow"
+title: "「The Swift PL」 05 Control Flow"
 subtitle: "控制流"
 author: "roife"
 date: 2020-09-12

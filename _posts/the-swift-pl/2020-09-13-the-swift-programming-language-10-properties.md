@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 10 Properties"
+title: "「The Swift PL」 10 Properties"
 subtitle: "属性"
 author: "roife"
 date: 2020-09-13

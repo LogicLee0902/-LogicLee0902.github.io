@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 21 Protocols"
+title: "「The Swift PL」 21 Protocols"
 subtitle: "协议"
 author: "roife"
 date: 2020-09-19

@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 03 Strings and Characters"
+title: "「The Swift PL」 03 Strings and Characters"
 subtitle: "字符串和字符"
 author: "roife"
 date: 2020-09-12

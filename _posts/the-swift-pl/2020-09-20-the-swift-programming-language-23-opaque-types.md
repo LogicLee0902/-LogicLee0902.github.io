@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 23 Opaque Types"
+title: "「The Swift PL」 23 Opaque Types"
 subtitle: "不透明类型"
 author: "roife"
 date: 2020-09-20

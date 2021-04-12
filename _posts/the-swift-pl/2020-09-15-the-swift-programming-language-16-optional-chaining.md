@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 16 Optional Chaining"
+title: "「The Swift PL」 16 Optional Chaining"
 subtitle: "可选链"
 author: "roife"
 date: 2020-09-15

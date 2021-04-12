@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 02 Basic Operators"
+title: "「The Swift PL」 02 Basic Operators"
 subtitle: "运算符"
 author: "roife"
 date: 2020-09-12

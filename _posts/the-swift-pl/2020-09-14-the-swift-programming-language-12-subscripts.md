@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 12 Subscripts"
+title: "「The Swift PL」 12 Subscripts"
 subtitle: "下标"
 author: "roife"
 date: 2020-09-14

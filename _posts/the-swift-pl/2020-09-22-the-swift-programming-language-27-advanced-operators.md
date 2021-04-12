@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Swift」 27 Advanced Operators"
+title: "「The Swift PL」 27 Advanced Operators"
 subtitle: "高级运算符操作"
 author: "roife"
 date: 2020-09-22
