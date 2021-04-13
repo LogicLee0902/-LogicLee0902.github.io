@@ -5,7 +5,7 @@ subtitle: "Maybe, Fin, Trivial & Absurd, Turner’s Teaser"
 author: "roife"
 date: 2021-04-07
 
-tags: ["The Little Typer@Books@Series", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "Dependent Type@Tags@Tags", "Dan Friedman@Series@Series", "Pie@Languages@Tags"]
+tags: ["The Little Typer@Books@Series", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "Dependent Type@Tags@Tags", "Dan Friedman@Series@Series", "Pie@Languages@Tags", "类型系统@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
