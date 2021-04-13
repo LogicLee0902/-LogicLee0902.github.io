@@ -5,7 +5,7 @@ subtitle: "无类型算术表达式"
 author: "roife"
 date: 2020-10-04
 
-tags: ["Types and Programming Languages@Books@Series", "PKU - 编程语言的设计原理@Courses@Series", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "类型系统@Tags@Tags"]
+tags: ["Types and Programming Languages@Books@Series", "PKU - 编程语言的设计原理@Courses@Series", "程序语言理论@Tags@Tags", "类型系统@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
@@ -258,7 +258,8 @@ An evaluation statement $t \rightarrow t'$ is derivable iff there is a derivatio
 
 >**Theorem**: Determinacy of one-step evaluation
 >
->If $t \rightarrow t'$ and $t \rightarrow t''$, then $t' = t''$.
+> If $t \rightarrow t'$ and $t \rightarrow t''$, then $t' = t''$.
+> **Proof** (Induction on derivations)
 
 ## Normal Forms
 
@@ -315,7 +316,3 @@ $$
 > A closed term is **stuck** if it is in normal form but not a value.
 >
 > **注解**：Stuckness 意味着 operational semantics 遇到了 runtime errors。在这里表现为化简不下去。例如 `succ true`
-
-
-
-

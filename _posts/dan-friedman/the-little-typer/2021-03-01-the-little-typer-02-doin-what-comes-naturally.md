@@ -5,7 +5,7 @@ subtitle: "λ 表达式"
 author: "roife"
 date: 2021-03-01
 
-tags: ["The Little Typer@Books@Series", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "Dependent Type@Tags@Tags", "Dan Friedman@Series@Series", "Pie@Languages@Tags", "类型系统@Tags@Tags"]
+tags: ["The Little Typer@Books@Series", "程序语言理论@Tags@Tags", "函数式编程@Tags@Tags", "Dependent Type@Tags@Tags", "形式化验证@Tags@Tags", "Dan Friedman@Series@Series", "Pie@Languages@Tags", "类型系统@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
