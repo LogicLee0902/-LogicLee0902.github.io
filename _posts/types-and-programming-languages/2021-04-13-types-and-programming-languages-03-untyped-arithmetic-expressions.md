@@ -3,7 +3,7 @@ layout: "post"
 title: "「TAPL」 03 Untyped Arithmetic Expressions"
 subtitle: "无类型算术表达式"
 author: "roife"
-date: 2020-10-04
+date: 2021-04-13
 
 tags: ["Types and Programming Languages@Books@Series", "PKU - 编程语言的设计原理@Courses@Series", "程序语言理论@Tags@Tags", "类型系统@Tags@Tags"]
 lang: zh
@@ -22,8 +22,8 @@ katex: true
 $$
 \begin{aligned}
 t \Coloneqq & & (\text{terms}) \\
-    & \mathtt{true} & (\text{constant}\ true) \\
-    & \mathtt{false} & (\text{constant}\ false) \\
+    & \mathtt{true} & (\text{constant}\ \mathtt{true}) \\
+    & \mathtt{false} & (\text{constant}\ \mathtt{false}) \\
     & \mathtt{if}\ t\ \mathtt{then}\ t\ \mathtt{else}\ t & (\text{conditions}) \\
     & \mathtt{0} & (\text{constant}\ 0) \\
     & \mathtt{succ}\ t & (\text{successor}) \\
@@ -32,7 +32,7 @@ t \Coloneqq & & (\text{terms}) \\
 \end{aligned}
 $$
 
-t 是一个 meta-variable（相当于一个 placeholder）。
+$t$ 是一个 meta-variable（相当于一个 placeholder）。
 
 这里定义的语法可能会生成一些 nonsensical 的程序，例如：`succ 0`，后面需要通过类型系统排除。
 
@@ -94,9 +94,11 @@ $$S = \bigcup_i S_i$$
 
 由于 $\mathcal{T}$ 是满足 inductively 定义条件的最小集合，所以只要证明 $S$ 也是满足 inductively 定义的最小集合即可。即证明：
 - $S$ 满足 inductively 定义的条件
+  - 对于 $\{\mathtt{true}, \mathtt{false}, 0\}$
+  - 对于 $\mathtt{f}\ t$，$t \in S \Rightarrow \exist i,t \in S_i \Rightarrow \mathtt{f}\ t \in S_{i+1} \subseteq S$
 - 任何满足 inductively 定义的集合都包含 $S$ (即 $S$ 是满足条件的最小集合)
-
-第一点证明显然。对于第二点证明，可以先证 $S_i \subset S'$ (归纳)。
+  - 考虑证明 $\forall i, S_i \subseteq S'$
+  - 归纳证明 $\forall j < i, S_j \subseteq S' \Rightarrow S_i \subseteq S' \Rightarrow S \subseteq S'$
 
 # Induction on terms
 
@@ -112,11 +114,11 @@ $$\operatorname{Consts}(\mathtt{false}) = \{\mathtt{false}\}$$
 
 $$\operatorname{Consts}(\mathtt{0}) = \{\mathtt{0}\}$$
 
-$$\operatorname{Consts}(\mathtt{succ}\ t_1)  = \operatorname{Consts}(\mathtt{t_1})$$
+$$\operatorname{Consts}(\mathtt{succ}\ t_1)  = \operatorname{Consts}(t_1)$$
 
-$$\operatorname{Consts}(\mathtt{pred}\ t_1)  = \operatorname{Consts}(\mathtt{t_1})$$
+$$\operatorname{Consts}(\mathtt{pred}\ t_1)  = \operatorname{Consts}(t_1)$$
 
-$$\operatorname{Consts}(\mathtt{iszero}\ t_1)  = \operatorname{Consts}(\mathtt{t_1})$$
+$$\operatorname{Consts}(\mathtt{iszero}\ t_1)  = \operatorname{Consts}(t_1)$$
 
 $$\operatorname{Consts}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) = \operatorname{Consts}(t_1) \cup \operatorname{Consts}(t_2) \cup \operatorname{Consts}(t_3)$$
 
@@ -157,6 +159,8 @@ $$\operatorname{depth}(\mathtt{iszero}\ t_1)  = \operatorname{depth}(\mathtt{tru
 $$\operatorname{depth}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) = \max \left( \operatorname{depth}(t_1) + \operatorname{depth}(t_2) + \operatorname{depth}(t_3) \right) + 1$$
 
 > **Proposition**: $\mid Consts(t) \mid \leq size(t)$
+>
+> **Proof**:
 >
 > 分为 3 个 cases
 > - $t$ 是 constants：
@@ -231,12 +235,12 @@ Denotational Semantics 好处在于可以突出语言的核心概念，并且 se
 $$
 \dfrac
 {
-  \operatorname{\mathtt{if}}\ \operatorname{\mathtt{true}}\ \operatorname{\mathtt{then}}\ (\operatorname{\mathtt{if}}\ \operatorname{\mathtt{false}}\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{false}} \operatorname{\mathtt{else}}\ \operatorname{\mathtt{false}}
+  \mathtt{if}\ \operatorname{\mathtt{true}}\ \mathtt{then}\ (\mathtt{if}\ \operatorname{\mathtt{false}}\ \mathtt{then}\ \operatorname{\mathtt{false}}\ \mathtt{else}\ \operatorname{\mathtt{false}}
   )
-  \operatorname{\mathtt{else}}\ \operatorname{\mathtt{true}}
+  \mathtt{else}\ \operatorname{\mathtt{true}}
 }
 {
-  \operatorname{\mathtt{if}}\ \operatorname{\mathtt{true}}\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{false}}\ \operatorname{\mathtt{else}}\ \operatorname{\mathtt{true}}
+  \mathtt{if}\ \operatorname{\mathtt{true}}\ \mathtt{then}\ \operatorname{\mathtt{false}}\ \mathtt{else}\ \operatorname{\mathtt{true}}
 }
 $$
 
@@ -246,6 +250,8 @@ $$
 >
 > - An instance of an inference rule is obtained by consistently replacing each metavariable by the same term in the rule’s conclusion and all its premises (if any).
 > - A rule is satisfied by a relation if, for each instance of the rule, either the conclusion is in the relation or one of the premises is not.
+
+## One-step evaluation relation
 
 > **Definition**: One-step evaluation relation $\rightarrow$
 >
@@ -259,7 +265,10 @@ An evaluation statement $t \rightarrow t'$ is derivable iff there is a derivatio
 >**Theorem**: Determinacy of one-step evaluation
 >
 > If $t \rightarrow t'$ and $t \rightarrow t''$, then $t' = t''$.
-> **Proof** (Induction on derivations)
+>
+> **Proof** (Induction on evaluation derivations)
+> - 假设最后一条规则是 `E-IfTrue`，则 $t$ 为 $\mathtt{if}\ \mathtt{true}\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3$，此时显然不能用 `E-IfFalse` 或 `E-If`（因为 guard 不能化简了），则 $t'' = t_2 = t'$。（`E-IfFalse` 同理）
+> - 假设最后一条规则是 `E-If`，则 $t$ 为 $\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3$，且 $t_1 \rightarrow t_1'$。由于 $t_1$ 可以被化简，非 $\mathtt{true} \mid \mathtt{false}$，此时只能用 `E-If`：$t_1 \rightarrow t_1''$。由归纳假设知 $t_1' = t_1''$，则 $t' = t''$
 
 ## Normal Forms
 
@@ -273,24 +282,91 @@ An evaluation statement $t \rightarrow t'$ is derivable iff there is a derivatio
 
 > **Theorem**: If $t$ is in normal form, then $t$ is a value.
 >
+> **Proof**:
+>
+> 考虑证明逆否命题：不是 value 的都不是 normal forms。
+>
+> 由规则知，如果 $t$ 不是 value，那么它一定是 $\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3$ 的形式。
+>
+> - 当 $t_1 = \mathtt{true} \mid \mathtt{false}$，可以应用 `E-IfTrue`/`E-IfFalse`，所以不是 normal form
+> - 否则可以用 `E-If`
+>
 > **注解**：只对当前的系统成立，对于后面的系统不一定成立
 
 所有的 values 都是 normal form，但是 normal form 不一定都是 values。
+
+## Multi-step evaluation relation
 
 > **Definition**: Multi-step evaluation relation $\rightarrow^*$
 >
 > The multi-step evaluation relation $\rightarrow^∗$ is the reflexive, transitive closure of one-step evaluation. That is, it is the smallest relation such that
 > - if $t \rightarrow t'$ then $t \rightarrow^* t'$
-> - $t \rightarrow^* t$ for all $t$
-> - if $t \rightarrow^* t'$ $t' \rightarrow^* t''$, then $t \rightarrow t''$
+> - $t \rightarrow^* t$ for all $t$ (Reflexivity)
+> - if $t \rightarrow^* t'$, $t' \rightarrow^* t''$, then $t \rightarrow t''$ (Transitive)
+>
+> **注解**：是 $\rightarrow^\ast$，而不是 $^\ast t$
+
+### Confluence
 
 > **Theorem**: Uniqueness of normal forms
 >
 > If $t \rightarrow^* u$ and $t \rightarrow^* u'$, where $u$ and $u'$ are both normal forms, then $u = u'$.
+>
+> **Proof**:
+>
+> 由 Determinacy of one-step evaluation 显然。
+
+> **Definition**: Diamond Property
+>
+> If $r \rightarrow s$ and $r \rightarrow t$, with $s \neq t$, then there is some term $u$ such that $s \rightarrow u$ and $t \rightarrow u$.
+>
+> **e.g** 例如添加一条规则：
+>
+> $$
+> \dfrac{
+>   t_2 \rightarrow t_2'
+> } {
+>   \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \rightarrow \mathtt{if}\ t_1\ \mathtt{then}\ t_2'\ \mathtt{else}\ t_3
+> } \text{[E-Funny2]}
+> $$
+>
+>
+> **Lemma A.1**: 可以证明它满足 Diamond Property.
+>
+> **Proof**: (Induction on the pair of derivations)
+>
+> 显然这种情况只有可能在 $r:\mathtt{if}\ r_1\ \mathtt{then}\ r_2\ \mathtt{else}\ r_3$ 时发生：
+> - $r \rightarrow s$ by `E-IfTrue`, $r \rightarrow t$ by `E-Funny2`
+>   - $s: r_2$，即 $r_1 = \mathtt{true}$
+>   - $t: \mathtt{if}\ \mathtt{true}\ \mathtt{then}\ r_2'\ \mathtt{else}\ r_3$，即 $r_2 \rightarrow r_2'$
+>   - 令 $u = r_2'$。对 $s$ 用 $r_2 \rightarrow r_2'$，对 $t$ 使用 `E-IfTrue`
+>   - 则 $s \rightarrow u$, $t \rightarrow u$
+>   - 其他使用规则不同的情况类似
+> - $r \rightarrow s$ by `E-If`, $r \rightarrow t$ by `E-If`
+>   - $s: \mathtt{if}\ r_1'\ \mathtt{then}\ r_2\ \mathtt{else}\ r_3$
+>   - $t: \mathtt{if}\ r_1''\ \mathtt{then}\ r_2\ \mathtt{else}\ r_3$
+>   - 根据归纳假设，$r_1 \rightarrow r_1' \rightarrow r_1'''$, $r_1 \rightarrow r_1'' \rightarrow r_1'''$
+>   - 令 $u = \mathtt{if}\ r_1'''\ \mathtt{then}\ r_2\ \mathtt{else}\ r_3$，则 $s \rightarrow u$, $t \rightarrow u$ by `E-If`
+>   - 其他使用规则相同的情况类似
+
+通过 Diamond Property 可以直接推出 Uniqueness。
+
+### Termination
+
+Termination proofs 的证明形式：
+- 首先找到一个良基集（well-founded set，满足良序关系的集合）$S$ ，以及一个将 machine state 映射到 $S$ 的函数 $f$（称为 termination measure）
+- 证明对于 $t \rightarrow t'$，$f(t') < f(t)$
+- 由良基集的定义知：求解会终止
 
 > **Theorem**: Termination of Evaluation
 >
 > For every term $t$ there is some normal form $t'$ such that $t \rightarrow t'$
+>
+> **Proof**:
+>
+> 可以发现每一步求解都会使得 $\operatorname{size}$ 减小，所以令 $f = \operatorname{size}$ 为 termination measure，以 $S = \mathbb{N}$ 为良基集
+>
+> **注解**：这条规则也并非恒成立，后面会用类型系统对一些语言进行 termination proof
 
 ## Arithmetic expressions
 
@@ -303,16 +379,55 @@ An evaluation statement $t \rightarrow t'$ is derivable iff there is a derivatio
 $$
 \frac{
   \frac{
-    \frac{\quad}{\operatorname{pred} 0 \rightarrow 0} \text { E-PredSucc }
+    \frac{\quad}{\mathtt{pred} 0 \rightarrow 0} \text { E-PredSucc }
   } {
-    \operatorname{succ} (\operatorname{pred} 0) \rightarrow \operatorname{succ} 0}{\text { E-Succ }
+    \mathtt{succ} (\mathtt{pred} 0) \rightarrow \mathtt{succ} 0}{\text { E-Succ }
   }
 }{
-  \operatorname{pred}(\operatorname {succ}(\operatorname { pred } 0)) \rightarrow \operatorname { pred }(\operatorname{succ} 0)} \text { E-Pred }
+  \mathtt{pred}(\mathtt {succ}(\mathtt { pred } 0)) \rightarrow \mathtt { pred }(\mathtt{succ} 0)} \text { E-Pred }
 $$
+
+显然，One-step evaluation relation 对于 Arithmetic Expressions 也成立。
+
+## Stuckness
 
 > **Definition**: Stuckness
 >
 > A closed term is **stuck** if it is in normal form but not a value.
 >
 > **注解**：Stuckness 意味着 operational semantics 遇到了 runtime errors。在这里表现为化简不下去。例如 `succ true`
+
+## Big-step Evaluation
+
+前面用的都是 Small-step Evaluation，另外一种是 Big-step Evaluation（也叫 natural evaluation）：
+- 证明起来更简单
+- 不能描述无法求值的过程（会 stuck）
+
+二者的区别在于：
+- Small-step Evaluation：如何一步步对程序进行**规约**
+  - how individual steps of computation are used to rewrite a term, until it eventually becomes a value.
+  - define a multi-step evaluation relation that allows us to talk about terms evaluating
+- Big-step Evaluation：定义如何从一个表达式或者语句**直接**得到它的结果
+  - directly formulates the notion of “this term **evaluates** to that final value”
+
+$$
+\begin{gathered}
+    v \Downarrow v \qquad & (\text{B-Value}) \\
+    \dfrac {
+        t_1 \Downarrow \mathtt{true} \qquad t_2 \Downarrow v_2
+      } {
+        \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \Downarrow v_2
+      } \qquad & (\text{B-IfTrue}) \\
+    \dfrac {
+        t_1 \Downarrow \mathtt{false} \qquad t_3 \Downarrow v_3
+      } {
+        \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \Downarrow v_3
+      } \qquad & (\text{B-IfFalse}) \\
+    \dfrac {t_1 \Downarrow nv_1}{\mathtt{succ}\ t_1 \Downarrow \mathtt{succ}\ nv_1} \qquad & (\text{B-Succ}) \\
+    \dfrac{t_1 \Downarrow 0}{\mathtt{pred\ t_1 \Downarrow 0}} \qquad & (\text{E-PredZero}) \\
+    \dfrac{t_1 \Downarrow \mathtt{succ}\ nv_1}{\mathtt{pred}\ t_1 \Downarrow nv_1} \qquad & (\text{E-PredSucc}) \\
+    \dfrac{t_1 \Downarrow 0}{\mathtt{iszero}\ t_1 \Downarrow 0} \qquad & \text{B-IszeroZero} \\
+    \dfrac{t_1 \Downarrow \mathtt{succ}\ nv_1}{\mathtt{iszero}\ t_1 \Downarrow \mathtt{false}} \qquad & \text{B-IszeroSucc}
+\end{gathered}
+$$
+

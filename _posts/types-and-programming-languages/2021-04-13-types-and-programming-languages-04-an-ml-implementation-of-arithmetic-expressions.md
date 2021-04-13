@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「TAPL」 04 An ML Implementation of Arithmetic Expressions"
-subtitle: "用 ML 实现 AE"
+title: "「TAPL」 04 Arithmetic Expressions in ML"
+subtitle: "用 ML 实现算术表达式"
 author: "roife"
 date: 2021-04-13
 
@@ -26,57 +26,71 @@ type term =
 | TmIsZero of info * term
 ```
 
+`info` 用来保存 parse 的信息，可以被省略。
+
 - 检验一个 `term` 是否是数字：
 
     ```ocaml
     let rec isnumericval t = match t with
-    TmZero(_) → true
-    | TmSucc(_, t1) → isnumericval t1
-    | _ → false
+      TmZero(_) -> true
+    | TmSucc(_, t1) -> isnumericval t1
+    | _ -> false
     ```
 
 - 检验 `term` 的合法性：
 
     ```ocaml
     let rec isval t = match t with
-    TmTrue(_) → true
-    | TmFalse(_) → true
-    | t when isnumericval t → true
-    | _ → false
+      TmTrue(_) -> true
+    | TmFalse(_) -> true
+    | t when isnumericval t -> true
+    | _ -> false
     ```
 
 # Evaluation
 
-计算函数是一个 partial function。如果传入的 `term` 非法，则返回 the next step of evaluation。
+首先定义一个辅助函数，它是一个 partial function。如果传入的 `term` 可以被化简，则它返回化简一步得到的结果，直到不能被化简时产生一个异常。
 
 ```ocaml
 exception NoRuleApplies
 
 let rec eval1 t = match t with
-  TmIf(_,TmTrue(_),t2,t3) →
+  TmIf(_,TmTrue(_),t2,t3) ->
     t2
-| TmIf(_,TmFalse(_),t2,t3) →
+| TmIf(_,TmFalse(_),t2,t3) ->
     t3
-| TmIf(fi,t1,t2,t3) →
+| TmIf(fi,t1,t2,t3) ->
     let t1’ = eval1 t1 in
-        TmIf(fi, t1’, t2, t3)
-| TmSucc(fi,t1) →
+    TmIf(fi, t1’, t2, t3)
+| TmSucc(fi,t1) ->
     let t1’ = eval1 t1 in
-        TmSucc(fi, t1’)
-| TmPred(_,TmZero(_)) →
+    TmSucc(fi, t1’)
+| TmPred(_,TmZero(_)) ->
     TmZero(dummyinfo)
-| TmPred(_,TmSucc(_,nv1)) when (isnumericval nv1) →
+| TmPred(_,TmSucc(_,nv1)) when (isnumericval nv1) ->
     nv1
-| TmPred(fi,t1) →
+| TmPred(fi,t1) ->
     let t1’ = eval1 t1 in
-        TmPred(fi, t1’)
-| TmIsZero(_,TmZero(_)) →
+    TmPred(fi, t1’)
+| TmIsZero(_,TmZero(_)) ->
     TmTrue(dummyinfo)
-| TmIsZero(_,TmSucc(_,nv1)) when (isnumericval nv1) →
+| TmIsZero(_,TmSucc(_,nv1)) when (isnumericval nv1) ->
     TmFalse(dummyinfo)
-| TmIsZero(fi,t1) →
+| TmIsZero(fi,t1) ->
     let t1’ = eval1 t1 in
-        TmIsZero(fi, t1’)
-| _→
+    TmIsZero(fi, t1’)
+| _->
     raise NoRuleApplies
+```
+
+这里还添加了一些额外的数据（比如返回的 `TmTrue(dummyinfo)`）。由于这些数据是程序生成的，而不是 parse 得到的，所以它们的 `info` 是 `dummyinfo`。
+
+`fi` 表示 `file information`，用来匹配 `info`。
+
+```ocaml
+
+let rec eval t =
+  try let t’ = eval1 t
+      in eval t’
+  with NoRuleApplies → t
 ```
