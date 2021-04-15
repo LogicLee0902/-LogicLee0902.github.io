@@ -397,6 +397,37 @@ $$
 >
 > **注解**：Stuckness 意味着 operational semantics 遇到了 runtime errors。在这里表现为化简不下去。例如 `succ true`
 
+### `wrong`
+
+处理 stuckness 的一种方法：增加一种新的 term `wrong`。下面是一个例子：
+
+$$
+\begin{aligned}
+\mathtt{badnat} \Coloneqq & & (\text{non-numeric normal forms}) \\
+    & \mathtt{wrong} & (\text{run-time error}) \\
+    & \mathtt{true} & (\text{constant}\ \mathtt{true}) \\
+    & \mathtt{false} & (\text{constant}\ \mathtt{false}) \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathtt{badbool} \Coloneqq & & (\text{non-boolean normal forms}) \\
+    & \mathtt{wrong} & (\text{run-time error}) \\
+    & \mathtt{nv} & (\text{numeric}) \\
+\end{aligned}
+$$
+
+
+$$
+\begin{gathered}
+    \mathtt{if}\ \mathtt{badbool}\ \mathtt{then}\ t_1\ \mathtt{else}\ t_2 \rightarrow \mathtt{wrong} & (\text{E-If-Wrong}) \\
+    \mathtt{succ}\ \mathtt{badbool} \rightarrow \mathtt{wrong} & (\text{E-Succ-Wrong}) \\
+    \mathtt{pred}\ \mathtt{badbool} \rightarrow \mathtt{wrong} & (\text{E-Pred-Wrong}) \\
+    \mathtt{iszero}\ \mathtt{badbool} \rightarrow \mathtt{wrong} & (\text{E-IsZero-Wrong}) \\
+\end{gathered}
+$$
+
 ## Big-step Evaluation
 
 前面用的都是 Small-step Evaluation，另外一种是 Big-step Evaluation（也叫 natural evaluation）：
@@ -423,11 +454,11 @@ $$
       } {
         \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \Downarrow v_3
       } \qquad & (\text{B-IfFalse}) \\
-    \dfrac {t_1 \Downarrow nv_1}{\mathtt{succ}\ t_1 \Downarrow \mathtt{succ}\ nv_1} \qquad & (\text{B-Succ}) \\
+    \dfrac {t_1 \Downarrow \mathtt{nv}_1}{\mathtt{succ}\ t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1} \qquad & (\text{B-Succ}) \\
     \dfrac{t_1 \Downarrow 0}{\mathtt{pred\ t_1 \Downarrow 0}} \qquad & (\text{E-PredZero}) \\
-    \dfrac{t_1 \Downarrow \mathtt{succ}\ nv_1}{\mathtt{pred}\ t_1 \Downarrow nv_1} \qquad & (\text{E-PredSucc}) \\
+    \dfrac{t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1}{\mathtt{pred}\ t_1 \Downarrow \mathtt{nv}_1} \qquad & (\text{E-PredSucc}) \\
     \dfrac{t_1 \Downarrow 0}{\mathtt{iszero}\ t_1 \Downarrow 0} \qquad & \text{B-IszeroZero} \\
-    \dfrac{t_1 \Downarrow \mathtt{succ}\ nv_1}{\mathtt{iszero}\ t_1 \Downarrow \mathtt{false}} \qquad & \text{B-IszeroSucc}
+    \dfrac{t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1}{\mathtt{iszero}\ t_1 \Downarrow \mathtt{false}} \qquad & \text{B-IszeroSucc}
 \end{gathered}
 $$
 

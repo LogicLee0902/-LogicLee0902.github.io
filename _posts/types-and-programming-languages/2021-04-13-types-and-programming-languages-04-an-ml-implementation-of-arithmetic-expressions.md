@@ -60,25 +60,25 @@ let rec eval1 t = match t with
 | TmIf(_,TmFalse(_),t2,t3) ->
     t3
 | TmIf(fi,t1,t2,t3) ->
-    let t1’ = eval1 t1 in
-    TmIf(fi, t1’, t2, t3)
+    let t1' = eval1 t1 in
+    TmIf(fi, t1', t2, t3)
 | TmSucc(fi,t1) ->
-    let t1’ = eval1 t1 in
-    TmSucc(fi, t1’)
+    let t1' = eval1 t1 in
+    TmSucc(fi, t1')
 | TmPred(_,TmZero(_)) ->
     TmZero(dummyinfo)
 | TmPred(_,TmSucc(_,nv1)) when (isnumericval nv1) ->
     nv1
 | TmPred(fi,t1) ->
-    let t1’ = eval1 t1 in
-    TmPred(fi, t1’)
+    let t1' = eval1 t1 in
+    TmPred(fi, t1')
 | TmIsZero(_,TmZero(_)) ->
     TmTrue(dummyinfo)
 | TmIsZero(_,TmSucc(_,nv1)) when (isnumericval nv1) ->
     TmFalse(dummyinfo)
 | TmIsZero(fi,t1) ->
-    let t1’ = eval1 t1 in
-    TmIsZero(fi, t1’)
+    let t1' = eval1 t1 in
+    TmIsZero(fi, t1')
 | _->
     raise NoRuleApplies
 ```
@@ -88,9 +88,42 @@ let rec eval1 t = match t with
 `fi` 表示 `file information`，用来匹配 `info`。
 
 ```ocaml
-
 let rec eval t =
-  try let t’ = eval1 t
-      in eval t’
+  try let t' = eval1 t
+      in eval t'
+  with NoRuleApplies -> t
+```
+
+## Big-step Evaluation
+
+```ocaml
+exception NoRuleApplies
+
+let rec eval2 t = match t with
+  TmTrue(_) -> t
+| TmFalse(_) -> t
+| TmZero(_) -> t
+| TmIf(_,t1,t2,t3) ->
+    match eval2 t1 with
+      TmTrue(_) -> eval2 t2
+    | TmFalse(_) -> eval2 t3
+    | _ -> raise NoRuleApplies
+| TmSucc(fi,t1) ->
+  (match eval2 t1 with
+   nv when (isnumericval nv) -> TmSucc(fi,nv)
+   | _ -> raise NoRuleApplies)
+| TmPred(fi,t1) ->
+  (match eval2 t1 with
+   TmZero(_) -> TmZero(dummyinfo)
+   | TmSucc(_,nv) when (isnumericval nv) -> TmPred(fi,nv)
+   | _ -> raise NoRuleApplies)
+| TmIsZero(fi,t1) ->
+  (match eval2 t1 with
+   TmZero(_) -> TmTrue(dummyinfo)
+   | nv when (isnumericval nv) -> TmFalse(dummyinfo)
+   | _ -> raise NoRuleApplies)
+
+let rec eval3 t =
+  try eval2 t
   with NoRuleApplies → t
 ```
