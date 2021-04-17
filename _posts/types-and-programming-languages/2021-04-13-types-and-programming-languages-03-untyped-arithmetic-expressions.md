@@ -108,55 +108,49 @@ $$S = \bigcup_i S_i$$
 
 $\operatorname{Consts}(\mathtt{t})$: $\mathtt{t}$ 中出现的常量的集合.
 
-$$\operatorname{Consts}(\mathtt{true}) = \{\mathtt{true}\}$$
-
-$$\operatorname{Consts}(\mathtt{false}) = \{\mathtt{false}\}$$
-
-$$\operatorname{Consts}(\mathtt{0}) = \{\mathtt{0}\}$$
-
-$$\operatorname{Consts}(\mathtt{succ}\ t_1)  = \operatorname{Consts}(t_1)$$
-
-$$\operatorname{Consts}(\mathtt{pred}\ t_1)  = \operatorname{Consts}(t_1)$$
-
-$$\operatorname{Consts}(\mathtt{iszero}\ t_1)  = \operatorname{Consts}(t_1)$$
-
-$$\operatorname{Consts}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) = \operatorname{Consts}(t_1) \cup \operatorname{Consts}(t_2) \cup \operatorname{Consts}(t_3)$$
+$$
+\begin{alignat*}{2}
+  & \operatorname{Consts}(\mathtt{true}) &&= \{\mathtt{true}\} \\
+  & \operatorname{Consts}(\mathtt{false}) &&= \{\mathtt{false}\} \\
+  & \operatorname{Consts}(\mathtt{0}) &&= \{\mathtt{0}\} \\
+  & \operatorname{Consts}(\mathtt{succ}\ t_1)  &&= \operatorname{Consts}(t_1) \\
+  & \operatorname{Consts}(\mathtt{pred}\ t_1)  &&= \operatorname{Consts}(t_1) \\
+  & \operatorname{Consts}(\mathtt{iszero}\ t_1)  &&= \operatorname{Consts}(t_1) \\
+  & \operatorname{Consts}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) &&= \operatorname{Consts}(t_1) \cup \operatorname{Consts}(t_2) \cup \operatorname{Consts}(t_3)
+\end{alignat*}{2}
+$$
 
 ## $\operatorname{Size}(t)$
 
 $\operatorname{Size}(\mathtt{t})$: $\mathtt{t}$ 的大小, 可以看作是语法树中的节点个数
 
-$$\operatorname{Size}(\mathtt{true}) = 1$$
-
-$$\operatorname{Size}(\mathtt{false}) = 1$$
-
-$$\operatorname{Size}(\mathtt{0}) = 1$$
-
-$$\operatorname{Size}(\mathtt{succ}\ t_1)  = \operatorname{Size}(\mathtt{true}) + 1$$
-
-$$\operatorname{Size}(\mathtt{pred}\ t_1)  = \operatorname{Size}(\mathtt{true}) + 1$$
-
-$$\operatorname{Size}(\mathtt{iszero}\ t_1)  = \operatorname{Size}(\mathtt{true}) + 1$$
-
-$$\operatorname{Size}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) = \operatorname{Size}(t_1) + \operatorname{Size}(t_2) + \operatorname{Size}(t_3) + 1$$
+$$
+\begin{aligned}
+  & \operatorname{Size}(\mathtt{true}) &&= 1 \\
+  & \operatorname{Size}(\mathtt{false}) &&= 1 \\
+  & \operatorname{Size}(\mathtt{0}) &&= 1 \\
+  & \operatorname{Size}(\mathtt{succ}\ t_1)  &&= \operatorname{Size}(\mathtt{true}) + 1 \\
+  & \operatorname{Size}(\mathtt{pred}\ t_1)  &&= \operatorname{Size}(\mathtt{true}) + 1 \\
+  & \operatorname{Size}(\mathtt{iszero}\ t_1)  &&= \operatorname{Size}(\mathtt{true}) + 1 \\
+  & \operatorname{Size}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) &&= \operatorname{Size}(t_1) + \operatorname{Size}(t_2) + \operatorname{Size}(t_3) + 1 \\
+\end{aligned}
+$$
 
 ## $\operatorname{depth}(t)$
 
 $\operatorname{depth}(\mathtt{t})$: 语法树的深度
 
-$$\operatorname{depth}(\mathtt{true}) = 1$$
-
-$$\operatorname{depth}(\mathtt{false}) = 1$$
-
-$$\operatorname{depth}(\mathtt{0}) = 1$$
-
-$$\operatorname{depth}(\mathtt{succ}\ t_1)  = \operatorname{depth}(\mathtt{true}) + 1$$
-
-$$\operatorname{depth}(\mathtt{pred}\ t_1)  = \operatorname{depth}(\mathtt{true}) + 1$$
-
-$$\operatorname{depth}(\mathtt{iszero}\ t_1)  = \operatorname{depth}(\mathtt{true}) + 1$$
-
-$$\operatorname{depth}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) = \max \left( \operatorname{depth}(t_1) + \operatorname{depth}(t_2) + \operatorname{depth}(t_3) \right) + 1$$
+$$
+\begin{aligned}
+  & \operatorname{depth}(\mathtt{true}) &&= 1 \\
+  & \operatorname{depth}(\mathtt{false}) &&= 1 \\
+  & \operatorname{depth}(\mathtt{0}) &&= 1 \\
+  & \operatorname{depth}(\mathtt{succ}\ t_1)  &&= \operatorname{depth}(\mathtt{true}) + 1 \\
+  & \operatorname{depth}(\mathtt{pred}\ t_1)  &&= \operatorname{depth}(\mathtt{true}) + 1 \\
+  & \operatorname{depth}(\mathtt{iszero}\ t_1)  &&= \operatorname{depth}(\mathtt{true}) + 1 \\
+  & \operatorname{depth}(\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3) &&= \max \left( \operatorname{depth}(t_1) + \operatorname{depth}(t_2) + \operatorname{depth}(t_3) \right) + 1 \\
+\end{aligned}
+$$
 
 > **Proposition**: $\mid Consts(t) \mid \leq size(t)$
 >
@@ -420,12 +414,19 @@ $$
 
 
 $$
-\begin{gathered}
-    \mathtt{if}\ \mathtt{badbool}\ \mathtt{then}\ t_1\ \mathtt{else}\ t_2 \rightarrow \mathtt{wrong} & (\text{E-If-Wrong}) \\
-    \mathtt{succ}\ \mathtt{badbool} \rightarrow \mathtt{wrong} & (\text{E-Succ-Wrong}) \\
-    \mathtt{pred}\ \mathtt{badbool} \rightarrow \mathtt{wrong} & (\text{E-Pred-Wrong}) \\
-    \mathtt{iszero}\ \mathtt{badbool} \rightarrow \mathtt{wrong} & (\text{E-IsZero-Wrong}) \\
-\end{gathered}
+\mathtt{if}\ \mathtt{badbool}\ \mathtt{then}\ t_1\ \mathtt{else}\ t_2 \rightarrow \mathtt{wrong} \tag{E-If-Wrong}
+$$
+
+$$
+\mathtt{succ}\ \mathtt{badbool} \rightarrow \mathtt{wrong} \tag{E-Succ-Wrong}
+$$
+
+$$
+\mathtt{pred}\ \mathtt{badbool} \rightarrow \mathtt{wrong} \tag{E-Pred-Wrong}
+$$
+
+$$
+\mathtt{iszero}\ \mathtt{badbool} \rightarrow \mathtt{wrong} \tag{E-IsZero-Wrong}
 $$
 
 ## Big-step Evaluation
@@ -442,23 +443,43 @@ $$
   - directly formulates the notion of “this term **evaluates** to that final value”
 
 $$
-\begin{gathered}
-    v \Downarrow v \qquad & (\text{B-Value}) \\
-    \dfrac {
-        t_1 \Downarrow \mathtt{true} \qquad t_2 \Downarrow v_2
-      } {
-        \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \Downarrow v_2
-      } \qquad & (\text{B-IfTrue}) \\
-    \dfrac {
-        t_1 \Downarrow \mathtt{false} \qquad t_3 \Downarrow v_3
-      } {
-        \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \Downarrow v_3
-      } \qquad & (\text{B-IfFalse}) \\
-    \dfrac {t_1 \Downarrow \mathtt{nv}_1}{\mathtt{succ}\ t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1} \qquad & (\text{B-Succ}) \\
-    \dfrac{t_1 \Downarrow 0}{\mathtt{pred\ t_1 \Downarrow 0}} \qquad & (\text{E-PredZero}) \\
-    \dfrac{t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1}{\mathtt{pred}\ t_1 \Downarrow \mathtt{nv}_1} \qquad & (\text{E-PredSucc}) \\
-    \dfrac{t_1 \Downarrow 0}{\mathtt{iszero}\ t_1 \Downarrow 0} \qquad & \text{B-IszeroZero} \\
-    \dfrac{t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1}{\mathtt{iszero}\ t_1 \Downarrow \mathtt{false}} \qquad & \text{B-IszeroSucc}
-\end{gathered}
+v \Downarrow v \qquad \tag{B-Value}
 $$
 
+$$
+\dfrac
+{
+  t_1 \Downarrow \mathtt{true} \qquad t_2 \Downarrow v_2
+} {
+  \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \Downarrow v_2
+} \tag{B-IfTrue}
+$$
+
+$$
+\dfrac
+{
+  t_1 \Downarrow \mathtt{false} \qquad t_3 \Downarrow v_3
+} {
+  \mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \Downarrow v_3
+} \tag{B-IfFalse}
+$$
+
+$$
+\dfrac{t_1 \Downarrow \mathtt{nv}_1}{\mathtt{succ}\ t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1} \tag{B-Succ}
+$$
+
+$$
+\dfrac{t_1 \Downarrow 0}{\mathtt{pred\ t_1 \Downarrow 0}} \tag{E-PredZero}
+$$
+
+$$
+\dfrac{t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1}{\mathtt{pred}\ t_1 \Downarrow \mathtt{nv}_1} \tag{E-PredSucc}
+$$
+
+$$
+\dfrac{t_1 \Downarrow 0}{\mathtt{iszero}\ t_1 \Downarrow 0} \tag{B-IszeroZero}
+$$
+
+$$
+\dfrac{t_1 \Downarrow \mathtt{succ}\ \mathtt{nv}_1}{\mathtt{iszero}\ t_1 \Downarrow \mathtt{false}} \tag{B-IszeroSucc}
+$$

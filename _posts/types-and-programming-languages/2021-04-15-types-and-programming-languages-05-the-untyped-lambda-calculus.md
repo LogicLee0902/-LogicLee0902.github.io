@@ -155,7 +155,7 @@ reduced first）
 
 λ 演算中的多参数函数是通过高阶函数（higher-order functions）实现的。
 
-假设$s$ 是一个包含自由变量 `x`，`y` 的 term，`f` 是一个参数为 `x`，`y` 的函数：
+假设 $s$ 是一个包含自由变量 `x`，`y` 的 term，`f` 是一个参数为 `x`，`y` 的函数：
 
 $$
 f = \lambda x. \lambda y. s
@@ -164,7 +164,7 @@ $$
 $$
 \begin{aligned}
 f v w & = (f\ v) w \\
-      & = ((\lambda y.[x \mapsto v]s)w) \\
+      & = (\lambda y.[x \mapsto v]s)\ w \\
       & = [y \mapsto w][x \mapsto v]s
 \end{aligned}
 $$
@@ -424,7 +424,11 @@ $$
   \end{alignat*}
   $$
 
-  `tail` 的思路类似于 `prd`：$(\mathtt{nil}, \mathtt{nil}) \rightarrow (\mathtt{nil}, \mathtt{cons}\ a\ \mathtt{nil}) \rightarrow (\mathtt{cons}\ a\ \mathtt{nil}, \mathtt{cons}\ b\ (\mathtt{cons}\ a\ \mathtt{nil})) \rightarrow \dots \rightarrow \ (\mathtt{tail_e}, \mathtt{list_{reversed}})$
+  `tail` 的思路类似于 `prd`：
+
+  $$
+  (\mathtt{nil}, \mathtt{nil}) \rightarrow (\mathtt{nil}, \mathtt{cons}\ a\ \mathtt{nil}) \rightarrow (\mathtt{cons}\ a\ \mathtt{nil}, \mathtt{cons}\ b\ (\mathtt{cons}\ a\ \mathtt{nil})) \rightarrow \dots \rightarrow \ (\mathtt{tail_e}, \mathtt{list_{reversed}})
+  $$
 
   除此之外，还有另一种构建方法：
 
@@ -566,7 +570,8 @@ $$
   = {}& \mathtt{fix}\ g\ \mathtt{c}_3 \\
   \rightarrow {}& (\lambda x. g\ (\lambda y. x\ x\ y))\ (\lambda x. g\ (\lambda y. x\ x\ y))\ \mathtt{c}_3\ \\
   \rightarrow {}& g\ (\lambda x. g\ (\lambda y. x\ x\ y))\ (\lambda x. g\ (\lambda y. x\ x\ y))\ \mathtt{c}_3\ \\
-  \rightarrow {}& g\ \mathtt{fct}\ \mathtt{c}_3 \qquad \qquad (\text{where}\ \mathtt{fct} = \lambda y. (\lambda x. g\ (\lambda y. x\ x\ y))\ (\lambda x. g\ (\lambda y. x\ x\ y))\ y) \\
+  \rightarrow {}& g\ \mathtt{fct}\ \mathtt{c}_3 \\
+  & \text{where} \quad \mathtt{fct} = \lambda y. (\lambda x. g\ (\lambda y. x\ x\ y))\ (\lambda x. g\ (\lambda y. x\ x\ y))\ y \\
   \rightarrow^* & (\lambda n. \mathtt{if}\ (\mathtt{realeq}\ n\ \mathtt{c}_0)\ \mathtt{then}\ \mathtt{c}_1\ \mathtt{else}\ \mathtt{times}\ \mathtt{c}_3\ (\mathtt{fct}\ (\mathtt{prd}\ \mathtt{c}_3)))\ \mathtt{c}_3 \\
   \rightarrow {}& \mathtt{if}\ (\mathtt{realeq}\ \mathtt{c}_3\ \mathtt{c}_0)\ \mathtt{then}\ \mathtt{c}_1\ \mathtt{else}\ \mathtt{times}\ \mathtt{c}_3\ (\mathtt{fct}\ (\mathtt{prd}\ \mathtt{c}_3)) \\
   \rightarrow^*& \mathtt{times}\ \mathtt{c}_3\ (\mathtt{fct}\ (\mathtt{prd}\ \mathtt{c}_3)) \\
@@ -675,7 +680,92 @@ $$
 
 ## Operational Semantics
 
+![Untyped lambda-calculus](/img/in-post/post-tapl/5-3-untyped-λ-calculus.png)
+
 Untyped lambda-calculus 的 evaluation 有两类规则：
 - `E-App1`，`E-App2`：the congruence rules
 - `E-AppAbs`：the computation rules
 
+这个规则仅仅是对 call by values 使用的。观察 evaluation relations 可以发现，一般先用 `E-App1` 化简 $t\_1$，接着用 `E-App2` 化简 $t\_2$，最后使用 `E-AppAbs` 进行 reduce。
+
+由于 pure lambda calculus 中的 values 只有 lambda abstractions，所以化简得到的结果一定也是 lambda abstractions。
+
+### Rules for other evaluation strategies
+
+#### full beta-reduction
+
+$$
+\dfrac{t_1 \rightarrow t_1'}{t_1\ t_2 \rightarrow t_1'\ t_2} \tag{E-App1}
+$$
+
+$$
+\dfrac{t_2 \rightarrow t_2'}{t_1\ t_2 \rightarrow t_1\ t_2'} \tag{E-App1}
+$$
+
+$$
+(\lambda x. t_{12})\ t_2 \rightarrow [x \mapsto t_2] t_{12} \tag{E-AppAbs}
+$$
+
+注意这里没有用到 `value`
+
+#### normal-order strategy
+
+$$
+\dfrac{na_1 \rightarrow na_1'}{na_1\ t_2 \rightarrow na_1'\ t_2} \tag{E-App1}
+$$
+
+$$
+\dfrac{t_2 \rightarrow t_2'}{nanf_1\ t_2 \rightarrow nanf_1\ t_2'} \tag{E-App2}
+$$
+
+$$
+\dfrac{t_1 \rightarrow t_1'}{\lambda x.t_1 \rightarrow \lambda x.t_1'} \tag{E-Abs}
+$$
+
+$$
+(\lambda x. t_{12})\ t_2 \rightarrow [x \mapsto t_2] t_{12} \tag{E-AppAbs}
+$$
+
+其中用到的三种 term 定义如下：
+
+$$
+\begin{aligned}
+nf \Coloneqq && (\text{normal forms}) \\
+    & \lambda x.nf \\
+    & nanf \\
+nanf \Coloneqq && (\text{non-abstraction normal forms}) \\
+    & x \\
+    & nanf\ nf \\
+na \Coloneqq && (\text{non-abstraction}) \\
+    & x \\
+    & t_1\ t_2 \\
+\end{aligned}
+$$
+
+#### lazy strategy
+
+和 call by name 几乎完全一样，但是是 lazy 的。
+
+$$
+\dfrac{t_1 \rightarrow t_1'}{t_1\ t_2 \rightarrow t_1'\ t_2} \tag{E-App1}
+$$
+
+$$
+(\lambda x. t_{12})\ t_2 \rightarrow [x \mapsto t_2] t_{12} \tag{E-AppAbs}
+$$
+
+### Big-step style relations
+
+$$
+\lambda x. t \Downarrow \lambda x.t
+$$
+
+$$
+\dfrac{
+  t_1 \Downarrow \lambda x. t_{12} \qquad
+  t_2 \Downarrow v_2 \qquad
+  [x \mapsto v_2] t_{12} \Downarrow t'
+} {
+  t_1\ t_2 \Downarrow t'
+}
+$$

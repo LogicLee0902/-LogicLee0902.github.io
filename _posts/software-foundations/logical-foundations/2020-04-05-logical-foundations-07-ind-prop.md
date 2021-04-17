@@ -29,10 +29,10 @@ Inference rules 是一种推理过程的写法, 横线上方写 premises, 横线
 
 如定义 evenness:
 
-$$\dfrac {}{even\ 0} \textbf{ev\_0}$$
+$$\dfrac {}{even\ 0} \tag{ev\_0}$$
 
 
-$$\dfrac {even\ n} {even\ (S\ (S\ n))} \textbf{ev\_SS}$$
+$$\dfrac {even\ n} {even\ (S\ (S\ n))} \tag{ev\_SS}$$
 
 类似的, inference rules 也可以连续书写, 形成一棵 proof tree.
 
@@ -41,9 +41,9 @@ $$
 \dfrac {even\ 0} {
 \dfrac {even\ 2} {
 even\ 4
-} \textbf{ev\_SS}
-} \textbf{ev\_SS}
-} \textbf{ev\_0}
+} \operatorname{(ev\_SS)}
+} \operatorname{(ev\_SS)}
+} \operatorname{(ev\_0)}
 $$
 
 ## Inductive definition
@@ -341,19 +341,19 @@ Inductive reg_exp {T : Type} : Type :=
 
 ### Matching Rules
 
-$$ \dfrac {} {[] =\sim {\rm EmptyStr}} \textbf{(MEmpty)} $$
+$$ \dfrac {} {\texttt{[] =\textasciitilde{} EmptyStr}} \tag{MEmpty} $$
 
-$$ \dfrac {} {[x] =\sim {\rm Char}\ x} \textbf{(MChar)} $$
+$$ \dfrac {} {\texttt{[x] =\textasciitilde{} Char x}} \tag{MChar}$$
 
-$$ \dfrac {s_1 =\sim re_1 \quad s_2 =\sim re_2} {s_1 ++ s_2 =\sim {\rm App}\ s_1 s_2} \textbf{(MApp)} $$
+$$ \dfrac {\texttt{$s_1$ =\textasciitilde{} $re_1$ $s_2$ =\textasciitilde{} $re_2$}} {\texttt{$s_1$ ++ $s_2$  =\textasciitilde{} App $s_1$ $s_2$}} \tag{MApp} $$
 
-$$ \dfrac {s_1 =\sim re_1} {s_1 =\sim {\rm Union}\ re_1 re_2} \textbf{(MUnionL)} $$
+$$ \dfrac {\texttt{$s_1$ =\textasciitilde{} $re_1$}} {\texttt{$s_1$ =\textasciitilde{} Union $re_1$ $re_2$}} \tag{MUnionL} $$
 
-$$ \dfrac {s_1 =\sim re_2} {s_1 =\sim {\rm Union}\ re_1 re_2} \textbf{(MUnionR)} $$
+$$ \dfrac {\texttt{$s_1$ =\textasciitilde{} $re_2$}} {\texttt{$s_1$ =\textasciitilde{} Union\ $re_1$ $re_2$}} \tag{MUnionR} $$
 
-$$ \dfrac {} {[] =\sim {\rm Star}\ re} \textbf{(MStar0)} $$
+$$ \dfrac {} {\texttt{[] =\textasciitilde{} Star $re$}} \tag{MStar0} $$
 
-$$ \dfrac {s_1 =\sim re_1 \quad s_2 =\sim {\rm Star}\ re} {s_1 ++ s_2 =\sim {\rm Star}\ re} \textbf{(MStarApp)} $$
+$$ \dfrac {\texttt{$s_1$ =\textasciitilde{} $re_1$ \quad $s_2$ =\textasciitilde{} Star $re$}} {\texttt{$s_1$ ++ $s_2$ =\textasciitilde{} Star $re$}} \tag{MStarApp} $$
 
 ``` coq
 Inductive exp_match {T} : list T -> reg_exp -> Prop :=

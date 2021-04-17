@@ -724,20 +724,22 @@ Fixpoint loop_false (n : nat) : False := loop_false n.
 $$
 \dfrac{}
 {st =[ \operatorname{skip} ]\Rightarrow st}
-\textbf{(E\_Skip)}
+\tag{E\_Skip}
 $$
 
 $$
-\dfrac{\operatorname{aeval}\ st\ a = n}
-{st =[ x \coloneqq a ]\Rightarrow (x !\rightarrow n ; st)}
-\textbf{(E\_Ass)}
+\mathtt{
+  \dfrac{\operatorname{aeval}\ st\ a = n}
+  {st =[ x \coloneqq a ]\Rightarrow (x !\rightarrow n ; st)}
+  \tag{E\_Ass}
+}
 $$
 
 $$
 \dfrac{st =[ \operatorname{c_1} ]\Rightarrow st',
        st' =[ \operatorname{c_2} ]\Rightarrow st''}
 {st =[\operatorname{c_1; c_2}]\Rightarrow st''}
-\textbf{(E\_Seq)}
+\tag{E\_Seq}
 $$
 
 $$
@@ -745,7 +747,7 @@ $$
        st =[ \operatorname{c_1}]\Rightarrow st'}
 {st =[\operatorname{if}\ b\ \operatorname{then}\ \operatorname{c_1}
       \ \operatorname{else}\ \operatorname{c_2}\ \operatorname{end}]\Rightarrow st'}
-\textbf{(E\_IfTrue)}
+\tag{E\_IfTrue}
 $$
 
 $$
@@ -753,13 +755,13 @@ $$
        st =[ \operatorname{c_2}]\Rightarrow st'}
 {st =[\operatorname{if}\ b\ \operatorname{then}\ \operatorname{c_1}
       \ \operatorname{else}\ \operatorname{c_2}\ \operatorname{end}]\Rightarrow st'}
-\textbf{(E\_IfFalse)}
+\tag{E\_IfFalse}
 $$
 
 $$
 \dfrac{\operatorname{beval}\ st\ b = \operatorname{false}}
 {st =[\operatorname{while}\ b\ \operatorname{do}\ \operatorname{c}\ \operatorname{end}]\Rightarrow st}
-\textbf{(E\_WhileFalse)}
+\tag{E\_WhileFalse}
 $$
 
 $$
@@ -767,7 +769,7 @@ $$
        st =[ \operatorname{c} ]\Rightarrow st',
        st'=[\operatorname{while}\ b\ \operatorname{do}\ \operatorname{c}\ \operatorname{end}]\Rightarrow st''}
 {st =[\operatorname{while}\ b\ \operatorname{do}\ \operatorname{c}\ \operatorname{end}]\Rightarrow st''}
-\textbf{(E\_WhileTrue)}
+\tag{E\_WhileTrue}
 $$
 
 ```coq
