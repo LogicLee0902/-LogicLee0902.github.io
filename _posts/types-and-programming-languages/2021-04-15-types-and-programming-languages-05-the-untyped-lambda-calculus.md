@@ -576,6 +576,7 @@ $$
   \rightarrow {}& \mathtt{if}\ (\mathtt{realeq}\ \mathtt{c}_3\ \mathtt{c}_0)\ \mathtt{then}\ \mathtt{c}_1\ \mathtt{else}\ \mathtt{times}\ \mathtt{c}_3\ (\mathtt{fct}\ (\mathtt{prd}\ \mathtt{c}_3)) \\
   \rightarrow^*& \mathtt{times}\ \mathtt{c}_3\ (\mathtt{fct}\ (\mathtt{prd}\ \mathtt{c}_3)) \\
   \rightarrow^*& \mathtt{times}\ \mathtt{c}_3\ (\mathtt{fct}\ \mathtt{c}_2') \\
+  & \text{note: not valid in call-by-value, $\mathtt{power}\ \mathtt{c}_3$ should be reduced first} \\
   \rightarrow^*& \mathtt{times}\ \mathtt{c}_3\ (g\ \mathtt{fct}\ \mathtt{c}_2') \\
   \rightarrow^*& \dots \\
   \rightarrow^*& \mathtt{times}\ \mathtt{c}_3\ (\mathtt{times}\ \mathtt{c}_2'\ (\mathtt{c_1}'\ \mathtt{c}_1)) \\
@@ -757,15 +758,15 @@ $$
 ### Big-step style relations
 
 $$
-\lambda x. t \Downarrow \lambda x.t
+\lambda x. t \Downarrow \lambda x.t \tag{B-Value}
 $$
 
 $$
 \dfrac{
   t_1 \Downarrow \lambda x. t_{12} \qquad
   t_2 \Downarrow v_2 \qquad
-  [x \mapsto v_2] t_{12} \Downarrow t'
+  [x \mapsto v_2] t_{12} \Downarrow v
 } {
-  t_1\ t_2 \Downarrow t'
-}
+  t_1\ t_2 \Downarrow v
+} \tag{B-AppAbs}
 $$
