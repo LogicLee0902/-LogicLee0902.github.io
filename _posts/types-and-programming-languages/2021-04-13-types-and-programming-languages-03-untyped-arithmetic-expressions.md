@@ -74,14 +74,13 @@ $$\frac{t_1 \in \mathcal{T}, t_2 \in \mathcal{T}, t_3 \in \mathcal{T}}{\mathtt{i
 
 For each natural number $i$, define a set $S_i$ as follows:
 
-$$S_0 = \emptyset$$
-
 $$
-\begin{aligned}
-S_{i+1} = & \{\mathtt{true}, \mathtt{false}, \mathtt{0}\} \\
-& \cup \{\mathtt{succ}\ t_1, \mathtt{pred}\ t_1, \mathtt{iszero}\ t_1 \mid t_1 \in S_i\} \\
-& \cup \{\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \mid t_1, t_2, t_3 \in S_i\}
-\end{aligned}
+\begin{alignat*}{2}
+S_0 = {}& \emptyset \\
+S_{i+1} = {}&&& \{\mathtt{true}, \mathtt{false}, \mathtt{0}\} \\
+& \cup {}&& \{\mathtt{succ}\ t_1, \mathtt{pred}\ t_1, \mathtt{iszero}\ t_1 \mid t_1 \in S_i\} \\
+& \cup {}&& \{\mathtt{if}\ t_1\ \mathtt{then}\ t_2\ \mathtt{else}\ t_3 \mid t_1, t_2, t_3 \in S_i\}
+\end{alignat*}
 $$
 
 Finally, let
