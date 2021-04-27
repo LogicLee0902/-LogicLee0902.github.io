@@ -49,6 +49,10 @@ static u_int combine(u_int func3, u_int func2, u_int func1, u_int pri) {
 }
 ```
 
+> **为什么这里要加 `static`？**
+>
+> `static` 关键字可以让这个函数仅在单文件中可见
+
 ## exam
 
 ### Task 1
@@ -105,13 +109,13 @@ void sched_yield(void) {
         u_int func3 = get_func3(curenv);
         u_int pri = get_pri(curenv);
         if (func1 > 0) {
-            curenv->env_pri = combine(func3, func2, func1, pri < func1 ? 0 : pri - func1) :
+            curenv->env_pri = combine(func3, func2, func1, pri < func1 ? 0 : pri - func1);
         }
     }
 
     LIST_FOREACH(e, &env_sched_list[0], env_sched_link) {
         if (e->env_status == ENV_RUNNABLE &&
-            (nxtenv == NULL || get_pri(nxtenv->env_pri) < get_pri(e->env_pri))) {
+            (nxtenv == NULL || get_pri(nxtenv) < get_pri(e))) {
             nxtenv = e;
         }
     }
@@ -135,8 +139,10 @@ void sched_yield(void) {
 考虑用一个 `flag` 数组记录有哪些进程被暂停了。
 
 这里涉及到两个点：
-- 为什么要用额外的数组 `flag`，而不直接扫描链表根据 `func2` 以及 `func2 + func3` 判断：因为可能有进程一开始就是 `ENV_NOT_RUNNABLE`，你不能因为 `func2 + func3` 就给它恢复了
-- 为什么恢复的进程不需要从数组中删除：显然恢复的数组以后不会再用到了（时间点过了），所以删不删无所谓
+- 为什么要用额外的数组 `flag`，而不直接扫描链表根据 `func2` 以及 `func2 + func3` 判断
+  + 因为可能有进程一开始就是 `ENV_NOT_RUNNABLE`，你不能因为 `func2 + func3` 符合条件就给它恢复了
+- 为什么恢复的进程不需要从数组中删除
+  + 显然恢复的元素以后不会再用到了（时间点过了），所以删不删无所谓
 
 ```c
 void sched_yield(void) {
@@ -154,13 +160,13 @@ void sched_yield(void) {
     int i;
     for (i = 1; i <= cnt_flag; ++i) {
         if (count == get_func2(flag[i]) + get_func3(flag[i])) {
-            curenv->env_status = ENV_RUNNABLE;
+            flag[i]->env_status = ENV_RUNNABLE;
         }
     }
 
     LIST_FOREACH(e, &env_sched_list[0], env_sched_link) {
         if (e->env_status == ENV_RUNNABLE &&
-            (nxtenv == NULL || get_pri(nxtenv->env_pri) < get_pri(e->env_pri))) {
+            (nxtenv == NULL || get_pri(nxtenv) < get_pri(e))) {
             nxtenv = e;
         }
     }
