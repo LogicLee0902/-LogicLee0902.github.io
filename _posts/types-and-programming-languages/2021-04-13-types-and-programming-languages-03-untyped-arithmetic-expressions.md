@@ -219,7 +219,7 @@ Denotational Semantics 好处在于可以突出语言的核心概念，并且 se
 
 ## Booleans
 
-![3-1 Booleans(B)](/img/in-post/post-tapl/3-1-booleans.png)
+![3-1 Booleans](/img/in-post/post-tapl/3-1-booleans.png)
 
 如图定义了 Booleans 的 syntax 和 semantics（即右边定义的 evaluation reduction，在 big-step 中称为 evaluation relation）。
 
@@ -363,7 +363,7 @@ Termination proofs 的证明形式：
 
 ## Arithmetic expressions
 
-![](/img/in-post/post-tapl/3-2-arithmetic-expressions.png)
+![3-2 Arithmetic Expressions](/img/in-post/post-tapl/3-2-arithmetic-expressions.png)
 
 `succ(true)` 是非法的。
 

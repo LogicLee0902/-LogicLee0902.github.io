@@ -20,7 +20,9 @@ katex: true
 
 我们要做的是对输入的表达式进行求导，并且化简输出，所以不难想到应该分为几步：
 
-$$\mathrm{inStr} \xrightarrow{\mathrm{parse}} \mathrm{Expr} \xrightarrow{\mathrm{simpify}} \mathrm{simpE} \xrightarrow{\mathrm{getDerivative}} \mathrm{derivative} \xrightarrow{\mathrm{simplify}} \mathrm{simpD} \xrightarrow{\mathrm{display}} \mathrm{ansStr}$$
+$$
+\mathrm{inStr} \xrightarrow{\mathrm{parse}} \mathrm{Expr} \xrightarrow{\mathrm{simpify}} \mathrm{simpE} \xrightarrow{\mathrm{getDerivative}} \mathrm{derivative} \xrightarrow{\mathrm{simplify}} \mathrm{simpD} \xrightarrow{\mathrm{display}} \mathrm{ansStr}
+$$
 
 首先，用递归下降法解析输入，然后对得到的表达式进行第一次化简。之所以这里要插入一次求导，是因为求导的时候表达式可能会急剧膨胀，先化简有利于减小后面的负担。接着对化简结果进行求导，并且再次对结果进行化简，最后输出结果。
 

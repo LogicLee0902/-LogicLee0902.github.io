@@ -3,7 +3,7 @@ layout: "post"
 title: "「TAPL」 08 Typed Arithmetic Expressions"
 subtitle: "类型算术表达式"
 author: "roife"
-date: 2021-04-25
+date: 2021-05-01
 
 tags: ["Types and Programming Languages@Books@Series", "PKU - 编程语言的设计原理@Courses@Series", "程序语言理论@Tags@Tags", "类型系统@Tags@Tags"]
 lang: zh
@@ -25,6 +25,10 @@ katex: true
 
 一个 typing relation $t \in T$ 通常写作 $t : T$，由一些从 type 到 term 的推导规则来指定。
 
+![8-1 Typing rules for booleans](/img/in-post/post-tapl/8-1-typing-rules-for-booleans.png)
+
+![8-2 Typing rules for numbers](/img/in-post/post-tapl/8-2-typing-rules-for-numbers.png)
+
 如图的 `T-If` 规则，要求 $t_1 : \operatorname{\mathtt{Bool}}$，同时  $t_2$ 和 $t_3$ 为同一种类型 $T$。
 
 > **Definition** Typing Relation for arithmetic expressions
@@ -42,6 +46,10 @@ katex: true
 > 7. If $\operatorname{\mathtt{iszero}} t_1 : R$, then $R = \operatorname{\mathtt{Bool}}$ and $t_1 : \operatorname{\mathtt{Nat}}$.
 
 通过 generation lemma，可以根据 term 的 syntactic form 来计算出其 type。类型的推导（typing derivation）可以也用一棵树来表示。
+
+- **Statements** are formal assertions about the typing of programs.
+- **Typing rules** are implications between statements
+- **Derivations** are deductions based on typing rules.
 
 > **Theorem** Uniqueness of Types
 >
@@ -68,13 +76,33 @@ katex: true
 >
 > 同理可证明命题 2。
 
-**Theorem** Progress
-
-Suppose $t$ is a well-typed term ($t : T$). Then either $t$ is a value or else there is some $t'$ with $t \rightarrow t'$.
-
-**Proof**
-
-
+> **Theorem** Progress
+>
+> Suppose $t$ is a well-typed term ($t : T$). Then either $t$ is a value or else there is some $t'$ with $t \rightarrow t'$.
+>
+> **Proof** (By induction on a derivation of $t : T$)
+>
+> 对于 `T-True`，`T-False`，`T-Zero` 显然成立，因为此时已经是 value。
+>
+> - `T-If`
+>
+>   $$
+>   \operatorname{\mathtt{if}} t_1 \operatorname{\mathtt{then}} t_2 \operatorname{\mathtt{else}} t_3 \quad (t_1 : \operatorname{\mathtt{Bool}})
+>   $$
+>
+>   + 如果 $t\_1$ 是 value，则根据 canonical forms lemma，它一定是 `true` 或者 `false`，则可以应用 `E-IfTrue` 或者 `E-IfFalse`
+>   + 否则可以对 $t\_1$ 使用 `E-If`
+>
+> - `T-Pred`
+>
+>   $$
+>   t = \operatorname{\mathtt{pred}} t_1 \quad (t_1 : \operatorname{\mathtt{Nat}})
+>   $$
+>
+>   + 如果 $t\_1$ 是 value，则根据 canonical forms lemma，它一定是 `0` 或者 `succ nv`，则可以应用 `E-PredZero` 或者 `E-PredSucc`
+>   + 否则可以使用 `E-Pred`
+>
+> - `T-Succ`/`T-IsZero` 同上
 
 ## Preservation Theorem
 
@@ -84,7 +112,29 @@ If $t : T$ and $t \rightarrow t'$, then $t' : T$.
 
 **Proof** (By induction on a derivation of $t : T$)
 
-- 假设 `T-True`
+- `T-True`/`T-False`/`T-Zero` 排除，此时无法进行 evaluation
+- `T-If`
+
+  $$
+  \operatorname{\mathtt{if}} t_1 \operatorname{\mathtt{then}} t_2 \operatorname{\mathtt{else}} t_3 \quad (t_1 : \operatorname{\mathtt{Bool}}; t_2, t_3 : T)
+  $$
+
+  + `E-True`/`E-False`
+
+    $t\_1$ 为 `true`/`false`，结果为 `t\_2`/`t\_3`，类型均为 `T`
+
+  + `E-If`
+
+
+
+- `T-Succ`
+
+  $$
+  t = \operatorname{\mathtt{succ}} t_1
+  $$
+
+  此时只能用 `E-Succ` 这条规则使得 $t \rightarrow t'$，即只要证明 `succ t' : Nat`。由归纳假设知 `t' : Nat`，则成立。
+
 
 Preservation theorem 也被称为 **subject reduction**/**subject evaluation**。这个名称来自于 $t : T$ 表示 “$t$ has type $T$”，其中 $t$ 是句子的 subject。
 
