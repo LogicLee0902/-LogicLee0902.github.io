@@ -106,35 +106,34 @@ katex: true
 
 ## Preservation Theorem
 
-**Theorem** Preservation
-
-If $t : T$ and $t \rightarrow t'$, then $t' : T$.
-
-**Proof** (By induction on a derivation of $t : T$)
-
-- `T-True`/`T-False`/`T-Zero` 排除，此时无法进行 evaluation
-- `T-If`
-
-  $$
-  \operatorname{\mathtt{if}} t_1 \operatorname{\mathtt{then}} t_2 \operatorname{\mathtt{else}} t_3 \quad (t_1 : \operatorname{\mathtt{Bool}}; t_2, t_3 : T)
-  $$
-
-  + `E-True`/`E-False`
-
-    $t\_1$ 为 `true`/`false`，结果为 `t\_2`/`t\_3`，类型均为 `T`
-
-  + `E-If`
-
-
-
-- `T-Succ`
-
-  $$
-  t = \operatorname{\mathtt{succ}} t_1
-  $$
-
-  此时只能用 `E-Succ` 这条规则使得 $t \rightarrow t'$，即只要证明 `succ t' : Nat`。由归纳假设知 `t' : Nat`，则成立。
-
+> **Theorem** Preservation
+>
+> If $t : T$ and $t \rightarrow t'$, then $t' : T$.
+>
+> **Proof** (By induction on a derivation of $t : T$)
+>
+> - `T-True`/`T-False`/`T-Zero` 排除，此时无法进行 evaluation
+> - `T-If`
+>
+>   $$
+>   \operatorname{\mathtt{if}} t_1 \operatorname{\mathtt{then}} t_2 \operatorname{\mathtt{else}} t_3 \quad (t_1 : \operatorname{\mathtt{Bool}}; t_2, t_3 : T)
+>   $$
+>
+>   + `E-True`/`E-False`
+>
+>     $t\_1$ 为 `true`/`false`，结果为 `t\_2`/`t\_3`，类型均为 `T`
+>
+>   + `E-If`
+>
+>     $t\_1 \rightarrow t\_1'$，由归纳假设知 $t\_1' : \operatorname{\mathtt{Bool}}$，再由 canonical forms lemma 和 `T-If` 知 $\operatorname{\mathtt{if}} t\_1' \operatorname{\mathtt{then}} t\_2 \operatorname{\mathtt{else}} t_3 : T$，则命题成立
+>
+> - `T-Succ`
+>
+>   $$
+>   t = \operatorname{\mathtt{succ}} t_1
+>   $$
+>
+>   此时只能用 `E-Succ` 这条规则使得 $t \rightarrow t'$，即只要证明 `succ t' : Nat`。由归纳假设知 `t' : Nat`，则成立。
 
 Preservation theorem 也被称为 **subject reduction**/**subject evaluation**。这个名称来自于 $t : T$ 表示 “$t$ has type $T$”，其中 $t$ 是句子的 subject。
 
@@ -145,8 +144,18 @@ Preservation theorem 也被称为 **subject reduction**/**subject evaluation**�
 几个有趣的问题：
 
 > **Q** `E-PredZero` 这条规则看起来比较违反直觉，能不能直接去掉？
+>
 > **A** 不能，因为这样会破坏 progress property。要去掉的话需要使用 exception。或者使用 intersection type/dependent type 定义严格的“正数”。
 
 > **Q** Subject reduction 的逆操作 subject expansion（若 $t \rightarrow t'$ 且 $t' : T$，则 $t : T$）成立吗？
+>
 > **A** 错误，$\operatorname{\mathtt{if}} \operatorname{\mathtt{false}} \operatorname{\mathtt{then}} \operatorname{\mathtt{true}} \operatorname{\mathtt{else}} 0 \rightarrow 0$，而前者是 ill-typed。
 
+> **Q** 对于 big-step 语义如何保证类型安全？
+>
+> **A**
+>
+> - **Preservation** (similar) If a well-typed term evaluates to some final value, then this value has the same type as the original term.
+> - **Progress** (stronger) Every well-typed term can be evaluated to some final value. (Evaluation always terminates on well-typed terms.)
+>
+> **注解** 在 big-step 中 Progress property 并不总是成立的（例如在支持 general recursion 的语言中），因为没有办法区分 error state 和 termination。一个解决方案是为此提供一个前面提到过的 explicit wrong translation。
