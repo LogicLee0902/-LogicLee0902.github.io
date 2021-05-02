@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「TAPL」 08 Typed Arithmetic Expressions"
-subtitle: "类型算术表达式"
+subtitle: "带类型算术表达式"
 author: "roife"
 date: 2021-05-01
 
