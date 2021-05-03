@@ -35,6 +35,8 @@ katex: true
 >
 > Formally, the **typing relation for arithmetic expressions** is the smallest binary relation between terms and types satisfying all instances of the rules in Figures 8-1 and 8-2. A term $t$ is **typable** (or **well typed**) if there is some $T$ such that $t : T$.
 
+## Inversion
+
 > **Lemma** Inversion of the typing relation (Generation Lemma)
 >
 > 1. If $\operatorname{\mathtt{true}} : R$, then $R = \operatorname{\mathtt{Bool}}$.
@@ -50,6 +52,8 @@ katex: true
 - **Statements** are formal assertions about the typing of programs.
 - **Typing rules** are implications between statements
 - **Derivations** are deductions based on typing rules.
+
+## Uniqueness
 
 > **Theorem** Uniqueness of Types
 >

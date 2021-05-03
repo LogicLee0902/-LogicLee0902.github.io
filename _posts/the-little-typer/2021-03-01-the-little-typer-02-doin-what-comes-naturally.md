@@ -15,7 +15,7 @@ katex: true
 
 # Eliminators
 
-`cons` 是 constructor，`Pair` 是 type constructor，它们都用来构建值；而 `car` 这种用来分解值，称为 eliminator。Eliminators 可以从 values 中提取信息并加以利用（不止是提取某个值）。
+`cons` 是 constructor，`Pair` 是 type constructor，它们都用来构建值；而 `car` 这种用来分解值，称为 eliminator。Eliminators 可以从 values 中提取信息并加以利用（不单纯是提取某个值）。
 
 > **Constructors and Eliminators**
 >
