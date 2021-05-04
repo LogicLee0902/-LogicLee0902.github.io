@@ -130,6 +130,7 @@ $$
 ## Type Derivation Tree
 
 $\lambda\_\rightarrow$ 的类型推导也能写成 derivation tree 的形式：
+
 $$
 \frac{
 	\frac{\frac{x : \operatorname{\mathtt{Bool}} \in x : \operatorname{\mathtt{Bool}}}{x : \operatorname{\mathtt{Bool}} \vdash \operatorname{\mathtt{Bool}}} \text{T-Var}}{\vdash \lambda x : \operatorname{\mathtt{Bool}} . x : \operatorname{\mathtt{Bool}} \rightarrow \operatorname{\mathtt{Bool}}} \text{T-Abs} \quad \frac{\qquad}{\vdash \operatorname{\mathtt{true}} : \operatorname{\mathtt{Bool}}} \text{T-True}
