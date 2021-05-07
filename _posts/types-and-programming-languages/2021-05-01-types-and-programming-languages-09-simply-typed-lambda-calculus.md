@@ -133,9 +133,9 @@ $\lambda\_\rightarrow$ 的类型推导也能写成 derivation tree 的形式：
 
 $$
 \frac{
-	\frac{\frac{x : \operatorname{\mathtt{Bool}} \in x : \operatorname{\mathtt{Bool}}}{x : \operatorname{\mathtt{Bool}} \vdash \operatorname{\mathtt{Bool}}} \text{T-Var}}{\vdash \lambda x : \operatorname{\mathtt{Bool}} . x : \operatorname{\mathtt{Bool}} \rightarrow \operatorname{\mathtt{Bool}}} \text{T-Abs} \quad \frac{\qquad}{\vdash \operatorname{\mathtt{true}} : \operatorname{\mathtt{Bool}}} \text{T-True}
+    \frac{\frac{x : \operatorname{\mathtt{Bool}} \in x : \operatorname{\mathtt{Bool}}}{x : \operatorname{\mathtt{Bool}} \vdash \operatorname{\mathtt{Bool}}} \text{T-Var}}{\vdash \lambda x : \operatorname{\mathtt{Bool}} . x : \operatorname{\mathtt{Bool}} \rightarrow \operatorname{\mathtt{Bool}}} \text{T-Abs} \quad \frac{\qquad}{\vdash \operatorname{\mathtt{true}} : \operatorname{\mathtt{Bool}}} \text{T-True}
 } {
-	\vdash (\lambda x : \operatorname{\mathtt{Bool}})\ \operatorname{\mathtt{true}} : \operatorname{\mathtt{Bool}}
+    \vdash (\lambda x : \operatorname{\mathtt{Bool}})\ \operatorname{\mathtt{true}} : \operatorname{\mathtt{Bool}}
 } \text{T-App}
 $$
 
@@ -306,9 +306,13 @@ $$
 >   $$
 >
 >   + 如果 $t\_1$ 或 $t\_2$ 能继续 evaluation，则使用 `E-App1` 或 `E-App2`
->   + 否则需要 `E-AppAbs`，$t\_1\ t\_2 = (\lambda x. t\_{12})\ t\_2 = [x \mapsto t\_2] t\_{12}$
+>   + 否则需要 `E-AppAbs`，$t\_2 \rightarrow v\_2 \text{ and } t\_1\ t\_2 = (\lambda x. t\_{12})\ t\_2 = [x \mapsto v\_2] t\_{12}$
 >
->     由假设和 $\Gamma, x : T\_{11} \vdash t\_1 : T$ 根据 substitution lemma，$[x \mapsto t\_2] t\_{12} : T$，即 $t\_1\ t\_2 : T$。
+>     由 inversion lemma 知 $\Gamma, x : T\_{11} \vdash t\_1 : T$，又根据 substitution lemma，$[x \mapsto t\_2] t\_{12} : T$，即 $t\_1\ t\_2 : T$。
+
+> **Q** Subject expansion 对 STLC 的 functional part 成立吗（若 $t$ 不包含条件表达式，$t \rightarrow t'$ 且 $\Gamma \vdash t' : T$，则 $t : T$）成立吗？
+>
+> **A** 错误。$(\lambda x : \operatorname{\mathtt{Bool}}. \lambda y : \operatorname{\mathtt{Bool}}. y)\ (\operatorname{\mathtt{true}}\ \operatorname{\mathtt{true}}) \rightarrow (\lambda y : \operatorname{\mathtt{Bool}}. y)$，而前者是 ill-typed。
 
 # The Curry-Howard Correspondence
 

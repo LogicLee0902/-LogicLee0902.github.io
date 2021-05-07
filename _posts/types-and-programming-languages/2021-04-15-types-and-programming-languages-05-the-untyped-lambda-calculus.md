@@ -681,7 +681,7 @@ $$
 
 ## Operational Semantics
 
-![Untyped lambda-calculus](/img/in-post/post-tapl/5-3-untyped-λ-calculus.png)
+![Untyped lambda-calculus](/img/in-post/post-tapl/5-3-untyped-lambda-calculus.png)
 
 Untyped lambda-calculus 的 evaluation 有两类规则：
 - `E-App1`，`E-App2`：the congruence rules
