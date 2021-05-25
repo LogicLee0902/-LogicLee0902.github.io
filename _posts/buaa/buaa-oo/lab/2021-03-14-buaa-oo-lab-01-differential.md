@@ -201,16 +201,7 @@ private static Expr consumeExpr() throws WrongFormatException {
 
 ## 求导 `derivative`
 
-求导直接按照求导法则做就好了，我们这样的分类让求导变得异常简单。这里以 `Power` 为例：
-
-```java
-// (f**a)' = a * f**(a-1) * f'
-ArrayList<Power> factors = new ArrayList<>();
-factors.add(new Power(base, exp.subtract(BigInteger.ONE))); // f**(a-1)
-factors.add(new Power(base.derivative())); // f'
-return new Term(exp, factors); // a * f**(a-1) * f'
-```
-
+求导直接按照求导法则做就好了，我们这样的分类让求导变得异常简单。
 比较复杂的一个可能是 `Term` 的求导：
 
 ```java
@@ -311,10 +302,9 @@ if (this.exp.equals(BigInteger.ONE)) {
 假设现在我们在 `Expr` 中，手上一个有一个 `ArrayList<Term> terms`。我们先创建一个 `HashMap`，这样在合并就可以用一个成员方法：`void merge(key, value, remapping)`。其中 `key` 表示键值，应该用除去常数的因子，即 `term.getPowers()`，`value` 表示插入的值，即系数 `term.getCoe()`，`remapping` 表示一个函数，当插入键重复的时候使用。这里我们希望如果两个项的 `key` 相同，那么进行合并，所以我们可以用 `BigInteger::add` 作为参数。合并完成后，我们去掉所有系数为 0 的项。
 
 ```java
-HashMap<HashSet<Power>, BigInteger> hashMap = new HashMap<>();
-terms.forEach(term ->
-    hashMap.merge(term.getPowers(), term.getCoe(), BigInteger::add));
-hashMap.entrySet().removeIf(entry -> entry.getValue().equals(BigInteger.ZERO));
+HashMap<HashSet<Power>, BigInteger> hashMap = terms.stream()
+        .collect(Collectors.toMap(Term::getPowers, Term::getCoe, BigInteger::add, HashMap::new));
+hashMap.values().removeIf(power -> power.equals(BigInteger.ZERO));
 ```
 
 接下来要做的就是把这个 `HashMap` 转换成 `HashSet`，这一步比较简单：

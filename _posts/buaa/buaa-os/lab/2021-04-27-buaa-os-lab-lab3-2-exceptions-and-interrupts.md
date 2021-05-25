@@ -53,7 +53,7 @@ static u_int combine(u_int func3, u_int func2, u_int func1, u_int pri) {
 >
 > `static` 关键字可以让这个函数仅在单文件中可见
 
-## exam
+## Exam
 
 ### Task 1
 
