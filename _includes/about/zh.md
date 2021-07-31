@@ -12,7 +12,7 @@
 - Emacs 拥趸
 - ACGN 爱好者
 - 「SCP Foundations」爱好者
-- 喜欢 Любэ 乐队和 Ludola 乐队
+- 喜欢 Любэ 乐队
 - Furry 控
 
 ### 联系方式

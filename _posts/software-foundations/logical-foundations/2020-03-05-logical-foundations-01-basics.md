@@ -180,7 +180,9 @@ Proof.
 Qed.
 ```
 
-分类的时候可以直接在 intros 中完成, `intros [|n]`. 对于 `intros [|]` 可以直接写 `intros []`.
+分类的过程可以直接在 intros 中完成: `intros [|n]`.
+
+对于 `intros [|]` 可以直接写 `intros []`.
 
 # Nat
 
@@ -236,9 +238,9 @@ Fixpoint leb (n m : nat) : bool :=
 
 # contradictory in case analysis
 
-有些时候分类讨论会出现, 当前讨论与条件矛盾, 此时应该结束讨论. (后面可以直接用 `discriminate` 这个 tactic )
+有些时候分类讨论会出现这种情况: 当前讨论与条件矛盾, 此时应该结束讨论. (后面可以直接用 `discriminate` 这个 tactic)
 
-这里用了一个小技巧使得遇到矛盾的条件时, 能够停止讨论.
+这里用了一个小技巧, 使得遇到矛盾的条件时能够停止讨论.
 
 ``` coq
 Theorem andb_true_elim2 : forall b c : bool,
@@ -247,11 +249,11 @@ Proof.
   intros [] [].
 - reflexivity. (*true true*)
 - simpl. intros H. rewrite H. reflexivity. (*true false, 不满足条件, 先intros H 得到 true=false, 然后rewrite结束讨论*)
+- simpl. reflexivity.
 - simpl. intros H. rewrite H. reflexivity.
-- reflexivity.
 Qed.
 ```
 
 # Fixpoint and Structural Recursion
 
-Coq 要求递归时必须有某些项在递减, 以使得递归能够结束. Coq 不一定能判别出某些递减项, 此时可能会让证明有一些 unnatural.
+Coq 要求递归时必须有某些项在递减, 以使得递归能够结束. Coq 不一定能判别出某些递减项 (停机问题), 此时可能会让证明有一些 unnatural.
