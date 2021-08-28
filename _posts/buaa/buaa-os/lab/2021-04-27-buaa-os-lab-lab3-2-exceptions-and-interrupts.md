@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-OS-Lab」 Lab3-2 中断和异常"
-subtitle: "中断异常管理，及进程调度"
+subtitle: "中断异常管理 & 进程调度"
 author: "roife"
 date: 2021-04-27
 

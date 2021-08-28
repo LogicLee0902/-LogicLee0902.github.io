@@ -1,9 +1,9 @@
 ---
 layout: "post"
-title: "「BUAA-OS-Lab」 Lab5-1 文件系统与外设"
+title: "「BUAA-OS-Lab」 Lab5-1 外设"
 subtitle: "外设与磁盘访问"
 author: "roife"
-date: 2021-05-25
+date: 2021-05-17
 
 tags: ["BUAA - 操作系统@Courses@Series", "北航@Tags@Tags", "操作系统@Tags@Tags", "C@Languages@Tags"]
 lang: zh

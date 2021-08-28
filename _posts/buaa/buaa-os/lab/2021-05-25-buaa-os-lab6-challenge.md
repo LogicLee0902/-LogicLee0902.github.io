@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-OS-Lab」 Lab6-Challenge 环境变量"
-subtitle: "环境变量等任务的实现"
+subtitle: "A better shell for MOS & 环境变量"
 author: "roife"
 date: 2021-06-27
 
@@ -178,14 +178,18 @@ int fsipc_create(const char *path, u_int type) {
     req->req_type = type;
     return fsipc(FSREQ_CREATE, req, 0, 0);
 }
+```
 
+```c
 // file.c
 int create(const char *path, int type) {
     int r;
     if ((r = fsipc_create(path, type)) < 0) return r;
     return 0;
 }
+```
 
+```c
 // fs.h
 #define FSREQ_CREATE    8
 // ...
@@ -193,7 +197,9 @@ struct Fsreq_create {
     u_char req_path[MAXPATHLEN];
     u_int req_type;
 };
+```
 
+```c
 // serv.c
 void serve_create(u_int envid, struct Fsreq_create *rq) {
     struct File *file;
@@ -209,10 +215,18 @@ void serve_create(u_int envid, struct Fsreq_create *rq) {
 
     ipc_send(envid, r, 0, 0);
 }
+```
+
+```c
 // serve 函数
 case FSREQ_CREATE:
     serve_create(whom, (struct Fsreq_create *) REQVA);
     break;
+```
+
+```c
+// user/lib.h
+int fsipc_create(const char *, int);
 ```
 
 #### `mkdir`
