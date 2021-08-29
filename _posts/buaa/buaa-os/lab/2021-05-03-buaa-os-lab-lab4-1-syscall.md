@@ -298,8 +298,8 @@ void ipc_send(u_int whom, u_int val, int transfer_id, u_int srcva, u_int perm) {
     int r;
 
     while ((r = syscall_ipc_can_send(whom, val, transfer_id, srcva, perm)) == -E_IPC_NOT_RECV) {
- 		syscall_yield();
- 	}
+         syscall_yield();
+     }
 }
 ```
 
@@ -321,34 +321,34 @@ ipc_send(envs[1].env_id, type, -1, (u_int)fsreq, PTE_V | PTE_R);
 
 ```c
 int sys_ipc_can_send(int sysno, u_int envid, u_int value, int transfer_id, u_int srcva, u_int perm) {
-	int r;
-	struct Env *e;
-	struct Page *p;
+    int r;
+    struct Env *e;
+    struct Page *p;
 
-	if (srcva >= UTOP) return -E_INVAL;
+    if (srcva >= UTOP) return -E_INVAL;
     // 如果 transfer_id 为 -1 说明直接转发即可，此时 transfer_id 存的是目标 id
-	if (transfer_id == -1) transfer_id = envid;
-	if ((r = envid2env(transfer_id, &e, 0)) < 0) return r;
-	if (!e->env_ipc_recving) return -E_IPC_NOT_RECV;
+    if (transfer_id == -1) transfer_id = envid;
+    if ((r = envid2env(transfer_id, &e, 0)) < 0) return r;
+    if (!e->env_ipc_recving) return -E_IPC_NOT_RECV;
 
-	if (srcva) {
-		if (!(p = page_lookup(curenv->env_pgdir, srcva, NULL))) {
-			return -E_INVAL;
-		}
-		if ((r = page_insert(e->env_pgdir, p, e->env_ipc_dstva, perm)) < 0) {
-			return r;
-		}
-	}
+    if (srcva) {
+        if (!(p = page_lookup(curenv->env_pgdir, srcva, NULL))) {
+            return -E_INVAL;
+        }
+        if ((r = page_insert(e->env_pgdir, p, e->env_ipc_dstva, perm)) < 0) {
+            return r;
+        }
+    }
 
-	e->env_ipc_value = value;
-	e->env_ipc_from = curenv->env_id;
-	e->env_ipc_perm = perm;
-	e->env_ipc_recving = 0;
-	e->env_ipc_destination_id = envid; // 设置 env_ipc_destination_id 的值
+    e->env_ipc_value = value;
+    e->env_ipc_from = curenv->env_id;
+    e->env_ipc_perm = perm;
+    e->env_ipc_recving = 0;
+    e->env_ipc_destination_id = envid; // 设置 env_ipc_destination_id 的值
 
     // 切换到 transfer_id
-	if ((r = sys_set_env_status(0, transfer_id, ENV_RUNNABLE)) < 0) return r;
+    if ((r = sys_set_env_status(0, transfer_id, ENV_RUNNABLE)) < 0) return r;
 
-	return 0;
+    return 0;
 }
 ```

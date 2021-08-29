@@ -168,69 +168,69 @@ int file_create(char *path, struct File **file, int isdir) {
 ```c
 // 增加查找到类型与是否创建文件
 int walk_path(char *path, struct File **pdir, struct File **pfile, char *lastelem, u_int type, int createdir) {
-	char *p;
-	char name[MAXNAMELEN];
-	struct File *dir, *file;
-	int r;
+    char *p;
+    char name[MAXNAMELEN];
+    struct File *dir, *file;
+    int r;
 
-	path = skip_slash(path);
-	file = &super->s_root;
-	dir = 0;
-	name[0] = 0;
+    path = skip_slash(path);
+    file = &super->s_root;
+    dir = 0;
+    name[0] = 0;
 
-	if (pdir) {
-		*pdir = 0;
-	}
+    if (pdir) {
+        *pdir = 0;
+    }
 
-	*pfile = 0;
+    *pfile = 0;
 
-	while (*path != '\0') {
-		dir = file;
-		p = path;
+    while (*path != '\0') {
+        dir = file;
+        p = path;
 
-		while (*path != '/' && *path != '\0') {
-			path++;
-		}
+        while (*path != '/' && *path != '\0') {
+            path++;
+        }
 
-		if (path - p >= MAXNAMELEN) {
-			return -E_BAD_PATH;
-		}
+        if (path - p >= MAXNAMELEN) {
+            return -E_BAD_PATH;
+        }
 
-		user_bcopy(p, name, path - p);
-		name[path - p] = '\0';
-		path = skip_slash(path);
+        user_bcopy(p, name, path - p);
+        name[path - p] = '\0';
+        path = skip_slash(path);
 
         // 如果 path 已经到头了，就直接找要找的类型；否则找是否存在对应的路径
-		if ((r = dir_lookup(dir, name, &file, *path ? FTYPE_DIR : type)) < 0) {
-			if (r == -E_NOT_FOUND) {
-				if (!*path) {
-					if (pdir) {
-						*pdir = dir;
-					}
+        if ((r = dir_lookup(dir, name, &file, *path ? FTYPE_DIR : type)) < 0) {
+            if (r == -E_NOT_FOUND) {
+                if (!*path) {
+                    if (pdir) {
+                        *pdir = dir;
+                    }
 
-					if (lastelem) {
-						strcpy(lastelem, name);
-					}
+                    if (lastelem) {
+                        strcpy(lastelem, name);
+                    }
 
-					*pfile = 0;
-				} else if (createdir) { // 不存在路径，则沿途创建路径
-					if ((r = dir_alloc_file(dir, &file)) < 0) return r;
-					strcpy((char *)file->f_name, name);
-					file->f_type = FTYPE_DIR;
-					continue;
-				}
-			}
+                    *pfile = 0;
+                } else if (createdir) { // 不存在路径，则沿途创建路径
+                    if ((r = dir_alloc_file(dir, &file)) < 0) return r;
+                    strcpy((char *)file->f_name, name);
+                    file->f_type = FTYPE_DIR;
+                    continue;
+                }
+            }
 
-			return r;
-		}
-	}
+            return r;
+        }
+    }
 
-	if (pdir) {
-		*pdir = dir;
-	}
+    if (pdir) {
+        *pdir = dir;
+    }
 
-	*pfile = file;
-	return 0;
+    *pfile = file;
+    return 0;
 }
 ```
 
@@ -286,28 +286,28 @@ int file_create(char *path, struct File **file, int isdir) {
 ```c
 int
 dir_lookup(struct File *dir, char *name, struct File **file, int type) {
-	int r;
-	u_int i, j, nblock;
-	struct File *f;
+    int r;
+    u_int i, j, nblock;
+    struct File *f;
 
-	nblock = dir->f_size / BY2BLK;
+    nblock = dir->f_size / BY2BLK;
 
-	for (i = 0; i < nblock; i++) {
-		if ((r = file_get_block(dir, i, (void *) &f)) < 0) {
-			return r;
-		}
+    for (i = 0; i < nblock; i++) {
+        if ((r = file_get_block(dir, i, (void *) &f)) < 0) {
+            return r;
+        }
 
-		for (j = 0; j < FILE2BLK; j++) {
+        for (j = 0; j < FILE2BLK; j++) {
             // 这里增加对于文件类型的判断
-			if (!strcmp((char *)f[j].f_name, name) && f[j].f_type == type) {
-				*file = &f[j];
-				f[j].f_dir = dir;
-				return 0;
-			}
-		}
-	}
+            if (!strcmp((char *)f[j].f_name, name) && f[j].f_type == type) {
+                *file = &f[j];
+                f[j].f_dir = dir;
+                return 0;
+            }
+        }
+    }
 
-	return -E_NOT_FOUND;
+    return -E_NOT_FOUND;
 }
 ```
 
