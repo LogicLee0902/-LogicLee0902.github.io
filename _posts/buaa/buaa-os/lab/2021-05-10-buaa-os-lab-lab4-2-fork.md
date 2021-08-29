@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-OS-Lab」 Lab4-2 fork"
-subtitle: "线程"
+subtitle: "从进程到简单的线程"
 author: "roife"
 date: 2021-05-10
 

@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-OS-Lab」 Lab5-2 文件系统"
-subtitle: "文件系统与磁盘访问"
+subtitle: "文件系统"
 author: "roife"
 date: 2021-05-24
 
