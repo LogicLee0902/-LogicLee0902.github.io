@@ -13,7 +13,7 @@ header-style: text
 katex: true
 ---
 
-# 上机总结
+<!-- # 上机总结
 
 总的来说并不算很难的上机, 前提是你课下做的指令数量足够多, 而且结构足够模块化, 那么课上只要稍微修改一下就好了.
 
@@ -51,7 +51,7 @@ katex: true
 
 加指令方法: 先观察 RTL 确定指令类型, 找到类似的指令 (r/i/b/j), 观察主电路要不要添加数据路径 (元件要不要添加输入). 为元件添加了相应的输入后, 先在各个元件里面完成对应的功能. 最后修改 CU.
 
-还有一个经验就是, 课上测试一般存在于前几个点, 后几个点不涉及课上指令. 比如这次第一题只有前三个点用到了题目要求的指令, 而后面几个点都没有. 所以如果发现自己错了后面几个点, 那基本上是课下测试的问题. (此条存疑, 请谨慎对待)
+还有一个经验就是, 课上测试一般存在于前几个点, 后几个点不涉及课上指令. 比如这次第一题只有前三个点用到了题目要求的指令, 而后面几个点都没有. 所以如果发现自己错了后面几个点, 那基本上是课下测试的问题. (此条存疑, 请谨慎对待) -->
 
 # 课下总结
 
@@ -71,7 +71,7 @@ katex: true
 
 我课下实现的指令有 `addu, subu, and, or, sll, sllv, slt, jr / addi, ori, lui, slti / beq, blez / j, jal / sw, sh / lw, lh, lhu`. 基本是把每种类型的都做一个, 课上心里才有底.
 
-# 课下实现
+<!-- # 课下实现
 
 主要看 *Digital Design and Computer Architecture* 这本书，按照上面的方法搭建 CPU 即可。
 
@@ -163,4 +163,4 @@ for (int i=0; i<=31; ++i) {
 
 ![P3-lab-cu-1](/img/in-post/post-buaa-co/p3-lab-cu-1.png "p3-lab-cu-1"){:height="700px" width="700px"}
 
-![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"}
+![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"} -->
