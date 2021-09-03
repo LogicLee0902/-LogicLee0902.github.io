@@ -67,7 +67,7 @@ Shift 操作 $\uparrow^d (t)$ 的实现和数学定义差不多：
 let termShift d t =
   let rec walk c t = match t with
     TmVar(fi, x, n) -> if x >= c then TmVar(fi, x+d, n+d)
-    					else TmVar(fi, x, n+d)
+              else TmVar(fi, x, n+d)
   | TmAbs(fi, x, t1) -> TmAbs(fi, x, walk (c+1) t1)
   | TmApp(fi, t1, t2) -> TmApp(fi, walk c t1, walk c t2)
   in walk 0 t
@@ -81,7 +81,7 @@ let termShift d t =
 let termSubst j s t =
   let rec walk c t = match t with
     TmVar(fi, x, n) -> if x == j+c then termShift c s
-                      	else TmVar(fi, x, n)
+                        else TmVar(fi, x, n)
   | TmAbs(fi, x, t1) -> TmAbs(fi, x, walk (c+1) t1)
   | TmApp(fi, t1, t2) -> TmApp(fi, walk c t1, walk c t2)
   in walk 0 t

@@ -301,7 +301,7 @@ void my_cal() {
 ```
 
 ```c
-// 课下总结的代码
+// 快读快写版本
 char _my_getchar();
 void _my_putchar(char ch);
 inline int isdigit(char c) { return c>='0' && c<='9'; }

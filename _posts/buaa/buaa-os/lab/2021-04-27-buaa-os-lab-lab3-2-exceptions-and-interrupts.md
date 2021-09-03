@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「BUAA-OS-Lab」 Lab3-2 中断和异常"
-subtitle: "中断异常管理，及进程调度"
+subtitle: "中断异常管理 & 进程调度"
 author: "roife"
 date: 2021-04-27
 
@@ -53,7 +53,7 @@ static u_int combine(u_int func3, u_int func2, u_int func1, u_int pri) {
 >
 > `static` 关键字可以让这个函数仅在单文件中可见
 
-## exam
+## Exam
 
 ### Task 1
 

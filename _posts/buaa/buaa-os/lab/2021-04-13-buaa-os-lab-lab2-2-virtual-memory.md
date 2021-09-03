@@ -38,7 +38,7 @@ u_long cal_page(int func, u_long va, int n, Pde *pgdir);
 
 #### 分析
 
-64 位系统中，一个字为 8bit，则一级页目录中有 $2^9$ 项（因为一个页表 4KB，那么 $2^9 * 8 = 4K$），即每级页目录需要 9 位。
+64 位系统中，一个字为 8Byte，则一级页目录中有 $2^9$ 项（因为一个页表 4KB，那么 $2^9 * 8 = 4K$），即每级页目录需要 9 位。
 
 所以总共为 $9*3 + 12 = 39$ 位。
 
@@ -100,7 +100,7 @@ return (va & 0xFFC00000) + (n << 12);
 
 ```c
 Pde *pgdir_entryp = pgdir + PDX(va);
-*pgdir_entry = (PADDR(pgdir)) | PTE_V;
+*pgdir_entryp = (PADDR(pgdir)) | PTE_V;
 return 0;
 ```
 

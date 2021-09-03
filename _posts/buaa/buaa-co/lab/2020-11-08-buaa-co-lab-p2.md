@@ -63,13 +63,13 @@ katex: true
 
 ```asm
 .macro LOAD_LOCAL(%var)
-	addi $sp, $sp, 4
-	lw %var 0($sp)
+    addi $sp, $sp, 4
+    lw %var 0($sp)
 .end_macro
 
 .macro SAVE_LOCAL(%var)
-	sw %var 0($sp)
-	subi $sp, $sp, 4
+    sw %var 0($sp)
+    subi $sp, $sp, 4
 .end_macro
 ```
 
@@ -77,15 +77,15 @@ katex: true
 
 ```asm
 .macro PSPACE
-	la $a0, str_space
-	li $v0, 4
-	syscall
+    la $a0, str_space
+    li $v0, 4
+    syscall
 .end_macro
 
 .macro PENTER
-	la $a0, str_enter
-	li $v0, 4
-	syscall
+    la $a0, str_enter
+    li $v0, 4
+    syscall
 .end_macro
 ```
 

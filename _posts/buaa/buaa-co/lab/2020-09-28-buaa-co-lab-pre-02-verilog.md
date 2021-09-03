@@ -642,17 +642,17 @@ FSM 一般用 `` `define `` 和 `case` 来实现, 由组合逻辑和时序逻辑
 
 always @(posedge clk)
 begin
-	case(status)
-	`S0 : begin
-				if (num == 2'b01) status <= `S1;
-				else if (num == 2'b10) status <= `S0;
-				else if (num == 2'b11) status <= `S0;
-				else status <= `S0;
-			end
-	`S1 : // ...
-	`S2 : // ...
-	`S3 : // ...
-	endcase
+    case(status)
+    `S0 : begin
+                if (num == 2'b01) status <= `S1;
+                else if (num == 2'b10) status <= `S0;
+                else if (num == 2'b11) status <= `S0;
+                else status <= `S0;
+            end
+    `S1 : // ...
+    `S2 : // ...
+    `S3 : // ...
+    endcase
 end
 
 assign ans = (status == `S3) ? 1'b1 : 1'b0;
@@ -687,34 +687,34 @@ Testbench 本质上是一个用于测试的 module.
 
 ```verilog
 module io;
-	// Inputs
-	reg clk;
-	reg [7:0] char;
+    // Inputs
+    reg clk;
+    reg [7:0] char;
 
-	// Outputs
-	wire [1:0] format_type;
+    // Outputs
+    wire [1:0] format_type;
 
-	// Instantiate the Unit Under Test (UUT)
-	cpu_checker uut (
-		.clk(clk),
-		.char(char),
-		.format_type(format_type),
-	);
+    // Instantiate the Unit Under Test (UUT)
+    cpu_checker uut (
+        .clk(clk),
+        .char(char),
+        .format_type(format_type),
+    );
 
-	initial begin
-		// Initialize Inputs
-		clk = 0;
-		char = 0;
+    initial begin
+        // Initialize Inputs
+        clk = 0;
+        char = 0;
 
-		// Wait 100 ns for global reset to finish
-		#100;
+        // Wait 100 ns for global reset to finish
+        #100;
 
-		// Add stimulus here
+        // Add stimulus here
         #10;
         char = "^";
-		#10;
-		char = "1";
-	end
+        #10;
+        char = "1";
+    end
 
     always #5 clk=~clk; // 控制时钟周期为 10
 
