@@ -484,6 +484,8 @@ Dynamic Type 可以看作是一种 infinite disjoint union，其 tags 均为类�
 
 ![11-12 General Recursive](/img/in-post/post-tapl/11-12-general-recursion.png)
 
+即 $\operatorname{\mathtt{fix}}\ f = f\ (\operatorname{\mathtt{fix}}\ f)$
+
 在无类型 λ 演算中可以用 `fix` combinator 实现递归函数，但是在 STLC 中却不行，因为 `fix` 的类型无法在 STLC 中表达。实际上无法终止的运算都无法在 simple types 描述类型。所以这里添加 typing ruls 并用 `letrec` 来模仿无类型 λ 演算中 `fix` combinator 的行为。
 
 这种只含有数字和 `fix` 的 STLC 具有很多微妙的语义现象（例如 full abstraction），这样的系统被称为 PCF。
