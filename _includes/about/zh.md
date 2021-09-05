@@ -1,3 +1,5 @@
+### 空调
+
 > **R**emember **OI** **F**or **E**ver
 
 我是 roife，来自浙江。
@@ -12,7 +14,7 @@
 - Emacs 拥趸
 - ACGN 爱好者
 - 「SCP Foundations」爱好者
-- Furry 控
+- 毛毛控
 - 喜欢 Любэ 乐队
 
 ### 联系方式
