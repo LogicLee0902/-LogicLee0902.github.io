@@ -321,8 +321,8 @@ $$
 \begin{alignat*}{3}
   \operatorname{\mathtt{getName}} ={}& \lambda a : A + B.&&&& \\
    {}& \qquad \ \  \operatorname{\mathtt{case}}&& a \operatorname{\mathtt{of}}&& \\
-   {}& \qquad \qquad && \operatorname{\mathtt{inl}} x &{} \Rightarrow {}& x \\
-   {}& \qquad \qquad | && \operatorname{\mathtt{inr}} y &{} \Rightarrow {}& y;
+   {}& \qquad \qquad && \operatorname{\mathtt{inl}}\ x &{} \Rightarrow {}& x \\
+   {}& \qquad \qquad | && \operatorname{\mathtt{inr}}\ y &{} \Rightarrow {}& y;
 \end{alignat*}
 $$
 
@@ -335,9 +335,9 @@ $$
 $$
 \begin{alignat*}{2}
   & \operatorname{\mathtt{Bool}} &&\overset{\text{def}}{=} \operatorname{\mathtt{Unit}} + \operatorname{\mathtt{Unit}} \\
-  & \operatorname{\mathtt{true}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inl}} \operatorname{\mathtt{unit}} \\
-  & \operatorname{\mathtt{false}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inr}} \operatorname{\mathtt{unit}} \\
-  & \operatorname{\mathtt{if}} t_0 \operatorname{\mathtt{then}} t_1 \operatorname{\mathtt{else}} t_2 &&\overset{\text{def}}{=} \operatorname{\mathtt{case}} t_0 \operatorname{\mathtt{of}} \operatorname{\mathtt{inl}} x_1 \Rightarrow t_1 \mid \operatorname{\mathtt{inr}} x_2 \Rightarrow t_2 \\
+  & \operatorname{\mathtt{true}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inl}}\ \operatorname{\mathtt{unit}} \\
+  & \operatorname{\mathtt{false}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inr}}\ \operatorname{\mathtt{unit}} \\
+  & \operatorname{\mathtt{if}}\ t_0\ \operatorname{\mathtt{then}}\ t_1\ \operatorname{\mathtt{else}}\ t_2 &&\overset{\text{def}}{=} \operatorname{\mathtt{case}}\ t_0\ \operatorname{\mathtt{of}}\ \operatorname{\mathtt{inl}}\ x_1 \Rightarrow t_1 \mid \operatorname{\mathtt{inr}}\ x_2 \Rightarrow t_2 \\
   &&& \qquad \text{where $x_1$ and $x_2$ are fresh}
 \end{alignat*}
 $$
@@ -388,8 +388,8 @@ $$
   & \operatorname{\mathtt{emptyTable}} &&= \lambda n : \operatorname{\mathtt{Nat}}. \langle\operatorname{\mathtt{none}} = \operatorname{\mathtt{unit}}\rangle \operatorname{\mathtt{as}} \operatorname{\mathtt{OptionalNat}}; \\
   & \operatorname{\mathtt{extendTable}} &&= \lambda t : \operatorname{\mathtt{Table}}. \lambda m : \operatorname{\mathtt{Nat}}. \lambda v : \operatorname{\mathtt{Nat}}. \\
   &&& \qquad \lambda n : \operatorname{\mathtt{Nat}}. \\
-  &&& \qquad \qquad \operatorname{\mathtt{if}} \operatorname{\mathtt{equal}} n\ m \operatorname{\mathtt{then}} \langle\operatorname{\mathtt{some}} = v\rangle \operatorname{\mathtt{as}} \operatorname{\mathtt{OptionalNat}}; \\
-  &&& \qquad \qquad \operatorname{\mathtt{else}} t\ n;
+  &&& \qquad \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{equal}}\ n\ m\ \operatorname{\mathtt{then}}\ \langle\operatorname{\mathtt{some}} = v\rangle\ \operatorname{\mathtt{as}} \operatorname{\mathtt{OptionalNat}}; \\
+  &&& \qquad \qquad \operatorname{\mathtt{else}}\ t\ n;
 \end{alignat*}
 $$
 
