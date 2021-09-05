@@ -70,18 +70,18 @@ Sequencing 有两种形式化的定义：
 
 前者的规则可以从后者推出。
 
-\rangle **Theorem** Sequencing is a derived form（成为 derived form 的条件）
-\rangle
-\rangle 记 $\lambda^E$ 为带 Unit type，`E-Seq`，`E-SeqNext` 与 `T-Seq` 的语言；记 $\lambda^I$ 为只带 Unit type 的 STLC。
-\rangle
-\rangle Let $e \in \lambda^E → \lambda^I$ be the *elaboration function* that translates from $\lambda^E$ to $\lambda^I$ by replacing every occurrence of $t\_1 ; t\_2$ with $(\lambda x : \operatorname{\mathtt{Unit}}. t\_2)\ t\_1$, where $x$ is chosen fresh in each case.
-\rangle
-\rangle For each term $t$ of $\lambda^E$, we have
-\rangle
-\rangle - $t \rightarrow_E t'$ iff $e(t) \rightarrow_I e(t')$
-\rangle - $\Gamma \vdash^E t : T$ iff $\Gamma \vdash^I e(t) : T$
-\rangle
-\rangle where the evaluation and typing relations of $\lambda^E$ and $\lambda^I$ are annotated with $E$ and $I$, respectively, to show which is which.
+> **Theorem** Sequencing is a derived form（成为 derived form 的条件）
+>
+> 记 $\lambda^E$ 为带 Unit type，`E-Seq`，`E-SeqNext` 与 `T-Seq` 的语言；记 $\lambda^I$ 为只带 Unit type 的 STLC。
+>
+> Let $e \in \lambda^E → \lambda^I$ be the *elaboration function* that translates from $\lambda^E$ to $\lambda^I$ by replacing every occurrence of $t\_1 ; t\_2$ with $(\lambda x : \operatorname{\mathtt{Unit}}. t\_2)\ t\_1$, where $x$ is chosen fresh in each case.
+>
+> For each term $t$ of $\lambda^E$, we have
+>
+> - $t \rightarrow_E t'$ iff $e(t) \rightarrow_I e(t')$
+> - $\Gamma \vdash^E t : T$ iff $\Gamma \vdash^I e(t) : T$
+>
+> where the evaluation and typing relations of $\lambda^E$ and $\lambda^I$ are annotated with $E$ and $I$, respectively, to show which is which.
 
 由于 sequencing 的规则可以被导出，所以我们只需要增加 external language 的复杂度，而不增加 internal language 的复杂度，这样使得其相关的定理证明和类型安全证明可以更加简单。这样的 derived forms 被称为**语法糖**（syntax sugar）。
 
@@ -198,19 +198,19 @@ $$
 
 由此可见 `let`-bindings 是一种比较特殊的 derived form。
 
-\rangle **Q** 能否将 `let`-bindings 的 derived form 定义为
-\rangle
-\rangle   $$
-\rangle   \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 \overset{\text{def}}{=} [x \mapsto t_1] t_2
-\rangle   $$
-\rangle
-\rangle **A** 不可以。主要的问题在于这个定义无法排除掉一些 ill-typeness：
-\rangle
-\rangle   $$
-\rangle   \operatorname{\mathtt{let}} x = \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}}) \operatorname{\mathtt{in}} \operatorname{\mathtt{unit}} \rightarrow [x \mapsto \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}})] \operatorname{\mathtt{unit}}
-\rangle   $$
-\rangle
-\rangle   左边的 `let`-binding 显然是 ill-typed，但是右边由于 $\operatorname{\mathtt{unit}}$ 中不存在 $x$，导致类型系统会接受这个 term，导致错误。
+> **Q** 能否将 `let`-bindings 的 derived form 定义为
+>
+>   $$
+>   \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 \overset{\text{def}}{=} [x \mapsto t_1] t_2
+>   $$
+>
+> **A** 不可以。主要的问题在于这个定义无法排除掉一些 ill-typeness：
+>
+>   $$
+>   \operatorname{\mathtt{let}} x = \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}}) \operatorname{\mathtt{in}} \operatorname{\mathtt{unit}} \rightarrow [x \mapsto \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}})] \operatorname{\mathtt{unit}}
+>   $$
+>
+>   左边的 `let`-binding 显然是 ill-typed，但是右边由于 $\operatorname{\mathtt{unit}}$ 中不存在 $x$，导致类型系统会接受这个 term，导致错误。
 
 # Pairs
 
