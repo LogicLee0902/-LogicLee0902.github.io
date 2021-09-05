@@ -463,7 +463,7 @@ $$
 
 1. 一个 trivial 的区别就是在 OCaml 中，类型必须以小写字母开头，datatypes 的 constructors 必须以大写字母开头。当然这本书里面不会这么区别，不过按照 OCaml 的写法上面的 Datatype 应该要写成 $\operatorname{\mathtt{type}} t = L_i \operatorname{\mathtt{of}} T_i^{i \in 1 \dots n}$。
 2. OCaml 中的 datatypes 不需要额外的类型标注，因为 datatypes 必须先声明再使用，并且在作用域内其 labels 的名称是**唯一**的，因此只需要 label 就可以推断出类型（Variants 则必须要标注）。
-3. OCaml 中如果 datatype 的 associated type 是 unit type，那么就可以省略不写，如 $\operatorname{\mathtt{type}} \operatorname{\mathtt{Bool}} = \operatorname{\mathtt{true}} | \operatorname{\mathtt{false}};$。
+3. OCaml 中如果 datatype 的 associated type 是 unit type，那么就可以省略不写，如 $\operatorname{\mathtt{type}} \operatorname{\mathtt{Bool}} = \operatorname{\mathtt{true}} \| \operatorname{\mathtt{false}};$。
 4. OCaml 中的 datatypes 不仅包含了 variants 的特性，还有 recursive types 的特性（如 `List` 就是递归定义的）。并且 datatypes 还可以接受 parameters，当作 type operator 用。
 
 ## Variants as Disjoint Unions
@@ -482,7 +482,64 @@ Dynamic Type 可以看作是一种 infinite disjoint union，其 tags 均为类�
 
 # General Recursion
 
+![11-12 General Recursive](/img/in-post/post-tapl/11-12-general-recursion.png)
 
+在无类型 λ 演算中可以用 `fix` combinator 实现递归函数，但是在 STLC 中却不行，因为 `fix` 的类型无法在 STLC 中表达。实际上无法终止的运算都无法在 simple types 描述类型。所以这里添加 typing ruls 并用 `letrec` 来模仿无类型 λ 演算中 `fix` combinator 的行为。
+
+这种只含有数字和 `fix` 的 STLC 具有很多微妙的语义现象（例如 full abstraction），这样的系统被称为 PCF。
+
+`fix` 一般用来构建函数，但是并没有限定函数，例如可以传入下面的 records，这样就能构造出互相调用的函数：
+
+$$
+\begin{alignat*}{3}
+  & \operatorname{\mathtt{ff}} = \lambda \operatorname{\mathtt{ieio}} : \{ \operatorname{\mathtt{iseven}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}}, \operatorname{\mathtt{isodd}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}}\}. \\
+  & \qquad \qquad \{ \operatorname{\mathtt{iseven}} = \lambda x : \operatorname{\mathtt{Nat}}. \\
+    & \qquad \qquad \qquad \qquad \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ x\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{true}} \\
+    & \qquad \qquad \qquad \qquad \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{ieio}}.\operatorname{\mathtt{isodd}}\ (\operatorname{\mathtt{pred}}\ x), \\
+    & \qquad \qquad \ \ \operatorname{\mathtt{isodd}} = \lambda x : \operatorname{\mathtt{Nat}}. \\
+    & \qquad \qquad \qquad \qquad \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ x\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{false}} \\
+    & \qquad \qquad \qquad \qquad \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{ieio}}.\operatorname{\mathtt{iseven}}\ (\operatorname{\mathtt{pred}}\ x)
+    \}; \\
+  & \operatorname{\mathtt{ff}} : \{ \operatorname{\mathtt{iseven}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}}, \operatorname{\mathtt{isodd}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}} \} \rightarrow \\
+  & \qquad \qquad \{ \operatorname{\mathtt{iseven}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}}, \operatorname{\mathtt{isodd}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}} \} \\
+  & \operatorname{\mathtt{r}} = \operatorname{\mathtt{fix}}\ \operatorname{\mathtt{ff}}; \\
+  & \operatorname{\mathtt{r}} : \{ \operatorname{\mathtt{iseven}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}}, \operatorname{\mathtt{isodd}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}} \} \\
+  & \operatorname{\mathtt{r}}.\operatorname{\mathtt{iseven}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}}
+\end{alignat*}
+$$
+
+除此之外，对于任何 $T$ `fix` 都可以构造出一个 $T \rightarrow T$，这会产生一些有趣的效果。这说明任何类型 $T$ 都可以构造出一个类型可以被推导出来的 term。例如下面的 $\operatorname{\mathtt{diverge}}_T$ 函数：
+
+$$
+\begin{alignat*}{3}
+  & \operatorname{\mathtt{diverge}}_T =&& \lambda_\_ : \operatorname{\mathtt{Unit}}. \operatorname{\mathtt{fix}}\ (\lambda x: T.x); \\
+  & \operatorname{\mathtt{diverge}}_T :&& \operatorname{\mathtt{Unit}} \rightarrow T
+\end{alignat*}
+$$
+
+这里 $\operatorname{\mathtt{diverge}}_T$ 的计算永远不会终止，因为每次计算都会返回相同的 term，但是其类型仍然是 $T$。此时称 $\operatorname{\mathtt{diverge}}_T\ \operatorname{\mathtt{unit}}$ 是 $T$ 的一个 undefined element。
+
+## letrec
+
+在写程序时，一般会用 `letrec`：
+
+$$
+\begin{alignat*}{3}
+& \operatorname{\mathtt{letrec}}\ \operatorname{\mathtt{iseven}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}} = \\
+& \quad \lambda x : \operatorname{\mathtt{Nat}}. \\
+& \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ x\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{true}} \\
+& \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ (\operatorname{\mathtt{pred}}\ x)\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{false}} \\
+& \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{iseven}}\ (\operatorname{\mathtt{pred}}\ (\operatorname{\mathtt{pred}}\ x)) \\
+& \operatorname{\mathtt{in}} \\
+& \quad \operatorname{\mathtt{iseven}}\ 7;
+\end{alignat*}
+$$
+
+`letrec` 也是一个 derived form：
+
+$$
+\operatorname{\mathtt{letrec}}\ x : T_1 = t_1 \operatorname{\mathtt{in}} t_2 \overset{\operatorname{\mathtt{def}}}{=} \operatorname{\mathtt{let}} x = \operatorname{\mathtt{fix}} (\lambda x : T_1 . t_1) \operatorname{\mathtt{in}} t_2
+$$
 
 # List
 
