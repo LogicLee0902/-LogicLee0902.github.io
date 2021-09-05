@@ -1,0 +1,356 @@
+---
+layout: "post"
+title: "「TAPL」 09 Simple Extensions"
+subtitle: "More special types"
+author: "roife"
+date: 2021-05-06
+
+tags: ["Types and Programming Languages@Books@Series", "PKU - 编程语言的设计原理@Courses@Series", "程序语言理论@Tags@Tags", "类型系统@Tags@Tags"]
+lang: zh
+catalog: true
+header-image: ""
+header-style: text
+katex: true
+---
+
+# Base Types
+
+Base types 指语言中的一些基础类型，也叫 atomic types，例如 Integer/String/Boolean/Float 等。在理论中，通常用 `A` 来指代这些 base types，同时用 $\mathcal{A}$ 表示 base types 组成的集合。
+
+![11-1 Uninterpreted Base Types](/img/in-post/post-tapl/11-1-uninterpreted-base-types.png)
+
+$$
+(\lambda f : A \rightarrow A. \lambda x : A. f(f(x))) : (A \rightarrow A) \rightarrow A \rightarrow A
+$$
+
+# The Unit Type
+
+Unit Type 也是一种 Base Type，通常可以在 ML 语言家族中看到。
+
+其特殊之处在于 Unit Type 只有唯一一个 value，即 Unit。
+
+![11-2 Unit Type](/img/in-post/post-tapl/11-2-unit-type.png)
+
+Unit type 在带副作用的语言中有很重要的作用。对于带副作用的操作的语句（例如赋值语句），可以用 Unit type 作为返回值。这点有点像 C/Java 里面的 `void`。
+
+# Derived Forms: Sequencing and Wildcards
+
+## Sequencing
+
+在带副作用的语言中，语句必须要按照特定的顺序来执行。
+
+**Sequencing notation** $t\_1; t\_2$ 可以用来表示先执行 $t\_1$，完成后再执行 $t\_2$。
+
+Sequencing 有两种形式化的定义：
+
+- 定义一条 syntax 规则，两条 evaluation 规则
+  + Evaluation rules
+
+    $$
+    \frac{t_1 \rightarrow t_1'}{t_1 ; t_2 \rightarrow t_1' ; t_2} \tag{E-Seq}
+    $$
+
+    $$
+    \operatorname{\mathtt{unit}} ; t_2 \rightarrow t_2 \tag{E-SeqNext}
+    $$
+
+  + Typing rule
+
+    $$
+    \frac{\Gamma \vdash t_1 : \operatorname{\mathtt{Unit}} \quad \Gamma \vdash t_2 : T_2}{\Gamma \vdash t_1 ; t_2 : T_2} \tag{T-Seq}
+    $$
+
+- Derived form
+
+  $$
+  t_1 ; t_2 \overset{\text{def}}{=} (\lambda x : \operatorname{\mathtt{Unit}}. t_2)\ t_1
+  $$
+
+  其中 $x$ 是一个 fresh variable（即 $x$ 不在 $t\_2$ 中出现）。由于 call-by-value 的特性，会使得 $t\_1$ 先执行
+
+前者的规则可以从后者推出。
+
+> **Theorem** Sequencing is a derived form（成为 derived form 的条件）
+>
+> 记 $\lambda^E$ 为带 Unit type，`E-Seq`，`E-SeqNext` 与 `T-Seq` 的语言；记 $\lambda^I$ 为只带 Unit type 的 STLC。
+>
+> Let $e \in \lambda^E → \lambda^I$ be the *elaboration function* that translates from $\lambda^E$ to $\lambda^I$ by replacing every occurrence of $t\_1 ; t\_2$ with $(\lambda x : \operatorname{\mathtt{Unit}}. t\_2)\ t\_1$, where $x$ is chosen fresh in each case.
+>
+> For each term $t$ of $\lambda^E$, we have
+>
+> - $t \rightarrow_E t'$ iff $e(t) \rightarrow_I e(t')$
+> - $\Gamma \vdash^E t : T$ iff $\Gamma \vdash^I e(t) : T$
+>
+> where the evaluation and typing relations of $\lambda^E$ and $\lambda^I$ are annotated with $E$ and $I$, respectively, to show which is which.
+
+由于 sequencing 的规则可以被导出，所以我们只需要增加 external language 的复杂度，而不增加 internal language 的复杂度，这样使得其相关的定理证明和类型安全证明可以更加简单。这样的 derived forms 被称为**语法糖**（syntax sugar）。
+
+## Wildcard
+
+另一种有用的 derived form 是 **wildcard**。即如果某个 abstraction 的参数没有用的话，就没必要为其取一个名字，直接用占位符（wildcard binder） `_` 代替。
+
+- Rules for wildcard
+  - Evaluation rule
+
+    $$
+    \lambda \_ : T_{11}. t_{12} \rightarrow t_{12} \tag{E-WildCard}
+    $$
+
+  - Typing rule
+
+    $$
+    \frac{\Gamma \vdash t_2 : T_2}{\Gamma \vdash \lambda \_: T_1. t_2 : T_2}
+    $$
+- Derived form
+
+  $$
+  \lambda \_ : S . t \overset{\text{def}}{=} \lambda x : S. t
+  $$
+
+  其中 $x$ 是一个 fresh variable。
+
+# Ascription
+
+![11-3 Ascription](/img/in-post/post-tapl/11-3-ascription.png)
+
+Ascription 不会进行任何额外的运算，而会在化简后直接返回原来的值，因此只用来标记类型。
+
+Ascription 可以用来当作 typing assertions 或者 verifications，如果不成立会被 typechecker 报警。
+
+除此之外，它也可以用作：
+- documentation：因为会直接返回计算得到的值，所以可以给 subexpressions 用
+- 控制类型打印：如果定义了缩写，那么 typechecker 打印类型的时候会尽量使用缩写，但是有时候 typechecker 不能识别出缩写（或者因为其他原因不用缩写），可以用 ascription 声明类型，如 $(\lambda f : \operatorname{\mathtt{Unit}} \rightarrow \operatorname{\mathtt{Unit}}. f)\ \operatorname{\mathtt{as}}\ \operatorname{\mathtt{UU}} \rightarrow \operatorname{\mathtt{UU}};$
+- 在 subtyping 声明类型
+
+## Derived forms with multiple steps
+
+Ascription 也是一种 derived form：
+
+$$
+t \operatorname{\mathtt{as}} T \overset{\text{def}}{=} (\lambda x : T. x)\ t
+$$
+
+这里使用 call-by-value 的特性来实现 evaluation 的效果。
+
+注意，如果不要求 ascription 的返回值一定是一个 value，也就是使用下面的 evaluation rule，那么就不能直接将 term 当作参数传入 abstraction 了：
+
+$$
+t_1 \operatorname{\mathtt{as}} T \rightarrow t_1 \tag{E-AscribeEager}
+$$
+
+此时需要改成
+
+$$
+t \operatorname{\mathtt{as}} T \overset{\text{def}}{=} (\lambda x : \operatorname{\mathtt{Unit}} \rightarrow T. x\ \operatorname{\mathtt{unit}})\ (\lambda y : \operatorname{\mathtt{Unit}}. t) \quad \text{where $y$ is fresh}
+$$
+
+这里使用了 abstraction 阻止自动求值。
+
+唯一的区别是 `E-AscribeEager` 求值只经过了一步，而这里需要两步进行 evaluation。这个也在意料之中，因为 sugering 本来就是为了简化语法的，那么 desugaring 也就有可能增加求值步骤。
+
+要满足前面 derived forms 的条件的话，只要将原条件改成以下形式：
+
+$$t \rightarrow_E t' \quad \text{iff} \quad e(t) \rightarrow^*_I e(t')$$
+
+并且有
+
+$$
+\operatorname{if} e(t) \rightarrow_I s, \operatorname{then} s \rightarrow^* e(t') \operatorname{with} t \rightarrow_E t'
+$$
+
+# Let Bindings
+
+`let` 可以把一个表达式绑定到一个名字上。例如 $\operatorname{\mathtt{let}} x = t\_1 \operatorname{\mathtt{in}} t\_2$ 表示将 $x$ 绑定到 $t\_1$ 并且用来求值 $t\_2$（evaluate the expression $t\_1$ and bind the name $x$ to the resulting value while evaluating $t\_2$）。其中 $t\_1$ 是 `let`-bound term，$t\_2$ 是 `let`-body。
+
+![11-4 Let Binding](/img/in-post/post-tapl/11-4-let-binding.png)
+
+`let` 使用 call-by-value 的策略，即 `let`-bound term 必须先求值，然后才能对 `let`-body 进行求值。
+
+`let` 也可以定义成一个 derived form：
+
+$$
+\operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 \overset{\text{def}}{=} (\lambda x : T_1 . t_2)\ t_1
+$$
+
+注意到定义左边的 `let` 中并没有 $t\_1$ 的类型信息，而右边 desurgared 的形式却包含了 $x : T\_1$，说明如果要将 `let` 转换成 internal language，那么必须推导出它的类型信息。即展开 `let` 的过程不能看成对于 term 的 desurgaring 变换，而应该看作是在 typing derivation 上的变换。
+
+$$
+\frac{
+	\frac{\vdots}{\Gamma \vdash t_1 : T_1}
+  \quad
+  \frac{\vdots}{\Gamma, x : T_1 \vdash t_2 : T_2}
+} {
+	\Gamma \vdash \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 : T_2
+} \text{T-Let}
+\rightarrow
+\frac{
+  \frac{
+    \frac{\vdots}{\Gamma, x : T_1 \vdash t_2 : T_2}
+  }{
+    \Gamma \vdash \lambda x : T_1. t_2 : T_1 \rightarrow T_2
+  } \text{T-Abs}
+  \quad
+  \frac{\vdots}{\Gamma \vdash t_1 : T_1}
+} {
+  \Gamma \vdash (\lambda x : T_1. t_2)\ t_1 : T_2
+} \text{T-App}
+$$
+
+由此可见 `let`-bindings 是一种比较特殊的 derived form。
+
+> **Q** 能否将 `let`-bindings 的 derived form 定义为
+>
+>   $$
+>   \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 \overset{\text{def}}{=} [x \mapsto t_1] t_2
+>   $$
+>
+> **A** 不可以。主要的问题在于这个定义无法排除掉一些 ill-typeness：
+>
+>   $$
+>   \operatorname{\mathtt{let}} x = \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}}) \operatorname{\mathtt{in}} \operatorname{\mathtt{unit}} \rightarrow [x \mapsto \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}})] \operatorname{\mathtt{unit}}
+>   $$
+>
+>   左边的 `let`-binding 显然是 ill-typed，但是右边由于 $\operatorname{\mathtt{unit}}$ 中不存在 $x$，导致类型系统会接受这个 term，导致错误。
+
+# Pairs
+
+![11-5 Pairs](/img/in-post/post-tapl/11-5-pairs.png)
+
+**Pairs** 是一种新的类型，记作 $T\_1 \times T\_2$，称为 **product type** 或者 **cartesian product**。
+这里将 pairs 用花括号包裹，实际上一般圆括号用得比较多一些。
+
+使用 Pairs 时，`t.1` 这样的操作称之为 **projections**。
+
+`E-PairBeta` 说明了一个 full-evaluated pair 如何进行 projection 操作，`E-Proj` 定义了在 projections 运算中的 pair 求值的规则。
+
+Pairs 的规则使得其强制从左到右进行求值（`E-Pair2`），同时只有求值后才能提取其中的元素（`E-PairBeta`）。同时，由于一个 pair value 中的两个元素必须都是 value，这使得在必须传递 value 的时候（比如 call by value）保证 pair 的两个元素都一定已经被求值了。
+
+# Tuples
+
+![11-6 Tuples](/img/in-post/post-tapl/11-6-tuples.png)
+
+**Tuples** 是 $n$ 元的 Pairs，其中 $n$ 可以是 $0$，此时 tuple 为 $\\{\\}$。（这里还用了 $\\{v\_i^{i \in 1 \dots n}\\}.j \rightarrow v_j$）
+
+Tuple 比较特殊的一条规则是 `E-Tuple`，可以看成是 `E-Pair` 的拓展形式。
+
+注意 tuples 也是强制从左到右求值的。
+
+# Records
+
+![11-7 Records](/img/in-post/post-tapl/11-7-records.png)
+
+**Records** 就是加上了 label 的 tuples，其中要求所有的 label 都不相同。这个有点像 `struct`。
+
+可以将 tuples 看作特殊的 records（label 是正整数，而且被省略了），将 pairs 看作特殊的 tuples，三个用的也都是大括号。但是很多语言将 records 和 tuples 区分开来，因为二者在编译器中的实现不一样。
+
+在很多语言中，records 中元素的顺序并不影响类型，例如 $\\\{a : \operatorname{\mathtt{Nat}}, b : \operatorname{\mathtt{Float}}\\\} = \\\{b : \operatorname{\mathtt{Float}}, a : \operatorname{\mathtt{Nat}}\\\}$。但是这里认为二者不同，并且还认为它们拥有不同的类型。但是第十五章中，通过 subtype relation 可以认为二者相同。（是否忽视 ordering 会对编译器的性能造成很大影响，这里先讲 ordering records）
+
+## Pattern matching
+
+前面介绍的 records 用了 projection 操作来提取内部的值，但是很多语言都支持使用 pattern matching 来完成这个操作。
+
+这里通过引入 pattern syntax 来将 pattern matching 引入无类型 λ 演算。其中 pattern 可以是嵌套的，从而从嵌套的结构中提取数据。
+
+![11-8 (Untyped) record patterns](/img/in-post/post-tapl/11-8-untyped-record-patterns.png)
+
+Pattern Matching 可以看作是一个泛化的 `let`-binding 规则。其依赖于一个 `match(p, v)` 函数，表示 value 是否匹配模式，如果匹配就产生一个 substitution。
+- $\operatorname{\mathtt{match}}(\{x,y\}, \{5,\operatorname{\mathtt{true}}\}) \Rightarrow [x \mapsto 5, y \mapsto \operatorname{\mathtt{true}}]$
+- $\operatorname{\mathtt{match}}(x, \{5,\operatorname{\mathtt{true}}\}) \Rightarrow [x \mapsto \{5,\operatorname{\mathtt{true}}\}]$
+- $\operatorname{\mathtt{match}}(\{x\}, \{5, \operatorname{\mathtt{true}}\}) \Rightarrow \operatorname{\mathtt{fails}}$
+
+`match` 由 `M-Var` 和 `M-Rcd` 两条规则定义。前者表示一个 variable 可以和任何 value 匹配并返回一个匹配，后者定义了 record 形式下的模式匹配（这里要求 pattern 中所有的变量 $p_i$ 都是不同的）。
+
+下面为其加上类型：
+
+![a-1 typed-record-patterns](/img/in-post/post-tapl/a-1-typed-record-patterns.png)
+
+Pattern typing rules 中的 `P-Var` 首先定义了变量和其 pattern 具有相同的类型；`P-Rcd` 定义了 record 类型可以产生一串的 context，这些 context 包含了为 pattern 中变量提供的 bindings。
+
+后面的 `T-Let` 定义了如果一个 pattern 可以成功匹配时会返回一个 context $\Delta$，那么在类型推导时可以将这个 context 加入 $\Gamma$ 来推导类型。
+
+我们还可以继续改进 record pattern typing rule，使得当 record pattern 中 fields 的数量小于 record value 中 fields 的数量时（此时只匹配 pattern 中存在的情况）仍然能继续匹配：
+
+$$
+\frac {
+  \{ l_i^{i \in 1 \dots n} \} \in \{ k_j^{j \in 1 \dots m} \} \qquad
+  \forall^{i \in 1 \dots n}. \exist^{j \in 1 \dots m}. l_i = k_j \operatorname{\mathtt{and}} \vdash p_i : T_j \Rightarrow \Delta_i
+} {
+  \vdash \{ l_i = p_i^{i \in 1 \dots n} \} : \{ k_j : T_j^{j \in 1 \dots m} \} \Rightarrow \Delta_1, \dots, \Delta_n
+}  \tag{P-Rcd'}
+$$
+
+如果加入了这条规则，那么就可以将 Record 类型的 projection 规则从初始规则中删去，并将其看作一个语法糖：
+
+$$
+t.l \overset{\text{def}}{=} \operatorname{\mathtt{let}} \{ l = x \} = t \operatorname{\mathtt{in}} x
+$$
+
+这个系统的 Preservation 需要用到下面这个 Lemma 证明：
+
+设 $\sigma$ 是一个 substitution，$\Delta$ 是一个 context，且 $\Delta$ 与 $\sigma$ 定义域相同，那么 $\Gamma \vdash \sigma \vDash \Delta$ 表示 $\forall x \in dom(\Delta), \Gamma \vdash \sigma(x) : \Delta(x)$
+
+> **Lemma**
+>
+> If $\Gamma \vdash t:T$ and $\vdash p : T \Rightarrow \Delta$, then $\operatorname{\mathtt{match}}(p, t) = \sigma$, with $\Gamma \vdash \sigma \vDash \Delta$.
+
+同时还需要一个泛化的 substitution lemma：
+
+> **Lemma**
+>
+> $\Gamma, \Delta \vdash t : T$ and $\Gamma \vdash \sigma \vDash \Delta$, then $\Gamma \vdash \sigma t : T$.
+
+# Sums
+
+![11-9 Sums](/img/in-post/post-tapl/11-9-sums.png)
+
+Sums 是一种二元的 Variants 类型。一个 Sums 类型可以包含两种类型，用 `inl` 与 `inr` 这两种 tag 来进行区分。例如若 $a : A$，则 $\operatorname{\mathtt{inl}} a : A + B$。
+
+不难发现 `inl` 和 `inr` 可以看作是两个函数（实际上并不是函数）：
+
+$$
+\operatorname{\mathtt{inl}} : A \rightarrow A + B
+$$
+
+$$
+\operatorname{\mathtt{inr}} : B \rightarrow A + B
+$$
+
+使用 Sums 类型时可以用 `case` 来提取值，Sums 中不同的类型会匹配到不同的分支：
+
+$$
+\begin{alignat*}{2}
+\operatorname{\mathtt{getName}} = {}& \lambda a : A + B. \\
+                                  \operatorname{\mathtt{case}} a{}& \operatorname{\mathtt{of}} \\
+                                  \operatorname{\mathtt{inl}} {}& x \Rightarrow x \\
+                                 | \operatorname{\mathtt{inr}} {}& y \Rightarrow y \\
+\end{alignat*}
+$$
+
+值得注意的是在 `T-Case` 规则中要求 `case` 的结果的类型是唯一的。另外这里虽然没指出 $x_i$ 的 scope 是 $t_i$，但是这一点可以从条件中得到。
+
+## If as Case
+
+`if` 可以看作是特殊的 `case`：
+
+$$
+\begin{alignat*}{2}
+& \operatorname{\mathtt{Bool}} &&\overset{\text{def}}{=} \operatorname{\mathtt{Unit}} + \operatorname{\mathtt{Unit}} \\
+& \operatorname{\mathtt{true}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inl}} \operatorname{\mathtt{unit}} \\
+& \operatorname{\mathtt{false}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inr}} \operatorname{\mathtt{unit}} \\
+& \operatorname{\mathtt{if}} t_0 \operatorname{\mathtt{then}} t_1 \operatorname{\mathtt{else}} t_2 &&\overset{\text{def}}{=} \operatorname{\mathtt{case}} t_0 \operatorname{\mathtt{of}} \operatorname{\mathtt{inl}} x_1 \Rightarrow t_1 \mid \operatorname{\mathtt{inr}} x_2 \Rightarrow t_2 \\
+&&& \qquad \text{where $x_1$ and $x_2$ are fresh}
+\end{alignat*}
+$$
+
+## Sums and Uniqueness of Types
+
+大多数在 pure $\lambda_\rightarrow$ 中的定理在 Sums 中都成立，除了 Uniqueness of Types theorem。因为假设 $a : A$，则 $\forall B. \operatorname{\mathtt{inl}} a : A + B$。
+
+Uniqueness of Types theorem 不成立导致类型检查变得更麻烦了，因为没办法和之前一样“自底向上地使用规则检查”。此时有两种解决方案：
+- 从后面的程序里面推测 $T$ 的类型（type reconstruction）
+- 允许 $T$ 表示所有的类型（subtyping）
+- 要求手动提供类型（暂时采用的方案）
+
+这里添加了一些扩展要求指明类型（有点像 ascription，但是这些是语法要求不能删去的）：
+
+![](/img/in-post/post-tapl/11-10-sums-with-unique-typing.png)
