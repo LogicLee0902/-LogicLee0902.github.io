@@ -354,3 +354,11 @@ Uniqueness of Types theorem 不成立导致类型检查变得更麻烦了，因�
 这里添加了一些扩展要求指明类型（有点像 ascription，但是这些是语法要求不能删去的）：
 
 ![](/img/in-post/post-tapl/11-10-sums-with-unique-typing.png)
+
+# Variants
+
+Variants 是二元 Sums 类型的泛化，和 Records 一样有 labels。Sums 中的 $\operatorname{\mathtt{inl}} t \operatorname{\mathtt{as}} T_1 + T_2$ 写成 $<l_1=t> \operatorname{\mathtt{as}} <l_1 : T_1, l_2 : T_2>$。
+
+需要注意的是 Variants 和 Records 一样，标签的顺序不同则类型也不同。
+
+## Options
