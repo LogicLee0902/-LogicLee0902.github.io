@@ -3,7 +3,7 @@ layout: "post"
 title: "「TAPL」 09 Simple Extensions"
 subtitle: "More special types"
 author: "roife"
-date: 2021-05-06
+date: 2021-09-05
 
 tags: ["Types and Programming Languages@Books@Series", "PKU - 编程语言的设计原理@Courses@Series", "程序语言理论@Tags@Tags", "类型系统@Tags@Tags"]
 lang: zh
@@ -70,18 +70,18 @@ Sequencing 有两种形式化的定义：
 
 前者的规则可以从后者推出。
 
-> **Theorem** Sequencing is a derived form（成为 derived form 的条件）
->
-> 记 $\lambda^E$ 为带 Unit type，`E-Seq`，`E-SeqNext` 与 `T-Seq` 的语言；记 $\lambda^I$ 为只带 Unit type 的 STLC。
->
-> Let $e \in \lambda^E → \lambda^I$ be the *elaboration function* that translates from $\lambda^E$ to $\lambda^I$ by replacing every occurrence of $t\_1 ; t\_2$ with $(\lambda x : \operatorname{\mathtt{Unit}}. t\_2)\ t\_1$, where $x$ is chosen fresh in each case.
->
-> For each term $t$ of $\lambda^E$, we have
->
-> - $t \rightarrow_E t'$ iff $e(t) \rightarrow_I e(t')$
-> - $\Gamma \vdash^E t : T$ iff $\Gamma \vdash^I e(t) : T$
->
-> where the evaluation and typing relations of $\lambda^E$ and $\lambda^I$ are annotated with $E$ and $I$, respectively, to show which is which.
+\rangle **Theorem** Sequencing is a derived form（成为 derived form 的条件）
+\rangle
+\rangle 记 $\lambda^E$ 为带 Unit type，`E-Seq`，`E-SeqNext` 与 `T-Seq` 的语言；记 $\lambda^I$ 为只带 Unit type 的 STLC。
+\rangle
+\rangle Let $e \in \lambda^E → \lambda^I$ be the *elaboration function* that translates from $\lambda^E$ to $\lambda^I$ by replacing every occurrence of $t\_1 ; t\_2$ with $(\lambda x : \operatorname{\mathtt{Unit}}. t\_2)\ t\_1$, where $x$ is chosen fresh in each case.
+\rangle
+\rangle For each term $t$ of $\lambda^E$, we have
+\rangle
+\rangle - $t \rightarrow_E t'$ iff $e(t) \rightarrow_I e(t')$
+\rangle - $\Gamma \vdash^E t : T$ iff $\Gamma \vdash^I e(t) : T$
+\rangle
+\rangle where the evaluation and typing relations of $\lambda^E$ and $\lambda^I$ are annotated with $E$ and $I$, respectively, to show which is which.
 
 由于 sequencing 的规则可以被导出，所以我们只需要增加 external language 的复杂度，而不增加 internal language 的复杂度，这样使得其相关的定理证明和类型安全证明可以更加简单。这样的 derived forms 被称为**语法糖**（syntax sugar）。
 
@@ -198,19 +198,19 @@ $$
 
 由此可见 `let`-bindings 是一种比较特殊的 derived form。
 
-> **Q** 能否将 `let`-bindings 的 derived form 定义为
->
->   $$
->   \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 \overset{\text{def}}{=} [x \mapsto t_1] t_2
->   $$
->
-> **A** 不可以。主要的问题在于这个定义无法排除掉一些 ill-typeness：
->
->   $$
->   \operatorname{\mathtt{let}} x = \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}}) \operatorname{\mathtt{in}} \operatorname{\mathtt{unit}} \rightarrow [x \mapsto \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}})] \operatorname{\mathtt{unit}}
->   $$
->
->   左边的 `let`-binding 显然是 ill-typed，但是右边由于 $\operatorname{\mathtt{unit}}$ 中不存在 $x$，导致类型系统会接受这个 term，导致错误。
+\rangle **Q** 能否将 `let`-bindings 的 derived form 定义为
+\rangle
+\rangle   $$
+\rangle   \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 \overset{\text{def}}{=} [x \mapsto t_1] t_2
+\rangle   $$
+\rangle
+\rangle **A** 不可以。主要的问题在于这个定义无法排除掉一些 ill-typeness：
+\rangle
+\rangle   $$
+\rangle   \operatorname{\mathtt{let}} x = \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}}) \operatorname{\mathtt{in}} \operatorname{\mathtt{unit}} \rightarrow [x \mapsto \operatorname{\mathtt{unit}}(\operatorname{\mathtt{unit}})] \operatorname{\mathtt{unit}}
+\rangle   $$
+\rangle
+\rangle   左边的 `let`-binding 显然是 ill-typed，但是右边由于 $\operatorname{\mathtt{unit}}$ 中不存在 $x$，导致类型系统会接受这个 term，导致错误。
 
 # Pairs
 
@@ -318,11 +318,11 @@ $$
 使用 Sums 类型时可以用 `case` 来提取值，Sums 中不同的类型会匹配到不同的分支：
 
 $$
-\begin{alignat*}{2}
-\operatorname{\mathtt{getName}} = {}& \lambda a : A + B. \\
-                                  \operatorname{\mathtt{case}} a{}& \operatorname{\mathtt{of}} \\
-                                  \operatorname{\mathtt{inl}} {}& x \Rightarrow x \\
-                                 | \operatorname{\mathtt{inr}} {}& y \Rightarrow y \\
+\begin{alignat*}{3}
+  \operatorname{\mathtt{getName}} ={}& \lambda a : A + B.&&&& \\
+   {}& \qquad \ \  \operatorname{\mathtt{case}}&& a \operatorname{\mathtt{of}}&& \\
+   {}& \qquad \qquad && \operatorname{\mathtt{inl}} x &{} \Rightarrow {}& x \\
+   {}& \qquad \qquad | && \operatorname{\mathtt{inr}} y &{} \Rightarrow {}& y;
 \end{alignat*}
 $$
 
@@ -334,11 +334,11 @@ $$
 
 $$
 \begin{alignat*}{2}
-& \operatorname{\mathtt{Bool}} &&\overset{\text{def}}{=} \operatorname{\mathtt{Unit}} + \operatorname{\mathtt{Unit}} \\
-& \operatorname{\mathtt{true}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inl}} \operatorname{\mathtt{unit}} \\
-& \operatorname{\mathtt{false}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inr}} \operatorname{\mathtt{unit}} \\
-& \operatorname{\mathtt{if}} t_0 \operatorname{\mathtt{then}} t_1 \operatorname{\mathtt{else}} t_2 &&\overset{\text{def}}{=} \operatorname{\mathtt{case}} t_0 \operatorname{\mathtt{of}} \operatorname{\mathtt{inl}} x_1 \Rightarrow t_1 \mid \operatorname{\mathtt{inr}} x_2 \Rightarrow t_2 \\
-&&& \qquad \text{where $x_1$ and $x_2$ are fresh}
+  & \operatorname{\mathtt{Bool}} &&\overset{\text{def}}{=} \operatorname{\mathtt{Unit}} + \operatorname{\mathtt{Unit}} \\
+  & \operatorname{\mathtt{true}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inl}} \operatorname{\mathtt{unit}} \\
+  & \operatorname{\mathtt{false}} &&\overset{\text{def}}{=} \operatorname{\mathtt{inr}} \operatorname{\mathtt{unit}} \\
+  & \operatorname{\mathtt{if}} t_0 \operatorname{\mathtt{then}} t_1 \operatorname{\mathtt{else}} t_2 &&\overset{\text{def}}{=} \operatorname{\mathtt{case}} t_0 \operatorname{\mathtt{of}} \operatorname{\mathtt{inl}} x_1 \Rightarrow t_1 \mid \operatorname{\mathtt{inr}} x_2 \Rightarrow t_2 \\
+  &&& \qquad \text{where $x_1$ and $x_2$ are fresh}
 \end{alignat*}
 $$
 
@@ -357,8 +357,139 @@ Uniqueness of Types theorem 不成立导致类型检查变得更麻烦了，因�
 
 # Variants
 
-Variants 是二元 Sums 类型的泛化，和 Records 一样有 labels。Sums 中的 $\operatorname{\mathtt{inl}} t \operatorname{\mathtt{as}} T_1 + T_2$ 写成 $<l_1=t> \operatorname{\mathtt{as}} <l_1 : T_1, l_2 : T_2>$。
+![11-11 Variants](/img/in-post/post-tapl/11-11-variants.png)
+
+上面漏了一条 value syntax：
+
+$$
+\begin{aligned}
+v \Coloneqq & \dots \\
+    & \langle l = v \rangle \operatorname{\mathtt{as}} T \\
+\end{aligned}
+$$
+
+Variants 是二元 Sums 类型的泛化，和 Records 一样有 labels。Sums 中的 $\operatorname{\mathtt{inl}} t \operatorname{\mathtt{as}} T_1 + T_2$ 写成 $\langle l_1=t\rangle \operatorname{\mathtt{as}} \langle l_1 : T_1, l_2 : T_2\rangle$。
 
 需要注意的是 Variants 和 Records 一样，标签的顺序不同则类型也不同。
 
 ## Options
+
+**Options** 是很常见的一种 Variants：
+
+$$
+\operatorname{\mathtt{OptionalNat}} = \langle\operatorname{\mathtt{none}} : \operatorname{\mathtt{Unit}}, \operatorname{\mathtt{some}} :  \operatorname{\mathtt{Nat}}\rangle;
+$$
+
+例如使用 Options 构建一个 table：
+
+$$
+\begin{alignat*}{2}
+  & \operatorname{\mathtt{Table}} &&= \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{OptionalNat}}; \\
+  & \operatorname{\mathtt{emptyTable}} &&= \lambda n : \operatorname{\mathtt{Nat}}. \langle\operatorname{\mathtt{none}} = \operatorname{\mathtt{unit}}\rangle \operatorname{\mathtt{as}} \operatorname{\mathtt{OptionalNat}}; \\
+  & \operatorname{\mathtt{extendTable}} &&= \lambda t : \operatorname{\mathtt{Table}}. \lambda m : \operatorname{\mathtt{Nat}}. \lambda v : \operatorname{\mathtt{Nat}}. \\
+  &&& \qquad \lambda n : \operatorname{\mathtt{Nat}}. \\
+  &&& \qquad \qquad \operatorname{\mathtt{if}} \operatorname{\mathtt{equal}} n\ m \operatorname{\mathtt{then}} \langle\operatorname{\mathtt{some}} = v\rangle \operatorname{\mathtt{as}} \operatorname{\mathtt{OptionalNat}}; \\
+  &&& \qquad \qquad \operatorname{\mathtt{else}} t\ n;
+\end{alignat*}
+$$
+
+注意，$\operatorname{\mathtt{extendTable}}$ 的类型为 $\operatorname{\mathtt{Table}} \rightarrow \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Table}}$。
+
+此时就可以使用 $x = t(5)$ 的方式来在 table 中查询值。
+
+C/C++/Java 中允许指针（其实是一种 Reference Type）的类型的 `null`，这实际上也是一种 Options 类型，其实际类型为 $\operatorname{\mathtt{Ref}}(\operatorname{\mathtt{Option}}(T))$。
+
+## Enumerations
+
+**Enumerations**（Enumerated Type）是一种退化了的 Variants 类型，其 labels 对应的 fields 值均为 `Unit`。例如：
+
+$$
+\operatorname{\mathtt{Bool}} = \langle\operatorname{\mathtt{true}} : \operatorname{\mathtt{Unit}}, \operatorname{\mathtt{false}} : \operatorname{\mathtt{Unit}}\rangle;
+$$
+
+由于 enumerations 中的值均为 `Unit`，因此在 enumeration 中可以用 `case` 实现运算：
+
+$$
+\begin{alignat*}{3}
+  \operatorname{\mathtt{negative}} ={}& \lambda b : \operatorname{\mathtt{Bool}}.&&&& \\
+   {}& \qquad \operatorname{\mathtt{case}}&& b \operatorname{\mathtt{of}}&& \\
+   {}& \qquad \qquad &&\langle\operatorname{\mathtt{true}} = x\rangle & \Rightarrow & \langle\operatorname{\mathtt{false}} = x\rangle \operatorname{\mathtt{as}} \operatorname{\mathtt{Bool}} \\
+   {}& \qquad \qquad | &&\langle\operatorname{\mathtt{false}} = x\rangle & \Rightarrow & \langle\operatorname{\mathtt{true}} = x\rangle \operatorname{\mathtt{as}} \operatorname{\mathtt{Bool}};
+\end{alignat*}
+$$
+
+## Single-Field Variants
+
+Variants 的另一种退化形式是 Single-Field Variants，即只有一个 label 的情况：
+
+$$
+V = \langle l : T\rangle;
+$$
+
+这个看起来好像用处不大，因为它只有一个 label，而且在 $\langle l = t \rangle$ 中所有对 $t$ 的操作都要先 unpackaging 后才能进行，但是这个特性却能够防止出现一些类型错误。
+
+例如写了一个将美元转换成欧元的函数 $\operatorname{\mathtt{dollars2euros}}$，则可能会出现这样的错误转换：
+
+$$
+\operatorname{\mathtt{dollars2euros}}\ (\operatorname{\mathtt{dollars2euros}}\ \operatorname{\mathtt{mybankbalance}})
+$$
+
+但是如果用 Single-Field Variants 来定义，当写出类似的错误程序时就能通过类型检查出来：
+
+$$
+\begin{alignat*}{2}
+  & \operatorname{\mathtt{DollarAmount}} &&={} \langle\operatorname{\mathtt{dollars}} : \operatorname{\mathtt{Float}}\rangle; \\
+  & \operatorname{\mathtt{EuroAmount}} &&={} \langle\operatorname{\mathtt{euros}} : \operatorname{\mathtt{Float}}\rangle; \\
+  & \operatorname{\mathtt{dollars2euros}} &&={} \lambda d : \operatorname{\mathtt{DollarAmount}}. \\
+  & && \qquad \operatorname{\mathtt{case}} d \operatorname{\mathtt{of}} \\
+  & && \qquad \qquad \langle\operatorname{\mathtt{dollars}} = \operatorname{\mathtt{x}}\rangle \Rightarrow \langle\operatorname{\mathtt{euros}} = \operatorname{\mathtt{timesfloat}}\ x\ 1.1325\rangle \operatorname{\mathtt{as}} \operatorname{\mathtt{EuroAmount}};
+\end{alignat*}
+$$
+
+## Variants vs Datatypes
+
+Variants $\langle l_i : T_i^{i \in 1 \dots n} \rangle$ 和 ML 里面的 **Datatypes** 有点像：
+
+$$
+\begin{alignat*}{2}
+\operatorname{\mathtt{type}} T = {}&l_1 \operatorname{\mathtt{of}} T_1 \\
+|\ &l_2 \operatorname{\mathtt{of}} T_2 \\
+|\ &\dots \\
+|\ &l_n \operatorname{\mathtt{of}} T_n;
+\end{alignat*}
+$$
+
+但是二者之间有很多区别：
+
+1. 一个 trivial 的区别就是在 OCaml 中，类型必须以小写字母开头，datatypes 的 constructors 必须以大写字母开头。当然这本书里面不会这么区别，不过按照 OCaml 的写法上面的 Datatype 应该要写成 $\operatorname{\mathtt{type}} t = L_i \operatorname{\mathtt{of}} T_i^{i \in 1 \dots n}$。
+2. OCaml 中的 datatypes 不需要额外的类型标注，因为 datatypes 必须先声明再使用，并且在作用域内其 labels 的名称是**唯一**的，因此只需要 label 就可以推断出类型（Variants 则必须要标注）。
+3. OCaml 中如果 datatype 的 associated type 是 unit type，那么就可以省略不写，如 $\operatorname{\mathtt{type}} \operatorname{\mathtt{Bool}} = \operatorname{\mathtt{true}} | \operatorname{\mathtt{false}};$。
+4. OCaml 中的 datatypes 不仅包含了 variants 的特性，还有 recursive types 的特性（如 `List` 就是递归定义的）。并且 datatypes 还可以接受 parameters，当作 type operator 用。
+
+## Variants as Disjoint Unions
+
+Sums 和 Variants 有时被称为 Disjoint Unions，一方面这两种类型是其他类型的 union，另一方面这两种类型都有 tag，因此可以区分开来。
+
+现在 **Union Type** 一般指 untagged union（或者 non-disjoint union）。
+
+## Type Dynamic
+
+很多静态分析都要处理动态数据（例如从数据库中读取或者跨网络传输），因此都提供了用于运行时判定类型的工具。
+
+实现这种操作的一种方式就是添加 **Dynamic Type** 类型，这种 Variants 类型的 tag 为 `T`，value 为 `v`，其中 `v` 的类型就是 `T`（即将类型作为 tag 使用）。Dynamic Type 可以用 `typecase` 获取其中的值。
+
+Dynamic Type 可以看作是一种 infinite disjoint union，其 tags 均为类型。
+
+# General Recursion
+
+
+
+# List
+
+![11-13 Lists](/img/in-post/post-tapl/11-13-lists.png)
+
+**List** 是一个 type constructor，空 List 记作 $\operatorname{\mathtt{nil}}[T]$，并且可以用 $\operatorname{\mathtt{cons}}[T]\ t_1\ t_2$ 来构建。除此之外还有 $\operatorname{\mathtt{head}}[T]\ t$、$\operatorname{\mathtt{tail}}[T]\ t$、$\operatorname{\mathtt{isnil}}[T]\ t$ 等函数。
+
+大部分 lists 函数标注的类型都可以从参数里推断出来，但是 $\operatorname{\mathtt{nil}}[T]$ 这样的就不行。
+
+这里用 `head`/`tail`/`isnil` 来构建 lists，但是一般会用 datatype 和 `case` 去构建和使用，这样可以更容易地发现类型错误。
