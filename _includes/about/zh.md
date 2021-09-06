@@ -1,5 +1,3 @@
-### 空调
-
 > **R**emember **OI** **F**or **E**ver
 
 我是 roife，来自浙江。
