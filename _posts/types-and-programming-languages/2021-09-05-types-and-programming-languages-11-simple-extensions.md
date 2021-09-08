@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「TAPL」 09 Simple Extensions"
+title: "「TAPL」 11 Simple Extensions"
 subtitle: "More special types"
 author: "roife"
 date: 2021-09-05
@@ -541,6 +541,53 @@ $$
 
 $$
 \operatorname{\mathtt{letrec}}\ x : T_1 = t_1 \operatorname{\mathtt{in}} t_2 \overset{\operatorname{\mathtt{def}}}{=} \operatorname{\mathtt{let}} x = \operatorname{\mathtt{fix}} (\lambda x : T_1 . t_1) \operatorname{\mathtt{in}} t_2
+$$
+
+## `equal`, `plus`, `times`, and `factorial` with `fix`
+
+$$
+\begin{alignat*}{2}
+  & \operatorname{\mathtt{equal}} = \\
+  & \qquad \operatorname{\mathtt{fix}} \\
+  & \qquad \qquad (\lambda \operatorname{\mathtt{eq}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Bool}} . \\
+  & \qquad \qquad \qquad \lambda m : \operatorname{\mathtt{Nat}}. \lambda n : \operatorname{\mathtt{Nat}}. \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ m\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{iszero}}\ n \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ n\ \operatorname{\mathtt{then}}\ \operatorname{\mathtt{false}} \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{eq}}\ (\operatorname{\mathtt{pred}}\ m)\ (\operatorname{\mathtt{pred}}\ n));
+\end{alignat*}
+$$
+
+$$
+\begin{alignat*}{2}
+  & \operatorname{\mathtt{plus}} = \\
+  & \qquad \operatorname{\mathtt{fix}} \\
+  & \qquad \qquad (\lambda \operatorname{\mathtt{p}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}} . \\
+  & \qquad \qquad \qquad \lambda m : \operatorname{\mathtt{Nat}}. \lambda n : \operatorname{\mathtt{Nat}}. \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ m\ \operatorname{\mathtt{then}}\ n \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{succ}}\ (p\ (\operatorname{\mathtt{pred}}\ m)\ n));
+\end{alignat*}
+$$
+
+$$
+\begin{alignat*}{2}
+  & \operatorname{\mathtt{times}} = \\
+  & \qquad \operatorname{\mathtt{fix}} \\
+  & \qquad \qquad (\lambda \operatorname{\mathtt{t}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}} . \\
+  & \qquad \qquad \qquad \lambda m : \operatorname{\mathtt{Nat}}. \lambda n : \operatorname{\mathtt{Nat}}. \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ m\ \operatorname{\mathtt{then}}\ 0 \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{plus}}\ (t\ (\operatorname{\mathtt{pred}}\ m)\ n));
+\end{alignat*}
+$$
+
+$$
+\begin{alignat*}{2}
+  & \operatorname{\mathtt{factorial}} = \\
+  & \qquad \operatorname{\mathtt{fix}} \\
+  & \qquad \qquad (\lambda \operatorname{\mathtt{f}} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}} . \\
+  & \qquad \qquad \qquad \lambda n : \operatorname{\mathtt{Nat}}. \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ n\ \operatorname{\mathtt{then}}\ 1 \\
+  & \qquad \qquad \qquad \qquad \operatorname{\mathtt{else}}\ \operatorname{\mathtt{times}}\ (f\ (\operatorname{\mathtt{pred}}\ n)\ n));
+\end{alignat*}
 $$
 
 # List
