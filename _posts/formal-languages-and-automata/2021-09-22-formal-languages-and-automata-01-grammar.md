@@ -28,6 +28,8 @@ katex: true
 
 设 $G = (V, T, P, S)$ 是一个文法，如果 $\alpha \rightarrow \beta \in P$，$\gamma, \delta \in (V \cup T)^*$，则称 $\gamma \alpha \delta \xRightarrow[G]{} \gamma \beta \delta$ 为推导（derivation）。反之称为规约（reduction）。
 
+- $\xRightarrow{+}$，$\xRightarrow{*}$，$\xRightarrow{n}$ 分别表示至少推一步、推若干步和推 $n$ 步
+
 ## 语言
 
 设 $G = (V, T, P, S)$，则称 $L(G) = \\{w \vert w \in T^* \operatorname{\mathtt{and}} S \xRightarrow[]{*} w\\}$ 是文法的语言（language）。$\forall w \in L(G)$，$w$ 是 $G$ 的一个句子（sentence）。
@@ -57,10 +59,10 @@ katex: true
 
 ## 线性文法
 
-- 线性文法（line grammar）：设 $G = (V, T, P, S)$，如果 $\forall \alpha \rightarrow \beta \in P$ 都具有以下形式：
+- 线性文法（liner grammar）：设 $G = (V, T, P, S)$，如果 $\forall \alpha \rightarrow \beta \in P$ 都具有以下形式：
   + $A \rightarrow w$ 或 $A \rightarrow wB$（$A, B \in V, w \in T^**$），则 $G$ 为线性文法
-- 左线性文法：$\alpha \rightarrow \beta$ 为 $A \rightarrow w$ 或 $A \rightarrow Bw$
-- 右线性文法：$\alpha \rightarrow \beta$ 为 $A \rightarrow w$ 或 $A \rightarrow wB$
+- 左线性文法（left liner grammar）：$\alpha \rightarrow \beta$ 为 $A \rightarrow w$ 或 $A \rightarrow Bw$
+- 右线性文法（right liner grammar）：$\alpha \rightarrow \beta$ 为 $A \rightarrow w$ 或 $A \rightarrow wB$
 
 右线性文法即为 RG。由于左线性文法和右线性文法等价，所以左线性文法也是 RG。但是如果一个语言的规则混合了左右线性文法，则不是 RG。
 
