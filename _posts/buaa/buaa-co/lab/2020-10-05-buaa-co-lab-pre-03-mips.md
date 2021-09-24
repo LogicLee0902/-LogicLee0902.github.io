@@ -96,13 +96,6 @@ MIPS 中指令被分为三种, R 型, I 型和 J 型.
 
 ![`add` 指令说明](/img/in-post/post-buaa-co/mips-add.png "mips add"){:height="700px" width="700px"}
 
-- 编码: opcode 为 `000000`, 然后跟着三个寄存器字段, 最后是全为 `0` 的 `shamt` 和 `func` 字段.
-- 格式: 描述了 mips 中 `add` 指令书写的格式
-- 描述: 指令的功能
-- 操作: 指令执行的具体细节
-- 示例: 书写示范
-- 其他: 补充事项
-
 根据编码可以把一个汇编指令翻译成机器码.
 
 ![`add` 指令编码](/img/in-post/post-buaa-co/mips-add-encode.png "mips-add-encode"){:height="500px" width="500px"}
