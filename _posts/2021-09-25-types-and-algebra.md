@@ -224,6 +224,8 @@ $$
 
 这个东西也反映了 `Tree` 类型是由什么值组成的。例如 $5 x^3$ 表示 3 个结点的二叉树共有 5 种不同的形式（生成函数！）：
 
+![Binary Trees](/img/in-post/post-types-and-algebra/binary-trees.png)
+
 如果这里令 `x` 表示具体的类型（例如令 `x = Bool` 表示 `2`），带入具体的数值，就可以表示特定类型的 `List` 是由什么组成的（相当于每个结点有 `x` 种可能）。
 
 # One-Hole Contexts
@@ -321,6 +323,12 @@ $$
 
 对二叉树的方程求偏导后得到其表达式，此时会发现这里面的 $\frac{1}{1 - x}$ 就是 `Lists`，因此将其带入得到最后的表达式。
 
+这个表达式的含义是什么？如图。
+
+![One-Hole Contexts of Trees](/img/in-post/post-types-and-algebra/one-hole-contexts-of-trees.png)
+
+在这个图中挖掉一个点，可以得到其左右子树（对应了 $T^2$）以及一条这个点到根节点的路径（对应 $L$）。其中，路径上的每个点都还剩下一棵子树，加上其本身即为 $xT$。又因为子树可能是左子树或右子树，则其类型应该是 $xT + xT$，即 $2xT$。最终得到了一个 pair：$T^2 L(2xT)$。
+
 ## Regular Type
 
 一个 Regular Type 必须是偏序的，并且允许存在重复元素。
@@ -338,7 +346,7 @@ Define $\operatorname{\mathtt{Set}}_n = \text{"Sets of size n"}$
 
 $$
 \begin{aligned}
-\operatorname{\mathtt{Set}}_0(x) &\cong 1 &&\text{ - - Empty Set} \\
+\operatorname{\mathtt{Set}}_0(x) &\cong 1 &&\text{ - - empty set} \\
 \operatorname{\mathtt{Set}}_1(x) &\cong x &&\text{ - - have one value} \\
 \operatorname{\mathtt{Set}}_2(x) &\cong \frac{x (x-1)}{2} &&\text{ - - set with two values} \\
 \operatorname{\mathtt{Set}}_n(x) &\cong \frac{x (x-1) \cdots (x-n+1)}{x!} = \frac{x^{\underline{n}}}{n!}
