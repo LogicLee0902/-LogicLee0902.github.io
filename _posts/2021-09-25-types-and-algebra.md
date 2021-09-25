@@ -5,7 +5,7 @@ subtitle: "ADT and Derivatives"
 author: "roife"
 date: 2021-09-25
 
-tags: ["类型系统@Tasg@Tags"]
+tags: ["类型系统@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
@@ -49,7 +49,7 @@ data a :+ b = AddL a | AddR b
 
 ## Multiplication
 
-元组对应这乘积。
+元组对应乘积。
 
 ```haskell
 data a :* b = Mul a b
