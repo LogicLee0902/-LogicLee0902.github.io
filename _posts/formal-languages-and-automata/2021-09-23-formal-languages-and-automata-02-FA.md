@@ -15,7 +15,10 @@ katex: true
 
 # FA
 
-有穷状态自动机（finite automata，FA）$M = (Q, \Sigma \delta, q_0, F)$。
+有穷状态自动机（finite automata，FA）
+
+$$M = (Q, \Sigma \delta, q_0, F)$$
+
 - $Q$：状态（state）的非空有穷集合
 - $\Sigma$：输入字母表（input alphabet）
 - $\delta$：状态转移函数（transition function）。$\delta : Q \times \Sigma \rightarrow Q$
@@ -37,13 +40,34 @@ $$
 
 如果 $L(M_1) = L(M_2)$ 则两个 FA 等价。
 
+## 即时描述
+
+设 $M = (Q, \Sigma, \delta, q_0, F)$，$x, y \in \Sigma^*$，$\delta(q_0, x) = q$，则 $xqy$ 称为 $M$ 的一个即时描述（instantaneous description, ID），记作
+
+$$
+xq_0ay \vdash_M xayqb
+$$
+
 # DFA
 
 如果 $\forall q \in Q, a \in \Sigma$，$\delta(q, a)$ 都有确定的值，则称之为有穷状态自动机（deterministic finite automaton，DFA）。
 
+## DFA 上的等价类划分
+
+定义 $\operatorname{\mathtt{set}}(q) = \\{ x \vert x \in \Sigma^*, \delta(q_0, x) = q\\}$。
+
+在 DFA 上定义关系 $R_M$ 为 $\forall x, y \in \Sigma^*, x R_M y \Leftrightarrow \exists q \in Q, x \in \operatorname{\mathtt{set}}(q) \operatorname{\mathtt{and}} y \in \operatorname{\mathtt{set}}(q)$。
+
+可以发现，$R_M$ 定义了 $\Sigma^*$ 上面的一个等价类。即 DFA 上面的每个状态都对应了 $\Sigma^*$ 的一个划分。
+
+反过来，如果某个语言能划分成有限个等价类，那么就可以考虑用 DFA 描述。
+
 # NFA
 
-非确定性有穷状态自动机（non- deterministic finite automaton，NFA）$M =(Q, \Sigma, \delta, q_0, F)$
+非确定性有穷状态自动机（non-deterministic finite automaton，NFA）
+
+$$M =(Q, \Sigma, \delta, q_0, F)$$
+
 - $Q, \Sigma, q_0, F$ 的意义与 DFA 相同
 - $\delta: Q \times \Sigma \rightarrow 2^Q$
   + $\forall (q, a) \in Q \times \Sigma, \delta(q, s) = \\{p_1, p_2, \cdots p_m\\}$ 表示 $M$ 在状态 $q$ 下读入字符 $a$，则将状态转移到 $p_i$ 并将读头指向下一个字符串
@@ -52,4 +76,6 @@ $$
 - $\hat{\delta}(q, \varepsilon) = \\{q\\}$
 - $\hat{\delta}(q, wa) = \\{p \vert \exists r \in \hat{\delta}(q, w) \operatorname{\mathtt{where}} p \in \delta(r, a) \\}$
 
-NFA 在 DFA 的基础上加入了 $\varepsilon$ 路径，表现为对于同一个字符可以有多个不同的转移路径。NFA 将 DFA 中的“值”变成了“集合”，此时可以看作是“拥有智能的”DFA，可以自动选择路径。
+NFA 与 DFA 的区别在于，输入同一个字符可以有多个不同的转移路径。NFA 将 DFA 中的“值”变成了“集合”，此时可以看作是“拥有智能的”DFA，可以自动选择路径。
+
+## DFA 与 NFA 等价
