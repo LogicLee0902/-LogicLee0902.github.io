@@ -13,6 +13,8 @@ header-style: text
 katex: true
 ---
 
+本章为 STLC 的扩展。
+
 # Base Types
 
 Base types 指语言中的一些基础类型，也叫 atomic types，例如 Integer/String/Boolean/Float 等。在理论中，通常用 `A` 来指代这些 base types，同时用 $\mathcal{A}$ 表示 base types 组成的集合。
@@ -176,11 +178,11 @@ $$
 
 $$
 \frac{
-	\frac{\vdots}{\Gamma \vdash t_1 : T_1}
+    \frac{\vdots}{\Gamma \vdash t_1 : T_1}
   \quad
   \frac{\vdots}{\Gamma, x : T_1 \vdash t_2 : T_2}
 } {
-	\Gamma \vdash \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 : T_2
+    \Gamma \vdash \operatorname{\mathtt{let}} x = t_1 \operatorname{\mathtt{in}} t_2 : T_2
 } \text{T-Let}
 \rightarrow
 \frac{
