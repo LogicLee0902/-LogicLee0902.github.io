@@ -118,7 +118,7 @@ $$
 - `+` 的单位元是 `Void`，因为 `Void + T = T + Void = Void`
 - 不难发现这也满足分配率：`T1*(T2 + T3) = T1*T2 + T1*T3`。
 
-  定义函数 `f(T)` 表示类型 `T` 包含值的数量，那么就可以将类型映射到自然数上。即 $f$ 是 $\langle T, +, * \rangle$ 到 $\langle N, +, *\rangle$ 的同态映射。其中 `Unit` 映射到 `1`，`Void` 映射到 `1`。
+  定义函数 `f(T)` 表示类型 `T` 包含值的数量，那么就可以将类型映射到自然数上。即 $f$ 是 $\langle T, +, * \rangle$ 到 $\langle N, +, *\rangle$ 的同态映射。其中 `Unit` 映射到 `1`，`Void` 映射到 `0`。
 
 # Function
 
