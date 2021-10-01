@@ -48,7 +48,7 @@ $$
 xq_0ay \vdash_M xayqb
 $$
 
-# DFA
+# DFA 上的接受定义
 
 如果 $\forall q \in Q, a \in \Sigma$，$\delta(q, a)$ 都有确定的值，则称之为有穷状态自动机（deterministic finite automaton，DFA）。
 
@@ -78,4 +78,28 @@ $$M =(Q, \Sigma, \delta, q_0, F)$$
 
 NFA 与 DFA 的区别在于，输入同一个字符可以有多个不同的转移路径。NFA 将 DFA 中的“值”变成了“集合”，此时可以看作是“拥有智能的”DFA，可以自动选择路径。
 
+## NFA 上的接受定义
+
+设 $M = (Q, \Sigma, \delta, q_0, F)$，对于 $\forall x \in \Sigma^*$，如果 $\delta(q_0, x) \cap F \ne \emptyset$，则称 $x$ 被 $M$ 接受。
+
+$$
+L(M) = \{x | x \in \Sigma^x \operatorname{\mathtt{and}} \delta(q_0, x) \cap F \ne \emptyset\}
+$$
+
 ## DFA 与 NFA 等价
+
+- 给定任意的 DFA，都存在一个 NFA 与之对应。（显然，因为 DFA 就是 NFA 的一种）
+- 给定任意的 NFA，都存在一个 DFA 与之对应。（构造）
+
+给定一个 NFA $M_1 = (Q_1, \Sigma, \delta_1, q_0, F_1)$，下面要构造 DFA $M_2 = (Q_2, \Sigma, \delta_2, [q_0], F_2)$。其中 $Q_2 = 2^{Q_1}$。
+
+$[q_1, q_2, \dots, q_n]$ 表示一个综合状态，对应了当前同时处于 NFA 上的 $q_1, q_2, \dots, q_n$ 状态。也就是说 DFA 上用一个状态，表示了在 NFA 上“同时处于多个点”的状态，所以 DFA 有 $2^n$ 个点。
+
+设在 NFA 上有 $\delta_1(\\{q_1, q_2, \dots, q_n\\}, a) = \\{p_1, p_2, \dots, p_m\\}$，则在 DFA 上对应建立转移 $\delta_1([q_1, q_2, \dots, q_n], a) = [p_1, p_2, \dots, p_m]$。
+
+当然有些状态构造出来可能实际上无法从初始状态转移过来，这些状态可以被删掉。
+
+可以证明这样的 DFA 与 NFA 等价。
+
+# $\varepsilon$-NFA
+
