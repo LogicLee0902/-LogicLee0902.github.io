@@ -456,7 +456,7 @@ Progress theorem 可以直接模仿 STLC 进行证明。
 > &t_1 = \lambda r : \operatorname{\mathtt{Ref}}(\operatorname{\mathtt{Unit}} \rightarrow \operatorname{\mathtt{Unit}}). \\
 > & \qquad (r := (\lambda x : \operatorname{\mathtt{Unit}}. (!r) x); \\
 > & \qquad \quad (!r) unit); \\
-> & t2 = ref (λx:Unit. x);
+> & t2 = \operatorname{\mathtt{ref}} (λx:Unit. x);
 > \end{aligned}
 > $$
 >
