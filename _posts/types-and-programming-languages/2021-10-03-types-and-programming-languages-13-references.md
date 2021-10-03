@@ -267,7 +267,46 @@ $$
 
 ## Garbage Collection Rules
 
-TODO
+### reachability
+
+首先，使用 GC 的系统中 locations 的数量一定是有限的，即 $\vert \mathcal{L} \vert$ 是有穷的。
+
+记 $\mathtt{locations}(t)$ 表示 $t$ 中 locations 组成的集合。下面定义 locations 的 **reachability*** 属性：
+- 如果 $l' \in \mathtt{locations}(\mu(l))$，则称 $l'$ is *reachable in one step* from a location $l$ in a store $\mu$（理解为 $l'$ 是 $l$ 所存储的值中的 locations 之一）
+- 对于一个 $l$ 至 $l'$ 的 locations 序列，其中每一个 location 相对于前一个都是 *reachable in one step*，则称 $l'$ is *reachable* from $l$
+- 定义 $\mathtt{reachable(t, \mu)}$ 表示 $\mathtt{locations}(t)$ 中所有 *reachable* 的子集
+
+### Evaluation Rules for GC
+
+下面定义 GC 的规则：
+
+$$
+\dfrac{
+  \mu' = \mu\ \text{restricted to $\mathtt{reachable}(t, \mu)$}
+}{
+  t \vert \mu \rightarrow_{gc} t \vert \mu'
+} \tag{E-GC}
+$$
+
+这个规则表示 $\mu'$ 的定义为 $\mathtt{reachable}(t, \mu)$，并且定义域中所有 locations 的值仍然和 $\mu$ 相同。
+
+同时改变原来的 evaluation 规则，在其中插入 GC 的规则：
+
+$$
+\overset{\text{gc}}{\rightarrow}^* \overset{\text{def}}{=} (\rightarrow \cup \rightarrow_{gc})^*
+$$
+
+注意，这里 GC 只会在最外层进行，因此我们没有在单步的 evaluation 规则上面加入 GC。因为一个表达式内部中左边的值可能被在右边被用到，而 evaluation 的过程是从左到右的，在内部进行 GC 有可能会错误释放值。（这里指的是对于单个表达式进行求值/推导不能直接 GC，即非 sequencing 的情况；对于 sequencing 中多个表达式求值时，不同表达式的中间仍然可以进行 GC）
+
+### Justify the refinements
+
+最后要证明 GC 规则不影响求值结果，只是减少了内存占用：
+- 如果 $t \vert \mu \overset{\text{gc}}{\rightarrow}^\ast t' \vert \mu''$，则 $t \vert \mu \rightarrow^\ast t' \vert \mu'$，并且 $\vert dom(\mu') \vert > \vert dom(\mu'') \vert$
+- 如果 $t \vert \mu \rightarrow^* t' \vert \mu'$，则满足两种情况之一：
+  + $t \vert \mu \overset{\text{gc}}{\rightarrow}^\ast t' \vert \mu''$，并且 $\vert dom(\mu'') \vert < \vert dom(\mu') \vert$
+  + $t \vert \mu$ 的内存耗尽，即 $t \vert \mu \rightarrow^\ast t''' \vert \mu'''$，且$\mathtt{reachable}(t''', \mu''') = \mathcal{L}$ 并且此时需要 allocate 新的 location
+
+这里只是一种简单的 GC，在实际的 GC 中还要考虑 finalizers（destructor）和 weak pointers（不算入 reference count）等。
 
 # Store Typings
 
@@ -305,6 +344,20 @@ $$
 但是这种方式要求 evaluation 的过程中对 location 的 assignment 必须是类型安全的（即赋的值必须和类型匹配）。并且在规约 `ref` 表达式的时候要去更新 $\Sigma$。
 
 # Safety
+
+![13-1 References](/img/in-post/post-tapl/13-1-references.png)
+
+![13-1 References continue](/img/in-post/post-tapl/13-1-references-continue.png)
+
+注意第一幅图左边 `store` 的规则里的 $=$ 应该是 $\mapsto$：
+
+$$
+\begin{aligned}
+\mu \Coloneqq & & (\text{stores}) \\
+    & \emptyset & & (\text{empty store}) \\
+    & \mu, l \mapsto v \mathtt{location binding}) \\
+\end{aligned}
+$$
 
 ## Preservation
 
@@ -391,3 +444,43 @@ Store typings 可以当做是为了更方便地证明 preservation theorem 才�
 > Suppose $t$ is a closed, well-typed term (that is, $\emptyset \vert \Sigma \vdash t : T$ for some $T$ and $\Sigma$). Then either $t$ is a value or else, for any store $\mu$ such that $\emptyset \vert \Sigma \vdash \mu$, there is some term $t'$ and store $\mu'$ with $t \vert \mu \rightarrow t' \vert \mu'$.
 
 Progress theorem 可以直接模仿 STLC 进行证明。
+
+# References 与递归函数
+
+> **Q** References 相关的 evaluation relation 都能 normalize 成 well-typed terms 吗？（即是否都能终止）
+>
+> **A** 不会，尤其是出现 $r := \lambda x. (!r) x$ 的时候，调用 $(!r) x$ 会 diverge。例如：
+>
+> $$
+> \begin{aligned}
+> &t_1 = \lambda r : \operatorname{\mathtt{Ref}}(\operatorname{\mathtt{Unit}} \rightarrow \operatorname{\mathtt{Unit}}). \\
+> & \qquad (r := (\lambda x : \operatorname{\mathtt{Unit}}. (!r) x); \\
+> & \qquad \quad (!r) unit); \\
+> & t2 = ref (λx:Unit. x);
+> \end{aligned}
+> $$
+>
+
+利用 reference 可以定义出 well-typed 的**递归函数**，一般在函数式语言会这么做（以阶乘为例）：
+
+ - Allocate：申请一个 `ref` 并定义一个假的函数体：
+
+   $$
+   \begin{aligned}
+   &\operatorname{\mathtt{fact}}_{ref} = \operatorname{\mathtt{ref}}\ (\lambda n : \operatorname{\mathtt{Nat}}. 0) \\
+   &\operatorname{\mathtt{fact}}_{ref} : \operatorname{\mathtt{Ref}}\ (\operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}})
+   \end{aligned}
+   $$
+
+ - Define：定义真正的函数体
+
+   $$
+   \begin{aligned}
+   &\operatorname{\mathtt{fact}}_{body} = \lambda n : \operatorname{\mathtt{Nat}}. \\
+   & \quad \operatorname{\mathtt{if}}\ \operatorname{\mathtt{iszero}}\ n\ \operatorname{\mathtt{then}}\ 1\ \operatorname{\mathtt{else}}\ \operatorname{\mathtt{times}}\ n\ ((!\operatorname{\mathtt{factor}}_{ref})(\operatorname{\mathtt{pred}}\ n)); \\
+   & \mathtt{fact}_{body} : \operatorname{\mathtt{Nat}} \rightarrow \operatorname{\mathtt{Nat}}
+   \end{aligned}
+   $$
+
+ - Backpatch：$\operatorname{\mathtt{fact}}\_{ref} := \operatorname{\mathtt{fact}}\_{body}$
+ - Extract：$\operatorname{\mathtt{fact}} = !\operatorname{\mathtt{fact}}_{ref}$
