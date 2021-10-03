@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「TAPL」 13 References"
-subtitle: "Reference Type/Mutable Types/Pointer"
+subtitle: "References: mutable types/pointers"
 author: "roife"
 date: 2021-10-03
 
@@ -114,6 +114,8 @@ $$
 
 垃圾回收对应了 deallocation 的过程。在很多现代的语言中都采用了垃圾回收，因为手动回收内存很难实现 type safety，容易造成 dangling reference 等问题。
 
+不正确的内存释放操作可能导致取出来的值类型错误，进而导致类型不安全。
+
 # Typing
 
 $$
@@ -141,3 +143,251 @@ $$
 $$
 
 # Evaluation
+
+设 $\mathcal{L}$ 为 store locations 的集合，$l$ 为一个从 location 到 values 的偏函数，$\mu$ 为 stores 的 metavariables（例如 $(l_1 \mapsto \operatorname{\mathtt{unit}}, l_2 \mapsto \lambda \_: \operatorname{\mathtt{Unit}}. \operatorname{\mathtt{unit}})$）。为了方便起见，这里不考虑不同类型占用空间不同的影响。
+
+References 引入了一个 contents 用来从其中取值。当进行赋值时，则需要更新当前的 contents（$\mu \rightarrow \mu'$）。
+
+注意，References 会影响到所有的求值规则，包括原来不涉及 references 的规则也要将 contents 加入进去（即让 conclusion 从 premise 继承 contents）：
+
+$$
+(\lambda x : T_{11}. t_{12}\ v_2 \vert \mu \rightarrow [x \mapsto v_2] t_12 \vert \mu) \tag{E-AppAbs}
+$$
+
+$$
+\dfrac{
+  t_1 \vert \mu \rightarrow t_1' \vert \mu'
+}{
+  t_1\ t_2 \vert \mu \rightarrow t_1'\ t_2 \vert \mu'
+} \tag{E-App1}
+$$
+
+$$
+\dfrac{
+  t_2 \vert \mu \rightarrow t_2' \vert \mu'
+}{
+  v_1\ t_2 \vert \mu \rightarrow v_1\ t_2' \vert \mu'
+} \tag{E-App1}
+$$
+
+上面的第一条中 `E-AppAbs` 并不会产生 side effects，所以不会改变 contents。
+
+使用 `ref` 时会创造一个新的 cell，表达式的返回值为指向这个 cell 的 reference，这个返回值被称为 `store location`（类型为 `Ref T`，相当于一个内存地址），它也是一个 value。
+
+$$
+\begin{aligned}
+v \Coloneqq & & (\text{values}) \\
+    & \lambda x.t & (\text{abstraction value}) \\
+    & \operatorname{\mathtt{unit}} & (\text{unit value}) \\
+    & l & (\text{store location}) \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+t \Coloneqq & & (\text{terms}) \\
+    & x & (\text{variable}) \\
+    & \lambda x.t & (\text{abstraction}) \\
+    & t\ t & (\text{application}) \\
+    & \operatorname{\mathtt{unit}} & (\text{constant $\mathtt{unit}$}) \\
+    & \operatorname{\mathtt{ref}}\ t & (\text{reference creation}) \\
+    & !t & (\text{dereference}) \\
+    & t := t & (\text{assignment}) \\
+    & l & (\text{store location})
+\end{aligned}
+$$
+
+虽然在 `term` 和 `value` 里面添加了 store location 类型，但是在实际的代码中并不一定会出现这种类型，他们可以作为一种 intermediate language 被隐藏起来。
+
+## Evaluation Rules
+
+添加了 store location 类型后，就可以对 references 的 evaluation rules 进行描述了。
+
+Dereferencing 的过程总共分成两步：首先要规约 location 本身，然后再进行 dereferencing。Dereferencing 只能对 locations 进行，否则会产生错误（这个由 type safety 保证）。
+
+$$
+\dfrac{
+  t_1 \vert \mu \rightarrow t_1' \vert \mu'
+}{
+  ! t_1 \vert \mu \rightarrow ! t_1' \vert \mu'
+} \tag{E-Deref}
+$$
+
+$$
+\dfrac{
+  \mu(l) = v
+}{
+  !l \vert \mu \rightarrow v \vert \mu
+} \tag{E-DerefLoc}
+$$
+
+同样，assignment 的过程也分成多步。
+
+$$
+\dfrac{
+  t_1 \vert \mu \rightarrow t_1' \vert \mu'
+}{
+  t_1 := t_2 \vert \mu \rightarrow t_1' := t_2 \vert \mu'
+} \tag{E-Assign1}
+$$
+
+$$
+\dfrac{
+  t_2 \vert \mu \rightarrow t_2' \vert \mu'
+}{
+  v := t_2 \vert \mu \rightarrow v := t_2' \vert \mu'
+} \tag{E-Assign2}
+$$
+
+$$
+l := v_2 \vert \mu \rightarrow \operatorname{\mathtt{unit}} \vert [l \mapsto v_2] \mu \tag{E-Assign}
+$$
+
+这里 $[l \mapsto v_2] \mu$ 表示其他 location 保持不变，只有 $l$ 这个 cell 的值被更新为 $v_2$。
+
+这里的表达式返回 `unit` 都是为了和 sequencing notation 相匹配。
+
+最后是对于 `ref` 表达式的规则。需要注意的是要选一个新的 location。
+
+$$
+\dfrac{
+  t_1 \vert \mu \rightarrow t_1' \vert \mu'
+}{
+  \operatorname{\mathtt{ref}}\ t_1 \vert \mu \rightarrow \operatorname{\mathtt{ref}}\ t_1' \vert \mu'
+} \tag{E-Ref}
+$$
+
+$$
+\dfrac{
+  l \notin dom(\mu)
+}{
+  \operatorname{\mathtt{ref}}\ v_1 \vert \mu \rightarrow l \vert (\mu, l \mapsto v_1)
+} \tag{E-RefV}
+$$
+
+## Garbage Collection Rules
+
+TODO
+
+# Store Typings
+
+首先可以想到一个很直接的 typing rule，包含了四部分：contexts/terms/types/stores。
+
+$$
+\dfrac{
+  \Gamma \vert \mu \vdash \mu(l) : T_1
+}{
+  \Gamma \vert \mu \vdash l : \operatorname{\mathtt{Ref}}\ T_1
+}
+$$
+
+但是这个规则有两个问题：
+- 效率不高：每次遇到一个 location 都要重新寻找类型，并且如果其值中包含其他 location，就需要递归推导
+- 无法求解递归的情况，例如：
+
+  $$
+  (l_1 \mapsto \lambda x: \operatorname{\mathtt{Nat}}. (!l_2)\ x, \\
+  \ l_2 \mapsto \lambda x: \operatorname{\mathtt{Nat}}. (!l_1)\ x)
+  $$
+
+实际上 location 在 allocated 时其类型已经固定了，因此可以利用这一点（Preserve）。下面引入一个函数将 location 映射到其类型，称为 **store typing**，用 $\Sigma$ 表示其 metavariables（例如 $(l_1 \mapsto \operatorname{\mathtt{Unit}}, l_2 \mapsto \operatorname{\mathtt{Unit}} \rightarrow \operatorname{\mathtt{Unit}})$）。
+
+设 store typing $\Sigma$ 描述了 store $\mu$，那么就可以直接通过 $\Sigma$ 中存储的信息来推导类型。
+
+$$
+\dfrac{
+  \Sigma(l) = T_1
+}{
+  \Gamma \vert \Sigma \vdash l : \operatorname{\mathtt{Ref}}\ T_1
+} \tag{T-Loc}
+$$
+
+但是这种方式要求 evaluation 的过程中对 location 的 assignment 必须是类型安全的（即赋的值必须和类型匹配）。并且在规约 `ref` 表达式的时候要去更新 $\Sigma$。
+
+# Safety
+
+## Preservation
+
+在表述 preservation theorem 之前，需要明确一些限制。
+
+首先对于一个 $\mu$ 和一个 $\Sigma$，要求二者必须匹配，即不能发生冲突。
+
+> **Definition** well typed
+>
+> A store $\mu$ is said to be **well typed** with respect to a typing context $\Gamma$ and a store typing $\Sigma$, written $\Gamma \vert \Sigma \vdash \mu$, if $dom(\mu) = dom(\Sigma)$ and $\Gamma \vert \Sigma \vdash \mu(l) : \Sigma(l)$ for every $l \in dom(\mu)$.
+
+除此之外，对于 assignment，要考虑其导致的 $\Sigma$ 更新的情况。
+
+> **Q** 对于给定的 $\Gamma$ 和 $\mu$，能不能找到两个 $\Sigma_1$ 和 $\Sigma_2$ 都满足 $\Gamma \vert \Sigma \vdash \mu$
+>
+> **A**
+>
+> $$
+> \begin{aligned}
+> \Gamma &= \emptyset \\
+> \mu &= (l \mapsto \lambda x : \operatorname{\mathtt{Unit}}. (!l)(x)) \\
+> \Sigma_1 &= l : \operatorname{\mathtt{Unit}} \rightarrow \operatorname{\mathtt{Unit}} \\
+> \Sigma_2 &= l : \operatorname{\mathtt{Unit}} \rightarrow (\operatorname{\mathtt{Unit}} \rightarrow \operatorname{\mathtt{Unit}})\\
+> \end{aligned}
+> $$
+
+> **Theorem** Preservation
+>
+> If
+>
+> $$
+> \begin{aligned}
+> &\Gamma \vert \Sigma \vdash t : T \\
+> &\Gamma \vert \Sigma \vdash \mu \\
+> &t \vert \mu \rightarrow t' \vert \mu'
+> \end{aligned}
+> $$
+>
+> then, for some $\Sigma' \supseteq \Sigma$
+>
+> $$
+> \begin{aligned}
+> & \Gamma \vert \Sigma' \vdash t' : T \\
+> & \Gamma \vert \Sigma' \vdash \mu'
+> \end{aligned}
+> $$
+
+此处的 $\Sigma' \supseteq \Sigma$ 表明 $\Sigma' = \Sigma$ 或者 $\Sigma' = (\Sigma, l \mapsto T_1)$。
+
+在正式证明 preservation 之前需要几个 lemmas。
+
+> **Lemma** Substitution
+>
+> If $\Gamma, x : S \vert \Sigma \vdash t : T$ and $\Gamma \vert \Sigma \vdash s : S$, then $\Gamma \vert \Sigma \vdash [x \mapsto s] t : T$.
+
+> **Lemma**
+>
+> If
+>
+> $$
+> \begin{aligned}
+> & \Gamma \vert \Sigma \vdash \mu \\
+> & \Sigma(l) = T \\
+> & \Gamma \vert \Sigma \vdash v : T
+> \end{aligned}
+> $$
+>
+> then $\Gamma \vert \Sigma \vdash [l \mapsto v] \mu$.
+>
+> **Proof** Immediately from definition.
+
+> **Lemma**
+>
+> If $\Gamma \vert \Sigma \vdash t : T$ and $\Sigma' \supseteq \Sigma$, then $\Gamma \vert \Sigma' \vdash t : T$.
+
+通过以上几个 lemmas 就可以得到 preservation 的证明（模仿 STLC 的证明）。
+
+Store typings 可以当做是为了更方便地证明 preservation theorem 才引入的。
+
+## Progress
+
+> **Theorem** Progress
+>
+> Suppose $t$ is a closed, well-typed term (that is, $\emptyset \vert \Sigma \vdash t : T$ for some $T$ and $\Sigma$). Then either $t$ is a value or else, for any store $\mu$ such that $\emptyset \vert \Sigma \vdash \mu$, there is some term $t'$ and store $\mu'$ with $t \vert \mu \rightarrow t' \vert \mu'$.
+
+Progress theorem 可以直接模仿 STLC 进行证明。
