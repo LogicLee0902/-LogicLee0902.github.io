@@ -5,7 +5,7 @@ subtitle: "新北区地下黑心企业"
 author: "roife"
 date: 2021-08-21
 
-tags: ["比赛@Tags@Tags", "编译原理@Tags@Tags", "毕昇杯@Tags@Tags", "随想@Tags@Tags"]
+tags: ["比赛@Tags@Tags", "编译原理@Tags@Tags", "系统能力大赛@Tags@Tags", "随想@Tags@Tags"]
 lang: zh
 catalog: true
 header-image: ""
