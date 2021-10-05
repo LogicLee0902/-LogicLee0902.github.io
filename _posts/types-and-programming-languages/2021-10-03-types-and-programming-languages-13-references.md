@@ -445,7 +445,7 @@ Store typings 可以当做是为了更方便地证明 preservation theorem 才�
 
 Progress theorem 可以直接模仿 STLC 进行证明。
 
-# References 与递归函数
+# Recursion via references
 
 > **Q** References 相关的 evaluation relation 都能 normalize 成 well-typed terms 吗？（即是否都能终止）
 >

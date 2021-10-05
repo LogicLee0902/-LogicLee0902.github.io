@@ -340,14 +340,14 @@ Inductive aevalR : aexp -> nat -> Prop :=
 可以将这种关系写成 Inference Rules 的形式。
 
 $$
-\dfrac {}{ANum\ n \Longrightarrow n} \textbf{E\_ANum}
+\dfrac {}{\operatorname{\mathtt{ANum}}\ n \Longrightarrow n} \tag{E\_ANum}
 $$
 
 $$
 \dfrac
 {e_1 \Longrightarrow n_1, e_2 \Longrightarrow n_2}
-{APlus\ e_1\ e_2 \Longrightarrow n_1 - n_2}
-\textbf{E\_APlus}
+{\operatorname{\mathtt{APlus}}\ e_1\ e_2 \Longrightarrow n_1 - n_2}
+\tag{E\_APlus}
 $$
 
 如果一个语句内有多个变量，可以考虑适当 `generalize dependent`。

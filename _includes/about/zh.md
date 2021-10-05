@@ -7,12 +7,12 @@
 ### 关于 roife
 
 - 曾经是 OIer
-- 程序语言理论/形式化证明业余爱好者
+- PL 业余爱好者，对 Compiler 和 Verification 感兴趣
 - Emacs 拥趸
 - 「SCP Foundations」爱好者
 - 喜欢 Любэ 乐队
 - ACGN 爱好者
-- 小动物控
+- 毛毛控
 
 ### 联系方式
 

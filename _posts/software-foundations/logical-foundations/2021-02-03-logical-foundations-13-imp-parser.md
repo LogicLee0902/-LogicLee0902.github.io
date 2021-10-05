@@ -60,8 +60,8 @@ Definition classifyChar (c : ascii) : chartype :=
 ```coq
 Fixpoint list_of_string (s : string) : list ascii :=
   match s with
-  | EmptyString ⇒ []
-  | String c s ⇒ c :: (list_of_string s)
+  | EmptyString => []
+  | String c s => c :: (list_of_string s)
   end.
 Definition string_of_list (xs : list ascii) : string :=
   fold_right String EmptyString xs.
@@ -74,24 +74,24 @@ Definition token := string.
 (* [cls] 表示上个字符类型，[acc] 表示当前 token 的逆序，[xs] 是当前待 token 字符串 *)
 Fixpoint tokenize_helper (cls : chartype) (acc xs : list ascii)
                        : list (list ascii) :=
-  let tk := match acc with [] ⇒ [] | _::_ ⇒ [rev acc] end in
+  let tk := match acc with [] => [] | _::_ => [rev acc] end in
   match xs with
-  | [] ⇒ tk
-  | (x::xs') ⇒
+  | [] => tk
+  | (x::xs') =>
     match cls, classifyChar x, x with
-    | _, _, "(" ⇒
+    | _, _, "(" =>
       tk ++ ["("]::(tokenize_helper other [] xs')
-    | _, _, ")" ⇒
+    | _, _, ")" =>
       tk ++ [")"]::(tokenize_helper other [] xs')
-    | _, white, _ ⇒
+    | _, white, _ =>
       tk ++ (tokenize_helper white [] xs')
-    | alpha,alpha,x ⇒
+    | alpha,alpha,x =>
       tokenize_helper alpha (x::acc) xs'
-    | digit,digit,x ⇒
+    | digit,digit,x =>
       tokenize_helper digit (x::acc) xs'
-    | other,other,x ⇒
+    | other,other,x =>
       tokenize_helper other (x::acc) xs'
-    | _,tp,x ⇒
+    | _,tp,x =>
       tk ++ (tokenize_helper tp [x] xs')
     end
   end %char.
