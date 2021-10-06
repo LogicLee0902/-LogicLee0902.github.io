@@ -205,7 +205,7 @@ Operational Semantics 用一个 **abstract machine** 来定义程序的语义，
 
 ## Denotational semantics
 
-Devotional semiotics 将 term 看作是数学上的实体。
+Devotional semiotics 将 term 看作是数学上的实体（通常是函数）。
 
 Denotational Semantics 首先确定了一个 semantics domains，然后定义一个 interpretation function 将 term 映射到 semantics domains。（domain theory）
 
