@@ -13,7 +13,7 @@
   + PL (Type System/FP/Verification)
   + Emacs
   + SCP 基金会
-  + ACGN 文化
+  + ACGN
 
 ### 联系方式
 

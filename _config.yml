@@ -1,10 +1,10 @@
 # Site settings
-title: ROIFE BLOG
-SEOTitle: roife 的博客 | ROIFE BLOG
+title: Roife Blog
+SEOTitle: roife 的博客 | Roife Blog
 header-img: img/home-bg.jpg
 email: roifewu@gmail.com
 description: "roife 的魔法科见闻"
-keyword: "roife, roifewu, @roife, ROIFE BLOG, 博客, 个人网站"
+keyword: "roife, roifewu, @roife, Roife Blog, 博客, 个人网站"
 url: "https://roife.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
