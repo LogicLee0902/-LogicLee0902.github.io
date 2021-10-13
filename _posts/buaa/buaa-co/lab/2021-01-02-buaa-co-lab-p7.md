@@ -12,7 +12,7 @@ header-image: ""
 header-style: text
 katex: true
 ---
-
+<!--
 # 上机总结
 
 课上总共四道题：
@@ -27,7 +27,7 @@ katex: true
 assign F_excCode = F_excAdEL ? `EXC_AdEL :
                    F_syscall ? `EXC_syscall :
                    `EXC_None;
-```
+``` -->
 
 # 课下总结
 
