@@ -71,7 +71,7 @@ katex: true
 
 我课下实现的指令有 `addu, subu, and, or, sll, sllv, slt, jr / addi, ori, lui, slti / beq, blez / j, jal / sw, sh / lw, lh, lhu`. 基本是把每种类型的都做一个, 课上心里才有底.
 
-<!-- # 课下实现
+# 课下实现
 
 主要看 *Digital Design and Computer Architecture* 这本书，按照上面的方法搭建 CPU 即可。
 
@@ -163,4 +163,4 @@ for (int i=0; i<=31; ++i) {
 
 ![P3-lab-cu-1](/img/in-post/post-buaa-co/p3-lab-cu-1.png "p3-lab-cu-1"){:height="700px" width="700px"}
 
-![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"} -->
+![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"}
