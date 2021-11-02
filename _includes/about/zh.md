@@ -7,12 +7,11 @@
 ### 关于 roife
 
 - 曾经是 OIer
-- 毛毛控
 - 喜欢的东西：
-  + Compilers/Program Analysis
-  + PL (Type System/FP/Verification)
+  + 编译器和程序分析
+  + 程序语言理论（函数式编程 / 类型系统 / 形式验证）
   + Emacs
-  + SCP 基金会
+  + Furry
   + ACGN
 
 ### 联系方式

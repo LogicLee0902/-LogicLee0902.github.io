@@ -75,7 +75,7 @@ katex: true
 
 主要看 *Digital Design and Computer Architecture* 这本书，按照上面的方法搭建 CPU 即可。
 
-## PC
+<!-- ## PC
 
 没什么好说的, 就是一个寄存器. 可能要注意一下复位方式 (同步还是异步).
 
@@ -163,4 +163,4 @@ for (int i=0; i<=31; ++i) {
 
 ![P3-lab-cu-1](/img/in-post/post-buaa-co/p3-lab-cu-1.png "p3-lab-cu-1"){:height="700px" width="700px"}
 
-![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"}
+![P3-lab-cu-2](/img/in-post/post-buaa-co/p3-lab-cu-2.png "p3-lab-cu-2"){:height="600px" width="600px"} -->
