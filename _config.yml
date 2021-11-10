@@ -62,6 +62,9 @@ utterances_comment: true
 # Disqus
 # disqus_username: roife-github-io
 
+ga_track_id: 'UA-177087620-1'            # Format: UA-xxxxxx-xx
+ga_domain: roife.github.io
+
 
 # Sidebar settings
 sidebar: false # whether or not using Sidebar.
@@ -77,10 +80,8 @@ chrome-tab-theme-color: "#000000"
 service-worker: false
 
 
-
 # MathJax rendering for layout:page (e.g. post preview)
 page-mathjax: false
-# KaTeX
 page-katex: false
 
 # Friends
