@@ -106,6 +106,8 @@ end
 
 {% endraw %}
 
+具体看我 GitHub 仓库 [BUAA-CO] 的代码。
+
 ## Debug 工具
 
 写了一个用于实时反汇编指令的 module, 详情见 [DASM](https://github.com/roife/dasm).
