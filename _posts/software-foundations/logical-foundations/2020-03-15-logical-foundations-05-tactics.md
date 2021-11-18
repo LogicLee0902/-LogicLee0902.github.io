@@ -187,9 +187,13 @@ Qed.
 
 使用 `induction` 时会产生一个命题 `P(n')` 用于辅助命题 `P(n)` 的证明. 在多变量命题 `P(n, m)` 中对 n 进行 `induction`, 变量 `intros` 的顺序会影响到 `P(n', m)` 的表述.
 
-当变量没有被 `intros` 时, 变量在命题中以 `forall` 的形式存在, 此时 `apply` 和 `rewrite` 可以用 `P(n, m)` 证明 `P(n, m')`, 更加通用; 反之 `intros` 后, 变量变成了一个具体的数值, 而不在是通识符, 无法实现这种证明. 如 `forall m : nat, (n =? m) = true -> n = m` 可以证明 `(n =? m') = true -> n = m'`, 而 `(n =? m) = true -> n = m` 则无法推出.
+当变量没有被 `intros` 时, 变量在命题中以 `forall` 的形式存在, 此时 `apply` 和 `rewrite` 可以用 `P(n, m)` 证明 `P(n, m')`, 更加通用; 反之 `intros` 后, 变量变成了一个具体的数值, 而不在是通识符, 无法实现这种证明.
 
-因此使用 `induction` 时需要注意变量 `intros` 的时刻, 在 `induction` 之前 `intros` 会导致 `P(n', m)` 丧失通用性. 尤其是 `induction n` 里面嵌套对 `m` 的 `desturct` 和 `induction` 时, 会产生命题 `P(n, m')`, 此时需要通用的 `P(n', m)` 来证明.
+如 `forall m : nat, (n =? m) = true -> n = m` 可以证明 `(n =? m') = true -> n = m'`, 而 `(n =? m) = true -> n = m` 则无法推出.
+
+因此使用 `induction` 时需要注意变量 `intros` 的时刻, 在 `induction` 之前 `intros` 会导致 `P(n', m)` 丧失通用性.
+
+尤其是这种情况：`P(n, m) -/> P(S n, m)` 且 `P(n, m) -> P(S n, S m)`. 此时如果同时 `intros n m`, 会得到条件 `P(S n, m)` 和 `P(n, S m)`, 这对证明是没有帮助的. 但是如果只 `intros n`，就可以得到 `forall m, P(n, m)`.
 
 ``` coq
 Theorem eqb_true : forall n m,
