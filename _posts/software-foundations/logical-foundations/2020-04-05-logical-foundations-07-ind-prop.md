@@ -161,6 +161,10 @@ Qed.
 
 注意 `E'` 和 `IH` 的区别, `E'` 是对 `E` 的归纳, `IH` 是对 conclusion 的归纳.
 
+Induction on evidence 类似于对 `nat` 进行归纳。在 `nat` 中进行 `induction` 会讨论 `O` 和 `S n` 两种情况；在 `even` 中进行归纳则会讨论 `ev_0` 和 `ev_SS` 两种情况。二者本质是相同的
+
+这里之所以要对 evidence 进行归纳而不是对 `nat` 进行归纳是因为这个性质并不是对所有的 `nat` 都成立，而是对满足命题的 `nat` 成立。
+
 对 evidence 进行归纳是很常用的技巧, 尤其在形式化程序语言中经常用到.
 
 # Relations
@@ -245,7 +249,7 @@ Qed.
 Theorem plus_lt : forall n1 n2 m,
   n1 + n2 < m ->
   n1 < m /\ n2 < m.
-Proof.
+Proof.F
  unfold lt.
  intros.
  inversion H.
