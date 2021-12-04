@@ -196,7 +196,7 @@ $$
 \begin{aligned}
     &\mathtt{test}\ \mathtt{tru}\ v\ w \\
     = {}& \underline{(\lambda l. \lambda m. \lambda n. l\ m\ n)\ \mathtt{tru}}\ v\ w \\
-    \rightarrow {}& \underline{(\lambda m. \lambda n. \mathtt{tru}\ m\ n)\ \mathtt{tru}\ v}\ w \\
+    \rightarrow {}& \underline{(\lambda m. \lambda n. \mathtt{tru}\ m\ n)\ v}\ w \\
     \rightarrow {}& \underline{(\lambda n. \mathtt{tru}\ v\ n)}\ w \\
     \rightarrow {}& \mathtt{tru}\ v\ w \\
     = {}& \underline{(\lambda t. \lambda f. t)\ v}\ w \\
