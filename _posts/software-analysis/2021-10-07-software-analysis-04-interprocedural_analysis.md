@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Software Analysis」 04 Interprocedual Analysis（Unfinished）"
+title: "「Software Analysis」 04 Interprocedual Analysis"
 subtitle: "过程间分析"
 author: "roife"
 date: 2021-10-10
@@ -175,4 +175,58 @@ $$
 
 ## 转换函数与图可达性
 
-对于可分配转换函数 $f(X) = (X \backslash \{a\}) \cup \{c\}$
+对于可分配转换函数 $f(X) = (X \backslash \{a\}) \cup \{c\}$。这个函数可以表达成一个图：
+
+![Transition Function in Graph](/img/in-post/post-software-analysis/interprocedure-analysis-transition-function-in-graph.png){:height="150px" width="150px"}
+
+此时可以利用图的可达性计算转换函数的结果：例如求 $f(\{a, b\})$，可以从图上分别以 $a$ 和 $b$ 为起点，取其可以到达的边，取并集（或交集）即为转换函数的结果。
+
+## 未初始化变量分析
+
+![](/img/in-post/post-software-analysis/uninitialized-variables-analysis.png){:height="700px" width="700px"}
+
+如图是一个对于“未初始化变量”的分析。转移函数为
+
+$$
+f(X) =
+\begin{cases}
+& X \backslash \{a\} & \text{$a$ is initialized} \\
+& X \cup \{b\} & \text{$b := \mathtt{expr}$ and $\mathtt{expr} \wedge X \ne \emptyset$}
+\end{cases}
+$$
+
+其中每一条语句都可以**独立**连边。
+
+例如对于语句 `n1: READ(x)` 初始化了 $x$，则不连 $x$；对于语句 `n6: a:=a-g` 表示如果 $g$ 没有初始化，那么 $x$ 和 $g$ 都算未初始化。
+
+要考察到达某个点时某个变量是否被初始化，只要从 $\mathtt{entry}$ **能否走到某这点的变量**。例如 $\mathtt{entry} \rightarrow n6$ 的路线中，$x$ 不可达，因此 $x$ 被初始化了。
+
+图的每一条路径上都有一个标签。对于任意一条路径，只有其走过的标签排列符合 Dyck CFL，那么这条路径才是合法的。这样就可以从中筛选出合法的路径，并且只考虑这些合法的路径。如果存在这样的一条合法路径，那么说明这个变量是未初始化的。
+
+## 上下文无关语言可达性问题
+
+按照上面的例子，上下文敏感分析可以转换成一个图上的自动机问题：
+
+> 给定一个图，其中每条边上有标签。给定一个用 CFL 描述的语言 L，对于图中任意结点 $v_1$、$v_2$，确定是否存在从 $v_1$ 到 $v_2$ 的路径 $p$，使得该路径上的标签组成了 $L$ 中的句子。
+
+### 解决方案
+
+首先重写 Dyck CFL 的文法：
+
+$$
+\begin{aligned}
+S ::= {}\ &\ \{_1\ E_1 \\
+      | &\ \{_2\ E_2 \\
+      | &\ \dots \\
+      | &\ S\ S \\
+      | &\ \varepsilon \\
+E_1 ::= {}& S\ \}_1 \\
+E_2 ::= {}& S\ \}_2 \\
+\end{aligned}
+$$
+
+此时所有的推导都只有两个符号，因此可以将其转换成三种模式：
+
+如图，三种图代表三种模式。其中实线是原有的符号，虚线是根据模式添加的符号。只要按照算法不断加边即可。
+
+![Graph Construction](/img/in-post/post-software-analysis/interprocedure-analysis-graph-construction.png){:height="500px" width="500px"}
