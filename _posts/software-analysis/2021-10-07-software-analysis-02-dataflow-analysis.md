@@ -170,6 +170,8 @@ while(y < z) {
   + 符号分析中半格高度为 3
   + 活跃变量分析中半格高度为变量总数+1
 
+![Lattice in Symbol Analysis](/img/in-post/post-software-analysis/symbol-analysis-lattice.png){:height="150px" width="150px"}
+
 ### 单调(递增)函数
 
 > 给定一个偏序关系 $(S, \sqsubseteq)$，称一个定义在 $S$ 上的 函数 $f$ 为单调函数，当且仅当对任意 $a, b \in S$ 满足

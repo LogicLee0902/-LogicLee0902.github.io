@@ -69,6 +69,10 @@ Clone-based Context-Sensitive Analysis。
 
 TODO
 
+![](/img/in-post/post-software-analysis/interprocedure-analysis-clone-depth-one.png){:height="600px" width="600px"}
+
+![](/img/in-post/post-software-analysis/interprocedure-analysis-clone-depth-two.png){:height="600px" width="600px"}
+
 ## 其他的上下文敏感分析
 
 - 基于函数名字的上下文：把上面的基于调用位置区分的上下文分析变成基于函数名字的上下文分析。例如 `2::3` 变成 `fib::fib`。不如调用位置精确，但能减少复制量
@@ -154,6 +158,8 @@ S ::= {}\ &\ \{_1\ S\ \}_1 \\
 $$
 
 在进行上下文敏感性分析时，可以给系统中的每一处调用分配唯一一对括号，如果路径上的符号符合 Dyck 的文法，那么是可行路径。
+
+![Dyck CFL in Interprocedure Analysis](/img/in-post/post-software-analysis/dyck-cfl-interprocedure-analysis.png){:height="500px" width="500px"}
 
 ## 数据流分析分配性的推论
 
