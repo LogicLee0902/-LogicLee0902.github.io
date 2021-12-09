@@ -66,16 +66,3 @@ $$
 注意，在一个 `ring` tactic 中，所有 term 的 variables map 是共享的。
 
 此外还可以单独使用 `ring` tactic，表示对当前 gaol 两边的多项式进行 normalization，并会尝试用 `congr_eqT` 和 `refl_equal`（$x + y = x + z \Rightarrow y = z$，$x \times z = x \times y \Rightarrow y = z$） 去解决或化简这个 goal。
-
-# 自定义 ring theory
-
-- `Add Ring A Aplus Amult Aone Azero Ainv Aeq T [ c1 ...cn ].`
-- `Add Semi Ring A Aplus Amult Aone Azero Aeq T [ c1 ... cn ].`
-  + `A: Set`
-  + `APlus: A -> A -> A`
-  + `Amult: A -> A -> A`
-  + `Aone: A`
-  + `Azero: A`
-  + `Ainv: A -> A`
-  + `Aeq: A -> A -> bool`
-  + `ci` 为 constructors，被看作常量
