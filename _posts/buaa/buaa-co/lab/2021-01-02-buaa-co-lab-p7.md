@@ -275,12 +275,18 @@ end
 
 ### 异常识别
 
-注意前面级的异常优先：
+注意异常的优先顺序：
+- 同一个指令如果发生多个异常，则优先考虑最先发生的异常（例如同时在 D、E 级发生异常，就先考虑 D 级发生的异常）
+- 如果多条指令都会发生异常，那么也是优先考虑最先发生的异常（比如 D、E、M 级的指令都发生异常，则先考虑 M 级指令导致的异常）
+
+表现在流水线上就是：
+- 对于同一条指令的多个异常，越靠近 F 级的**异常**优先级越高（因为先发生）
+- 对于多条指令的异常，越靠近 M 级的**指令发生的异常**优先级越高（也是因为先发生）
 
 ```verilog
 assign F_excCode = F_excAdEL ? `EXC_AdEL : `EXC_None;
 
-assign D_excCode =  D_old_excCode ? D_old_excCode :
+assign D_excCode =  D_old_excCode ? D_old_excCode : // D_old_excCode 是 F 级发生的异常，后面同理
                     D_excRI ? `EXC_RI :
                     `EXC_None;
 
