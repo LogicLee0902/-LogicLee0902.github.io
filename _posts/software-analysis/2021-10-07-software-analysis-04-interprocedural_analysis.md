@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "「Software Analysis」 04 Interprocedual Analysis"
+title: "「Software Analysis」 04 Interprocedural Analysis"
 subtitle: "过程间分析"
 author: "roife"
 date: 2021-10-10
