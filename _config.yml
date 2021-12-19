@@ -87,14 +87,11 @@ page-katex: false
 # Friends
 friends: [
     {
-        title: "Narukara",
-        href: "http://narukara.github.io/"
+        title: "Matrixkook",
+        href: "https://matrixkook.github.io"
     }, {
         title: "bazoka13",
         href: "https://bazoka13.github.io/"
-    }, {
-        title: "Kisin",
-        href: "https://www.kisin.tech/index"
     }, {
       title: "coekjan",
       href: "https://blog.coekjan.cn/"
