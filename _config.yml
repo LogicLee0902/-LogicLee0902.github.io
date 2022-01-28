@@ -1,12 +1,13 @@
 # Site settings
-title: Roife Blog
-SEOTitle: roife 的博客 | Roife Blog
-header-img: img/home-bg.jpg
-email: roifewu@gmail.com
-description: "roife 的魔法科见闻"
-keyword: "roife, roifewu, @roife, Roife Blog, 博客, 个人网站"
-url: "https://roife.github.io"              # your host, for absolute URL
-baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+title: Leo's Blog
+SEOTitle: Leo 的博客 | LogicLee
+header-img: img/home-bg.png
+email: leolee0902@buaa.edu.com
+description: "Logic's mess"
+keyword: "Leo, Leo'Blog, Leo的博客, LogicLee, 博客"
+url: "http://logiclee0902.github.io"          # your host, for absolute URL
+baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "https://github.com/LogicLee0902/LogicLee0902.github.io.git" # you code repository
 
 # Publish posts or collection documents with a future date.
 future: true
@@ -15,11 +16,11 @@ future: true
 RSS: true
 #weibo_username:     huxpro
 #zhihu_username:     huxpro
-github_username:    roife
+github_username:    LogicLee0902
 #twitter_username:   huxpro
 #facebook_username:  huxpro
 #linkedin_username:  firstname-lastname-idxxxx
-mail: roifewu@gmail.com
+mail: leolee0902@buaa.edu.com
 
 
 
@@ -63,17 +64,17 @@ utterances_comment: true
 # disqus_username: roife-github-io
 
 ga_track_id: 'UA-177087620-1'            # Format: UA-xxxxxx-xx
-ga_domain: roife.github.io
+ga_domain: logiclee0902.github.io
 
 
 # Sidebar settings
-sidebar: false # whether or not using Sidebar.
-sidebar-about-description: "「魔法科的劣等生」"
-sidebar-avatar: /img/avatar-roife-ny.png      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar: true # whether or not using Sidebar.
+sidebar-about-description: "特别感谢也特别想我的宝贝女朋友"
+sidebar-avatar: /img/post-db-me.png     # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
-featured-tags: false                     # whether or not using Feature-Tags
-featured-condition-size: 5              # A tag will be featured if the size of it is more than this condition value
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
@@ -86,14 +87,12 @@ page-katex: false
 
 # Friends
 friends: [
-    {
-        title: "Matrixkook",
-        href: "https://matrixkook.github.io"
-    }, {
-        title: "bazoka13",
-        href: "https://bazoka13.github.io/"
-    }, {
-      title: "coekjan",
-      href: "https://blog.coekjan.cn/"
+     {
+        title: "Roife",
+        href: "https://roife.github.io/"
+    },{
+
+        title: "flyinglandlord",
+        href: "https://flyinglandlord.github.io/"
     }
 ]
