@@ -1,7 +1,8 @@
 ---
 layout:     post
 title:      "「Head First Java」 02 Variable"
-subtitle:   Java变量与参数date:       2022-02-04
+subtitle:   Java变量与参数
+date:       2022-02-04
 author:     Leo
 
 header-img: "img/post-java2.png"
