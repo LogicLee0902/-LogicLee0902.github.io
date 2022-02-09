@@ -1,11 +1,10 @@
 ---
 layout:     post
-title:      "「Head First Java」 01 Class & Obejct"
-subtitle:   Java 基础语法
+title:      "「Head First Java」 01 Class & Obejct（Preliminary Understanding）"
+subtitle:   有关Java的大体印象和类的初步认识
 date:       2022-01-24
 author:     Leo
-
-header-img: img/post-java.jpg
+header-img: "img/post-java.jpg"
 catalog: true
 tags: ["Java@Languages@Tags", "Head First Java@Books@Series"]
 lang: zh
@@ -16,6 +15,8 @@ katex: true
 > 鉴于之前学过一点，就跳过一些基础的java， javac的编译执行过程，以及一些基本的声明过程了
 >
 > 加上其与C/C++也有相似的地方，重点在一些Java特别的地方
+>
+> 本系列文档是根据Head First Java写的
 
 # 补充一些可注意的事项
 
@@ -35,7 +36,7 @@ katex: true
   #arg[1] "check" 
   ```
 
-# 类与对象
+# 类与对象初步
 
 运用对象时一般需要两个类，一个是要被操作于对象的类，另一个用来测试该类的类（带有main()，并在期中创立对象）
 
@@ -59,6 +60,29 @@ class DogTestDrive {
     }
 }
 ```
+
+因此，在面向对象中main(), 基本只有**两个**用途：
+
+1. 测试类
+2. 启动程序
+
+Java程序应该让对象和对象交互
+
+## 对于对象的存储
+
+Java在创建对象时会将根据其对象的大小（变量、函数数量与要求等）创建可回收的堆(Garbage-Collectible Heap)来管理空间，当其检测到某个类不会再用时，会对其进行自动回收操作。
+
+## 一些小问题的汇总
+
+### 有关全局变量
+
+本质上java程序没有全局变量这一说法，但可以用public，static或final达到类似的效果。
+
+类的方法加上public static就可以被广泛调用，类的变量加上public，static或final达到类似的效果
+
+### 有关Java程序的打包
+
+当拥有成百上千的类时，若是按照常规的提交会很繁琐。Java提供了打包为.jar的方法，方便其应用
 
 
 
