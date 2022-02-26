@@ -1,7 +1,8 @@
 ---
 layout:     post
 title:      "「Head First Java」 02 Variable"
-subtitle:   Java变量与参数date:       2022-02-04
+subtitle:   Java变量与参数
+date:       2022-02-04
 author:     Leo
 
 header-img: "img/post-java2.png"
@@ -87,6 +88,15 @@ Java为**值传递**，即**拷贝传递**，当一个变量作为参数传递�
 
 * 将实例变量标记为私有（private）
 * 将公有的`getter` and `setter`来控制存取动作（public）
+
+# 强制类型转换
+
+大部分是一样的，有一个`Integer.parseInt()`
+
+参数：
+
+* `string s`: 字符串（必选）
+* `int radix` 基数，默认是10
 
 # 一些小补充
 

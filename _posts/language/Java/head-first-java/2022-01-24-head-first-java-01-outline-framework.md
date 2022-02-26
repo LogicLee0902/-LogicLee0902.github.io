@@ -18,6 +18,8 @@ katex: true
 >
 > 本系列文档是根据Head First Java写的
 
+这一篇是很基础很基础的
+
 # 补充一些可注意的事项
 
 * jdk11后可以直接`java Program_Name.java` 代替先`java`再`javac`
@@ -35,6 +37,17 @@ katex: true
   #arg[0] "-s"
   #arg[1] "check" 
   ```
+
+* for循环的一种写法（加强版数组ffor）
+
+  ```java
+  for(int i:array){
+      //……
+      // array是一个数组，会将数组中的元素都赋值给i
+  }
+  ```
+
+  
 
 # 类与对象初步
 
