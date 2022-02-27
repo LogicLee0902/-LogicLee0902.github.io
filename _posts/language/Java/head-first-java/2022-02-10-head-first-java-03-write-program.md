@@ -21,7 +21,7 @@ katex: true
 * 写完伪代码之后不要急着代码，先写测试代码。（写测试代码的过程中，也能够再次理清题目，重新发现一些忽略 的情况和细节）
 * 随机数`Math.random()`，需要`import java.util.*`
 
-# 认识Java的API
+# 常用的两个包
 
 ## ArrayList
 
@@ -161,7 +161,7 @@ public class StringDemo{
 
 * `length()`:长度
 
-* `contat()`: 连接两个字符串
+* `concat()`: 连接两个字符串
 
   ```java
   "我的名字是 ".concat("Leo");
@@ -188,7 +188,7 @@ public class StringDemo{
 
   有两种模式
 
-  **1、不同的字符在较短字符串长度之内时**
+  **1、不同的字符在字符串长度之内时**
 
   返回值=原字符串与参数字符串中第一个不同字符相差的ASCII码值，为原减参。
 
@@ -204,7 +204,7 @@ public class StringDemo{
 
   注意：只比较第一个不同的字符，后面的d和c也不一样但不会进行比较了。
 
-  **2、不同的字符在较短字符串长度之外时**
+  **2、不同的字符在较短字符串长度之外时**（即一个串是另一个的子串时）
 
   返回值=原字符串与参数字符串相差的字符个数，原字符串长度大时为正，反之为负。
 
@@ -247,13 +247,55 @@ public class StringDemo{
   */
   ```
 
-  
+* `endsWith(String suffix):boolean` 是否以指定的后缀结束
+
+* `startWith(String prefix):boolean` 是否以指定的前缀开始
+
+* `equals(Object anObject):boolean`与指定的对象比较，**注意**不能使用`==`比较，它是比较**引用地址**是否一样的
+
+* `hashCode():int`返回字符串的哈希值
+
+* `indexOf(int ch/String str, [int fromIndex]):int`可以让其从指定的索引开始找
+
+* `lastIndexOf(int ch, [int fromIndex]):int`:最后一次出现的位置
+
+* `matches(String regex):boolean`，是否与正则表达式匹配
+
+* `replace(char oldChar, char newChar):String`
+
+* `replaceAll(Strung regex, String replacement):String`用replacement替换此字符串匹配给定的正则表达式的第一个子串
+
+* `split(String regex[, int limit]):String`依靠正则表达式吃拆分，可以设置最多拆分几块
+
+* `substring(int beginIndex[, int endIndex]):String`获得子串
+
+* `toCharArray():char[]`将字符串转换为一个新的字符数组
+
+* `toLowerCase():String`使用默认规则转换成小写
+
+* `toUpperCase():String`使用默认规则转换成大写
+
+* `toString():String`
+
+* `trim():String`:忽略前导空白和尾部空白
+
+* `contains(CharSequence chars):boolean`:是否包含
+
+* `isEmpty():String`
 
 格式化字符串和python 的一样。
 
  
 
+# Java的API
 
+----
 
+其实也就是函数库，Java的API中，类是被包装在包中的
 
+Java函数库的每个类都属于某个包，需要用完整的文件夹来表示，指明函数库类的完整名称，文件夹利用`.`的区分
+
+**需要全名的原因：**
+
+:crossed_fingers:可以制造出名称空间（如同C++的namespace），以便错开相同的类，并且包可以通过限制同一包之间的类相互存取以维护安全性。
 
