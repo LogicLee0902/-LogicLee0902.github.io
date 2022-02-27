@@ -4,7 +4,6 @@ title:      "「Head First Java」04 Inheritance and polymorphism"
 subtitle:   继承与多态
 date:       2022-02-26
 author:     Leo
-
 header-img: ""
 catalog: true
 tags: ["Java@Languages@Tags", "Head First Java@Books@Series"]
@@ -83,6 +82,6 @@ animals[3] = new Hippo();
 animals[4] = new Lion();
 ```
 
-这样Java也能确保调用相同的方法时，调用的是所实例化对象的房。
+这样Java也能确保调用相同的方法时，调用的是所实例化对象的方法。
 
-参数与返回类型也都可以是多态，**重写不属于多态**
+**重载不属于多态**
