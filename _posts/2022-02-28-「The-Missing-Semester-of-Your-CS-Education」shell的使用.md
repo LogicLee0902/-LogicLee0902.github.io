@@ -1,13 +1,13 @@
 ---
 layout:     post
 title:      "「The Missing Semester of Your CS Education」01 shell的使用"
-subtitle:   OS预习01
-date:       2022-02-10
+subtitle:   OS pre 02
+date:       2022-02-28
 author:     Leo
 
 header-img: ""
 catalog: true
-tags: ["shell@Tags@Tags", "OS@Courses@Series", "MIT@Schools@Tags"]
+tags: ["shell@Tags@Tags", "操作系统@Courses@Series", "MIT@Schools@Series"]
 lang: zh
 header-style: text
 katex: true

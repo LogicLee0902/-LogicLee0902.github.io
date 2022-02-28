@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      "「OS pre」MIPS异常的相关知识"
+title:      "「OS pre」01 MIPS异常的相关知识"
 subtitle:   关注了SR、Cause、EPC、BadVaddr
 date:       2022-02-26
 author:     Leo
 
 header-img: ""
 catalog: true
-tags: ["OS@Tags@Tags", "操作系统@Courses@Series", "BUAA@Schools@Series", "MIPS@Tags@Rags"]
+tags: ["操作系统@Courses@Series", "BUAA@Schools@Series", "MIPS@Tags@Rags"]
 lang: zh
 header-style: text
 katex: true
