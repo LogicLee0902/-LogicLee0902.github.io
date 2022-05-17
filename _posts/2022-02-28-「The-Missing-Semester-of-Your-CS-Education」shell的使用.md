@@ -4,8 +4,7 @@ title:      "「The Missing Semester of Your CS Education」01 shell的使用"
 subtitle:   OS pre 02
 date:       2022-02-28
 author:     Leo
-
-header-img: ""
+header-img: "img/post-shell.png"
 catalog: true
 tags: ["shell@Tags@Tags", "操作系统@Courses@Series", "MIT@Schools@Series"]
 lang: zh
@@ -170,6 +169,91 @@ mkdir Leo
 ```shell
 mkdir -p Leo/test
 ```
+
+### `sed`
+
+用来对多个文件进行编辑（插入、删除、替换等）
+
+#### 语法
+
+```shell
+sed 参数 动作 file
+```
+
+#### 参数说明
+
+- -e<script>或--expression=<script> 以选项中指定的script来处理输入的文本文件。
+- -f<script文件>或--file=<script文件> 以选项中指定的script文件来处理输入的文本文件。
+- -h或--help 显示帮助。
+- -n或--quiet或--silent 仅显示script处理后的结果。
+- -i 直接修改源文件
+- -V或--version 显示版本信息。
+
+(-e+动作命令也可以用" " 或 ' '来省略-e, 单双引号的区别在于含义的替换，在后面会说)
+
+#### 动作说明
+
+- a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)
+- c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+- d ：删除，因为是删除啊，所以 d 后面通常不接任何东东；
+- i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
+- p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行
+- s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 's/old/new/g' 
+
+其中不同的内容之间分隔符，不同内容比如就是a后面的字符串，s中的新旧字符串等，一般是/, !, :, |等
+
+#### 实例
+
+##### 以行为单位新增/删除
+
+删除 `d`, 新增 `i`, `a`
+
+```shell
+#delete lines
+sed 'n1,n2d'file
+# n1: the begin of the line
+# n2: the end of the line
+# and the '$' means the last line of the file
+
+# if only one line needed to be delete, then
+sed 'nd'file
+
+# Add a new line after the specified one
+sed '2a new line' file
+
+# Add a new line ahead of a line
+sed '2i new line' file
+
+# if want to add more the one line, use \ to seperate and > to continue in a new line
+ sed '4a run \
+> what' file
+
+```
+
+##### 以行为单的替换/显示
+
+替换`c`, 显示`p`
+
+```shell
+# it's allowed that the total lines of the new line don't need to match the old one
+sed '2,5c sin(sin(x)) \
+> cos(sin(x))' file
+
+# p to display
+sed '3,5p' file
+```
+
+##### 数据搜索并替换、删除
+
+删除`d`, 替换`s`
+
+两个都可以用正则表达式搜哦，用`/`或者`;` `|`等隔开
+
+##### 直接修改文件内容
+
+加一个`-i`即可
+
+
 
 ## 程序间创建连接
 

@@ -8,7 +8,6 @@ header-img: "img/post-java.jpg"
 catalog: true
 tags: ["Java@Languages@Tags", "Head First Java@Books@Series"]
 lang: zh
-header-style: text
 katex: true
 ---
 

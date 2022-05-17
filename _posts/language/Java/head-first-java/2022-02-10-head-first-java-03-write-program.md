@@ -5,7 +5,7 @@ subtitle:   进一步补充01的内容
 date:       2022-02-10
 author:     Leo
 
-header-img: ""
+header-img: "img/post-java.jpg"
 catalog: true
 tags: ["Java@Languages@Tags", "Head First Java@Books@Series"]
 lang: zh
@@ -263,7 +263,7 @@ public class StringDemo{
 
 * `replace(char oldChar, char newChar):String`
 
-* `replaceAll(Strung regex, String replacement):String`用replacement替换此字符串匹配给定的正则表达式的第一个子串
+* `replaceAll(String regex, String replacement):String`用replacement替换此字符串匹配给定的正则表达式的第一个子串
 
 * `split(String regex[, int limit]):String`依靠正则表达式吃拆分，可以设置最多拆分几块
 

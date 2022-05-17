@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "「Head First Java」04 Inheritance and polymorphism"
-subtitle:   继承与多态
+title:      "「Head First Java」04 Polymorphism"
+subtitle:   继承、多态、接口
 date:       2022-02-26
 author:     Leo
 header-img: ""
@@ -11,6 +11,8 @@ lang: zh
 header-style: text
 katex: true
 ---
+
+多态的核心意义就在可以用父类的作为参数进行函数操作（函数调用和函数返回），极其方便。
 
 # 继承
 
@@ -85,3 +87,109 @@ animals[4] = new Lion();
 这样Java也能确保调用相同的方法时，调用的是所实例化对象的方法。
 
 **重载不属于多态**
+
+多态的实例化对象，当出现方法的重写时，用哪个方法取决于对象的创建类型（new 的那个），而非引用类型。
+
+```java
+Course c1 = new Course();
+Course c2 = new OOCourseAlpha();
+c1.displayInfo();
+c2.displayInfo();
+```
+
+其中通过c1调用的实际是Course类实现的displayInfo方法，而通过c2调用的则是OOCourseAlpla类重写的displayInfo方法，但实际上c1和c2的引用类型都是Course。 上面我们提到的这个特性，就叫做多态。
+
+# 抽象类
+
+---
+
+当设定了某个父类后，我们并不希望它可以被new出来（莫得意义，还容易造成bug），将这个类转换成抽象类(关键字`abstract`),而编译器是不会让我们初始化抽象类的。抽象类**没有值，但可以有static成员**
+
+## 抽象方法
+
+---
+
+它是没有实体的，**代表此方法一定要被覆盖过**。在某些有着继承关系但是某个行为各不相同的类上（无法给出都有意义的共同方法）很好用。
+
+e.g,
+
+```java
+public abstract void eat();
+```
+
+**非抽象类不可以有抽象方法**，但抽象类可以有非抽象方法
+
+## `objec`类
+
+---
+
+Java所有的类都是从object类继承出来的，**没有直接继承过其他类的 类都会是隐含的继承对象**。
+
+所以如果不知道某个函数会返回什么类型，需要先来一个笼统的声明，就用object类吧
+
+而object类自带的方法所有类也都会继承，也就是`equal`(), `hashCode()`, `getclass()`, `toString()`
+
+自定义类也可以对这写方法进行改写，以满足我们的需求
+
+### 向下转型和向上转型
+
+---
+
+所有都隐含继承object，那为啥不能用object替代所有（比如参数传入，函数返回），而还要具体点明呢？因为java不允许父类使用子类新创的方法，即使实例化了它，即尽管可以用父类类型名为子类占位，可以用子类对象给父类实例化，但无法调用其方法，即**向上转型**（Upward transformation）。也就是说一个类能用的方法和声明对象有关，与实例化对象无关。
+
+我们假设有一个animal类，dog类继承自animal，有一个独特的方法为beFriendly（）
+
+```java
+Animal dog = new Dog(); // no error, it's legal
+dog.beFriendly(); //it will raise error
+```
+
+特别地，当用Object当作ArrayList的成员类型时，尽管可以把任何类型都add进来，但后面get的时候变量都会转变为Object，不管原来是什么。即**编译器只管引用类型，而不是对象的类型**，
+
+如果想调用子类所独特的方法，要将变量名强制转型，也就是**向下转型**，一般为了保证转换类型的正确，不引发CkassCastException错误，需要加一个`intanceof`判断
+
+```java
+if (o instanceof Dog) {
+    Dog d = (Dog) o;
+}
+```
+
+这边**注明**一点，Java不允许一个类继承多个类，以避免**菱形继承**，
+
+[![qiSUf0.png](https://s1.ax1x.com/2022/03/18/qiSUf0.png)](https://imgtu.com/i/qiSUf0)
+
+# 接口
+
+---
+
+**接口就类似于100%的纯抽象类**
+
+所有的方法都是抽象的
+
+定义方式
+
+```java
+public interface InterfaceName() {
+    
+}
+```
+
+接口实现
+
+```java
+public class Class implements InterfaceName {
+    
+}
+```
+
+一个类可以实现多个接口，这样当接口作为类型进行传参和返回时，可以是传入的类型大大增加了
+
+而接口与类不一样，一个类真正的类型，看的是它实例化的类型
+
+## 类与抽象类的区别
+
+---
+
+可以看到类型里面全是抽象方法（也正因为如此，里面的方法并不需要再声明其为`absract`, 因为已经默认是了），它与抽象类的区别，我个人认为**类更灵活**，而抽象类**更易扩展**
+
+抽象类中可以有抽象和非抽象的方法，当想要个某一家族加上同一的方法时，直接在其抽象父类（有的话）加上一个非抽象的方法就好了，如果是接口的话，在接口声明一个抽象方法后，则需对每一个实现 接口的对象都实现这个方法（如果对象中有一些继承关系就还好）。但类会受到严格只能继承一个父类的限制，在某些情况并不适合一些抽象关系的表达，接口就不一样了，毫无关联的类如果有相同的可抽象的行为，都可以实现接口（官方也提供了很多这样的接口，如序列化 的`Serialiable`, 线程的`Runnable`）

@@ -2,14 +2,12 @@
 layout:     post
 title:      "「The Missing Semester of Your CS Education」02 shell的细致讲解"
 subtitle:   OS pre 03
-date:       2022-02-28
+date:       2022-03-04
 author:     Leo
-
-header-img: ""
+header-img: "img/post-shell.png"
 catalog: true
 tags: ["shell@Tags@Tags", "操作系统@Courses@Series", "MIT@Schools@Series"]
 lang: zh
-header-style: text
 katex: true
 ---
 
@@ -36,6 +34,8 @@ echo '$foo'
 ```
 
 bash也支持`if`, `else`等条件语句，`while`,`for`等循环语句，并可以调用函数，并基于函数的参数(如果有的话)进行操作。
+
+所以对于向`sed "s/\$1/\$2", 可以得到第一个参数和第二个参数，如果用' '，就是文本意义上的\$1,\$2
 
 例子如下，会创建一个文件夹并使用cd进入该文件夹
 
