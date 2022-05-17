@@ -4,10 +4,11 @@ title:      "「Head First Java」04 Polymorphism"
 subtitle:   继承、多态、接口
 date:       2022-02-26
 author:     Leo
-header-img: "img/post-java.jpg"
+header-img: ""
 catalog: true
 tags: ["Java@Languages@Tags", "Head First Java@Books@Series"]
 lang: zh
+header-style: text
 katex: true
 ---
 
