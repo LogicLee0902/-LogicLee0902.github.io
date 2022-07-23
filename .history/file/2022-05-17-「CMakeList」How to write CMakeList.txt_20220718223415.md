@@ -49,15 +49,12 @@ CMake的内置变量一般有三种
 *  `_CMAKE`
 *  下划线开头加上CMake命令的名称的变量名
 
-
-> set也可以自定义设置变量，一般为文件名或者路径，格式为`set(变量 文件名/路径)`, 用`$(变量)`进行调用 
-
 ### 配置编译选项
 
 通过`add_compile_options`进行配置，其同时对多个编译器有用。 通过设置变量CMAKE_C_FLAGS可以配置c编译器的编译选项； 而设置变量CMAKE_CXX_FLAGS可配置针对c++编译器的编译选项。其中编译选项就是之前写在dev编译选项里面的选项，比如`-Wall`、`-Wextra`等等。O2优化也可以在里面配置
 
 ```Cmake
-add_compile_options(-Wall -Wextra -pedantic -Werror)  
+add_compile_options(-Wall -Wextra -pedantic -Werror)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pipe -std=c99")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -std=c++11")
 ```
@@ -88,11 +85,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
 >* Debug：调试版本，包含调试信息，不进行代码优化，用于调试。
 >* Release：发布版本，不包含调试信息，进行代码优化，用于发布。因此对于release版本增加断点是不会停止的
 
-### 默认变量
-以下两个变量是CMake的默认变量，可以在CMakeLists.txt中直接使用，不需要设置
-`${PROJECT_SOURCE_DIR}：本CMakeLists.txt所在的文件夹路径`
-`${PROJECT_NAME}：本CMakeLists.txt的project名称`
-
 ## 编译配置
 
 必要的框架一般如下
@@ -103,14 +95,22 @@ project(xxx)                                          #必须
 
 add_subdirectory(子文件夹名称)                         #父目录必须，子目录不必
 
-add_library(库文件名称 STATIC 文件)                   
-add_executable(可执行文件名称 文件)                  
+add_library(库文件名称 STATIC 文件)                    #通常子目录(二选一)
+add_executable(可执行文件名称 文件)                     #通常父目录(二选一)
 
 include_directories(路径)                              #必须
 link_directories(路径)                                 #必须
 
 target_link_libraries(库文件名称/可执行文件名称 链接的库文件名称)       #必须
 
+```
+
+### 添加头文件文件夹
+
+通过`include_directories`进行添加，可以添加多个文件夹，比如添加`include`文件夹，`include/`文件夹下的头文件，这样就可以在CMake中使用头文件了。
+
+```Cmake
+include_directories(include)
 ```
 
 用作例子的项目[cmake-template](https://gitee.com/RealCoolEngineer/cmake-template)，结构如下
@@ -127,14 +127,6 @@ target_link_libraries(库文件名称/可执行文件名称 链接的库文件�
 
 > .cc 是 c++在linux下的后缀名 等同于 .cpp
 
-### 添加头文件文件夹
-
-通过`include_directories`进行添加，可以添加多个文件夹，比如添加`include`文件夹，`include/`文件夹下的头文件，这样就可以在CMake中使用头文件了。
-
-```Cmake
-include_directories(include)
-```
-
 ### 编译静态库
 
 如上图用`add_library`，但是如果有一堆静态库时，一个个添加显然很累，这时候可以将所有的静态库文件放在一个文件夹下，也应该放在一个文件夹下，获取需要的文件列表，可以使用set命令，或者file命令来进行设置
@@ -149,65 +141,3 @@ add_library(math STATIC ${MATH_LIB_SRC})
 使用file命令获取src/c/math目录下所有的*.c文件，然后通过add_library命令编译名为math的静态库，库的类型是第二个参数STATIC指定的。
 
 如果指定为SHARED则编译的就是动态链接库。
-
-其中静态库为libxxx.a，库文件名称通常为libxxx.so，xxx就其中自定义的名字。
-
-### 编译可执行文件
-
-通过`add_executable`命令来往构建系统中添加一个可执行构建目标，需要指定编译需要的源文件。但是对于可执行文件来说，有时候还会依赖其他的库，则需要使用`target_link_libraries`命令来声明构建此可执行文件需要链接的库。而这些库就是先前编译后并自己命名的
-
-在示例项目中，main.c就使用了`src/c/math`下实现的一些函数接口，所以依赖于前面构建的math库。所以在CMakeLists.txt中添加以下内容：
-
-```CMake
-add_executable(beta src/c/main.c)
-target_link_libraries(beta math)
-```
-
-这两行的意思是，是将`src/c/main.c`编译成名为beta的可执行文件，并在编译的过程中与libmath库相链接，最后一起装入。
-说明两点
-
-* `add_executable`可以添加多个文件，即可以一并编译
-* `target_link_libraries`不仅可以将可执行文件和库文件链接，其也可以让两个库文件相连接。
-  
-进行一个简化的流程
-
-![20220721211105](https://s2.loli.net/2022/07/21/Y2pd8B6sumGFfqh.png)
-
-那么CMakeList.txt的内容如下即可
-
-```CMake
-cmake_minimum_required(VERSION 3.22)
-project(cmake_trial)
-
-set(CMAKE_CXX_STANDARD 14)
-
-file(GLOB_RECURSE src_files "*.cpp")
-add_library(trial STATIC ${src_files})
-
-add_executable(cmake_trial src/main.cpp)
-target_link_libraries(cmake_trial trial)
-```
- 
-> 查阅头文件时常常见到，编写头文件时CLion也会自动插入
-> ```C++
-> #ifndef PROJECT_LIB
-> #define PROJECT_LIB
-> // ...
-> #endif //PROJECT_LIB
-> ```
-> 这是为了防止头文件反复引用，对编译造成额外的开销 
-
-### CMakeList的嵌套
-
-当出现CMake嵌套的时候，需要`add_subdirecotry()`, 其可以编译子文件夹的CMakeList.txt,并且`add_subdirectory()`之前set的变量在子文件夹中可以调用。
-
-### `aux_source_directory`
-
-`aux_source_directory(路径 变量)`查找目录下的所有源文件，获取路所有的.cpp/.c/.cc文件，并赋值给变量，这样就可以对这些文件进行统一操作， 类似file声明的为"*.cpp" and "*.c"的变量
-
-
-### 规定文件路径
-
-`include_directories(path)`，指定.h头文件的路径
-`link_directories(path)`,指定了.so 和 .a 文件的路径
-指定路径后可以缩小编译的开销。

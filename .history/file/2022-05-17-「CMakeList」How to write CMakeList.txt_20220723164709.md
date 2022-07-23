@@ -208,6 +208,6 @@ target_link_libraries(cmake_trial trial)
 
 ### 规定文件路径
 
-`include_directories(path)`，指定.h头文件的路径
-`link_directories(path)`,指定了.so 和 .a 文件的路径
-指定路径后可以缩小编译的开销。
+#### 头文件路径
+
+`include_directories(path)`，在其中

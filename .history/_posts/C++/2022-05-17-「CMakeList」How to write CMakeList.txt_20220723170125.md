@@ -13,6 +13,8 @@ katex: true
 
 &emsp;这是一个要填好久的坑了，背景主要在于将C/C++的ide从Dev-C++的过渡到了CLion，然后发现了巨大的不同，特别是CLion中有关.c, .cpp, .h等各类文件的链接极度依赖于CMakeList，因此记录一下相关的知识点。
 
+主要学习来源[知乎](https://www.zhihu.com/question/52709898)和[CSDN](https://blog.csdn.net/qq_38410730/article/details/102477162)
+
 # CMakeList 学习
 
 
@@ -211,3 +213,11 @@ target_link_libraries(cmake_trial trial)
 `include_directories(path)`，指定.h头文件的路径
 `link_directories(path)`,指定了.so 和 .a 文件的路径
 指定路径后可以缩小编译的开销。
+
+### 输出命令
+
+可以利用`message`对一些变量进行输出，可以在CMakeList构建出现问题时查看一下，方便输出变量
+
+---------------------------------------------------
+
+还有的一些关于安装和测试等相关的内容，目前感觉还不是很用的到，看情况以后是否更新。

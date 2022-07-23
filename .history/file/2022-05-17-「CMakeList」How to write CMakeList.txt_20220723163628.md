@@ -163,7 +163,7 @@ add_executable(beta src/c/main.c)
 target_link_libraries(beta math)
 ```
 
-这两行的意思是，是将`src/c/main.c`编译成名为beta的可执行文件，并在编译的过程中与libmath库相链接，最后一起装入。
+这两行的意思是，是将`src/c/main.c`编译成名为beta的可执行文件，并在编译的过程中与math库相链接，最后一起装入。
 说明两点
 
 * `add_executable`可以添加多个文件，即可以一并编译
@@ -203,11 +203,4 @@ target_link_libraries(cmake_trial trial)
 
 ### `aux_source_directory`
 
-`aux_source_directory(路径 变量)`查找目录下的所有源文件，获取路所有的.cpp/.c/.cc文件，并赋值给变量，这样就可以对这些文件进行统一操作， 类似file声明的为"*.cpp" and "*.c"的变量
-
-
-### 规定文件路径
-
-`include_directories(path)`，指定.h头文件的路径
-`link_directories(path)`,指定了.so 和 .a 文件的路径
-指定路径后可以缩小编译的开销。
+`aux_source_directory(路径 变量)`查找目录下的所有源文件，获取路所有的.cpp/.c/.cc文件，并赋值给变量
