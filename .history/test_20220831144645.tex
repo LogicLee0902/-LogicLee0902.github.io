@@ -1,0 +1,58 @@
+
+\documentclass{article}
+
+
+\title{Second day}
+\author{Leo}
+\date{\today}
+
+\usepackage{ctex}
+
+\newcommand{\myfont[1]}{\textsf{\textbf}}
+%\newcommand{\myfont}{\textit{\textbf{\textsf{Fancy Family}}}}
+
+
+% passage itself
+\begin{document}
+\maketitle
+
+\textsf{\textbf{
+        This is the default style of the font
+    }}
+
+
+\textrm{Roman Family} \textsf{San Serif Family} \texttt{Typewriter Family}
+
+
+{\rmfamily Roman Family} {\sffamily Sans Serif Family} {\ttfamily Typewriter Family}
+
+\sffamily Hello World!
+
+\textmd{Medium Series} \textbf{Boldface Series}
+{\mdseries Medium Series} {\bfseries Boldface Series}
+
+\textup{Upright Shape} \textit{Italic shape 123}
+{\slshape Slanted Shape 123} {\scshape Caps Shape}
+
+{\songti 宋体}\quad {\heiti 黑体}\quad{\fangsong 仿宋}\quad{\kaishu 楷书}\\
+{\tiny Hello} \\
+{\scriptsize Hello} \\
+{\footnotesize Hello} \\
+{\small Hello} \\
+{\normalsize Hello} \\
+{\large Hello} \\
+{\LARGE Hello} \\
+{\huge Hello} \\
+{\Huge Hello} \\
+{\zihao{5}你好}
+
+
+{\bfseries
+So what are they?
+Can it be OK?
+}
+No switching
+
+Will be bold again
+
+\end{document}
