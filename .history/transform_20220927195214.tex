@@ -1,0 +1,48 @@
+\documentclass[]{ctexart}
+\usepackage{amsmath}
+
+\begin{document}
+Diffusion模型定义了一个概率分布转换模型 $\mathcal{T}$, 能将原始数据 $x_0$ 构成的复杂分布
+
+$$
+\mathbf{x}_0 \sim p_{\text {complex }} \Longrightarrow \mathcal{T}\left(\mathbf{x}_0\right) \sim p_{\text {prior }}
+$$
+
+Diffusion模型提出可以用马尔科夫链(Markov Chain)来构造 $\mathcal{T}$, 定义一系列条件概率分布 $q\left(\mathbf{x}_t \mid \mathbf{x}_{t-1}\right), \quad t \in\{1,2,3 \ldots T\}$, 
+将 $\mathbf{x}_0$ 依次转换为 $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_T$, 希望当 $T \rightarrow \inf$ 时, $\mathbf{x}_T \sim p_{\text {prior }}$
+
+$$
+\begin{gathered}
+q\left(\mathbf{x}_t \mid \mathbf{x}_{t-1}\right)=\mathcal{N}\left(\mathbf{x}_t ; \sqrt{1-\beta_t} \mathbf{x}_{t-1}, \beta_t \mathrm{I}\right) \\
+q\left(\mathbf{x}_T\right)=p_{\text {prior }}\left(\mathbf{x}_T\right)=\mathcal{N}\left(\mathbf{x}_T ; \mathbf{0}, \mathrm{I}\right) \quad \text { where } T \rightarrow \inf
+\end{gathered}
+$$
+
+即已知 $\mathbf{x}_{t-1}$ 时， $\mathbf{x}_t$ 的概率分布是一个平均值为 $\sqrt{1-\beta_t} \mathbf{x}_{t-1}$ ，协方差为 $\beta_t \mathbf{I}$ 的正态分布。
+其中$\beta$为扩散系数
+
+根据数学技巧可得：（没有看的很懂推导的过程）
+
+$$
+\mathbf{x}_t=\sqrt{1-\beta_t} \mathbf{x}_{t-1}+\sqrt{\beta_t} \mathbf{z}_{t-1} \quad \text { where } \mathbf{z}_{t-1} \in \mathcal{N}(0, \mathbf{I})
+$$
+
+将$x_t$一层一层迭代，可以得到以下式子：
+
+假设 $\alpha_t=1-\beta_t, \bar{\alpha}_t=\prod_{i=1}^T \alpha_i$, 那么：
+$$
+\begin{array}{rlr}
+\mathbf{x}_t & =\sqrt{\alpha_t} \mathbf{x}_{t-1}+\sqrt{1-\alpha_t} \mathbf{z}_{t-1} & ; \text { where } \mathbf{z}_{t-1}, \mathbf{z}_{t-2}, \cdots \sim \mathcal{N}(\mathbf{0}, \mathbf{I}) \\
+& =\sqrt{\alpha_t \alpha_{t-1}} \mathbf{x}_{t-2}+\sqrt{\alpha_t\left(1-\alpha_{t-1}\right)} \mathbf{z}_{t-2}+\sqrt{1-\alpha_t} \mathbf{z}_{t-1} & \\
+& =\sqrt{\alpha_t \alpha_{t-1}} \mathbf{x}_{t-2}+\sqrt{1-\alpha_t \alpha_{t-1}} \overline{\mathbf{z}}_{t-2} & ; \text { where } \overline{\mathbf{z}}_{t-2}, \overline{\mathbf{z}}_{t-3}, \cdots \sim \mathcal{N}(\mathbf{0}, \mathbf{I})(3) \\
+& =\ldots & \\
+& =\sqrt{\bar{\alpha}_t} \mathbf{x}_0+\sqrt{1-\bar{\alpha}_t} \mathbf{z} &
+\end{array}
+$$
+
+由于 $\beta_t \in(0,1)$, 那么 $\alpha_t \in(0,1)$ 。 $t \rightarrow \inf$ 时, $\bar{\alpha}_t \rightarrow 0$ 。可以看出, $\sqrt{1-\beta_t}$ 和 $\sqrt{\beta_t}$ 
+作为系数保证了当 $T \rightarrow \inf$ 时, $q\left(\mathbf{x}_T\right)=p_{\text {prior }}\left(\mathbf{x}_T\right)=\mathbf{N}(0, \mathbf{I})$ 。
+实际上，只要 $T$ 取一个足够大的值，不需要无限次迭代，得到的 分布就已经很接近于标准正态分布了。
+
+\end{document}
+

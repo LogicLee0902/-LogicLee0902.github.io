@@ -1,0 +1,29 @@
+\documentclass[]{ctexart}
+\usepackage{amsmath}
+
+\begin{document}
+Diffusion模型定义了一个概率分布转换模型 $\mathcal{T}$, 能将原始数据 $x_0$ 构成的复杂分布
+
+$$
+\mathbf{x}_0 \sim p_{\text {complex }} \Longrightarrow \mathcal{T}\left(\mathbf{x}_0\right) \sim p_{\text {prior }}
+$$
+
+Diffusion模型提出可以用马尔科夫链(Markov Chain)来构造 $\mathcal{T}$, 定义一系列条件概率分布 $q\left(\mathbf{x}_t \mid \mathbf{x}_{t-1}\right), \quad t \in\{1,2,3 \ldots T\}$, 
+将 $\mathbf{x}_0$ 依次转换为 $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_T$, 希望当 $T \rightarrow \inf$ 时, $\mathbf{x}_T \sim p_{\text {prior }}$
+
+$$
+\begin{gathered}
+q\left(\mathbf{x}_t \mid \mathbf{x}_{t-1}\right)=\mathcal{N}\left(\mathbf{x}_t ; \sqrt{1-\beta_t} \mathbf{x}_{t-1}, \beta_t \mathrm{I}\right) \\
+q\left(\mathbf{x}_T\right)=p_{\text {prior }}\left(\mathbf{x}_T\right)=\mathcal{N}\left(\mathbf{x}_T ; \mathbf{0}, \mathrm{I}\right) \quad \text { where } T \rightarrow \inf
+\end{gathered}
+$$
+
+即已知 $\mathbf{x}_{t-1}$ 时， $\mathbf{x}_t$ 的概率分布是一个平均值为 $\sqrt{1-\beta_t} \mathbf{x}_{t-1}$ ，协方差为 $\beta_t \mathbf{I}$ 的正态分布。
+根据数学技巧可得：
+
+$$
+\mathbf{x}_t=\sqrt{1-\beta_t} \mathbf{x}_{t-1}+\sqrt{\beta_t} \mathbf{z}_{t-1} \quad \text { where } \mathbf{z}_{t-1} \in \mathcal{N}(0, \mathbf{I})
+$$
+
+\end{document}
+
